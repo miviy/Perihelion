@@ -1,0 +1,64 @@
+{
+  "date": "2026-09-21",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "6d8f78bcfb1b0e73e3cc952170191145437fac66d714203f489bc10d6d35a3b9",
+    "bytes": 1151086
+  },
+  "build": "check :forge:remapJar passed",
+  "tests": {
+    "core": 123,
+    "forge": 10,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "runs": [
+    {
+      "directory": "forge/run-smoke-forge-kbxto0fl",
+      "variant": "forge",
+      "scenario": "title",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "6d8f78bcfb1b0e73e3cc952170191145437fac66d714203f489bc10d6d35a3b9",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "af8b9a43888164f5466f0da09cb02fe5cdfbeeff90d3840d6ef6bea30ea0f105",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "fa96e9184ac5083e7757e2372df97e84810360a7545df57951327d45180ae791",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "renderMarkers": [
+        "[15:36:01] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native"
+      ],
+      "fontCapture": "docs/verification/rendering-forge.png",
+      "fontCaptureSha256": "1a353002bdb88447c19b4c67b5b62b70fc2a93994a64aa82151a44b24ab1e4d8",
+      "fontCaptureVisuallyInspected": true
+    },
+    {
+      "directory": "forge/run-smoke-optifine-qbmnl44s",
+      "variant": "optifine",
+      "scenario": "title",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "6d8f78bcfb1b0e73e3cc952170191145437fac66d714203f489bc10d6d35a3b9",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "af8b9a43888164f5466f0da09cb02fe5cdfbeeff90d3840d6ef6bea30ea0f105",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "fa96e9184ac5083e7757e2372df97e84810360a7545df57951327d45180ae791",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "renderMarkers": [
+        "[15:37:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native"
+      ],
+      "fontCapture": "docs/verification/rendering-optifine.png",
+      "fontCaptureSha256": "a985c884663e9a6371cfb4c4b137ab434a30b89a063a95d45478db2c63ef8264",
+      "fontCaptureVisuallyInspected": true
+    }
+  ],
+  "limits": [
+    "Title-screen rendering on this workstation; no world, packet or development smoke rerun.",
+    "Default resource-pack font inspected at the smoke GUI scale; no cross-GPU or all-font-pack guarantee.",
+    "Shader-pack internals and other state outside docs/RENDERING.md are not covered.",
+    "Buffers are reused by design; no isolated allocation or FPS benchmark."
+  ]
+}

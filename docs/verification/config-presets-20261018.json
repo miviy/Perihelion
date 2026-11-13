@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-18",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifactBytes": 2226144,
+  "artifactSha256": "cafd0ba2fd01f757a4a8b2e3aa75c3cc9624d78260d2570b969bf8502175edfc",
+  "build": {
+    "passed": true,
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon -I .backups/yuri131-pinned-mixin.init.gradle check assemble --offline",
+    "runtimeNote": "Java 8 tests and game ran with macOS desktop access; existing pinned local Mixin workaround kept checksum and distribution checks enabled."
+  },
+  "tests": {
+    "core": {
+      "tests": 160,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 223,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "smokes": [
+    {
+      "run": "forge/run-smoke-forge-kol7_hb0",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "cafd0ba2fd01f757a4a8b2e3aa75c3cc9624d78260d2570b969bf8502175edfc",
+      "result": "forge/run-smoke-forge-kol7_hb0/result.json",
+      "shutdownReport": "forge/run-smoke-forge-kol7_hb0/shutdown-report.txt",
+      "checks": [
+        "[08:05:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[08:05:42] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=343 panels=7 fonts=4",
+        "[08:05:43] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[08:05:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=true"
+      ]
+    },
+    {
+      "run": "forge/run-smoke-optifine-vs2r6c3_",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "cafd0ba2fd01f757a4a8b2e3aa75c3cc9624d78260d2570b969bf8502175edfc",
+      "result": "forge/run-smoke-optifine-vs2r6c3_/result.json",
+      "shutdownReport": "forge/run-smoke-optifine-vs2r6c3_/shutdown-report.txt",
+      "checks": [
+        "[08:06:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[08:06:24] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=343 panels=7 fonts=4",
+        "[08:06:24] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[08:06:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    }
+  ],
+  "sourceMapping": {
+    "sourceFileSha256": "5f009765099d22ebed6e80a5520c028c2e59e8019f83456932e77c477d0d6a62",
+    "sourceFileUnchanged": true,
+    "all255SourcePropertiesAccountedFor": true,
+    "mappedModules": 50,
+    "sourceModules": 54,
+    "mappedSettings": 225,
+    "enabledModules": 12,
+    "packagedResourceMatchesSource": true,
+    "allImportedSettingsReachableInGui": true
+  },
+  "bytecodeComparison": {
+    "priorArtifact": "forge/run-smoke-optifine-xwe9_6sn/mods/Perihelion-0.1.0.jar",
+    "priorArtifactSha256": "25d0255346ac88ebfb9f24aaa4738d9861d2f4e215393dc544428ff39e18ea27",
+    "comparedClasses": 291,
+    "differingClasses": [],
+    "allChangedExistingClasses": [
+      "perihelion/bootstrap/forge/PerihelionMod.class",
+      "perihelion/core/config/ConfigStore$UnsupportedSchemaException.class",
+      "perihelion/core/config/ConfigStore.class"
+    ],
+    "addedClasses": [
+      "perihelion/integration/minecraft189/config/BundledProfiles.class"
+    ],
+    "removedClasses": []
+  },
+  "notes": [
+    "Forge UI smoke has SHUTDOWN stdoutError=true in the independent shutdown report; all shutdown reference, hook, subscription, queue and config assertions passed. OptiFine UI smoke reports stdoutError=false.",
+    "UI smoke includes an intentional throwing HUD listener to verify fault isolation; that logged exception is expected.",
+    "This config-only task did not change module or setting-definition classes; all 291 compared module/setting classes are byte-identical to the prior packaged client.",
+    "No authenticated or public-server acceptance testing was performed."
+  ]
+}

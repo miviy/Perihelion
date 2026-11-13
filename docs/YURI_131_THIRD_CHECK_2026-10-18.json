@@ -1,0 +1,297 @@
+{
+  "recorded_at_utc": "2026-10-18T12:03:49.203102+00:00",
+  "previous_audit": "docs/YURI_131_SECOND_CHECK_2026-10-18.json",
+  "donor": {
+    "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+    "checkout_clean": true,
+    "read_only": true,
+    "executed": false
+  },
+  "scope": {
+    "donor_definitions": 102,
+    "native_mappings": 77,
+    "presentation_exclusions": 22,
+    "deferred": [
+      "Insults",
+      "Skin Changer",
+      "Keybind Info"
+    ],
+    "production_modules_including_clickgui": 95,
+    "ui": "Native Perihelion menus and HUD retained"
+  },
+  "repairs": [
+    {
+      "module": "Refill",
+      "issue": "Click-delay check delayed closing a full hotbar, and activation reset allowed toggle-based extra clicks.",
+      "change": "Check hotbar fullness before cooldown; preserve the timestamp across ordinary toggles; retain native cursor protection."
+    },
+    {
+      "module": "Auto Swap / Auto Projectile",
+      "issue": "Mining-tool selection bypassed projectile suppression while aiming.",
+      "change": "Use the same native item-routine busy supplier for both tools and weapons; resume after suppression ends."
+    }
+  ],
+  "test_harness_correction": {
+    "issue": "Background integrated-server keepalive reply entered the temporary controlled TCP connection.",
+    "root_cause": "NetHandlerPlayClient sends keepalive replies through the manager field temporarily replaced by GameplayLoopback.",
+    "change": "Route original local-channel S00 replies through the original manager until the fixture restores it; forced S00 test observes exactly one matching C00 on the original channel. Exact FIFO/count assertions and production buffering are unchanged."
+  },
+  "retained_differences": [
+    "Native integer slider increments remain for Auto Armor and Auto Pot; strict 10/5-step validation would reject previously valid saved values, while donor NumberProperty permits off-increment values.",
+    "Native cursor/container protection and safe potion-effect validation remain."
+  ],
+  "source_review": {
+    "native_file_sha256": {
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "627faa657ec313f28f18308286f8b7e999a6cac71a10de527945f0a50b13d19f",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java": "b9406bc1425341407c1cf45ecc3bc97ed258fb60864d11618c5256f1a6c15e9c",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "2c92c57ceaf2ab983f901e32cf1be2702aeefa130958eb782f0d56a00c948072",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java": "0961e242a6584377f59c4e65afbf91fb0d4e085ed351d56cda847951bf73f400",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java": "a2cbb3cfaed665bfc847f90ddbeb697ce866c2fc2aa165d73e596aedce8c581c",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectilePacketGate.java": "cced470fd28618ebe5f570e4a2456cdfd5e1a89c5dfa946e6a191d8e2cfd413c"
+    },
+    "donor_file_sha256": {
+      "src/main/java/ddlc/yuri/modules/impl/player/RefillModule.java": "5bdbd61e1796efc6907184d5411cea6237eed0c05a8e6fd7936d6458452baa5f",
+      "src/main/java/ddlc/yuri/modules/impl/player/AutoArmorModule.java": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+      "src/main/java/ddlc/yuri/modules/impl/misc/AutoSwapModule.java": "a0a8763da1a85e51642b36c4d71a66d2b823912b03b9ddc8de10ada748421df2",
+      "src/main/java/ddlc/yuri/modules/impl/combat/AutoProjectileModule.java": "c613dc2c89109b8756fd25a21dc6b6efb2148d91c88ab6686340600a7d2ef07f",
+      "src/main/java/ddlc/yuri/modules/impl/combat/AutoPotModule.java": "a892cc07ecab9d245872cd9ebf6a4732785609562087ec990d607192854a2a14",
+      "src/main/java/ddlc/yuri/modules/impl/combat/BowAimbotModule.java": "b7263b9f71c456e080348593eda0f90e6dc5ac50a8bf461db42b9c7284d9fe6b",
+      "src/main/java/ddlc/yuri/utils/client/TimerUtils.java": "9457ff8334e8a45bd5a4c95756721efaa8d099933c91a0aa456375f904af1182",
+      "src/main/java/net/minecraft/client/network/NetHandlerPlayClient.java": "50043d33d40699e38ba05a4360a9a4c9870024f0aaf940ba6d7bdb202875c6fd"
+    },
+    "fingerprints_are_not_automated_semantic_equivalence": true
+  },
+  "build": {
+    "status": "pass",
+    "artifact": "forge/run-smoke-forge-x2uui8m3/mods/Perihelion-0.1.0.jar",
+    "bytes": 2218962,
+    "sha256": "25d0255346ac88ebfb9f24aaa4738d9861d2f4e215393dc544428ff39e18ea27",
+    "check_log": null,
+    "original_check_log_replaced_by_followup": true,
+    "checks": [
+      "check",
+      "verifyMixinRuntime",
+      "verifyJar"
+    ],
+    "gradle_java": 17,
+    "test_and_game_java": 8,
+    "environment": "Exact cached pinned Mixin selected via local init script with runtime checksum checks retained; macOS desktop access for font tests and OpenGL."
+  },
+  "unit_results_refreshed_on_combined_workspace": true,
+  "unit_build_log": ".backups/yuri-fourth-baseline-build.log",
+  "unit_artifact_sha256": "e66acae917468615ba36e76df894dd96268ce6b972f91a82639e16586e078d27",
+  "unit_tests": {
+    "core": {
+      "tests": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "unit_total": 22,
+  "packaged_smokes": {
+    "forge": {
+      "status": "pass",
+      "result": "forge/run-smoke-forge-x2uui8m3/result.json",
+      "manifest": "forge/run-smoke-forge-x2uui8m3/launch-manifest.json",
+      "log": "forge/run-smoke-forge-x2uui8m3/launch.log",
+      "artifact_sha256": "25d0255346ac88ebfb9f24aaa4738d9861d2f4e215393dc544428ff39e18ea27",
+      "fixture_source_hashes_verified": 32,
+      "second_parity_checks": 18,
+      "second_parity_tcp_events": 3,
+      "markers": [
+        "[PERIHELION_SMOKE] VERSION value=0.1.0",
+        "[PERIHELION_SMOKE] INITIALIZED scenario=full",
+        "[07:58:10] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[PERIHELION_SMOKE] TITLE stableTicks=20",
+        "[PERIHELION_SMOKE] PROFILE phase=title tickIntervals=18 tickMeanMs=51.49994216666666 tickMaxMs=70.881834 frameIntervals=28 frameMeanMs=33.09078125 frameMaxMs=40.232375 liveHeapBytes=277927384",
+        "[07:58:12] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[07:58:12] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CREATING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=1 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[07:58:14] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[07:58:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=true",
+        "[PERIHELION_SMOKE] WORLD generation=2 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=3 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=4 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=5 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=6 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=7 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=8 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=9 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=10 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=11 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=12 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=13 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=14 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=15 ready=true connection=SINGLEPLAYER",
+        "[07:58:20] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=341 panels=7 fonts=4",
+        "[07:58:20] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:242]: [PERIHELION_SMOKE] HUD_RENDER_100_NS=181544917 snapshots=0 players=8 armor=4",
+        "[07:58:20] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[PERIHELION_SMOKE] WORLD generation=16 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=17 ready=true connection=SINGLEPLAYER",
+        "[07:58:28] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] JOINED generation=17 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=first-world tickIntervals=38 tickMeanMs=51.63843639473684 tickMaxMs=129.156583 frameIntervals=110 frameMeanMs=16.54256060909091 frameMaxMs=32.65475 liveHeapBytes=687103736",
+        "[PERIHELION_SMOKE] WORLD generation=18 ready=false connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] WORLD generation=19 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=19",
+        "[PERIHELION_SMOKE] REJOINING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=20 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[PERIHELION_SMOKE] REJOINED generation=20 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=second-world tickIntervals=38 tickMeanMs=54.3182927631579 tickMaxMs=67.281292 frameIntervals=125 frameMeanMs=16.488417 frameMaxMs=21.35575 liveHeapBytes=486072440",
+        "[PERIHELION_SMOKE] PROFILE cumulativeCoreDispatches=34003 cumulativeCoreDispatchNanos=760482305 clientThreadAllocatedBytes=5320406600 subscriptionsAfterProbeClose=3 queued=0 includesMinecraftAndProbe=true",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=260 worldEvents=20",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    },
+    "optifine": {
+      "status": "pass",
+      "result": "forge/run-smoke-optifine-xwe9_6sn/result.json",
+      "manifest": "forge/run-smoke-optifine-xwe9_6sn/launch-manifest.json",
+      "log": "forge/run-smoke-optifine-xwe9_6sn/launch.log",
+      "artifact_sha256": "25d0255346ac88ebfb9f24aaa4738d9861d2f4e215393dc544428ff39e18ea27",
+      "fixture_source_hashes_verified": 32,
+      "second_parity_checks": 18,
+      "second_parity_tcp_events": 3,
+      "markers": [
+        "[PERIHELION_SMOKE] VERSION value=0.1.0",
+        "[PERIHELION_SMOKE] INITIALIZED scenario=full",
+        "[08:00:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[PERIHELION_SMOKE] TITLE stableTicks=20",
+        "[PERIHELION_SMOKE] PROFILE phase=title tickIntervals=18 tickMeanMs=45.76449538888889 tickMaxMs=66.479666 frameIntervals=25 frameMeanMs=32.67707 frameMaxMs=35.173583 liveHeapBytes=560209224",
+        "[08:00:27] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[08:00:27] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CREATING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=1 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[08:00:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[08:00:31] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=true",
+        "[PERIHELION_SMOKE] WORLD generation=2 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=3 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=4 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=5 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=6 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=7 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=8 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=9 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=10 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=11 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=12 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=13 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=14 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=15 ready=true connection=SINGLEPLAYER",
+        "[08:00:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=341 panels=7 fonts=4",
+        "[08:00:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:242]: [PERIHELION_SMOKE] HUD_RENDER_100_NS=101971208 snapshots=0 players=8 armor=4",
+        "[08:00:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[PERIHELION_SMOKE] WORLD generation=16 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=17 ready=true connection=SINGLEPLAYER",
+        "[08:00:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] JOINED generation=17 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=first-world tickIntervals=38 tickMeanMs=54.178065789473685 tickMaxMs=84.188083 frameIntervals=121 frameMeanMs=16.8441673553719 frameMaxMs=52.357459 liveHeapBytes=623523480",
+        "[PERIHELION_SMOKE] WORLD generation=18 ready=false connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] WORLD generation=19 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=19",
+        "[PERIHELION_SMOKE] REJOINING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=20 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[PERIHELION_SMOKE] REJOINED generation=20 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=second-world tickIntervals=38 tickMeanMs=55.65958663157895 tickMaxMs=67.968791 frameIntervals=128 frameMeanMs=16.5066048203125 frameMaxMs=18.770125 liveHeapBytes=366907824",
+        "[PERIHELION_SMOKE] PROFILE cumulativeCoreDispatches=31377 cumulativeCoreDispatchNanos=1129365483 clientThreadAllocatedBytes=5377544280 subscriptionsAfterProbeClose=3 queued=0 includesMinecraftAndProbe=true",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=258 worldEvents=20",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    }
+  },
+  "inventory": {
+    "current": "102 pinned donor definitions accounted for",
+    "historical": "341 Java reference fingerprints and 88 prior release definitions verified",
+    "source_inventory_is_not_runtime_parity": true
+  },
+  "rollback": {
+    "third_check_backup": ".backups/before-yuri-third-check-20261018-074327",
+    "members_verified": 644,
+    "sha256": "02069e4c846538940272e55f58686f55bcc9be02f946023c7da36f4d91aaac17",
+    "full_update_backup": ".backups/before-yuri-131-20261017-100824",
+    "full_update_helper": "scripts/restore-yuri131.py",
+    "dry_run": "pass",
+    "later_edit_refusal": "pass",
+    "isolated_restore": "pass",
+    "affected_files": 114,
+    "unchanged_build_files_preserved": 2,
+    "recovery_checkpoint_hashes": "pass",
+    "concurrent_source_files_preserved": 7
+  },
+  "development_failures_this_pass": [
+    {
+      "run": "forge/run-smoke-forge-fb67lsd7",
+      "status": "failed_fixture_container",
+      "reason": "Screen initialization in the creative smoke world redirected to GuiContainerCreative, replacing the click container. The Refill fixture now explicitly selects survival and restores the original game type, capabilities and container afterward."
+    },
+    {
+      "run": "forge/run-smoke-forge-eaigj76i",
+      "status": "failed_fixture_isolation",
+      "reason": "Expected look/use arrived in FIFO order, then an unrelated keepalive made the exact packet count fail. Original-channel routing and a forced regression were added; no production FIFO fix was made."
+    },
+    {
+      "run": "forge/run-smoke-forge-qmgenwjs",
+      "status": "diagnostic_fixture_failure",
+      "reason": "Diagnostic confirmed full hotbar, empty cursor and healthy player; earlier GUI-close NPE identified an uninitialized test screen."
+    },
+    {
+      "run": "forge/run-smoke-forge-ne7b9feu",
+      "status": "diagnostic_fixture_failure",
+      "reason": "Repeated diagnostic run used the same uninitialized test inventory; normal screen setup was then added and diagnostic-only direct event injection removed."
+    },
+    {
+      "run": "forge/run-smoke-forge-zct3fos9",
+      "status": "failed_refill_probe",
+      "reason": "Refill test constructed GuiInventory without normal screen initialization; onGuiClosed threw and quarantined its activation. Fixed the fixture using setWorldAndResolution, without changing production close behavior."
+    }
+  ],
+  "limits": [
+    "No authenticated multiplayer, live anti-cheat acceptance, exhaustive mode matrix or exact two-client equivalence established.",
+    "Native submitted-rotation identity and initial walking boundary, queue bounds, session checks, targeting/friend policy and restricted GUI movement remain.",
+    "Existing attack hook emits living-target events; this pass exercises that scope.",
+    "Independent randomness and monotonic clocks replace global donor randomness/wall time.",
+    "Presentation exclusions and the three deferred features remain explicitly inventoried.",
+    "Engine/FML/Twitch/OpenAL warnings and intentional fault-injection logs remain visible; successful native teardown is a separate assertion."
+  ],
+  "historical_artifact_only": true,
+  "superseded_by": "docs/YURI_131_FOURTH_CHECK_2026-10-18.json",
+  "unit_results_scope": "Temporary XML after a separate config test; these counts are not complete full-suite evidence for the historical artifact. The fourth report archives the complete final unit results."
+}

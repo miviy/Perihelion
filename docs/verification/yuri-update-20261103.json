@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-03",
+  "upstream": "https://github.com/unleg1t/Yuri/commit/31b026c3aa328a05142e1b5524556a9a10dff08a",
+  "artifact": "forge/build/verified/yuri-update-20261103/Perihelion-0.1.0.jar",
+  "sha256": "4a99cce80c17782a8e1537d5ddbb4f48b758bef8b13971e03b2fe2184ff2447d",
+  "unitTests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 444,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "packagedSmoke": "forge/run-smoke-forge-q1b91jo_/result.json",
+  "smokePassed": true,
+  "manualLaunch": "forge/run-manual-yuri-update-sj_wxuhw/manual-launch.json",
+  "limits": "Local offline tests only; no authenticated server acceptance."
+}

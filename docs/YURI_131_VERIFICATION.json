@@ -1,0 +1,284 @@
+{
+  "recorded_at_utc": "2026-10-17T22:40:10.130712+00:00",
+  "donor": {
+    "repository": "https://github.com/unleg1t/Yuri/",
+    "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+    "remote_main_verified": true,
+    "checkout_clean": true,
+    "modified": false
+  },
+  "scope": {
+    "ui": "Perihelion menus and HUD retained per user instruction",
+    "donor_definitions": 102,
+    "classification": {
+      "deferred": 3,
+      "excluded-client-ui": 22,
+      "native-implementation": 77
+    },
+    "builtin_native_definitions": 94,
+    "production_modules_with_clickgui": 95,
+    "deferred": [
+      "Insults",
+      "Skin Changer",
+      "Keybind Info"
+    ],
+    "coverage_is_source_inventory_not_identical_runtime": true
+  },
+  "build": {
+    "status": "pass",
+    "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 2218545,
+    "sha256": "47f2a40cc094460dcd883bc4e3a0fe65ce9e5040ec4c064eaae99e5705c1898b",
+    "gradle_java": 17,
+    "test_and_game_java": 8,
+    "check_log": ".backups/yuri131-check-java8.log",
+    "distribution_verification": "verifyMixinRuntime and verifyJar passed",
+    "environment_note": "Sponge repository DNS was unavailable; the local init script uses the exact pinned cached Mixin runtime, retaining runtime checksum verification. New dependency metadata hashes were checked against publisher bytes. Java 8 AWT/font tests required desktop access outside the filesystem sandbox.",
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon -I .backups/yuri131-pinned-mixin.init.gradle check"
+  },
+  "java8_unit_tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 218,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "unit_total": 374,
+  "packaged_smokes": {
+    "forge": {
+      "status": "pass",
+      "result": "forge/run-smoke-forge-685t1fmk/result.json",
+      "manifest": "forge/run-smoke-forge-685t1fmk/launch-manifest.json",
+      "launch_log": "forge/run-smoke-forge-685t1fmk/launch.log",
+      "shutdown_report": "forge/run-smoke-forge-685t1fmk/shutdown-report.txt",
+      "java": "openjdk version \"1.8.0_502\"\nOpenJDK Runtime Environment (Zulu 8.96.0.19-CA-macos-aarch64) (build 1.8.0_502-b07)\nOpenJDK 64-Bit Server VM (Zulu 8.96.0.19-CA-macos-aarch64) (build 25.502-b07, mixed mode)",
+      "artifact_sha256": "47f2a40cc094460dcd883bc4e3a0fe65ce9e5040ec4c064eaae99e5705c1898b",
+      "checks": {
+        "RENDER PASS": 61,
+        "networkHooks": 46,
+        "HUD PASS": 241,
+        "sharedControls": 51,
+        "MODULES": 424,
+        "DEEP_GAMEPLAY": 127,
+        "GHOST_COMBAT": 17,
+        "ASSIST_FRAME": 4,
+        "HEAD_COSMETICS": 4,
+        "QUALITY_GAMEPLAY": 61,
+        "AURA_PRE": 22,
+        "HOME_BED": 26,
+        "MODULE_ACTIONS": 108,
+        "YURI13": 98,
+        "YURI_LATEST": 30,
+        "SCAFFOLD_TERRAIN": 263,
+        "COMPATIBILITY_QOL": 78,
+        "ROTATIONS": 306,
+        "COMBAT_FLOW": 55,
+        "GAMEPLAY": 138,
+        "GUI PASS": 341,
+        "TAB_GUI PASS": 91,
+        "UI_THEME": 236,
+        "OVERLAY": 26,
+        "HUD_CHAT": 88,
+        "PRODUCTION_HUD PASS": 93,
+        "STALE_ENTITY_PACKETS": 3,
+        "STALE_WORLD_PACKETS": 3
+      },
+      "scaffold_cases": 72,
+      "scaffold_ordered_reference_matches": 66,
+      "subscriptions_after_shutdown": 0,
+      "queued_after_shutdown": 0,
+      "world_player_handler_references": "cleared",
+      "evidence_level": "isolated local transformed client and loopback PLAY codecs; no authentication or public server"
+    },
+    "optifine_m5": {
+      "status": "pass",
+      "result": "forge/run-smoke-optifine-6_2zj6f7/result.json",
+      "manifest": "forge/run-smoke-optifine-6_2zj6f7/launch-manifest.json",
+      "launch_log": "forge/run-smoke-optifine-6_2zj6f7/launch.log",
+      "shutdown_report": "forge/run-smoke-optifine-6_2zj6f7/shutdown-report.txt",
+      "java": "openjdk version \"1.8.0_502\"\nOpenJDK Runtime Environment (Zulu 8.96.0.19-CA-macos-aarch64) (build 1.8.0_502-b07)\nOpenJDK 64-Bit Server VM (Zulu 8.96.0.19-CA-macos-aarch64) (build 25.502-b07, mixed mode)",
+      "artifact_sha256": "47f2a40cc094460dcd883bc4e3a0fe65ce9e5040ec4c064eaae99e5705c1898b",
+      "checks": {
+        "RENDER PASS": 61,
+        "networkHooks": 46,
+        "HUD PASS": 241,
+        "sharedControls": 51,
+        "MODULES": 424,
+        "DEEP_GAMEPLAY": 127,
+        "GHOST_COMBAT": 17,
+        "ASSIST_FRAME": 4,
+        "HEAD_COSMETICS": 4,
+        "QUALITY_GAMEPLAY": 61,
+        "AURA_PRE": 22,
+        "HOME_BED": 26,
+        "MODULE_ACTIONS": 108,
+        "YURI13": 98,
+        "YURI_LATEST": 30,
+        "SCAFFOLD_TERRAIN": 263,
+        "COMPATIBILITY_QOL": 78,
+        "ROTATIONS": 306,
+        "COMBAT_FLOW": 55,
+        "GAMEPLAY": 138,
+        "GUI PASS": 341,
+        "TAB_GUI PASS": 91,
+        "UI_THEME": 236,
+        "OVERLAY": 26,
+        "HUD_CHAT": 88,
+        "PRODUCTION_HUD PASS": 93,
+        "STALE_ENTITY_PACKETS": 3,
+        "STALE_WORLD_PACKETS": 3
+      },
+      "scaffold_cases": 72,
+      "scaffold_ordered_reference_matches": 66,
+      "subscriptions_after_shutdown": 0,
+      "queued_after_shutdown": 0,
+      "world_player_handler_references": "cleared",
+      "evidence_level": "isolated local transformed client and loopback PLAY codecs; no authentication or public server"
+    }
+  },
+  "source_inventory_checks": {
+    "current": "pass: 102 definitions",
+    "historical": "pass: 86 historical and 88 release definitions"
+  },
+  "rollback": {
+    "archive": ".backups/before-yuri-131-20261017-100824/source.tar.gz",
+    "archive_sha256": "b5e6e23849ee4c520ab671212bbf9198e31f361203764d9c0af214ca7785e33c",
+    "original_members_verified": 572,
+    "affected_files_manifest": ".backups/before-yuri-131-20261017-100824/changes.json",
+    "helper": "scripts/restore-yuri131.py",
+    "dry_run": "pass",
+    "later_edit_refusal": "pass",
+    "isolated_restore": "pass",
+    "affected_files": 103,
+    "unchanged_build_files_preserved": 2,
+    "recovery_checkpoint_hashes": "pass"
+  },
+  "not_established": [
+    "Exact two-client donor/native runtime parity",
+    "Complete execution of every mode and every setting combination",
+    "Authenticated multiplayer, server anti-cheat acceptance or bypass success",
+    "Independent FPS/performance improvement or subjective visual fidelity"
+  ],
+  "live_server": {
+    "status": "not_run",
+    "reason": "User marked anticheat-test.com /ac grim validation optional and requested behavior matching; no public server connection was made."
+  },
+  "native_differences": [
+    "Submitted immutable rotation and matching request identity required; new ownership can add an initial walking tick.",
+    "Actions remain in native PRE; no extra post-walking phase.",
+    "Fresh world/entity/item/ray checks can reject stale work the donor would send.",
+    "Queues are bounded and bound to the original world, generation and handler; retirement cannot replay into another session.",
+    "Native friend/team/targeting policy and retained documented optional settings remain.",
+    "Monotonic timing and independent random samples replace donor wall-clock/global state.",
+    "Native render/font/theme scopes retained; Cat Ears has no donor-specific OptiFine shadow-preview flag."
+  ],
+  "development_attempts": [
+    {
+      "run": "forge/run-smoke-forge-0cuj_sxl",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Aim Assist chooses a player independently of Aura"
+    },
+    {
+      "run": "forge/run-smoke-forge-0u9oli23",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Ghost combat: native expansion selects the off-axis entity"
+    },
+    {
+      "run": "forge/run-smoke-forge-2dr4b8qc",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.NoSuchMethodException: class perihelion.integration.minecraft189.module.gameplay.BackTrackModule [track]"
+    },
+    {
+      "run": "forge/run-smoke-forge-5uxip6e2",
+      "status": "failed_development_attempt",
+      "last_cause": "See launch log"
+    },
+    {
+      "run": "forge/run-smoke-forge-8qqc3t_q",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.NoSuchFieldException: class perihelion.integration.minecraft189.module.gameplay.BackTrackModule [snapshot]"
+    },
+    {
+      "run": "forge/run-smoke-forge-8up76oqq",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Yuri latest: increased damage bypasses a held trade once"
+    },
+    {
+      "run": "forge/run-smoke-forge-91vwaec2",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Ghost combat: raised native entity cutoff reaches the target"
+    },
+    {
+      "run": "forge/run-smoke-forge-c95mug_j",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Yuri latest: menu interrupt retires pending throw claims"
+    },
+    {
+      "run": "forge/run-smoke-forge-f1jl519c",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Refill swaps a potion into the hotbar without dropping it"
+    },
+    {
+      "run": "forge/run-smoke-forge-j3drm8__",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Ghost combat: raised native entity cutoff reaches the target"
+    },
+    {
+      "run": "forge/run-smoke-forge-ouj_b16t",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.NullPointerException"
+    },
+    {
+      "run": "forge/run-smoke-forge-qsnw7dow",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Deep gameplay regressions: [Aura Switch retains its current eligible entity, Aura Switch retains its target before delay, Aura Switch advances after two 50ms units]"
+    },
+    {
+      "run": "forge/run-smoke-forge-qw36elsq",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Clutch finds reachable catch while holding Sneak"
+    },
+    {
+      "run": "forge/run-smoke-forge-r12ppcsv",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Legit drops a target moved outside its submitted ray"
+    },
+    {
+      "run": "forge/run-smoke-forge-r3y1hfxb",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.NoSuchMethodException: class perihelion.integration.minecraft189.module.gameplay.ScaffoldRotations [watchdog]"
+    },
+    {
+      "run": "forge/run-smoke-forge-s8gxrgs1",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Auto Projectile prepares a combo"
+    },
+    {
+      "run": "forge/run-smoke-forge-wefr_1di",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Clutch commits a block using native strict placement"
+    },
+    {
+      "run": "forge/run-smoke-forge-wz7xc84o",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Block In places in PRE"
+    },
+    {
+      "run": "forge/run-smoke-forge-yvnrgmbk",
+      "status": "failed_development_attempt",
+      "last_cause": "java.lang.AssertionError: Ghost combat: native expansion selects the off-axis entity"
+    }
+  ],
+  "engine_log_notes": [
+    "Both passing runs logged OpenAL shutdown warning: 6 Buffers not deleted. Client module teardown checks still passed. Intentional module-fault fixtures also log their expected injected failures."
+  ],
+  "historical_artifact_only": true,
+  "superseded_by": "YURI_131_AUDIT_2026-10-17.json"
+}

@@ -1,0 +1,34 @@
+{
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "sha256": "81831906bca961b5319fefdde793b0299931cd562201bc21ccc8b376a1f7ed08",
+  "unitTests": {
+    "core": 156,
+    "forge": 152,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "minecraftFontScale": 0.75,
+  "nativeRuns": [
+    {
+      "path": "forge/run-smoke-forge-e4gngfw8",
+      "passed": true,
+      "artifactSha256": "81831906bca961b5319fefdde793b0299931cd562201bc21ccc8b376a1f7ed08",
+      "guiChecks": 332,
+      "themeChecks": 239,
+      "renderChecks": 61,
+      "stdoutError": false,
+      "audioShutdownWarning": true
+    },
+    {
+      "path": "forge/run-smoke-optifine-giipm00x",
+      "passed": true,
+      "artifactSha256": "81831906bca961b5319fefdde793b0299931cd562201bc21ccc8b376a1f7ed08",
+      "guiChecks": 332,
+      "themeChecks": 239,
+      "renderChecks": 61,
+      "stdoutError": false,
+      "audioShutdownWarning": true
+    }
+  ]
+}

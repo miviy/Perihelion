@@ -1,0 +1,65 @@
+{
+  "date": "2026-09-29",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1736390,
+    "sha256": "0a4e2a7ad2cfcf4f5d1f2be710d32097cd297f0f6d61be2ead085508496286e2"
+  },
+  "tests": {
+    "core": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 60,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runtime": {
+    "forge": {
+      "directory": "forge/run-smoke-forge-88z26yub",
+      "result": "pass",
+      "hud_checks": 47,
+      "full_scenario": true,
+      "render_100_passes_ms": 73.817792,
+      "render_data_resamples": 0,
+      "shutdown_subscriptions": 0,
+      "shutdown_queued_tasks": 0,
+      "notes": "Synthetic isolated-world fixture with 8 displayed players, 4 armor items, potion and target data; driver-inclusive draw time, not a real-game FPS guarantee."
+    },
+    "optifine": {
+      "directory": "forge/run-smoke-optifine-fumvu24v",
+      "result": "pass",
+      "hud_checks": 47,
+      "full_scenario": true,
+      "render_100_passes_ms": 83.293375,
+      "render_data_resamples": 0,
+      "shutdown_subscriptions": 0,
+      "shutdown_queued_tasks": 0,
+      "notes": "Synthetic isolated-world fixture with 8 displayed players, 4 armor items, potion and target data; driver-inclusive draw time, not a real-game FPS guarantee."
+    }
+  },
+  "regressions": [
+    "Arbitrary drag coordinates validate and persist through config reload",
+    "Hidden elements excluded from bounds fixture",
+    "Right-click test moved outside overlapping effects panel",
+    "Notification enable discards historical transitions",
+    "Search and HUD toolbar remain separate at narrow enlarged menu sizes"
+  ],
+  "backup": {
+    "directory": ".backups/before-hud-20260929-145445",
+    "archive_sha256": "d826ac2b609318090b4d01b625a24f64180f96133d30f52857d195cd7a9babe0",
+    "rollback_helper": "scripts/restore-hud.py",
+    "verification_record": ".backups/before-hud-20260929-145445/rollback-verification.json"
+  },
+  "limits": [
+    "Not an authenticated multiplayer verification",
+    "Sampled target/player/effect data updates every four client ticks",
+    "Optional panels may overlap until arranged at small resolutions",
+    "Intentional exception/quarantine fixtures and known startup warnings are present in full smoke logs"
+  ]
+}

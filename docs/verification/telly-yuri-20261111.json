@@ -1,0 +1,123 @@
+{
+  "task": "Telly places a few blocks then stalls; restore Yuri behavior",
+  "date": "2026-11-11",
+  "reference": {
+    "name": "Yuri",
+    "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+    "readOnly": true,
+    "executed": false
+  },
+  "artifact": {
+    "sha256": "f72ef4b63b9c50c47257c80f94fd4350cafe64c4f64ea72b88555378e75bbf26",
+    "verifiedCopy": "forge/build/verified/telly-yuri-20261111/Perihelion-0.1.0.jar"
+  },
+  "regression": {
+    "oldArtifact": "3f7f9ea7f025cd28f66c3bcad109b0fa8ad809221e2a26d7aec4146a12a695cc",
+    "run": "forge/run-smoke-forge-c2p69_6k",
+    "mode": "Hypixel Telly / Normal rays",
+    "ticksBeforeFall": 38,
+    "blocks": 3,
+    "travel": 6.455787216856663
+  },
+  "build": {
+    "check": "PASS",
+    "remapJar": "PASS",
+    "units": {
+      "core": {
+        "tests": 164,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "forge": {
+        "tests": 449,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "focused": {
+    "passed": true,
+    "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-y4ji79ag/result.json",
+    "continuousBridgeCases": 6,
+    "ticksPerBridge": 160,
+    "motionCases": 288,
+    "motionAssertions": 4713,
+    "sprintJumpImpulses": 105,
+    "rotationCases": 18,
+    "terrainCases": 72,
+    "terrainAssertions": 263,
+    "movementCases": 480,
+    "movementAssertions": 5041,
+    "cornerCases": 24,
+    "integratedServerRuns": [
+      {
+        "phase": 1,
+        "ticks": 160,
+        "distance": 30.047678098032748,
+        "clientBlocks": 28,
+        "acceptedBlocks": 28,
+        "height": 26.166109260938214
+      },
+      {
+        "phase": 2,
+        "ticks": 160,
+        "distance": 31.637568149329354,
+        "clientBlocks": 30,
+        "acceptedBlocks": 30,
+        "height": 26.166109260938214
+      },
+      {
+        "phase": 3,
+        "ticks": 160,
+        "distance": 30.146369947652886,
+        "clientBlocks": 28,
+        "acceptedBlocks": 28,
+        "height": 26.166109260938214
+      },
+      {
+        "phase": 4,
+        "ticks": 160,
+        "distance": 30.256013492303907,
+        "clientBlocks": 28,
+        "acceptedBlocks": 28,
+        "height": 26.166109260938214
+      }
+    ],
+    "cleanup": "subscriptions=0 queued=0 stdoutError=false"
+  },
+  "behavior": [
+    "Current PRE geometry, smoothing and placement as in Yuri",
+    "Prepared-input capability is distinct from a submitted walking receipt",
+    "Same live activation/position/world/connection and winning claims required",
+    "Same prepared aim for native input/jump/movement/walking",
+    "Other applied/previous rotation APIs unchanged"
+  ],
+  "manual": {
+    "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-scaffold-grim-ymk3l3dl",
+    "pid": 98158,
+    "existingWorldAndSettingsPreserved": true,
+    "probeJar": false,
+    "automaticClose": false,
+    "startupInitialized": true,
+    "startupEvidence": "Perihelion module initialization, sound engine and final texture atlas initialized; existing New World preserved.",
+    "verifiedAtUtc": "2026-11-11T16:09:13.740764+00:00"
+  },
+  "limits": [
+    "Local Forge and real integrated-server verification",
+    "Live Grim acceptance unverified",
+    "Native per-jump gate and diagonal/expand fixes retained"
+  ],
+  "backup": ".backups/scaffold-yuri-20261111/",
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "b57681d174f7b7048472c57fa0a5d958fdb2578d8b4e3ddbb332210dab2a6450",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/Placement.java": "3eec908daf48163f1cb2bbe9cddec2246f2be59d1b8dce49196b25e5199e0eb9",
+    "forge/src/main/java/perihelion/integration/minecraft189/control/MinecraftControls.java": "e403c7c7feb368e7fa270aec910fb254225ab9f95cd36cb6410bb15f82eba015",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldBridgeProbe.java": "15b87d34a436442676ccfdf7146fe26b11f8f3f0d1387bf7db943bfa9b25f66b",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldMovementProbe.java": "6eaef9203ad7ae459a6f980df6bfe3196ea42f9b811dda53c00eeb4295d5901d",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "ca84acec3676cbaa1e957451a9646e531b3eabc182662827b1922fe90aafab85",
+    "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4459745cf1b62ed74f3f223e0b2dd271087ed78a53922804599c4fc281287869",
+    "scripts/smoke/SmokeProbe.java": "af5baec9b8f1b805c6f63caee092ef1f3e5c55408f2ccb159f42bfdadb9624b2"
+  }
+}

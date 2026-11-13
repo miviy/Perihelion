@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-21",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+    "bytes": 1154477
+  },
+  "build": "Uncached check; 16 tasks executed; BUILD SUCCESSFUL",
+  "buildLog": "forge/final-check.log",
+  "tests": {
+    "core": {
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runs": [
+    {
+      "directory": "forge/run-smoke-forge-7wl090as",
+      "variant": "forge",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "8668396ca57bfcc25c82a974fd15c26b2a1e5cf5e020544f300f21075262a859",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "logSha256": "ef13f6eccaf49f69840fed9484cf7d1702bdcc9ddc04cdf00103323d5cc42fb0",
+      "unloadNullPointerExceptions": 25,
+      "unloadExceptionLocations": [
+        "net.minecraft.client.network.NetHandlerPlayClient.func_147263_a(NetHandlerPlayClient.java:668) ~[bcy.class:?]"
+      ],
+      "markers": [
+        "[20:55:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:55:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[20:55:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[20:55:37] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=241 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:55:39] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:158]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=true",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=3",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] REJOINED generation=4 stableTicks=40",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=146 worldEvents=4",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    },
+    {
+      "directory": "forge/run-smoke-optifine-t8l63qmj",
+      "variant": "optifine",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "8668396ca57bfcc25c82a974fd15c26b2a1e5cf5e020544f300f21075262a859",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "logSha256": "79e7e73141b484b6227f400aaa5b9450cf5d6009eb2bb83fcb3191f410384045",
+      "unloadNullPointerExceptions": 25,
+      "unloadExceptionLocations": [
+        "net.minecraft.client.network.NetHandlerPlayClient.func_147263_a(NetHandlerPlayClient.java:668) ~[bcy.class:?]"
+      ],
+      "markers": [
+        "[20:56:11] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:56:12] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[20:56:12] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[20:56:14] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:56:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:158]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=true",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=3",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] REJOINED generation=4 stableTicks=40",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=132 worldEvents=4",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    }
+  ],
+  "warnings": [
+    "Both runs: 25 Minecraft NetHandlerPlayClient chunk-packet NullPointerExceptions during unload. Smoke assertions still passed; cause not proven or repaired.",
+    "Forge: OpenAL duplicate-context initialization exception. OptiFine: OpenAL reports three undeleted buffers at shutdown; sound-library author lines logged as WARN.",
+    "Both runs: missing FML signature data and unavailable Twitch initialization. Smoke compilation reports deprecated API usage.",
+    "Intentional HUD listener exception is expected fault-injection evidence, not an unexpected failure."
+  ],
+  "limits": [
+    "Packet hooks tested with transformed fixtures and localhost TCP, not authenticated external multiplayer.",
+    "No implementation changes made; runtime log errors prevent an unqualified clean-health claim."
+  ]
+}

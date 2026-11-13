@@ -1,0 +1,893 @@
+{
+  "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+  "definitions": 102,
+  "classification": {
+    "deferred": 3,
+    "excluded-client-ui": 22,
+    "native-implementation": 77
+  },
+  "source_candidates_may_include_unregistered_legacy_classes": true,
+  "registration_checked_by_BuiltinModulesTest_and_packaged_startup": true,
+  "source_accounting_is_not_exhaustive_mode_equivalence": true,
+  "prior_reports": [
+    "docs/YURI_131_FINAL_CHECK_2026-10-18.json",
+    "docs/YURI_131_RECOVERY_CHECK_2026-10-18.json"
+  ],
+  "rows": {
+    "combat/AuraModule.java": {
+      "status": "native-implementation",
+      "native_id": "aura",
+      "donor_sha256": "e0c0613c5bf1cfc3a3ed0c0b8122dfaa5e38ea25e89469cdafad7b4f9a61da88",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java": "0961e242a6584377f59c4e65afbf91fb0d4e085ed351d56cda847951bf73f400"
+      },
+      "this_pass": "Native registry wiring includes the Auto Pot busy supplier; rotation-free attack suppression tested through TCP."
+    },
+    "combat/AutoExtinguishModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoextinguish",
+      "donor_sha256": "1dd5cf3ae76ff453253e193fd134caa96a3f54bbe9aa209b67ae7f765d1f45c7",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java": "46b88b75e5c10b0027e66bbde363e09c7a25691cc0bbc80548e3c796edc59660"
+      },
+      "this_pass": "Focused source correction and TCP cases: five/two stage waits, tick-seven right-click, tick-ten restore, liquid/Scaffold gates and exact bucket packet pair."
+    },
+    "combat/AutoPotModule.java": {
+      "status": "native-implementation",
+      "native_id": "autopot",
+      "donor_sha256": "a892cc07ecab9d245872cd9ebf6a4732785609562087ec990d607192854a2a14",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java": "46b88b75e5c10b0027e66bbde363e09c7a25691cc0bbc80548e3c796edc59660"
+      },
+      "this_pass": "Focused source correction and TCP cases: deferred slot, source-derived smooth aim, Traditional movement, Aura handoff, submitted pitch gate, interrupts and timeout."
+    },
+    "combat/AutoProjectileModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoprojectile",
+      "donor_sha256": "c613dc2c89109b8756fd25a21dc6b6efb2148d91c88ab6686340600a7d2ef07f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java": "a2cbb3cfaed665bfc847f90ddbeb697ce866c2fc2aa165d73e596aedce8c581c"
+      },
+      "this_pass": "Re-read native busy supplier and packet gate against donor; existing projectile/slot/rotation regressions pass."
+    },
+    "combat/BackTrackModule.java": {
+      "status": "native-implementation",
+      "native_id": "backtrack",
+      "donor_sha256": "a7c2b9ad6a1970eb86fbb5db7c26125ff0f0fa8848e55bcf3929dd13ac222620",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BackTrackModule.java": "da4d3077bc911a0037ee04f5350a77719c41294a0c4efd7991a63a2882f79f75",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java": "75c9ea3a88f2fd45ee8c49cca5d78373f713d54938b2f284b5a2fecdd4f9edb8"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/BowAimbotModule.java": {
+      "status": "native-implementation",
+      "native_id": "bowaimbot",
+      "donor_sha256": "b7263b9f71c456e080348593eda0f90e6dc5ac50a8bf461db42b9c7284d9fe6b",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java": "a2cbb3cfaed665bfc847f90ddbeb697ce866c2fc2aa165d73e596aedce8c581c"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/CriticalsModule.java": {
+      "status": "native-implementation",
+      "native_id": "criticals",
+      "donor_sha256": "db1dd701786013a85f5ade0568bf0ac7c542e2a4ec93a49221a03c04d6740c0c",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "daeedcd1e75efa8205a6ea454bf018afcd7d66908fa5daf44d1e8e87215a5050"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/DisplaceModule.java": {
+      "status": "native-implementation",
+      "native_id": "displace",
+      "donor_sha256": "47c59fad599472657cf98d5432491bfb3bb18e592586185f9b81a17cea0e5f10",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/DisplaceModule.java": "a1d144503eab406060077f257969c106ac77eeca4b3f74dce479d07b3b1ced4a"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/HitSelectModule.java": {
+      "status": "native-implementation",
+      "native_id": "hitselect",
+      "donor_sha256": "0e44fd249ec30c05fd8c045c906fa7881036d9665a34105d0d5f516c6f21adae",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HitSelectModule.java": "78e738aa305b61117a2f2f006682246c30e108b3aa2b2805af8c5e561a532c91",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "daeedcd1e75efa8205a6ea454bf018afcd7d66908fa5daf44d1e8e87215a5050"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/LagRangeModule.java": {
+      "status": "native-implementation",
+      "native_id": "lagrange",
+      "donor_sha256": "733172f35a563cd533c46fa8bcc838b5a2cf75a2e73bbeb5f640fc270b94175d",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java": "75c9ea3a88f2fd45ee8c49cca5d78373f713d54938b2f284b5a2fecdd4f9edb8"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/TargetStrafeModule.java": {
+      "status": "native-implementation",
+      "native_id": "targetstrafe",
+      "donor_sha256": "001dd6d5d66a776d2347f9d7fc1d19815132c233542a620c10bc4f4920d09d93",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "daeedcd1e75efa8205a6ea454bf018afcd7d66908fa5daf44d1e8e87215a5050"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/TickBaseModule.java": {
+      "status": "native-implementation",
+      "native_id": "tickbase",
+      "donor_sha256": "12e9019a066ce9245e749f6147b4d638f2db0667d658c6d6cca71ec4901c9388",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java": "75c9ea3a88f2fd45ee8c49cca5d78373f713d54938b2f284b5a2fecdd4f9edb8"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "combat/VelocityModule.java": {
+      "status": "native-implementation",
+      "native_id": "velocity",
+      "donor_sha256": "c425b5f7509d57c97d0f980dbaac8198247bf03cdae2af7810716f7edff8a772",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "daeedcd1e75efa8205a6ea454bf018afcd7d66908fa5daf44d1e8e87215a5050"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/AimAssistModule.java": {
+      "status": "native-implementation",
+      "native_id": "aimassist",
+      "donor_sha256": "48d281bd340dfa39272662140b87acb48e837193e94e209e6033d536eb5af6a1",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AssistModules.java": "c269dbc7e36a8bb04f58e5088d419d5aacaac457c5e0485ee97f263023dfc12b",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AimAssistModule.java": "f71980d194a989e8dd30870b6db1516e10ff4500c7117ddf5649e0060480b5cb"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/AutoClickerModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoclicker",
+      "donor_sha256": "87739e43a1e66f73a3d9a39f49af66fbe47bcae7bfebfa00791e48ef8c342372",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AssistModules.java": "c269dbc7e36a8bb04f58e5088d419d5aacaac457c5e0485ee97f263023dfc12b"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/BlockHitModule.java": {
+      "status": "native-implementation",
+      "native_id": "blockhit",
+      "donor_sha256": "641f87ec2ff016ce72f71357faa67338b770a4ffcefb462ba254ddce417e410c",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/BlockInModule.java": {
+      "status": "native-implementation",
+      "native_id": "blockin",
+      "donor_sha256": "2be8c1a021a00e8d115ea21d6c8b8e3b34f75395596a34a264c539b81b32185c",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "57a8f6513e71245361a4c8cef1de3dd4d5137dae44b65fbdcbacf2c7de8950e3",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BlockInModule.java": "8b5a03395d49e3c6a318309b63aa5482cbd87c4fc6ce1c1ce3329b2004aa9c3b"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/ClutchModule.java": {
+      "status": "native-implementation",
+      "native_id": "clutch",
+      "donor_sha256": "968e76f699eb3165200532a1cf8d4759b6f1e0015fbdf61d42f7a8176ecee128",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ClutchModule.java": "ddb21aebb6af72b2906de018bc000c245128a96451cb464675d52232eeb13949"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/EagleModule.java": {
+      "status": "native-implementation",
+      "native_id": "eagle",
+      "donor_sha256": "a31725776ff92bed19c85b686f3625b5f13a5df746f4713f7799bff078d7b24d",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "8668e13eda6c282358cbf6fddbec774d1e1dfb7ff1613195d997cf7e3f8b7f52"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/HitboxExpandModule.java": {
+      "status": "native-implementation",
+      "native_id": "hitboxexpand",
+      "donor_sha256": "0ac4af0d40d4cf14e678d611230d740d57ee00e91713ba5c4144006355ac03e7",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/KeepSprintModule.java": {
+      "status": "native-implementation",
+      "native_id": "keepsprint",
+      "donor_sha256": "27f86fd7d62dbd583b93ed60718fd9ba02db213ce861c69081b238ff8d7ef053",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/ReachModule.java": {
+      "status": "native-implementation",
+      "native_id": "reach",
+      "donor_sha256": "1d8beae9f575b3de96edde04d8bfc3e95c5f77de9d322ddfb164d3ade883f71a",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "ghost/TriggerBotModule.java": {
+      "status": "native-implementation",
+      "native_id": "triggerbot",
+      "donor_sha256": "c3b9bb7976e6eb80ca4d6441703ee018cbee7ed12d722054eff855708fef4a70",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java": "cb031719b498c8e9651fd8f46e9413ea10a0eeb13ea6e8c2e2af188fa365a8c6"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/AntiBotModule.java": {
+      "status": "native-implementation",
+      "native_id": "antibot",
+      "donor_sha256": "f42baff53026b97df2ac85a227cd9ae00f129dbc2d7d8592db2e723e365aaa64",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java": "c7360a5d1b39e5756bab74c50ec248f66ccc0f4c3ec122099cf3e7d41cddb794"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/AutoServerModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoserver",
+      "donor_sha256": "7da52b3598208f1a504a2852ecd84b6d8eba8b9a752708ae5a39ce5d375f2c9b",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AutoServerModule.java": "75489889b01e587f2748e8873dfb11be43f7cdf0dcaa038ce08d97327166626f"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/AutoSwapModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoswap",
+      "donor_sha256": "a0a8763da1a85e51642b36c4d71a66d2b823912b03b9ddc8de10ada748421df2",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "5b1a01aa99794d3dc5e630203f21317377eb718f8bdd83933ae254d40748f9f4"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/BasketballModule.java": {
+      "status": "native-implementation",
+      "native_id": "basketball",
+      "donor_sha256": "d0889720192ce6e8eeee7b8554fd6e456a4d9025f45f685f1fd51271703ca69d",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BasketballModule.java": "8b047d736d0a03ba123decb29ddfabe39c5ebc752adfdd37c148fd6699d2a510"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/BedWarsUtilsModule.java": {
+      "status": "native-implementation",
+      "native_id": "bedwarsutility",
+      "donor_sha256": "a618bbf68c02177fc7aebc9b6f35baf997a2dcaea79d268cbcd3f336214362e3",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BedWarsUtilsModule.java": "42649e4316f23bd08f54cb5ecce0e9730510994d74b9f915713ff7e6f5f1906d",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "5b1a01aa99794d3dc5e630203f21317377eb718f8bdd83933ae254d40748f9f4"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/DerpModule.java": {
+      "status": "native-implementation",
+      "native_id": "derp",
+      "donor_sha256": "10eb8f51b105440fd0098f3cb81de94cf851cc2f75dbfa37a8e09d9a89c66af0",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "5b1a01aa99794d3dc5e630203f21317377eb718f8bdd83933ae254d40748f9f4"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/DiscordRPCModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "343c8f248c4751886626f3a4e9a591619bfbef00fb7d2940bc4313fcf1fc5529",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "misc/FriendsModule.java": {
+      "status": "native-implementation",
+      "native_id": "friends",
+      "donor_sha256": "9ecdc205da34547686e67a9b0d3b6fba23043c149c604c98af3e5e27b0137aed",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java": "c7360a5d1b39e5756bab74c50ec248f66ccc0f4c3ec122099cf3e7d41cddb794"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/GUIClickerModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "8bea1189e151858f9efad9680840181c10f8c03ac5db40fdd61e6ddbcf5cef1f",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "misc/InputFixesModule.java": {
+      "status": "native-implementation",
+      "native_id": "inputfixes",
+      "donor_sha256": "9eb3129a53b5c26c141461fcc220fee88a514d9020335a7bd7dba91c3aa1c564",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "5b1a01aa99794d3dc5e630203f21317377eb718f8bdd83933ae254d40748f9f4"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/InsultsModule.java": {
+      "status": "deferred",
+      "native_id": null,
+      "donor_sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "misc/ItemDelaysModule.java": {
+      "status": "native-implementation",
+      "native_id": "fastplace",
+      "donor_sha256": "95ccae94cd3e5a1760dde43b6b637ef4df4f0bc972264d91dc997d314165ef34",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java": "a3df872b4c2170278e108543ef8522ca515b1be53cfd044d38f85fc9b39dbb27"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/MinigameAimModule.java": {
+      "status": "native-implementation",
+      "native_id": "minigameaim",
+      "donor_sha256": "077a59fd9ebe95d0a3acc690415c1033cfdd70c56303ca3aef02e35e30253fac",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MinigameAimModule.java": "9c2c2196d8f1fb9b5de3ee0b011d5e0aedce460cfd8671b0fa849a8f3c6714ce"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/PoolModule.java": {
+      "status": "native-implementation",
+      "native_id": "pool",
+      "donor_sha256": "55877689a817fd7ca9c7d77680e17eb6ac384080c4953b8493e9b78cd6a9cb87",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PoolModule.java": "bdbb5fa464abde9fdca7d1552235e7c1d636bcec3513ade201937c2273878851"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/TimerModule.java": {
+      "status": "native-implementation",
+      "native_id": "timer",
+      "donor_sha256": "fd5834df56c3828f47d07d24b952374329d8223fc87e7e2ed210b4a343891e20",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java": "c83ccc8b43480c27133a10b90bc70c6f9b7eea41437a90e135155932190ccb2f"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "misc/ToggleSoundsModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "12bcb2968060d9fe98dc7148eb5800d7ac41f539f9ff042407b4d4c08a70d783",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "movement/FlightModule.java": {
+      "status": "native-implementation",
+      "native_id": "flight",
+      "donor_sha256": "d86d080cb4af51c90c747191852e5ef389c6c7e53cf3e9c78440147bbfe713c7",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/InvMoveModule.java": {
+      "status": "native-implementation",
+      "native_id": "invmove",
+      "donor_sha256": "577727001360fc4682a25380d725a0f5408c4fd1a24fda8d3843f276d05ef0ed",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "627faa657ec313f28f18308286f8b7e999a6cac71a10de527945f0a50b13d19f",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InvMoveModule.java": "608c5c3482980fd638489f593f006bd2652b38d08fb30b7150ff5e64b6089e19"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/LongJumpModule.java": {
+      "status": "native-implementation",
+      "native_id": "longjump",
+      "donor_sha256": "e699b2faeeecfed7e66ddc4a9869b71dc917bb22c17f28c6ca932386dcbec27f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java": "789060ff937145a1098855a0a48ebda9cc03ba56f06f24e487ae776351530266"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/NoSlowModule.java": {
+      "status": "native-implementation",
+      "native_id": "noslow",
+      "donor_sha256": "a281811cf31e8d0f424399c8c5b513a9e3e6e6aba1598b0073d2c6b61e17daae",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java": "789060ff937145a1098855a0a48ebda9cc03ba56f06f24e487ae776351530266"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/PhaseModule.java": {
+      "status": "native-implementation",
+      "native_id": "phase",
+      "donor_sha256": "886009cd79c08e6ae97906e91c04097e83cb1ad852d50a84ce23292ee69cd25c",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java": "789060ff937145a1098855a0a48ebda9cc03ba56f06f24e487ae776351530266"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/SafeWalkModule.java": {
+      "status": "native-implementation",
+      "native_id": "safewalk",
+      "donor_sha256": "f77b9f66eebd916e50fe35fe239856ad8114841ecc509daac418e84723c5ad31",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/SpeedModule.java": {
+      "status": "native-implementation",
+      "native_id": "speed",
+      "donor_sha256": "e4e598c47f2afaab32631bb1287cc8390f1df1b175509e31080ada4ec00dfff5",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/SprintModule.java": {
+      "status": "native-implementation",
+      "native_id": "sprint",
+      "donor_sha256": "edbbc667ff2dfc2103acc0b92498d0c0548f9ab3c5fb8edd69571561e43e2fac",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/SprintModule.java": "b65fad49751ff2ef1bd8cadc0c0ffa0d6cf0f55de85f4f4dba24a8976f0a7fe4"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/StasisModule.java": {
+      "status": "native-implementation",
+      "native_id": "stasis",
+      "donor_sha256": "2f667082f61f3f61d673caf9e9bcd778b8eb17e9cde0d07f10c3033533df1b95",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/StepModule.java": {
+      "status": "native-implementation",
+      "native_id": "step",
+      "donor_sha256": "5964359fd7fba2f9a8979d78d1ed9113d2784b5ccc77203b9c83fc93323e3591",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "movement/WaterWalkModule.java": {
+      "status": "native-implementation",
+      "native_id": "waterwalk",
+      "donor_sha256": "24fcafaf011974a29d477a7513bf9edafcfaf89cec7cdad9cec18bea173d9b08",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "bceec47ae0d669cc5be92423a1dfb837c39d5927a1546d7abfdc9658aa031c9e"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/AntiFireballModule.java": {
+      "status": "native-implementation",
+      "native_id": "antifireball",
+      "donor_sha256": "8eca5392802cd523d64d72f3f141c078d8e3283bf5ab13fad1f922a51fd85b95",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "8668e13eda6c282358cbf6fddbec774d1e1dfb7ff1613195d997cf7e3f8b7f52"
+      },
+      "this_pass": "Re-read source. Native scan/throttle/packet-window and fresh-ray differences remain; this is not a claim of exact parity."
+    },
+    "player/AntiVoidModule.java": {
+      "status": "native-implementation",
+      "native_id": "antivoid",
+      "donor_sha256": "a71022a477f551c46590849cdcabb5865b068977ee2608bee81c48ad1daef3e9",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "8668e13eda6c282358cbf6fddbec774d1e1dfb7ff1613195d997cf7e3f8b7f52"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/AutoArmorModule.java": {
+      "status": "native-implementation",
+      "native_id": "autoarmor",
+      "donor_sha256": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "627faa657ec313f28f18308286f8b7e999a6cac71a10de527945f0a50b13d19f"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/BedDefenderModule.java": {
+      "status": "native-implementation",
+      "native_id": "beddefender",
+      "donor_sha256": "9596fe6ace23eb257fb9d1cf3fc03d66674431ac86b14a2bc6605d186a0e9422",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "57a8f6513e71245361a4c8cef1de3dd4d5137dae44b65fbdcbacf2c7de8950e3"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/BlinkModule.java": {
+      "status": "native-implementation",
+      "native_id": "blink",
+      "donor_sha256": "e1ba3c063aafb440ff7f6019a7016bd88bb92beff68137f9f41d6f4e20555482",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java": "503a12df56ea87ee368ca2364612f17e8a0dd5180321587db8ffdd16a82d45d5"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/BreakerModule.java": {
+      "status": "native-implementation",
+      "native_id": "breaker",
+      "donor_sha256": "cb2e6cb21ccaf110d25836709e6704811d96e8af3cea8eb0f92e66f6fe818df2",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "57a8f6513e71245361a4c8cef1de3dd4d5137dae44b65fbdcbacf2c7de8950e3"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/FastBreakModule.java": {
+      "status": "native-implementation",
+      "native_id": "fastbreak",
+      "donor_sha256": "c918c6315b073eb9bdae0206635abd1b202878c817d86d38e33654547114d168",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "627faa657ec313f28f18308286f8b7e999a6cac71a10de527945f0a50b13d19f"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/FastUseModule.java": {
+      "status": "native-implementation",
+      "native_id": "fastuse",
+      "donor_sha256": "fb9a09e9bbece8bc161ff2ea74210c72a9b19d6d98791fb8e66eb63033b93e00",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "8668e13eda6c282358cbf6fddbec774d1e1dfb7ff1613195d997cf7e3f8b7f52"
+      },
+      "this_pass": "Re-read donor and native PRE condition/count; speed-plus-one, use-count 31 and disabled category checks pass."
+    },
+    "player/ManagerModule.java": {
+      "status": "native-implementation",
+      "native_id": "manager",
+      "donor_sha256": "24dd399a6b7d0444950276cfe46f23db5aacde0f5525834139d582bcce10635f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java": "98acc46e61ff3360dcae2f987ccc5f388c44acdfd7fa1496f8577a8d65d09ef8"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/NoFallModule.java": {
+      "status": "native-implementation",
+      "native_id": "nofall",
+      "donor_sha256": "b7ba6d8d24fc7b890d373b6f22ae8adf65d2748cfee88a4be3b5d96049bbba2b",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java": "46b88b75e5c10b0027e66bbde363e09c7a25691cc0bbc80548e3c796edc59660"
+      },
+      "this_pass": "Focused MLG source correction and packaged cases: inherited smooth aim, movement yaw, multi-update return to view, immediate live-mode retirement, actual bucket/web placement regressions."
+    },
+    "player/RefillModule.java": {
+      "status": "native-implementation",
+      "native_id": "refill",
+      "donor_sha256": "5bdbd61e1796efc6907184d5411cea6237eed0c05a8e6fd7936d6458452baa5f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "627faa657ec313f28f18308286f8b7e999a6cac71a10de527945f0a50b13d19f"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/RegenModule.java": {
+      "status": "native-implementation",
+      "native_id": "regen",
+      "donor_sha256": "5ab636fe40a6c81d3912d19204855efd155f598bf218404f66ed269e136890b1",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "8668e13eda6c282358cbf6fddbec774d1e1dfb7ff1613195d997cf7e3f8b7f52"
+      },
+      "this_pass": "Re-read donor and native PRE condition/count; existing strict health-threshold C06 packet checks pass."
+    },
+    "player/ScaffoldModule.java": {
+      "status": "native-implementation",
+      "native_id": "scaffold",
+      "donor_sha256": "7763bd7bc0ec871f18fcfbaf1ce1bb0604da6fd3f9a2cfa28778933cdff3b2c9",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "51871ae215625c1120bb9b431d9cac161e574f71cff6ef6c54ce9049df949b08"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "player/StealerModule.java": {
+      "status": "native-implementation",
+      "native_id": "stealer",
+      "donor_sha256": "202277511b38f5d064c3e93d901dfda4d9653a37b1a7ac3b8349f3b94306b3f1",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java": "98acc46e61ff3360dcae2f987ccc5f388c44acdfd7fa1496f8577a8d65d09ef8"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/AmbienceModule.java": {
+      "status": "native-implementation",
+      "native_id": "ambience",
+      "donor_sha256": "f5c10beba8d1659c057da7b4ead1c649bb3864743d3070bcd19173a31d76445d",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java": "1ac96724366295347ece9f3cb2ac71fb4caa05a24b5b42175ef4824b4cbd26eb"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/AnimationsModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "bcd88680cff5a33ba9f9863ff416ca721c09f791954ed6399fd81c59ebda23eb",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ArmorRatioModule.java": {
+      "status": "native-implementation",
+      "native_id": "armorratio",
+      "donor_sha256": "ab03b94b9b54ff24a9c332608314b6430078c4c45fbae118e09d40c54ae49b36",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ArmorRatioModule.java": "bb08cbaef47ca8c9e4842079542c053bd1e45074a923602a3a3438790302b647"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/AutoF5Module.java": {
+      "status": "native-implementation",
+      "native_id": "autof5",
+      "donor_sha256": "9c79c48baa20832cf4e894b0fc4a335cbbc31e0f0b4db55f19388f3a60d103b3",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java": "bb0666a2d84aae6cd8450d4a5395d56e0c5709b389478c3f6ce14cc7713527d1"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/BlockESPModule.java": {
+      "status": "native-implementation",
+      "native_id": "blockesp",
+      "donor_sha256": "eae0102459f18864327974b77b80b53da927c485259536281c9fbfc47fd6bc6a",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java": "1ac96724366295347ece9f3cb2ac71fb4caa05a24b5b42175ef4824b4cbd26eb"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/BreadcrumbsModule.java": {
+      "status": "native-implementation",
+      "native_id": "breadcrumbs",
+      "donor_sha256": "ba35f7cb50011008051c80dd50ab45dba93f26164ee492c9b8453baf02fee354",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java": "1ac96724366295347ece9f3cb2ac71fb4caa05a24b5b42175ef4824b4cbd26eb"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/CameraModule.java": {
+      "status": "native-implementation",
+      "native_id": "camera",
+      "donor_sha256": "0c119b2e4b6de325ee53277cc01a12081cc9a8a9841a6b6902dd3975ca6e6789",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CameraModule.java": "b5a0c27e0e8f201d5d499fd9bb8a72e539ad4d6f4992df6d6107c404105394b2"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/CapesModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "0d0ed1b90575dcdaa6e30b29bc41fdaa81a4514b49d853d27859abcf1d635c75",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/CatEarsModule.java": {
+      "status": "native-implementation",
+      "native_id": "catears",
+      "donor_sha256": "9ef82c7d9325bc4456a2c0c1677d6e6fc72530f005f259bfae9330bf48074224",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CatEarsModule.java": "3904149b47780c591108a1865f999d146397b705037dbe31764c5b65ea2703cc"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/ChamsModule.java": {
+      "status": "native-implementation",
+      "native_id": "chams",
+      "donor_sha256": "6273e21147aae62a2c1a5135ae3c28faf84c7e8bcd6ccfe3d3b3b25e7af36703",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java": "c863f261040afed0bc1a2ecc974212ea9a0017090d970601c9f9b350295955dc"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/ChinaHatModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "e9718579a9ae094ade2a7643383c308d86bb0246f24639c23f540304f51d0b8b",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ClickGUIModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "90386584d4f84089e4fd0718261532d47455fe9400bbae3bb26c9916ee20d2c3",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ClientInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "24b818fd7ee3f22836212bc9cc859353173b00e8cec1234e04d8cee1b95e2170",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/CustomMinecraftModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": null,
+      "donor_sha256": "0804f5bee5aff27c0ac99a31841983ded998c484ed9e177dffc5d27fd254531d",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ESPModule.java": {
+      "status": "native-implementation",
+      "native_id": "esp",
+      "donor_sha256": "970d5a1f46a2546df091caa446facfb7e90405ab63383c4ef90def4c3b0411ab",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java": "d373549cf08e0e43c13fa3e0d475b6df41c5bce6064cbe3f3a8be480567112aa"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/EffectsModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "f01986bb3c39553edf65250d7bd052062cbd4f5186f8fc43b4f10e211381e838",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/FreeLookModule.java": {
+      "status": "native-implementation",
+      "native_id": "freelook",
+      "donor_sha256": "38c4a95c65df237c818440e9c2bd03c6e67819b697f54b61782522b430254f15",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java": "c863f261040afed0bc1a2ecc974212ea9a0017090d970601c9f9b350295955dc"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/HornsModule.java": {
+      "status": "native-implementation",
+      "native_id": "horns",
+      "donor_sha256": "e40c3743cf29f3c592452b61a02a846d2815a6fefa85eb1d42891cb06463ea43",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HornsModule.java": "426c56dcacb863a5b82d2d987b6f79ebbc433ef89c7118448522f36f24e0235c"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/HotbarModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "1b2aae5701c1e2402dfd55616670818ac0a994360147e28b2e626d732b40d448",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ImageRendererModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "a8c4ef4df9dc0168d93e6eca4e2feb9501e2af0a4cb596410186fd1f3bb01efc",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/KeybindInfoModule.java": {
+      "status": "deferred",
+      "native_id": null,
+      "donor_sha256": "87b512bb21a07bd9d55ec957a322ac013ede3d2bd7a2b9b9ceb2c100bea953d8",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/MediaInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "51500ff20cf11fae1cf5f731e89b30504560d67e0923b3e866d278f8b00b67ec",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ModListModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "61d39f71f01cfd004c1b53b30737197f9fec562cfcfd922c0e2e274ea9f9075e",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/MotionBlurModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "a38c3a9a55e246e86e802d629227670b38a2a772bc8e421a3feaae7cca6b88d7",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/NameProtectModule.java": {
+      "status": "native-implementation",
+      "native_id": "nameprotect",
+      "donor_sha256": "1e1c69fdfc93904f7a2482a90b01b962c1fcd5b475ecd6012ec8f7ea41ba4f72",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java": "bb0666a2d84aae6cd8450d4a5395d56e0c5709b389478c3f6ce14cc7713527d1"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/NameTagsModule.java": {
+      "status": "native-implementation",
+      "native_id": "nametags",
+      "donor_sha256": "d28632aa59a1ff7e5a36dbf4c32b394990fd38fdf6814fe27defa268cc5d2af2",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java": "d373549cf08e0e43c13fa3e0d475b6df41c5bce6064cbe3f3a8be480567112aa"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/PentagramModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "ec3bd9e00a8e64439dbb8dafa33f8684dc87dca08238649425d2d26440829abb",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/PostProcessingModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "14e71a6f09e25b81e6b945c76ecd0f0d593bb3be7efd69806ae8715cb93f7abf",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ScoreboardModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "ca8c77449a640d815ddcc3e3922b6aa94b5fd9c62996ef5b00f1f7cd1b9c968d",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/SessionInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "0e9feb5c0e4837b8eff8c89c1cd7850e04fe2067d9100f5bf035d960ad3dd974",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/ShaderESPModule.java": {
+      "status": "native-implementation",
+      "native_id": "shaderesp",
+      "donor_sha256": "2607300a1bfa92a4ae5e9610bcb090f34f26095d759e2e6861fd4ac7479fe89f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ShaderESPModule.java": "29a40fa651dd0d98aa0ceb87ece3d9cf08fbfe3b898357461ab260fb159af31d"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/SkeletonsModule.java": {
+      "status": "native-implementation",
+      "native_id": "skeletons",
+      "donor_sha256": "c5c7b0d2019e5096deb343b3d36df9731910127ebae712f99872118bc36a63ff",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java": "c863f261040afed0bc1a2ecc974212ea9a0017090d970601c9f9b350295955dc"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/SkinChangerModule.java": {
+      "status": "deferred",
+      "native_id": null,
+      "donor_sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/TargetESPModule.java": {
+      "status": "native-implementation",
+      "native_id": "targetesp",
+      "donor_sha256": "5c1f09a0c8584eba32a2592ab5036df69448c85ebbbe13d27265509c26504304",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java": "d373549cf08e0e43c13fa3e0d475b6df41c5bce6064cbe3f3a8be480567112aa"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/TargetHudModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "3404d6a6e23cb82affbd0fc699e8b21d8ce115035223b84ae48fe0e0a248051a",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/TrajectoriesModule.java": {
+      "status": "native-implementation",
+      "native_id": "trajectories",
+      "donor_sha256": "4cd3b3dd6d156f07b1d9fb105531ca6e4e1243e7eac3747a8f7b6bf38405d66f",
+      "native_source_candidates_sha256": {
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java": "1ac96724366295347ece9f3cb2ac71fb4caa05a24b5b42175ef4824b4cbd26eb"
+      },
+      "this_pass": "Inventory/fingerprints and existing full regression suite rechecked; no new exhaustive mode comparison."
+    },
+    "render/WatermarkModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "832644d6ac1bd75f1feae971daad7c4b8ffe4e026d1f3008eb80946cf6db72c5",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    },
+    "render/YuriChatModule.java": {
+      "status": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "fd43abeac041d6a066880b39f92a8690e09f50ea21d5da646ecef1fd41155932",
+      "native_source_candidates_sha256": {},
+      "this_pass": "Existing explicit classification retained."
+    }
+  }
+}

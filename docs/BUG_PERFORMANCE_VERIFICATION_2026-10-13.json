@@ -1,0 +1,884 @@
+{
+  "date": "2026-10-13",
+  "scope": "Native bug/performance pass and pinned donor-module source review. No authenticated multiplayer or controlled FPS benchmark.",
+  "comparison": {
+    "release_revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+    "donor_clean": true,
+    "cached_revision": "50d7322b85cb8de096241077ca3130e9e9715d20",
+    "cached_reference": ".references/yuri-50d7322b85cb8de096241077ca3130e9e9715d20",
+    "cached_module_hashes_verified": 88,
+    "modules": {
+      "combat/AuraModule.java": {
+        "status": "native-implementation",
+        "native": "aura",
+        "sha256": "9248e0117158da95460e52ee397cf5aed00322809d3737a39e04d865e32ef678",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java"
+        ]
+      },
+      "combat/AutoExtinguishModule.java": {
+        "status": "native-implementation",
+        "native": "autoextinguish",
+        "sha256": "1dd5cf3ae76ff453253e193fd134caa96a3f54bbe9aa209b67ae7f765d1f45c7",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+        ]
+      },
+      "combat/AutoPotModule.java": {
+        "status": "native-implementation",
+        "native": "autopot",
+        "sha256": "04be7d23c4129a024fa512fb34d3a92b6411848217af0b3a5f3ad1bcf80e21cc",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+        ]
+      },
+      "combat/AutoProjectileModule.java": {
+        "status": "native-implementation",
+        "native": "autoprojectile",
+        "sha256": "2703523609f2339e6d474e8c74c4c0f54228f2f99c82303a9233ebd24fbe2c06",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+        ]
+      },
+      "combat/BackTrackModule.java": {
+        "status": "native-implementation",
+        "native": "backtrack",
+        "sha256": "f81f32daa80f30ead0b0fb43e80338681ab7d7357aa6119e74fac39f5c865607",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+        ]
+      },
+      "combat/BowAimbotModule.java": {
+        "status": "native-implementation",
+        "native": "bowaimbot",
+        "sha256": "3728209ef6453423ffb3ec4a5595fda4c1786cbc0bb66a21bb99de0b5cce3879",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+        ]
+      },
+      "combat/CriticalsModule.java": {
+        "status": "native-implementation",
+        "native": "criticals",
+        "sha256": "a25df3e2dc3454ac8b98eb577ebbedb9b5b806301196511c89eb14a8f916ef83",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+        ]
+      },
+      "combat/HitSelectModule.java": {
+        "status": "native-implementation",
+        "native": "hitselect",
+        "sha256": "cc6c414f487d1075a7926d0f38f3f1b0f7591128bc8d95b6a625fa78b9064b6d",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+        ]
+      },
+      "combat/LagRangeModule.java": {
+        "status": "native-implementation",
+        "native": "lagrange",
+        "sha256": "733172f35a563cd533c46fa8bcc838b5a2cf75a2e73bbeb5f640fc270b94175d",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+        ]
+      },
+      "combat/TargetStrafeModule.java": {
+        "status": "native-implementation",
+        "native": "targetstrafe",
+        "sha256": "001dd6d5d66a776d2347f9d7fc1d19815132c233542a620c10bc4f4920d09d93",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+        ]
+      },
+      "combat/TickBaseModule.java": {
+        "status": "native-implementation",
+        "native": "tickbase",
+        "sha256": "12e9019a066ce9245e749f6147b4d638f2db0667d658c6d6cca71ec4901c9388",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+        ]
+      },
+      "combat/VelocityModule.java": {
+        "status": "native-implementation",
+        "native": "velocity",
+        "sha256": "479fef9157f08bd2bf073ecc699defbe13cb0c86e7ec76305bfc448746c913b6",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+        ]
+      },
+      "combat/WTapModule.java": {
+        "status": "native-implementation",
+        "native": "wtap",
+        "sha256": "b0a1acc74276c679c06f172b4b61e56e67d41d3f04a6ccf7d2b93001e1662464",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/WTapModule.java"
+        ]
+      },
+      "misc/AntiBotModule.java": {
+        "status": "native-implementation",
+        "native": "antibot",
+        "sha256": "f42baff53026b97df2ac85a227cd9ae00f129dbc2d7d8592db2e723e365aaa64",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+        ]
+      },
+      "misc/AutoServerModule.java": {
+        "status": "deferred",
+        "native": null,
+        "sha256": "381db4916beaf0543b143cd48c21d0ec29a9f40a0795c2f4e29fee522344a5e7",
+        "native_files": []
+      },
+      "misc/AutoSwapModule.java": {
+        "status": "native-implementation",
+        "native": "autoswap",
+        "sha256": "db95b8048e4b7bc11369ddc2eee044837f48825beb07d870e4bc497637c06be4",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+        ]
+      },
+      "misc/BedWarsUtilityModule.java": {
+        "status": "native-implementation",
+        "native": "bedwarsutility",
+        "sha256": "dc18204f8c7fb5317e94888fbe35d1a7a1679e935d51a76b5cae14090d75b5a0",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+        ]
+      },
+      "misc/DerpModule.java": {
+        "status": "native-implementation",
+        "native": "derp",
+        "sha256": "10eb8f51b105440fd0098f3cb81de94cf851cc2f75dbfa37a8e09d9a89c66af0",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+        ]
+      },
+      "misc/DisablerModule.java": {
+        "status": "native-implementation",
+        "native": "disabler",
+        "sha256": "00a7024bdbed648530333505aee1f1070fdbb82d6d36062e77d15f019ab7fd14",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+        ]
+      },
+      "misc/DiscordRPCModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "343c8f248c4751886626f3a4e9a591619bfbef00fb7d2940bc4313fcf1fc5529",
+        "native_files": []
+      },
+      "misc/FriendsModule.java": {
+        "status": "native-implementation",
+        "native": "friends",
+        "sha256": "9ecdc205da34547686e67a9b0d3b6fba23043c149c604c98af3e5e27b0137aed",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+        ]
+      },
+      "misc/GUIClickerModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "8bea1189e151858f9efad9680840181c10f8c03ac5db40fdd61e6ddbcf5cef1f",
+        "native_files": []
+      },
+      "misc/InputFixesModule.java": {
+        "status": "native-implementation",
+        "native": "inputfixes",
+        "sha256": "9eb3129a53b5c26c141461fcc220fee88a514d9020335a7bd7dba91c3aa1c564",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+        ]
+      },
+      "misc/InsultsModule.java": {
+        "status": "deferred",
+        "native": null,
+        "sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+        "native_files": []
+      },
+      "misc/ItemDelaysModule.java": {
+        "status": "native-implementation",
+        "native": "fastplace",
+        "sha256": "940818f3d113f0477a378f1400f390844dd17b2d47f5437195718af86494e7a6",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java"
+        ]
+      },
+      "misc/MinigameAimModule.java": {
+        "status": "native-implementation",
+        "native": "minigameaim",
+        "sha256": "077a59fd9ebe95d0a3acc690415c1033cfdd70c56303ca3aef02e35e30253fac",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MinigameAimModule.java"
+        ]
+      },
+      "misc/TimerModule.java": {
+        "status": "native-implementation",
+        "native": "timer",
+        "sha256": "fd5834df56c3828f47d07d24b952374329d8223fc87e7e2ed210b4a343891e20",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java"
+        ]
+      },
+      "misc/ToggleSoundsModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "8b101b8705bfbbd13e210d387672c544a455ba4cf8ca5e26b0bcaf73ac08cec8",
+        "native_files": []
+      },
+      "movement/FlightModule.java": {
+        "status": "native-implementation",
+        "native": "flight",
+        "sha256": "d86d080cb4af51c90c747191852e5ef389c6c7e53cf3e9c78440147bbfe713c7",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "movement/LongJumpModule.java": {
+        "status": "native-implementation",
+        "native": "longjump",
+        "sha256": "e699b2faeeecfed7e66ddc4a9869b71dc917bb22c17f28c6ca932386dcbec27f",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+        ]
+      },
+      "movement/NoSlowModule.java": {
+        "status": "native-implementation",
+        "native": "noslow",
+        "sha256": "a281811cf31e8d0f424399c8c5b513a9e3e6e6aba1598b0073d2c6b61e17daae",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+        ]
+      },
+      "movement/PhaseModule.java": {
+        "status": "native-implementation",
+        "native": "phase",
+        "sha256": "886009cd79c08e6ae97906e91c04097e83cb1ad852d50a84ce23292ee69cd25c",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+        ]
+      },
+      "movement/SafeWalkModule.java": {
+        "status": "native-implementation",
+        "native": "safewalk",
+        "sha256": "f77b9f66eebd916e50fe35fe239856ad8114841ecc509daac418e84723c5ad31",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "movement/SpeedModule.java": {
+        "status": "native-implementation",
+        "native": "speed",
+        "sha256": "e4e598c47f2afaab32631bb1287cc8390f1df1b175509e31080ada4ec00dfff5",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "movement/SprintModule.java": {
+        "status": "native-implementation",
+        "native": "sprint",
+        "sha256": "edbbc667ff2dfc2103acc0b92498d0c0548f9ab3c5fb8edd69571561e43e2fac",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/SprintModule.java"
+        ]
+      },
+      "movement/StasisModule.java": {
+        "status": "native-implementation",
+        "native": "stasis",
+        "sha256": "2f667082f61f3f61d673caf9e9bcd778b8eb17e9cde0d07f10c3033533df1b95",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "movement/StepModule.java": {
+        "status": "native-implementation",
+        "native": "step",
+        "sha256": "5964359fd7fba2f9a8979d78d1ed9113d2784b5ccc77203b9c83fc93323e3591",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "movement/WaterWalkModule.java": {
+        "status": "native-implementation",
+        "native": "waterwalk",
+        "sha256": "24fcafaf011974a29d477a7513bf9edafcfaf89cec7cdad9cec18bea173d9b08",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+        ]
+      },
+      "player/AntiFireballModule.java": {
+        "status": "native-implementation",
+        "native": "antifireball",
+        "sha256": "8eca5392802cd523d64d72f3f141c078d8e3283bf5ab13fad1f922a51fd85b95",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+        ]
+      },
+      "player/AntiVoidModule.java": {
+        "status": "native-implementation",
+        "native": "antivoid",
+        "sha256": "a71022a477f551c46590849cdcabb5865b068977ee2608bee81c48ad1daef3e9",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+        ]
+      },
+      "player/AutoArmorModule.java": {
+        "status": "native-implementation",
+        "native": "autoarmor",
+        "sha256": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+        ]
+      },
+      "player/BedDefenderModule.java": {
+        "status": "native-implementation",
+        "native": "beddefender",
+        "sha256": "9596fe6ace23eb257fb9d1cf3fc03d66674431ac86b14a2bc6605d186a0e9422",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+        ]
+      },
+      "player/BlinkModule.java": {
+        "status": "native-implementation",
+        "native": "blink",
+        "sha256": "e1ba3c063aafb440ff7f6019a7016bd88bb92beff68137f9f41d6f4e20555482",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java"
+        ]
+      },
+      "player/BreakerModule.java": {
+        "status": "native-implementation",
+        "native": "breaker",
+        "sha256": "94209692065f53ac729b817480728e828cb45fb472dca5e28b9a5c9edd722350",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+        ]
+      },
+      "player/EagleModule.java": {
+        "status": "native-implementation",
+        "native": "eagle",
+        "sha256": "2e28449a0de99689debbae7989eb0b08ec92e3718d924bf6d9ab40d5d24f8637",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+        ]
+      },
+      "player/FastBreakModule.java": {
+        "status": "native-implementation",
+        "native": "fastbreak",
+        "sha256": "c918c6315b073eb9bdae0206635abd1b202878c817d86d38e33654547114d168",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+        ]
+      },
+      "player/FastUseModule.java": {
+        "status": "native-implementation",
+        "native": "fastuse",
+        "sha256": "fb9a09e9bbece8bc161ff2ea74210c72a9b19d6d98791fb8e66eb63033b93e00",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+        ]
+      },
+      "player/InvMoveModule.java": {
+        "status": "native-implementation",
+        "native": "invmove",
+        "sha256": "4045ac49fd2ed05399fe5fe6f9fead1b783996501a33713b344d1e97e4b17bdf",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+        ]
+      },
+      "player/ManagerModule.java": {
+        "status": "native-implementation",
+        "native": "manager",
+        "sha256": "24dd399a6b7d0444950276cfe46f23db5aacde0f5525834139d582bcce10635f",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+        ]
+      },
+      "player/NoFallModule.java": {
+        "status": "native-implementation",
+        "native": "nofall",
+        "sha256": "b7ba6d8d24fc7b890d373b6f22ae8adf65d2748cfee88a4be3b5d96049bbba2b",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+        ]
+      },
+      "player/RefillModule.java": {
+        "status": "native-implementation",
+        "native": "refill",
+        "sha256": "3ff51cedb2d3cdde650c15278b525519801c167b7587048fdfacbb3a489171ed",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+        ]
+      },
+      "player/RegenModule.java": {
+        "status": "native-implementation",
+        "native": "regen",
+        "sha256": "5ab636fe40a6c81d3912d19204855efd155f598bf218404f66ed269e136890b1",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+        ]
+      },
+      "player/ScaffoldModule.java": {
+        "status": "native-implementation",
+        "native": "scaffold",
+        "sha256": "99095a9f7bcab07f7327c462a1c5f748db34d7e8724076a5395a807916ac7981",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java"
+        ]
+      },
+      "player/StealerModule.java": {
+        "status": "native-implementation",
+        "native": "stealer",
+        "sha256": "202277511b38f5d064c3e93d901dfda4d9653a37b1a7ac3b8349f3b94306b3f1",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+        ]
+      },
+      "render/AmbienceModule.java": {
+        "status": "native-implementation",
+        "native": "ambience",
+        "sha256": "f5c10beba8d1659c057da7b4ead1c649bb3864743d3070bcd19173a31d76445d",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+        ]
+      },
+      "render/AnimationsModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "bcd88680cff5a33ba9f9863ff416ca721c09f791954ed6399fd81c59ebda23eb",
+        "native_files": []
+      },
+      "render/AutoF5Module.java": {
+        "status": "native-implementation",
+        "native": "autof5",
+        "sha256": "9c79c48baa20832cf4e894b0fc4a335cbbc31e0f0b4db55f19388f3a60d103b3",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+        ]
+      },
+      "render/BlockESPModule.java": {
+        "status": "native-implementation",
+        "native": "blockesp",
+        "sha256": "eae0102459f18864327974b77b80b53da927c485259536281c9fbfc47fd6bc6a",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+        ]
+      },
+      "render/BreadcrumbsModule.java": {
+        "status": "native-implementation",
+        "native": "breadcrumbs",
+        "sha256": "ba35f7cb50011008051c80dd50ab45dba93f26164ee492c9b8453baf02fee354",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+        ]
+      },
+      "render/CameraModule.java": {
+        "status": "native-implementation",
+        "native": "camera",
+        "sha256": "2d75c1479a4996e1462584d5c0601e29cdb93830828dd0abbedfea39746a774f",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CameraModule.java"
+        ]
+      },
+      "render/CapesModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "d87de4bf6739d613d3b5255512b9bd0e614b017368dccb9bf537dfecfed939a2",
+        "native_files": []
+      },
+      "render/ChamsModule.java": {
+        "status": "native-implementation",
+        "native": "chams",
+        "sha256": "6273e21147aae62a2c1a5135ae3c28faf84c7e8bcd6ccfe3d3b3b25e7af36703",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+        ]
+      },
+      "render/ChinaHatModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "e9718579a9ae094ade2a7643383c308d86bb0246f24639c23f540304f51d0b8b",
+        "native_files": []
+      },
+      "render/ClickGUIModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "f0dd7f9e2c15e50575abacecf1794d3211759c942b425b462447347e971a5241",
+        "native_files": []
+      },
+      "render/ClientInfoModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "2ff52d3c24b9670e0bf922dfafd6d47120d367958347c87d06c8bd047cf05914",
+        "native_files": []
+      },
+      "render/ESPModule.java": {
+        "status": "native-implementation",
+        "native": "esp",
+        "sha256": "970d5a1f46a2546df091caa446facfb7e90405ab63383c4ef90def4c3b0411ab",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+        ]
+      },
+      "render/EffectsModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "f01986bb3c39553edf65250d7bd052062cbd4f5186f8fc43b4f10e211381e838",
+        "native_files": []
+      },
+      "render/FreeLookModule.java": {
+        "status": "native-implementation",
+        "native": "freelook",
+        "sha256": "38c4a95c65df237c818440e9c2bd03c6e67819b697f54b61782522b430254f15",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+        ]
+      },
+      "render/HotbarModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "1b2aae5701c1e2402dfd55616670818ac0a994360147e28b2e626d732b40d448",
+        "native_files": []
+      },
+      "render/ImageRendererModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "a8c4ef4df9dc0168d93e6eca4e2feb9501e2af0a4cb596410186fd1f3bb01efc",
+        "native_files": []
+      },
+      "render/KeybindInfoModule.java": {
+        "status": "deferred",
+        "native": null,
+        "sha256": "0efe2c271e2f8f73a6e15984d200d9cb85a57bf97dedf9db7b7d6ee24c43239e",
+        "native_files": []
+      },
+      "render/MediaInfoModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "51500ff20cf11fae1cf5f731e89b30504560d67e0923b3e866d278f8b00b67ec",
+        "native_files": []
+      },
+      "render/ModListModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "61d39f71f01cfd004c1b53b30737197f9fec562cfcfd922c0e2e274ea9f9075e",
+        "native_files": []
+      },
+      "render/MotionBlurModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "a38c3a9a55e246e86e802d629227670b38a2a772bc8e421a3feaae7cca6b88d7",
+        "native_files": []
+      },
+      "render/NameProtectModule.java": {
+        "status": "native-implementation",
+        "native": "nameprotect",
+        "sha256": "1e1c69fdfc93904f7a2482a90b01b962c1fcd5b475ecd6012ec8f7ea41ba4f72",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+        ]
+      },
+      "render/NameTagsModule.java": {
+        "status": "native-implementation",
+        "native": "nametags",
+        "sha256": "4565c2d685f94648ac067c0fe644e0c39c3b57f6be635d525d1a32030ef27c83",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+        ]
+      },
+      "render/PentagramModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "2db720c5b32b78fbf8da68c0fa380e02dc3e2a51f58a11215cbbf35096110d38",
+        "native_files": []
+      },
+      "render/PostProcessingModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "14e71a6f09e25b81e6b945c76ecd0f0d593bb3be7efd69806ae8715cb93f7abf",
+        "native_files": []
+      },
+      "render/ScoreboardModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "9d8849f44ee376423342d195b6151b829551d84ed48a608515fcd9e1b4398d44",
+        "native_files": []
+      },
+      "render/SessionInfoModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "0e9feb5c0e4837b8eff8c89c1cd7850e04fe2067d9100f5bf035d960ad3dd974",
+        "native_files": []
+      },
+      "render/ShaderESPModule.java": {
+        "status": "native-implementation",
+        "native": "shaderesp",
+        "sha256": "2607300a1bfa92a4ae5e9610bcb090f34f26095d759e2e6861fd4ac7479fe89f",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ShaderESPModule.java"
+        ]
+      },
+      "render/SkeletonsModule.java": {
+        "status": "native-implementation",
+        "native": "skeletons",
+        "sha256": "4e154bad9c2dc444aafea43b1c85238782c0c3d758a6e8344d64491d3ac9e4de",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+        ]
+      },
+      "render/SkinChangerModule.java": {
+        "status": "deferred",
+        "native": null,
+        "sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+        "native_files": []
+      },
+      "render/TargetESPModule.java": {
+        "status": "native-implementation",
+        "native": "targetesp",
+        "sha256": "5c1f09a0c8584eba32a2592ab5036df69448c85ebbbe13d27265509c26504304",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+        ]
+      },
+      "render/TargetHudModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "164f4a3941bd5e696c939c3981e10abbafdc95fa14b788168a6a0c7d7de8b987",
+        "native_files": []
+      },
+      "render/TrajectoriesModule.java": {
+        "status": "native-implementation",
+        "native": "trajectories",
+        "sha256": "4cd3b3dd6d156f07b1d9fb105531ca6e4e1243e7eac3747a8f7b6bf38405d66f",
+        "native_files": [
+          "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+        ]
+      },
+      "render/WatermarkModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "9c93f362e3a203e145d8cdcfd1efabcb6b26ba50c73c47cd91a351e13520f9cb",
+        "native_files": []
+      },
+      "render/YuriChatModule.java": {
+        "status": "excluded-client-ui",
+        "native": "",
+        "sha256": "fd43abeac041d6a066880b39f92a8690e09f50ea21d5da646ecef1fd41155932",
+        "native_files": []
+      }
+    },
+    "native_builtin_world_scoped_count": 82,
+    "native_client_count": 83,
+    "client_count_observed_in_final_logs": true,
+    "native_mappings": 63,
+    "deferred": 4,
+    "excluded_client_ui": 21
+  },
+  "builds": [
+    {
+      "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon check assemble --offline --rerun-tasks",
+      "passed": true,
+      "log": ".backups/before-review-20261013-104755/build.log"
+    },
+    {
+      "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon check assemble --offline",
+      "passed": true,
+      "log": ".backups/before-review-20261013-104755/build-final.log"
+    }
+  ],
+  "unit_tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 125,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "final_artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1902548,
+    "sha256": "f1a20ef91d18322f14cf8295c5a862d36127be1d535c2365993ca5e7777bed5d"
+  },
+  "changed_source_sha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java": "03216434f317314b3ec3389a6205161f3cd99569b99e12138f1243eff2fa0919",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryAnalysis.java": "4b0f0eb283613ef43dc97da9b728a089a884440c217573e4372cfe26c038e6ce",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryPolicy.java": "50c607486b3932b93369a3201ae746c82c03d4674b818c1939c57a8cf2412a95",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/LootPolicy.java": "d0cabf6f5dbe4f7a26d1c5a112ee01923a507d0bfa5220dea8d12fd0732c66c3",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "762c799033b1cde21674e723d692a0aaca38368e766ffa45386973b0206e4f6e",
+    "forge/src/smoke/java/perihelion/smoke/ModuleActionProbe.java": "dc4ade082eff8c745dc3dda768b361929dc3eb7f568953295e670bfac0e7e2d0",
+    "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "3a42ec640acbfb37aad519f6e67b728493d693d8cf6b4f0afa36d53cc4fb6e87",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "780249ee2dfc0341d0b47e0ab2dba877f04d969fdc4af01024e876684a777c70",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "25421ea4305c18146967dc09d50518f384b1b28d8f5e8ea519442f338c07823d"
+  },
+  "fixture_source_sha256": {
+    "scripts/smoke/SmokeProbe.java": "93875f710db9ea5a09c9f91d81765e3c054f5807b155084e98ec65b624cf5689",
+    "forge/src/smoke/java/perihelion/smoke/AuraPreProbe.java": "4638092cdbd530d22e44add35349aaf77d2fb4af73556971f986b702f08c9972",
+    "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+    "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+    "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+    "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+    "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "eda5bc91bd7d0f0b1f0f15bc2bd25ebd66d876715d01b3fcc5298760c9351c48",
+    "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+    "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "68fcecfd263d9d6a7fbcb71ab28fda71d522f2de5961508bcb9ad29b905601cd",
+    "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "28bcb19d4d1870ca55fa868366c3c0dc012c18585af57e6225d6351678a11c6f",
+    "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+    "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+    "forge/src/smoke/java/perihelion/smoke/ModuleActionProbe.java": "dc4ade082eff8c745dc3dda768b361929dc3eb7f568953295e670bfac0e7e2d0",
+    "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+    "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+    "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "fd04a12f34998d9c9544fde693757f5289466933c59b3eda4ee8820e08a65b8f",
+    "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "3a42ec640acbfb37aad519f6e67b728493d693d8cf6b4f0afa36d53cc4fb6e87",
+    "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "780249ee2dfc0341d0b47e0ab2dba877f04d969fdc4af01024e876684a777c70",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+    "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "a5765f86856cb7cae7d4fd4f03fa858fe14e4dfa3c933df415e469f15bc0a60b",
+    "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "6835c7d25f2251a7036fb9f4772e3bf447c6b3a150dcf66a705014ca3f8165ef",
+    "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "3651e8c57ccb898996987e04697a9b59fae3cee7063f83e67f06876d3e8a4d1c"
+  },
+  "final_runs": [
+    {
+      "run_directory": "forge/run-smoke-forge-d319x_od",
+      "result_file": "forge/run-smoke-forge-d319x_od/result.json",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "f1a20ef91d18322f14cf8295c5a862d36127be1d535c2365993ca5e7777bed5d",
+      "markers": [
+        "RENDER PASS checks=55 state=restored fonts=native",
+        "PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "PASS sharedControls checks=51 inputFocused=false",
+        "MODULES checks=376 PASS",
+        "PERF ultraSafeImpossibleFace medianMs=8.203833 maxMs=26.838375",
+        "PERF blockEspMaxRangeFirstTick medianMs=0.739083 maxMs=1.035166",
+        "DEEP_GAMEPLAY checks=125 PASS",
+        "PERF trajectory100CachedFramesMs=4.661042 trajectory100RefreshesMs=23.048375 includesDrawing=true",
+        "QUALITY_GAMEPLAY checks=61 PASS",
+        "AURA_PRE checks=22 mouse=true,false slowdown=beforeMovement postWindow=empty PASS",
+        "MODULE_ACTIONS checks=106 cases=12 postWindow=empty PASS",
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "PERF watchdogImpossibleFace samples=40 medianMs=1.554833 p95Ms=4.998916 maxMs=5.991292",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=306 PASS",
+        "COMBAT_FLOW checks=49 PASS",
+        "GAMEPLAY checks=139 PASS",
+        "GUI PASS checks=242 panels=7 fonts=4",
+        "UI_THEME checks=240 fonts=3 scales=1,1.05 PASS",
+        "HUD_CHAT checks=88 PASS",
+        "PRODUCTION_HUD PASS checks=83",
+        "LIVE_BRIDGE phase=1 distance=9.339982903175041 bridgeBlocks=8 PASS",
+        "LIVE_BRIDGE phase=2 distance=9.33998287507103 bridgeBlocks=8 PASS",
+        "LIVE_PLAY ticks=125 frames=332 PASS",
+        "STALE_ENTITY_PACKETS checks=2 PASS",
+        "STALE_WORLD_PACKETS checks=3 PASS",
+        "PASS scenario=full ticks=261 worldEvents=12",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "legacy_runtime_warnings": [
+        "[10:59:46] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing",
+        "[10:59:52] [Client thread/ERROR]: Couldn't initialize twitch stream",
+        "[10:59:56] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[ALSOFT] (WW) 6 Buffers not deleted",
+        "[11:00:35] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "unexpected_fatal_signatures": []
+    },
+    {
+      "run_directory": "forge/run-smoke-optifine-a5qix0hn",
+      "result_file": "forge/run-smoke-optifine-a5qix0hn/result.json",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "f1a20ef91d18322f14cf8295c5a862d36127be1d535c2365993ca5e7777bed5d",
+      "markers": [
+        "RENDER PASS checks=55 state=restored fonts=native",
+        "PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "HUD PASS checks=241 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "PASS sharedControls checks=51 inputFocused=false",
+        "MODULES checks=376 PASS",
+        "PERF ultraSafeImpossibleFace medianMs=5.226209 maxMs=21.2235",
+        "PERF blockEspMaxRangeFirstTick medianMs=0.73075 maxMs=0.957167",
+        "DEEP_GAMEPLAY checks=125 PASS",
+        "PERF trajectory100CachedFramesMs=5.607125 trajectory100RefreshesMs=21.531 includesDrawing=true",
+        "QUALITY_GAMEPLAY checks=61 PASS",
+        "AURA_PRE checks=22 mouse=true,false slowdown=beforeMovement postWindow=empty PASS",
+        "MODULE_ACTIONS checks=106 cases=12 postWindow=empty PASS",
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "PERF watchdogImpossibleFace samples=40 medianMs=1.020917 p95Ms=1.235708 maxMs=8.626167",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=306 PASS",
+        "COMBAT_FLOW checks=49 PASS",
+        "GAMEPLAY checks=139 PASS",
+        "GUI PASS checks=242 panels=7 fonts=4",
+        "UI_THEME checks=240 fonts=3 scales=1,1.05 PASS",
+        "HUD_CHAT checks=88 PASS",
+        "PRODUCTION_HUD PASS checks=83",
+        "LIVE_BRIDGE phase=1 distance=9.339982980011428 bridgeBlocks=8 PASS",
+        "LIVE_BRIDGE phase=2 distance=9.339982630287182 bridgeBlocks=8 PASS",
+        "LIVE_PLAY ticks=125 frames=343 PASS",
+        "STALE_ENTITY_PACKETS checks=2 PASS",
+        "STALE_WORLD_PACKETS checks=3 PASS",
+        "PASS scenario=full ticks=257 worldEvents=12",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "legacy_runtime_warnings": [
+        "[11:01:15] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing",
+        "[11:01:20] [Client thread/ERROR]: Couldn't initialize twitch stream",
+        "[11:01:23] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[ALSOFT] (WW) 9 Buffers not deleted",
+        "[11:01:52] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "unexpected_fatal_signatures": []
+    }
+  ],
+  "failed_attempts": [
+    {
+      "run_directory": "forge/run-smoke-forge-peas3771",
+      "reason": "Sandboxed macOS startup abort before initialization",
+      "jvm_exit_code": -6,
+      "diagnostic_report": "/Users/wmcul/Library/Logs/DiagnosticReports/java-2026-10-13-104836.ips"
+    },
+    {
+      "run_directory": "forge/run-smoke-forge-7vou0x9s",
+      "reason": "Pre-fix regression: Long Jump mode switch immediately releases aim assertion failed",
+      "smoke_passed": false,
+      "jvm_exit_code": 0
+    },
+    {
+      "run_directory": "forge/run-smoke-forge-xbbjci49",
+      "reason": "Fixture checked exact C03 simple class name instead of its C05/C06 subclasses; corrected assignability assertion",
+      "smoke_passed": false,
+      "jvm_exit_code": 0
+    }
+  ],
+  "intermediate_successes": [
+    "forge/run-smoke-forge-o5c5oyb9",
+    "forge/run-smoke-optifine-11ff2onr"
+  ],
+  "backup": {
+    "directory": ".backups/before-review-20261013-104755",
+    "source_tar_sha256": "0474dae773faed59370e7e28d24e72516594cb83f08ccb953338e861b117921d",
+    "building_source_tar_sha256": "62b52c099c3278b14120638d662e448de5aaab7c5733395d0ff67e800ff17de7",
+    "previous_jar_sha256": "a6fe11e7cf50169047dbedd7253f1f8127de75ae1ab5ea8eff4769ae79ebc093",
+    "manifests": [
+      "manifest.json",
+      "building-manifest.json",
+      "changes.json"
+    ],
+    "members_verified": 10
+  },
+  "remaining_findings": [
+    {
+      "priority": "P2",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java",
+      "line": 245,
+      "finding": "Breaker whitelist captures a nearest bed only at enable, rather than retaining/resetting native match-scoped home-bed acquisition."
+    }
+  ]
+}

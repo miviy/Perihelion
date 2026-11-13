@@ -1,0 +1,1533 @@
+{
+  "review_date": "2026-10-10",
+  "upstream": "https://github.com/unleg1t/Yuri",
+  "old_local_revision": "0a4bd400784ef529d238311de5ce867e815794e2",
+  "release": "v1.3.0",
+  "release_revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+  "diffs": {
+    "release_1_2_to_1_3": {
+      "base": "v1.2.0",
+      "files_changed": 171,
+      "top_level_changes": {
+        "M": 36,
+        "D": 4,
+        "A": 7
+      },
+      "files": [
+        {
+          "status": "A",
+          "path": "AGENTS.md"
+        },
+        {
+          "status": "M",
+          "path": "LICENSE"
+        },
+        {
+          "status": "M",
+          "path": "README.md"
+        },
+        {
+          "status": "A",
+          "path": "TRADEMARK.md"
+        },
+        {
+          "status": "M",
+          "path": "build.gradle"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/Yuri.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/commands/impl/YaoiCommand.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/font/CustomFont.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/font/CustomFontRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/YuriAltMenu.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/comp/CustomTextBox.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/comp/MicrosoftOAuthTranslation.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoAnim.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoClickGui.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoTheme.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoWidgets.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaAnimation.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaClickGui.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaConfigPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaEasing.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaModuleButton.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaPropertyRow.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaRenderer.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaSettingPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaTheme.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/CategoryWindow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ConfigPanelContext.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ConfigPanelTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/LocalConfigsTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ModuleRow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/OnlineConfigPanel.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/OnlineConfigsTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/PropertyRow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ScrollableList.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/Theme.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriClickGUI.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriConfigPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriModuleEntry.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriPropertyEntry.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriTheme.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/initalization/YuriInitializationScreen.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/YuriMenu.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/api/MenuButton.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/api/MenuShaderBackground.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/windows/Window.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/ColorManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/CommandManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/NotificationManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/RotationManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/SlotManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/AuraModule.java",
+          "module_relative_path": "combat/AuraModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/AutoAppleModule.java",
+          "module_relative_path": "combat/AutoAppleModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/BackTrackModule.java",
+          "module_relative_path": "combat/BackTrackModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/VelocityModule.java",
+          "module_relative_path": "combat/VelocityModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoChatModule.java",
+          "module_relative_path": "misc/AutoChatModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoServerModule.java",
+          "module_relative_path": "misc/AutoServerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoSwapModule.java",
+          "module_relative_path": "misc/AutoSwapModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/DerpModule.java",
+          "module_relative_path": "misc/DerpModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/InsultsModule.java",
+          "module_relative_path": "misc/InsultsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/MinigameAimModule.java",
+          "module_relative_path": "misc/MinigameAimModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/ToggleSoundsModule.java",
+          "module_relative_path": "misc/ToggleSoundsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/movement/LongJumpModule.java",
+          "module_relative_path": "movement/LongJumpModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/movement/speed/impl/LegitSpeed.java",
+          "module_relative_path": "movement/speed/impl/LegitSpeed.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/AutoArmorModule.java",
+          "module_relative_path": "player/AutoArmorModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/BlockInModule.java",
+          "module_relative_path": "player/BlockInModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/BreakerModule.java",
+          "module_relative_path": "player/BreakerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/FakeLagModule.java",
+          "module_relative_path": "player/FakeLagModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/ManagerModule.java",
+          "module_relative_path": "player/ManagerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/ScaffoldModule.java",
+          "module_relative_path": "player/ScaffoldModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/StealerModule.java",
+          "module_relative_path": "player/StealerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AmbienceModule.java",
+          "module_relative_path": "render/AmbienceModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AnimationsModule.java",
+          "module_relative_path": "render/AnimationsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AutoF5Module.java",
+          "module_relative_path": "render/AutoF5Module.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/BlockESPModule.java",
+          "module_relative_path": "render/BlockESPModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/CameraModule.java",
+          "module_relative_path": "render/CameraModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/CapesModule.java",
+          "module_relative_path": "render/CapesModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ClickGUIModule.java",
+          "module_relative_path": "render/ClickGUIModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ClientInfoModule.java",
+          "module_relative_path": "render/ClientInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ESPModule.java",
+          "module_relative_path": "render/ESPModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/EffectsModule.java",
+          "module_relative_path": "render/EffectsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/FreeLookModule.java",
+          "module_relative_path": "render/FreeLookModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/HotbarModule.java",
+          "module_relative_path": "render/HotbarModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ImageRendererModule.java",
+          "module_relative_path": "render/ImageRendererModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/KeybindInfoModule.java",
+          "module_relative_path": "render/KeybindInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/MediaInfoModule.java",
+          "module_relative_path": "render/MediaInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ModListModule.java",
+          "module_relative_path": "render/ModListModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/NameProtectModule.java",
+          "module_relative_path": "render/NameProtectModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/NameTagsModule.java",
+          "module_relative_path": "render/NameTagsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/PentagramModule.java",
+          "module_relative_path": "render/PentagramModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/PostProcessingModule.java",
+          "module_relative_path": "render/PostProcessingModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ScoreboardModule.java",
+          "module_relative_path": "render/ScoreboardModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SessionInfoModule.java",
+          "module_relative_path": "render/SessionInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SkeletonsModule.java",
+          "module_relative_path": "render/SkeletonsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SkinChangerModule.java",
+          "module_relative_path": "render/SkinChangerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/TargetESPModule.java",
+          "module_relative_path": "render/TargetESPModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/TargetHudModule.java",
+          "module_relative_path": "render/TargetHudModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/WatermarkModule.java",
+          "module_relative_path": "render/WatermarkModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/YuriChatModule.java",
+          "module_relative_path": "render/YuriChatModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/TargetHudHelper.java",
+          "module_relative_path": "render/targethud/TargetHudHelper.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/AdjustMode.java",
+          "module_relative_path": "render/targethud/impl/AdjustMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/AtmosphereMode.java",
+          "module_relative_path": "render/targethud/impl/AtmosphereMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/OldAstolfoMode.java",
+          "module_relative_path": "render/targethud/impl/OldAstolfoMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/OldRavenB4Mode.java",
+          "module_relative_path": "render/targethud/impl/OldRavenB4Mode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/PulsiveMode.java",
+          "module_relative_path": "render/targethud/impl/PulsiveMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/RavenB4Mode.java",
+          "module_relative_path": "render/targethud/impl/RavenB4Mode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/YuriMode.java",
+          "module_relative_path": "render/targethud/impl/YuriMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/client/SoundUtils.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/utils/player/InvUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/InventoryUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/PlayerUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/RotationUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/ScaffoldUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/RenderUtils.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/utils/render/adapters/FontAdapter.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/imgui/ImGuiManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/imgui/style/ImGuiStyles.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/notifications/NotificationRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/progress/ProgressBarUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/shader/RoundedShaderUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/shader/ShaderUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/Minecraft.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/FontRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiIngame.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiScreen.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiSlot.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/network/NetworkPlayerInfo.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/EntityRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/ItemRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/ThreadDownloadImageData.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/resources/SkinManager.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/capes/astolfo.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/capes/purple_girl.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/capes/rose.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/capes/satan.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/fonts/jello-light.ttf"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/fonts/jello-medium.ttf"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/cookie.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/microsoft.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/minecraft.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/combat.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/misc.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/movement.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/player.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/render.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/skeetchainmail.png"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/skeet/tex.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/sob.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/yuri_circle.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/yuri_splash.jpg"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/dance.gif"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/netanyahu.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/check.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/options.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/scrollbar_bottom.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/scrollbar_top.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_bottom.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_2.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_3.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_4.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_left.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_right.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_top.png"
+        },
+        {
+          "status": "M",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_2.gif"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_2.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_3.gif"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_3.png"
+        },
+        {
+          "status": "M",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_nsfw.png"
+        }
+      ]
+    },
+    "old_local_to_1_3": {
+      "base": "0a4bd400784ef529d238311de5ce867e815794e2",
+      "files_changed": 149,
+      "top_level_changes": {
+        "M": 33,
+        "D": 4,
+        "A": 6
+      },
+      "files": [
+        {
+          "status": "A",
+          "path": "AGENTS.md"
+        },
+        {
+          "status": "M",
+          "path": "LICENSE"
+        },
+        {
+          "status": "M",
+          "path": "README.md"
+        },
+        {
+          "status": "A",
+          "path": "TRADEMARK.md"
+        },
+        {
+          "status": "M",
+          "path": "build.gradle"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/Yuri.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/commands/impl/YaoiCommand.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/font/CustomFont.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/font/CustomFontRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/YuriAltMenu.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/comp/CustomTextBox.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/alt/comp/MicrosoftOAuthTranslation.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoAnim.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoClickGui.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoTheme.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/csgo/CsgoWidgets.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaAnimation.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaClickGui.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaConfigPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaEasing.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaModuleButton.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaPropertyRow.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaRenderer.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaSettingPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/sigma/SigmaTheme.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/CategoryWindow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ConfigPanelContext.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ConfigPanelTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/LocalConfigsTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ModuleRow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/OnlineConfigPanel.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/OnlineConfigsTab.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/PropertyRow.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/ScrollableList.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/Theme.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriClickGUI.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriConfigPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriModuleEntry.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriPanel.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriPropertyEntry.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/api/gui/click/yuri/YuriTheme.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/YuriMenu.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/api/MenuButton.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/api/MenuShaderBackground.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/api/gui/main/windows/Window.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/ColorManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/CommandManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/NotificationManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/RotationManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/managers/impl/SlotManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/AuraModule.java",
+          "module_relative_path": "combat/AuraModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/AutoAppleModule.java",
+          "module_relative_path": "combat/AutoAppleModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/combat/BackTrackModule.java",
+          "module_relative_path": "combat/BackTrackModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoChatModule.java",
+          "module_relative_path": "misc/AutoChatModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoServerModule.java",
+          "module_relative_path": "misc/AutoServerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/AutoSwapModule.java",
+          "module_relative_path": "misc/AutoSwapModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/DerpModule.java",
+          "module_relative_path": "misc/DerpModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/InsultsModule.java",
+          "module_relative_path": "misc/InsultsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/MinigameAimModule.java",
+          "module_relative_path": "misc/MinigameAimModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/misc/ToggleSoundsModule.java",
+          "module_relative_path": "misc/ToggleSoundsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/movement/LongJumpModule.java",
+          "module_relative_path": "movement/LongJumpModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/movement/speed/impl/LegitSpeed.java",
+          "module_relative_path": "movement/speed/impl/LegitSpeed.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/AutoArmorModule.java",
+          "module_relative_path": "player/AutoArmorModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/BlockInModule.java",
+          "module_relative_path": "player/BlockInModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/BreakerModule.java",
+          "module_relative_path": "player/BreakerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/FakeLagModule.java",
+          "module_relative_path": "player/FakeLagModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/ManagerModule.java",
+          "module_relative_path": "player/ManagerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/ScaffoldModule.java",
+          "module_relative_path": "player/ScaffoldModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/player/StealerModule.java",
+          "module_relative_path": "player/StealerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AmbienceModule.java",
+          "module_relative_path": "render/AmbienceModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AnimationsModule.java",
+          "module_relative_path": "render/AnimationsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/AutoF5Module.java",
+          "module_relative_path": "render/AutoF5Module.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/BlockESPModule.java",
+          "module_relative_path": "render/BlockESPModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ClickGUIModule.java",
+          "module_relative_path": "render/ClickGUIModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ClientInfoModule.java",
+          "module_relative_path": "render/ClientInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ESPModule.java",
+          "module_relative_path": "render/ESPModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/EffectsModule.java",
+          "module_relative_path": "render/EffectsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/FreeLookModule.java",
+          "module_relative_path": "render/FreeLookModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/HotbarModule.java",
+          "module_relative_path": "render/HotbarModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ImageRendererModule.java",
+          "module_relative_path": "render/ImageRendererModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/KeybindInfoModule.java",
+          "module_relative_path": "render/KeybindInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/MediaInfoModule.java",
+          "module_relative_path": "render/MediaInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ModListModule.java",
+          "module_relative_path": "render/ModListModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/NameProtectModule.java",
+          "module_relative_path": "render/NameProtectModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/NameTagsModule.java",
+          "module_relative_path": "render/NameTagsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/PentagramModule.java",
+          "module_relative_path": "render/PentagramModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/PostProcessingModule.java",
+          "module_relative_path": "render/PostProcessingModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/ScoreboardModule.java",
+          "module_relative_path": "render/ScoreboardModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SessionInfoModule.java",
+          "module_relative_path": "render/SessionInfoModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SkeletonsModule.java",
+          "module_relative_path": "render/SkeletonsModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/SkinChangerModule.java",
+          "module_relative_path": "render/SkinChangerModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/TargetHudModule.java",
+          "module_relative_path": "render/TargetHudModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/WatermarkModule.java",
+          "module_relative_path": "render/WatermarkModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/YuriChatModule.java",
+          "module_relative_path": "render/YuriChatModule.java",
+          "top_level_module": true
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/TargetHudHelper.java",
+          "module_relative_path": "render/targethud/TargetHudHelper.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/AdjustMode.java",
+          "module_relative_path": "render/targethud/impl/AdjustMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/AtmosphereMode.java",
+          "module_relative_path": "render/targethud/impl/AtmosphereMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/OldAstolfoMode.java",
+          "module_relative_path": "render/targethud/impl/OldAstolfoMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/OldRavenB4Mode.java",
+          "module_relative_path": "render/targethud/impl/OldRavenB4Mode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/PulsiveMode.java",
+          "module_relative_path": "render/targethud/impl/PulsiveMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/RavenB4Mode.java",
+          "module_relative_path": "render/targethud/impl/RavenB4Mode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/modules/impl/render/targethud/impl/YuriMode.java",
+          "module_relative_path": "render/targethud/impl/YuriMode.java",
+          "top_level_module": false
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/client/SoundUtils.java"
+        },
+        {
+          "status": "D",
+          "path": "src/main/java/ddlc/yuri/utils/player/InvUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/InventoryUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/PlayerUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/RotationUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/player/ScaffoldUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/RenderUtils.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/java/ddlc/yuri/utils/render/adapters/FontAdapter.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/imgui/ImGuiManager.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/imgui/style/ImGuiStyles.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/notifications/NotificationRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/progress/ProgressBarUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/shader/RoundedShaderUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/ddlc/yuri/utils/render/shader/ShaderUtils.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/FontRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiIngame.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiScreen.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/gui/GuiSlot.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/network/NetworkPlayerInfo.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/EntityRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/ItemRenderer.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/renderer/ThreadDownloadImageData.java"
+        },
+        {
+          "status": "M",
+          "path": "src/main/java/net/minecraft/client/resources/SkinManager.java"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/fonts/jello-light.ttf"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/fonts/jello-medium.ttf"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/gui/yuri_circle.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/dance.gif"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/netanyahu.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/check.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/options.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/scrollbar_bottom.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/scrollbar_top.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_bottom.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_2.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_3.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_corner_4.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_left.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_right.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/sigma/shadow_top.png"
+        },
+        {
+          "status": "M",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_2.gif"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_2.png"
+        },
+        {
+          "status": "A",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_3.gif"
+        },
+        {
+          "status": "D",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_3.png"
+        },
+        {
+          "status": "M",
+          "path": "src/main/resources/assets/minecraft/yuri/images/yuri_nsfw.png"
+        }
+      ]
+    }
+  },
+  "postrelease_commits_not_checked_out": [
+    "c4d18a89b857139974bb0aac6dfdae6eeec08c61 fix: hypixel autoblock optimizations",
+    "6559d9882f07e60020a94da1719b3d3ca5d0ed26 Merge pull request #13 from Xnogsis/main",
+    "d318ccbfc924e4f610bbf0d44a650c5a2290eb5f Merge pull request #1 from Xnogsis/devin/1791659064-clickgui-fbo-white",
+    "a8520da74f2b9245f82f20e6a77aa4078f126284 fix: skip ClickGUI panel shadow when framebuffers are disabled"
+  ]
+}

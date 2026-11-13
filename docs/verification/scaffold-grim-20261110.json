@@ -1,0 +1,87 @@
+{
+  "task": "Scaffold flags Grim",
+  "date": "2026-11-10",
+  "artifact": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "3f7f9ea7f025cd28f66c3bcad109b0fa8ad809221e2a26d7aec4146a12a695cc",
+    "verifiedCopy": "forge/build/verified/scaffold-grim-20261110/Perihelion-0.1.0.jar"
+  },
+  "prePatchRegression": {
+    "artifactSha256": "000d2d2eec5f290c0bcac64cd0f7ac9e6b14f5f1993649e1b337dcf1c5a65001",
+    "runDirectory": "forge/run-smoke-forge-j4czt4of",
+    "message": "NORMAL fix=true manual=false heading=0.0 update=0 strafe yaw=0.0 sent yaw=-163.34999"
+  },
+  "build": {
+    "check": "PASS",
+    "remapJar": "PASS",
+    "units": {
+      "core": {
+        "tests": 164,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "forge": {
+        "tests": 449,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "packaged": {
+    "passed": true,
+    "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-oh6vef8k",
+    "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-oh6vef8k/result.json",
+    "motionCases": 288,
+    "motionAssertions": 4740,
+    "rotationSearchCases": 18,
+    "terrainCases": 72,
+    "terrainAssertions": 263,
+    "terrainReferenceMatches": 66,
+    "movementCases": 480,
+    "movementAssertions": 5041,
+    "cornerCases": 24,
+    "totalCases": 882,
+    "cleanup": "subscriptions=0 queued=0; references and hook cleared",
+    "sprintJumpImpulses": 132,
+    "stdoutError": true,
+    "stdoutNote": "Final expanded suite reports PrintStream.checkError=true during shutdown, with independent shutdown file confirming cleanup and no FAIL marker. Prior identical-artifact run run-smoke-forge-3cpalng7 reported stdoutError=false."
+  },
+  "references": {
+    "Yuri": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+    "OpenB4": "3d63944cc79be890c013cc79e5ed92d3533b48a5",
+    "readOnly": true,
+    "statusesClean": true
+  },
+  "manual": {
+    "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-scaffold-grim-ymk3l3dl",
+    "pid": 72980,
+    "automaticClose": false,
+    "probeJar": false,
+    "profile": "saved Telly/Hypixel Telly settings; gameplay modules initially disabled for isolated retest",
+    "verifiedRunning": true,
+    "verifiedAtUtc": "2026-11-11T03:31:18.894865+00:00",
+    "evidence": "PID 72980 alive after 7 minutes; modules=96 and sound/texture atlas initialized; verified mod only; no smoke probe or auto-close."
+  },
+  "scope": [
+    "One owned angle per input/physics/walking update",
+    "Post-movement plan queues next input aim",
+    "Native movement uses sent yaw with Move Fix on or off",
+    "Activation yaw unwraps against reported heading",
+    "Queued Hypixel ray targets prefer a validated inset face point",
+    "Matched vanilla baseline headings without loosening movement tolerances"
+  ],
+  "limits": [
+    "No live Grim retest or guarantee that every recorded flag came from Scaffold",
+    "Saved log contains multiple checks and other gameplay modules were configured"
+  ],
+  "backup": ".backups/scaffold-grim-20261110/",
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "9a9021cee650f9d1c18fcffa68a2d96ab4c21faec807205272411e47c2f54fa4",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldPlacement.java": "5b56320ced2dc2f5275a17e409f059766d88375ed94915039a0198315938aed9",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldMotionProbe.java": "64a358896fdbd5a1c3d0787892972e46b9b079285bc46c75a56a8b7f34e5e1d4",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldMovementProbe.java": "08180a82a21a03be5026d0857f7f6ceedabe61007c9fe388b954e8ea20ef91e4",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "e664ba8b3173b9444b3ba867521df15bc58e8a5e6dfa1d1c5f17d73e46e0be98"
+  }
+}

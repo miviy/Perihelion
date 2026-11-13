@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none" role="img" aria-labelledby="title description">
+  <title id="title">Perihelion — capture mantle exploration</title>
+  <desc id="description">A circular negative shadow held inside one asymmetric mantle of bent light. A broad lower-left approach folds into a sweeping lower light band. One filled contour; no positive pupil, detached ring, crossbar, or fine lines.</desc>
+  <path fill="#111820" fill-rule="evenodd" d="
+    M 406 326
+    C 374 393 309 430 241 418
+    C 195 410 157 389 130 355
+    C 219 409 339 385 390 319
+    C 323 373 197 376 115 327
+    C 87 344 63 349 23 349
+    C 80 317 97 286 103 239
+    C 120 158 184 105 260 104
+    C 335 103 400 151 420 222
+    C 435 262 427 294 406 326
+    Z
+    M 353 250
+    A 96 96 0 1 0 161 250
+    A 96 96 0 1 0 353 250
+    Z"/>
+</svg>

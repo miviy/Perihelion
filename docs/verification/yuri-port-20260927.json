@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-27",
+  "donor_revision": "0a4bd400784ef529d238311de5ce867e815794e2",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifact_sha256": "9478b825b5475b7a1d978d2822cffa1e29b4d6786cc3ad1115474b7e9266f3ae",
+  "artifact_bytes": 1606034,
+  "unit_tests": {
+    "core": 147,
+    "forge": 36,
+    "failures": 0,
+    "errors": 0
+  },
+  "coverage": {
+    "donor_definitions": 86,
+    "native_mappings": 65,
+    "excluded_client_ui": 21,
+    "production_gameplay_modules": 70
+  },
+  "runtime": {
+    "forge": "forge/run-smoke-forge-7q7hx5fn/launch.log",
+    "optifine_m5": "forge/run-smoke-optifine-k5apvsb6/launch.log",
+    "module_lifecycle_checks": 328,
+    "gameplay_checks_optifine": 97,
+    "gameplay_checks_forge": 97,
+    "network_checks": 46,
+    "render_scope_checks": 55,
+    "shared_control_checks": 30,
+    "gui_checks": 52,
+    "authenticated_multiplayer": false
+  },
+  "limits": [
+    "Not every mode and module combination has been played in-game.",
+    "No server-specific bypass effectiveness or authenticated remote gameplay verified.",
+    "Gameplay render checks use synthetic events in a real GL context; they verify execution and state restoration, not pixel equality.",
+    "Native adaptations and omitted branded visuals are detailed in YURI_PORT.md."
+  ]
+}

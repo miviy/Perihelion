@@ -1,0 +1,1742 @@
+{
+  "sourceSha256": "5f009765099d22ebed6e80a5520c028c2e59e8019f83456932e77c477d0d6a62",
+  "sourceModuleCount": 54,
+  "mappedModuleCount": 50,
+  "mappedSettings": [
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "Tablist Check",
+      "module": "antibot",
+      "setting": "tablist-check",
+      "value": true
+    },
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "Check Valid Name",
+      "module": "antibot",
+      "setting": "check-valid-name",
+      "value": true
+    },
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "Check Age",
+      "module": "antibot",
+      "setting": "check-age",
+      "value": true
+    },
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "Check Latency",
+      "module": "antibot",
+      "setting": "check-latency",
+      "value": true
+    },
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "FOV Check",
+      "module": "antibot",
+      "setting": "fov-check",
+      "value": true
+    },
+    {
+      "sourceModule": "Anti Bot",
+      "sourceProperty": "Max FOV",
+      "module": "antibot",
+      "setting": "max-fov",
+      "value": 90
+    },
+    {
+      "sourceModule": "Anti Void",
+      "sourceProperty": "Mode",
+      "module": "antivoid",
+      "setting": "mode",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "Anti Void",
+      "sourceProperty": "Distance",
+      "module": "antivoid",
+      "setting": "distance",
+      "value": 5
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Targets",
+      "module": "aura",
+      "setting": "targets",
+      "value": [
+        "players",
+        "hostiles",
+        "teammates",
+        "invisibles"
+      ]
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Mode",
+      "module": "aura",
+      "setting": "mode",
+      "value": "single"
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Seek Range",
+      "module": "aura",
+      "setting": "seek-range",
+      "value": 6.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Simulate Mouse Clicks",
+      "module": "aura",
+      "setting": "simulate-mouse-clicks",
+      "value": true
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Attack Range",
+      "module": "aura",
+      "setting": "attack-range",
+      "value": 3.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Swing Range",
+      "module": "aura",
+      "setting": "swing-range",
+      "value": 6.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Block Range",
+      "module": "aura",
+      "setting": "block-range",
+      "value": 6.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Min CPS",
+      "module": "aura",
+      "setting": "min-cps",
+      "value": 18.8
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Max CPS",
+      "module": "aura",
+      "setting": "max-cps",
+      "value": 20.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Auto Block",
+      "module": "aura",
+      "setting": "auto-block",
+      "value": "fake"
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Only Block If Hurt",
+      "module": "aura",
+      "setting": "only-block-if-hurt",
+      "value": false
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Block On Hurt Ticks",
+      "module": "aura",
+      "setting": "block-on-hurt-ticks",
+      "value": 4
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Through Walls",
+      "module": "aura",
+      "setting": "through-walls",
+      "value": false
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Rotations",
+      "module": "aura",
+      "setting": "rotations",
+      "value": "normal"
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Min Rotation Speed",
+      "module": "aura",
+      "setting": "min-rotation-speed",
+      "value": 5.5
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Max Rotation Speed",
+      "module": "aura",
+      "setting": "max-rotation-speed",
+      "value": 8.0
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Body Ease",
+      "module": "aura",
+      "setting": "body-ease",
+      "value": 0.2
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "ML Ease",
+      "module": "aura",
+      "setting": "ml-ease",
+      "value": 0.2
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Ray Cast",
+      "module": "aura",
+      "setting": "ray-cast",
+      "value": true
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Move Fix",
+      "module": "aura",
+      "setting": "move-fix",
+      "value": "silent"
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Keep Sprint",
+      "module": "aura",
+      "setting": "keep-sprint",
+      "value": false
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Hypixel Keep Sprint",
+      "module": "aura",
+      "setting": "hypixel-keep-sprint",
+      "value": false
+    },
+    {
+      "sourceModule": "Aura",
+      "sourceProperty": "Auto Disable",
+      "module": "aura",
+      "setting": "auto-disable",
+      "value": true
+    },
+    {
+      "sourceModule": "Auto Armor",
+      "sourceProperty": "Delay",
+      "module": "autoarmor",
+      "setting": "delay",
+      "value": 150
+    },
+    {
+      "sourceModule": "Auto Armor",
+      "sourceProperty": "Stop when moving",
+      "module": "autoarmor",
+      "setting": "stop-when-moving",
+      "value": false
+    },
+    {
+      "sourceModule": "Auto Armor",
+      "sourceProperty": "Inventory only",
+      "module": "autoarmor",
+      "setting": "inventory-only",
+      "value": false
+    },
+    {
+      "sourceModule": "Auto Pot",
+      "sourceProperty": "Health",
+      "module": "autopot",
+      "setting": "health",
+      "value": 15
+    },
+    {
+      "sourceModule": "Auto Pot",
+      "sourceProperty": "Delay",
+      "module": "autopot",
+      "setting": "delay",
+      "value": 0
+    },
+    {
+      "sourceModule": "Auto Pot",
+      "sourceProperty": "Max Aim Ticks",
+      "module": "autopot",
+      "setting": "max-aim-ticks",
+      "value": 10
+    },
+    {
+      "sourceModule": "Auto Projectile",
+      "sourceProperty": "Target Range",
+      "module": "autoprojectile",
+      "setting": "target-range",
+      "value": 10.0
+    },
+    {
+      "sourceModule": "Auto Projectile",
+      "sourceProperty": "Swap Mode",
+      "module": "autoprojectile",
+      "setting": "swap-mode",
+      "value": "server"
+    },
+    {
+      "sourceModule": "Auto Server",
+      "sourceProperty": "Modes",
+      "module": "autoserver",
+      "setting": "modes",
+      "value": [
+        "register",
+        "auto_play"
+      ]
+    },
+    {
+      "sourceModule": "Auto Server",
+      "sourceProperty": "Password",
+      "module": "autoserver",
+      "setting": "password",
+      "value": "yuri420"
+    },
+    {
+      "sourceModule": "Auto Server",
+      "sourceProperty": "Double Password",
+      "module": "autoserver",
+      "setting": "double-password",
+      "value": true
+    },
+    {
+      "sourceModule": "Auto Swap",
+      "sourceProperty": "Sneak Only",
+      "module": "autoswap",
+      "setting": "sneak-only",
+      "value": true
+    },
+    {
+      "sourceModule": "Auto Swap",
+      "sourceProperty": "Swap Mode",
+      "module": "autoswap",
+      "setting": "swap-mode",
+      "value": "client"
+    },
+    {
+      "sourceModule": "Auto Swap",
+      "sourceProperty": "Swap Back",
+      "module": "autoswap",
+      "setting": "swap-back",
+      "value": true
+    },
+    {
+      "sourceModule": "Back Track",
+      "sourceProperty": "Min Range",
+      "module": "backtrack",
+      "setting": "min-range",
+      "value": 2.0
+    },
+    {
+      "sourceModule": "Back Track",
+      "sourceProperty": "Max Range",
+      "module": "backtrack",
+      "setting": "max-range",
+      "value": 6.0
+    },
+    {
+      "sourceModule": "Back Track",
+      "sourceProperty": "Max Delay",
+      "module": "backtrack",
+      "setting": "max-delay",
+      "value": 80.0
+    },
+    {
+      "sourceModule": "Back Track",
+      "sourceProperty": "Only Kill Aura",
+      "module": "backtrack",
+      "setting": "only-kill-aura",
+      "value": true
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Range",
+      "module": "beddefender",
+      "setting": "range",
+      "value": 5.0
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Place Delay",
+      "module": "beddefender",
+      "setting": "place-delay",
+      "value": 80
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Speed",
+      "module": "beddefender",
+      "setting": "speed",
+      "value": 100.0
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Rotation Tolerance",
+      "module": "beddefender",
+      "setting": "rotation-tolerance",
+      "value": 35.0
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Swing",
+      "module": "beddefender",
+      "setting": "swing",
+      "value": true
+    },
+    {
+      "sourceModule": "Bed Defender",
+      "sourceProperty": "Move Fix",
+      "module": "beddefender",
+      "setting": "move-fix",
+      "value": true
+    },
+    {
+      "sourceModule": "BedWars Utility",
+      "sourceProperty": "Sword Reveal",
+      "module": "bedwarsutility",
+      "setting": "notify-sword",
+      "value": true
+    },
+    {
+      "sourceModule": "BedWars Utility",
+      "sourceProperty": "Include Stone",
+      "module": "bedwarsutility",
+      "setting": "include-stone-swords",
+      "value": false
+    },
+    {
+      "sourceModule": "BedWars Utility",
+      "sourceProperty": "Armor Reveal",
+      "module": "bedwarsutility",
+      "setting": "notify-armor",
+      "value": true
+    },
+    {
+      "sourceModule": "Blink",
+      "sourceProperty": "Mode",
+      "module": "blink",
+      "setting": "mode",
+      "value": "constant"
+    },
+    {
+      "sourceModule": "Blink",
+      "sourceProperty": "Delay",
+      "module": "blink",
+      "setting": "delay",
+      "value": 20
+    },
+    {
+      "sourceModule": "Blink",
+      "sourceProperty": "Cancel Received Packets",
+      "module": "blink",
+      "setting": "cancel-received-packets",
+      "value": true
+    },
+    {
+      "sourceModule": "Bow Aimbot",
+      "sourceProperty": "Range",
+      "module": "bowaimbot",
+      "setting": "range",
+      "value": 80
+    },
+    {
+      "sourceModule": "Bow Aimbot",
+      "sourceProperty": "Through Walls",
+      "module": "bowaimbot",
+      "setting": "through-walls",
+      "value": false
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Break Mode",
+      "module": "breaker",
+      "setting": "mode",
+      "value": "legit"
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Breaker Range",
+      "module": "breaker",
+      "setting": "range",
+      "value": 3.0
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Auto Tool",
+      "module": "breaker",
+      "setting": "auto-tool",
+      "value": true
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Visual Swing",
+      "module": "breaker",
+      "setting": "visual-swing",
+      "value": true
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Move Fix",
+      "module": "breaker",
+      "setting": "move-fix",
+      "value": true
+    },
+    {
+      "sourceModule": "Breaker",
+      "sourceProperty": "Whitelist",
+      "module": "breaker",
+      "setting": "whitelist",
+      "value": true
+    },
+    {
+      "sourceModule": "Criticals",
+      "sourceProperty": "Mode",
+      "module": "criticals",
+      "setting": "mode",
+      "value": "packet"
+    },
+    {
+      "sourceModule": "Criticals",
+      "sourceProperty": "On Ground Check",
+      "module": "criticals",
+      "setting": "on-ground-check",
+      "value": true
+    },
+    {
+      "sourceModule": "Derp",
+      "sourceProperty": "Mode",
+      "module": "derp",
+      "setting": "mode",
+      "value": "client"
+    },
+    {
+      "sourceModule": "Derp",
+      "sourceProperty": "Pitch",
+      "module": "derp",
+      "setting": "pitch",
+      "value": 90.0
+    },
+    {
+      "sourceModule": "Derp",
+      "sourceProperty": "Rotation Speed",
+      "module": "derp",
+      "setting": "rotation-speed",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Derp",
+      "sourceProperty": "Move Fix",
+      "module": "derp",
+      "setting": "move-fix",
+      "value": true
+    },
+    {
+      "sourceModule": "Eagle",
+      "sourceProperty": "Delay",
+      "module": "eagle",
+      "setting": "delay",
+      "value": 50
+    },
+    {
+      "sourceModule": "Eagle",
+      "sourceProperty": "Block Check",
+      "module": "eagle",
+      "setting": "block-check",
+      "value": true
+    },
+    {
+      "sourceModule": "Eagle",
+      "sourceProperty": "Direction Check",
+      "module": "eagle",
+      "setting": "direction-check",
+      "value": false
+    },
+    {
+      "sourceModule": "Eagle",
+      "sourceProperty": "Sneak Check",
+      "module": "eagle",
+      "setting": "sneak-check",
+      "value": true
+    },
+    {
+      "sourceModule": "Fast Break",
+      "sourceProperty": "Speed",
+      "module": "fastbreak",
+      "setting": "speed",
+      "value": 15
+    },
+    {
+      "sourceModule": "Fast Break",
+      "sourceProperty": "Delay",
+      "module": "fastbreak",
+      "setting": "delay",
+      "value": 0
+    },
+    {
+      "sourceModule": "Fast Use",
+      "sourceProperty": "Speed",
+      "module": "fastuse",
+      "setting": "speed",
+      "value": 15
+    },
+    {
+      "sourceModule": "Fast Use",
+      "sourceProperty": "Food Items",
+      "module": "fastuse",
+      "setting": "food-items",
+      "value": true
+    },
+    {
+      "sourceModule": "Fast Use",
+      "sourceProperty": "Potion Items",
+      "module": "fastuse",
+      "setting": "potion-items",
+      "value": true
+    },
+    {
+      "sourceModule": "Fast Use",
+      "sourceProperty": "Bow Items",
+      "module": "fastuse",
+      "setting": "bow-items",
+      "value": true
+    },
+    {
+      "sourceModule": "Flight",
+      "sourceProperty": "Mode",
+      "module": "flight",
+      "setting": "mode",
+      "value": "motion"
+    },
+    {
+      "sourceModule": "Flight",
+      "sourceProperty": "Motion Speed",
+      "module": "flight",
+      "setting": "motion-speed",
+      "value": 0.9
+    },
+    {
+      "sourceModule": "Friends",
+      "sourceProperty": "Mid-Click Add",
+      "module": "friends",
+      "setting": "mid-click-add",
+      "value": true
+    },
+    {
+      "sourceModule": "Inv Move",
+      "sourceProperty": "Mode",
+      "module": "invmove",
+      "setting": "inventory",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "Inv Move",
+      "sourceProperty": "Mode",
+      "module": "invmove",
+      "setting": "chest",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "Item Delays",
+      "sourceProperty": "Delay",
+      "module": "fastplace",
+      "setting": "delay",
+      "value": 0
+    },
+    {
+      "sourceModule": "Item Delays",
+      "sourceProperty": "Allow Blocks",
+      "module": "fastplace",
+      "setting": "allow-blocks",
+      "value": true
+    },
+    {
+      "sourceModule": "Item Delays",
+      "sourceProperty": "Allow Projectiles",
+      "module": "fastplace",
+      "setting": "allow-projectiles",
+      "value": false
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Mode",
+      "module": "lagrange",
+      "setting": "mode",
+      "value": "lag"
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Min Range",
+      "module": "lagrange",
+      "setting": "min-range",
+      "value": 3.5
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Max Range",
+      "module": "lagrange",
+      "setting": "max-range",
+      "value": 4.2
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Min Delay",
+      "module": "lagrange",
+      "setting": "min-delay",
+      "value": 50
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Max Delay",
+      "module": "lagrange",
+      "setting": "max-delay",
+      "value": 200
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Delay Teleports",
+      "module": "lagrange",
+      "setting": "delay-teleports",
+      "value": true
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Delay Velocity",
+      "module": "lagrange",
+      "setting": "delay-velocity",
+      "value": true
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Delay Entity Movements",
+      "module": "lagrange",
+      "setting": "delay-entity-movements",
+      "value": true
+    },
+    {
+      "sourceModule": "Lag Range",
+      "sourceProperty": "Only With Kill Aura",
+      "module": "lagrange",
+      "setting": "only-with-kill-aura",
+      "value": true
+    },
+    {
+      "sourceModule": "Long Jump",
+      "sourceProperty": "Fireball",
+      "module": "longjump",
+      "setting": "fireball",
+      "value": true
+    },
+    {
+      "sourceModule": "Long Jump",
+      "sourceProperty": "Fireball Mode",
+      "module": "longjump",
+      "setting": "fireball-mode",
+      "value": "legit"
+    },
+    {
+      "sourceModule": "Long Jump",
+      "sourceProperty": "Delay",
+      "module": "longjump",
+      "setting": "delay",
+      "value": 400
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Instant",
+      "module": "manager",
+      "setting": "instant",
+      "value": false
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Inv Only",
+      "module": "manager",
+      "setting": "inv-only",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Send Inv Packets",
+      "module": "manager",
+      "setting": "send-inv-packets",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Not Moving",
+      "module": "manager",
+      "setting": "not-moving",
+      "value": false
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Swap Blocks",
+      "module": "manager",
+      "setting": "swap-blocks",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Drop Archery",
+      "module": "manager",
+      "setting": "drop-archery",
+      "value": false
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Move Arrows",
+      "module": "manager",
+      "setting": "move-arrows",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Drop Food",
+      "module": "manager",
+      "setting": "drop-food",
+      "value": false
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Drop Shears",
+      "module": "manager",
+      "setting": "drop-shears",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Weapon",
+      "module": "manager",
+      "setting": "manage-weapon",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Pickaxe",
+      "module": "manager",
+      "setting": "manage-pickaxe",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Axe",
+      "module": "manager",
+      "setting": "manage-axe",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Shovel",
+      "module": "manager",
+      "setting": "manage-shovel",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Bow",
+      "module": "manager",
+      "setting": "manage-bow",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Blocks",
+      "module": "manager",
+      "setting": "manage-block",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Gapple",
+      "module": "manager",
+      "setting": "manage-gapple",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Potion",
+      "module": "manager",
+      "setting": "manage-potion",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Clutch",
+      "module": "manager",
+      "setting": "manage-clutch",
+      "value": true
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Manage Projectile",
+      "module": "manager",
+      "setting": "manage-projectile",
+      "value": false
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Delay",
+      "module": "manager",
+      "setting": "delay",
+      "value": 120
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Weapon Slot",
+      "module": "manager",
+      "setting": "weapon-slot",
+      "value": 1
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Pickaxe Slot",
+      "module": "manager",
+      "setting": "pickaxe-slot",
+      "value": 2
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Axe Slot",
+      "module": "manager",
+      "setting": "axe-slot",
+      "value": 3
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Shovel Slot",
+      "module": "manager",
+      "setting": "shovel-slot",
+      "value": 4
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Bow Slot",
+      "module": "manager",
+      "setting": "bow-slot",
+      "value": 5
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Block Slot",
+      "module": "manager",
+      "setting": "block-slot",
+      "value": 6
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Gapple Slot",
+      "module": "manager",
+      "setting": "gapple-slot",
+      "value": 7
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Potion Slot",
+      "module": "manager",
+      "setting": "potion-slot",
+      "value": 8
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Clutch Slot",
+      "module": "manager",
+      "setting": "clutch-slot",
+      "value": 9
+    },
+    {
+      "sourceModule": "Manager",
+      "sourceProperty": "Projectile Slot",
+      "module": "manager",
+      "setting": "projectile-slot",
+      "value": 9
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Game",
+      "module": "minigameaim",
+      "setting": "game",
+      "value": "zombie"
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Silent",
+      "module": "minigameaim",
+      "setting": "silent",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Show Prediction",
+      "module": "minigameaim",
+      "setting": "show-prediction",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Show FOV",
+      "module": "minigameaim",
+      "setting": "show-fov",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Auto Heal",
+      "module": "minigameaim",
+      "setting": "auto-heal",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Auto Revive",
+      "module": "minigameaim",
+      "setting": "auto-revive",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Auto Ammo",
+      "module": "minigameaim",
+      "setting": "auto-ammo",
+      "value": false
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Hud",
+      "module": "minigameaim",
+      "setting": "hud",
+      "value": true
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Prediction Scale",
+      "module": "minigameaim",
+      "setting": "prediction-scale",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Prediction Ticks",
+      "module": "minigameaim",
+      "setting": "prediction-ticks",
+      "value": 2
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Delay",
+      "module": "minigameaim",
+      "setting": "delay",
+      "value": 4
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Buffer",
+      "module": "minigameaim",
+      "setting": "buffer",
+      "value": 3
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "FOV",
+      "module": "minigameaim",
+      "setting": "fov",
+      "value": 90.0
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Health",
+      "module": "minigameaim",
+      "setting": "health",
+      "value": 3
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Aimbot Mode",
+      "module": "minigameaim",
+      "setting": "aimbot-mode",
+      "value": "auto_fire"
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Hitbox",
+      "module": "minigameaim",
+      "setting": "hitbox",
+      "value": "hitscan_head"
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Priority",
+      "module": "minigameaim",
+      "setting": "priority",
+      "value": "closest"
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Range",
+      "module": "minigameaim",
+      "setting": "range",
+      "value": 4.5
+    },
+    {
+      "sourceModule": "Minigame Aim",
+      "sourceProperty": "Rotation Speed",
+      "module": "minigameaim",
+      "setting": "rotation-speed",
+      "value": 10.0
+    },
+    {
+      "sourceModule": "No Fall",
+      "sourceProperty": "Mode",
+      "module": "nofall",
+      "setting": "mode",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "No Slow",
+      "sourceProperty": "Mode",
+      "module": "noslow",
+      "setting": "mode",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "No Slow",
+      "sourceProperty": "Food Items",
+      "module": "noslow",
+      "setting": "food-items",
+      "value": true
+    },
+    {
+      "sourceModule": "No Slow",
+      "sourceProperty": "Potion Items",
+      "module": "noslow",
+      "setting": "potion-items",
+      "value": true
+    },
+    {
+      "sourceModule": "No Slow",
+      "sourceProperty": "Sword Items",
+      "module": "noslow",
+      "setting": "sword-items",
+      "value": true
+    },
+    {
+      "sourceModule": "No Slow",
+      "sourceProperty": "Bow Items",
+      "module": "noslow",
+      "setting": "bow-items",
+      "value": true
+    },
+    {
+      "sourceModule": "Phase",
+      "sourceProperty": "Mode",
+      "module": "phase",
+      "setting": "mode",
+      "value": "normal"
+    },
+    {
+      "sourceModule": "Refill",
+      "sourceProperty": "Auto Close",
+      "module": "refill",
+      "setting": "auto-close",
+      "value": true
+    },
+    {
+      "sourceModule": "Regen",
+      "sourceProperty": "Minimum Health",
+      "module": "regen",
+      "setting": "minimum-health",
+      "value": 15
+    },
+    {
+      "sourceModule": "Regen",
+      "sourceProperty": "Speed",
+      "module": "regen",
+      "setting": "speed",
+      "value": 20
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Mode",
+      "module": "scaffold",
+      "setting": "mode",
+      "value": "telly"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Hypixel Larp Mode",
+      "module": "scaffold",
+      "setting": "hypixel-larp",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Hypixel Telly",
+      "module": "scaffold",
+      "setting": "hypixel-telly",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Telly Straight Ticks",
+      "module": "scaffold",
+      "setting": "telly-straight",
+      "value": 6
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Telly Diagonal Ticks",
+      "module": "scaffold",
+      "setting": "telly-diagonal",
+      "value": 4
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Telly Jump Down Ticks",
+      "module": "scaffold",
+      "setting": "telly-jump-down",
+      "value": 1
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Rotations",
+      "module": "scaffold",
+      "setting": "rotations",
+      "value": "randomized"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Randomized Speed Min",
+      "module": "scaffold",
+      "setting": "randomized-speed-min",
+      "value": 7.0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Randomized Speed Max",
+      "module": "scaffold",
+      "setting": "randomized-speed-max",
+      "value": 10.0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Min Rotation Speed",
+      "module": "scaffold",
+      "setting": "min-rotation",
+      "value": 10.0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Max Rotation Speed",
+      "module": "scaffold",
+      "setting": "max-rotation",
+      "value": 10.0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Place Delay",
+      "module": "scaffold",
+      "setting": "place-delay",
+      "value": 0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Ray Cast",
+      "module": "scaffold",
+      "setting": "ray-cast",
+      "value": "strict"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Swap Mode",
+      "module": "scaffold",
+      "setting": "swap-mode",
+      "value": "client"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Sprint Mode",
+      "module": "scaffold",
+      "setting": "sprint",
+      "value": "none"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Tower Mode",
+      "module": "scaffold",
+      "setting": "tower",
+      "value": "none"
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Tower Move",
+      "module": "scaffold",
+      "setting": "tower-move",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Move Fix",
+      "module": "scaffold",
+      "setting": "move-fix",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Auto Jump",
+      "module": "scaffold",
+      "setting": "auto-jump",
+      "value": false
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Keep Y",
+      "module": "scaffold",
+      "setting": "keep-y",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Sneak",
+      "module": "scaffold",
+      "setting": "sneak",
+      "value": false
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Sneak Every",
+      "module": "scaffold",
+      "setting": "sneak-every",
+      "value": 1
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Safe Walk",
+      "module": "scaffold",
+      "setting": "safe-walk",
+      "value": false
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Expand",
+      "module": "scaffold",
+      "setting": "expand",
+      "value": 0.0
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Block Counter",
+      "module": "scaffold",
+      "setting": "block-counter",
+      "value": true
+    },
+    {
+      "sourceModule": "Scaffold",
+      "sourceProperty": "Auto Disable",
+      "module": "scaffold",
+      "setting": "auto-disable",
+      "value": false
+    },
+    {
+      "sourceModule": "Speed",
+      "sourceProperty": "Mode",
+      "module": "speed",
+      "setting": "mode",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "Speed",
+      "sourceProperty": "Speed",
+      "module": "speed",
+      "setting": "speed",
+      "value": 0.9
+    },
+    {
+      "sourceModule": "Sprint",
+      "sourceProperty": "Cancel Invis",
+      "module": "sprint",
+      "setting": "cancel-invis",
+      "value": true
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Instant",
+      "module": "stealer",
+      "setting": "instant",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Steal Delay",
+      "module": "stealer",
+      "setting": "steal-delay",
+      "value": 50
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Min Delay",
+      "module": "stealer",
+      "setting": "min-delay",
+      "value": 5
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Max Delay",
+      "module": "stealer",
+      "setting": "max-delay",
+      "value": 5
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Steal Trash Items",
+      "module": "stealer",
+      "setting": "steal-trash-items",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Auto Close",
+      "module": "stealer",
+      "setting": "auto-close",
+      "value": true
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Auto Disable",
+      "module": "stealer",
+      "setting": "auto-disable",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Distance Scaling",
+      "module": "stealer",
+      "setting": "distance-scaling",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Distance Multiplier",
+      "module": "stealer",
+      "setting": "distance-multiplier",
+      "value": 15
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Position Scaling",
+      "module": "stealer",
+      "setting": "position-scaling",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Position Multiplier",
+      "module": "stealer",
+      "setting": "position-multiplier",
+      "value": 5
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Miss Click",
+      "module": "stealer",
+      "setting": "miss-click",
+      "value": false
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Miss Click Chance",
+      "module": "stealer",
+      "setting": "miss-click-chance",
+      "value": 15
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Miss Recovery Min",
+      "module": "stealer",
+      "setting": "miss-recovery-min",
+      "value": 80
+    },
+    {
+      "sourceModule": "Stealer",
+      "sourceProperty": "Miss Recovery Max",
+      "module": "stealer",
+      "setting": "miss-recovery-max",
+      "value": 220
+    },
+    {
+      "sourceModule": "Step",
+      "sourceProperty": "Mode",
+      "module": "step",
+      "setting": "mode",
+      "value": "vanilla"
+    },
+    {
+      "sourceModule": "Step",
+      "sourceProperty": "Height",
+      "module": "step",
+      "setting": "height",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Target Strafe",
+      "sourceProperty": "Range",
+      "module": "targetstrafe",
+      "setting": "range",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Target Strafe",
+      "sourceProperty": "Hold Jump",
+      "module": "targetstrafe",
+      "setting": "hold-jump",
+      "value": false
+    },
+    {
+      "sourceModule": "Tick Base",
+      "sourceProperty": "Delay",
+      "module": "tickbase",
+      "setting": "delay",
+      "value": 20
+    },
+    {
+      "sourceModule": "Tick Base",
+      "sourceProperty": "Only With Kill Aura",
+      "module": "tickbase",
+      "setting": "only-with-kill-aura",
+      "value": true
+    },
+    {
+      "sourceModule": "Timer",
+      "sourceProperty": "Mode",
+      "module": "timer",
+      "setting": "mode",
+      "value": "constant"
+    },
+    {
+      "sourceModule": "Timer",
+      "sourceProperty": "Time Amount",
+      "module": "timer",
+      "setting": "time-amount",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Timer",
+      "sourceProperty": "Time Amount 2",
+      "module": "timer",
+      "setting": "time-amount-2",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Mode",
+      "module": "velocity",
+      "setting": "mode",
+      "value": "legit"
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Ignore On Fire",
+      "module": "velocity",
+      "setting": "ignore-on-fire",
+      "value": true
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Velocity X Modifier",
+      "module": "velocity",
+      "setting": "velocity-x-modifier",
+      "value": 0.0
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Velocity Y Modifier",
+      "module": "velocity",
+      "setting": "velocity-y-modifier",
+      "value": 1.0
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Velocity Z Modifier",
+      "module": "velocity",
+      "setting": "velocity-z-modifier",
+      "value": 0.0
+    },
+    {
+      "sourceModule": "Velocity",
+      "sourceProperty": "Intave Mode",
+      "module": "velocity",
+      "setting": "intave-mode",
+      "value": "intave_latest"
+    },
+    {
+      "sourceModule": "W Tap",
+      "sourceProperty": "Chance",
+      "module": "wtap",
+      "setting": "chance",
+      "value": 100
+    },
+    {
+      "sourceModule": "Water Walk",
+      "sourceProperty": "Mode",
+      "module": "waterwalk",
+      "setting": "mode",
+      "value": "vanilla"
+    }
+  ],
+  "skipped": [
+    {
+      "module": "Bed Defender",
+      "property": "Show Progress",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "BedWars Utility",
+      "property": "Invisible Check",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "BedWars Utility",
+      "property": "Invisibility Status",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Blink",
+      "property": "Render Blink Pos",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Bow Aimbot",
+      "property": "Targets",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Bow Aimbot",
+      "property": "Mode",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Bow Aimbot",
+      "property": "Lock View",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Bow Aimbot",
+      "property": "Min Rotation Speed",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Bow Aimbot",
+      "property": "Max Rotation Speed",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Breaker",
+      "property": "Progress Bar",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Disabler",
+      "property": "Mode",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Discord RPC",
+      "property": "Entire module",
+      "reason": "No corresponding native module"
+    },
+    {
+      "module": "GUI Clicker",
+      "property": "Entire module",
+      "reason": "No corresponding native module"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Chance",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Combo Delay",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Reset Timeout",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Predict",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Predict Reach",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Swing Threshold",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Idle Attack",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Hit Select",
+      "property": "Idle CPS",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Insults",
+      "property": "Entire module",
+      "reason": "No corresponding native module"
+    },
+    {
+      "module": "Lag Range",
+      "property": "Render Lag Pos",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Long Jump",
+      "property": "Mode",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Stealer",
+      "property": "Grab Mouse",
+      "reason": "No GUI control"
+    },
+    {
+      "module": "Toggle Sounds",
+      "property": "Entire module",
+      "reason": "No corresponding native module"
+    },
+    {
+      "module": "Velocity",
+      "property": "Reduce",
+      "reason": "Permanently hidden legacy setting"
+    },
+    {
+      "module": "Velocity",
+      "property": "Attack Times",
+      "reason": "Permanently hidden legacy setting"
+    },
+    {
+      "module": "Velocity",
+      "property": "Only Sprinting",
+      "reason": "Permanently hidden legacy setting"
+    },
+    {
+      "module": "Velocity",
+      "property": "Reduce When Can Attack",
+      "reason": "Permanently hidden legacy setting"
+    }
+  ]
+}

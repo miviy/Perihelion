@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-11",
+  "scope": "Velocity, standalone Jump Reset, Aura PRE reduction, control conflicts, and ClickGUI settings/search/editor flow",
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 95,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "totalTests": 251,
+  "build": "check assemble --offline",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1803136,
+    "sha256": "873ed6bbe897085c9727581ae9cbee3ec53947238f81552224b7f4f1d981eb4d"
+  },
+  "nativeRuns": [
+    {
+      "directory": "forge/run-smoke-forge-fv2ot3i1",
+      "variant": "forge",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "873ed6bbe897085c9727581ae9cbee3ec53947238f81552224b7f4f1d981eb4d",
+      "markers": [
+        "[23:29:45] [Client thread/INFO] [STDOUT]: [perihelion.smoke.Yuri13Probe:run:169]: PERIHELION_SMOKE YURI13 checks=98 PASS",
+        "[23:29:45] [Client thread/INFO] [STDOUT]: [perihelion.smoke.YuriLatestProbe:run:240]: PERIHELION_SMOKE YURI_LATEST checks=27 PASS",
+        "[23:29:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[23:29:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CompatibilityQolProbe:run:146]: PERIHELION_SMOKE COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "[23:29:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[23:29:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[23:29:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[23:29:53] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=1 distance=9.339982942715153 bridgeBlocks=8 PASS",
+        "[23:29:55] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=2 distance=9.33998293292268 bridgeBlocks=8 PASS",
+        "[23:29:55] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=320 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=267 worldEvents=10",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "MixinApplyError": 0,
+        "InvalidMixinException": 0
+      }
+    },
+    {
+      "directory": "forge/run-smoke-optifine-hwdap6oi",
+      "variant": "optifine",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "873ed6bbe897085c9727581ae9cbee3ec53947238f81552224b7f4f1d981eb4d",
+      "markers": [
+        "[23:31:04] [Client thread/INFO] [STDOUT]: [perihelion.smoke.Yuri13Probe:run:169]: PERIHELION_SMOKE YURI13 checks=98 PASS",
+        "[23:31:04] [Client thread/INFO] [STDOUT]: [perihelion.smoke.YuriLatestProbe:run:240]: PERIHELION_SMOKE YURI_LATEST checks=27 PASS",
+        "[23:31:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[23:31:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CompatibilityQolProbe:run:146]: PERIHELION_SMOKE COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "[23:31:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[23:31:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[23:31:06] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[23:31:11] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=1 distance=9.339982886764119 bridgeBlocks=8 PASS",
+        "[23:31:14] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=2 distance=9.33998291359461 bridgeBlocks=8 PASS",
+        "[23:31:14] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=322 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=266 worldEvents=10",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "MixinApplyError": 0,
+        "InvalidMixinException": 0
+      }
+    }
+  ],
+  "fixtureSourceSha256": {
+    "scripts/smoke/SmokeProbe.java": "a5101ad44dacf0649df38935bd275657ccd55bc98bbe21a15d6d36a5e6edee2e",
+    "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+    "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+    "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+    "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+    "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "daa83526fc26b1ac078582f65ae2c8b047ac08232e11bd594bd580e1d483b063",
+    "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+    "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "9db59ca54d00a1b0b248843343f977a48c73262e2dcb854b0c1617e0d41a492f",
+    "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+    "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+    "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+    "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+    "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "80f5f2633838184a76171b1489fa5c0b751e3dcdb4bcd4e55ce172b9d2c50249",
+    "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+    "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "44cd0dee45f66627962570f45c5bae78e5c1c3cec13e75de64041096c12dce2f",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+    "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+    "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+  },
+  "rollback": {
+    "backup": ".backups/before-combat-flow-20261012-030602",
+    "sha256": "f267ab4641166170336b2d69b1467efa0afd97489f15e24dbe9f24daa4ce384b",
+    "sourceFiles": 423,
+    "archiveMemberHashesVerified": true,
+    "dryRunVerified": true,
+    "isolatedApplyVerified": true,
+    "laterEditRefusalVerified": true,
+    "unrelatedFilePreservationVerified": true
+  },
+  "donorsClean": [
+    "Yuri",
+    "Arsenic",
+    "OpenMyau-Plus",
+    "Project-Coolware"
+  ],
+  "yuriVelocityReference": "ae94d7b70ce8735b0337d01afbbe567d5a1de714",
+  "investigations": [
+    {
+      "directory": "forge/run-smoke-forge-bzut2_wj",
+      "result": "fixture compilation failed due to a missing no-argument reflection signature; corrected"
+    },
+    {
+      "directory": "forge/run-smoke-forge-anyb8z_f",
+      "result": "fixture inventory still expected 82 modules instead of 83; corrected"
+    },
+    {
+      "directory": "forge/run-smoke-forge-tu1uru6w",
+      "result": "already compiled listing fixture still expected 82; corrected all inventory checks before later runs"
+    },
+    {
+      "directory": "forge/run-smoke-forge-xj_i6kut",
+      "result": "fixture assumed an empty jump channel; Freecam intentionally owns a false claim; assert no jump instead"
+    },
+    {
+      "directory": "forge/run-smoke-forge-54j1mpfp",
+      "result": "existing earlier pig fixture was selected by original order; explicitly select closest reduction fixture"
+    },
+    {
+      "directory": "forge/run-smoke-forge-hex9wo26",
+      "result": "GUI fixture searched while search preference was disabled; enable search for the fixture, then restore preference"
+    }
+  ],
+  "limitations": [
+    "No authenticated multiplayer or remote anti-cheat acceptance test was performed.",
+    "Combat input fixture verifies owned pulses and the actual focus-gated key hook; the native windows were not focused during those assertions.",
+    "Attack fixtures cancel after reaching the native attack hook to keep synthetic attacks local.",
+    "Normal jump input is an implementation behavior, not a server bypass guarantee.",
+    "S27 explosion handling was not changed."
+  ]
+}

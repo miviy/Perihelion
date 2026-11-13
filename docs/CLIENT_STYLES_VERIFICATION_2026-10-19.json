@@ -1,0 +1,51 @@
+{
+  "tests": {
+    "core": {
+      "tests": 161,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 299,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "smokes": {
+    "forge": {
+      "path": "forge/run-smoke-forge-9jj6xv05",
+      "passed": true,
+      "artifactSha256": "e2cb48898a2520d2ee93adf30a1b70606f2fb056dec5e2dfdc3380d4ce15dda3",
+      "markers": [
+        "[07:17:21] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:457]: [PERIHELION_SMOKE] GUI PASS checks=345 panels=7 fonts=4",
+        "[07:17:21] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[07:17:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiRegressionProbe:run:174]: [PERIHELION_SMOKE] GUI_REGRESSIONS PASS checks=88",
+        "[07:17:27] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ClientStyleProbe:run:234]: [PERIHELION_SMOKE] CLIENT_STYLE PASS checks=471",
+        "[07:17:28] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:606]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    },
+    "optifine": {
+      "path": "forge/run-smoke-optifine-curp1ai7",
+      "passed": true,
+      "artifactSha256": "e2cb48898a2520d2ee93adf30a1b70606f2fb056dec5e2dfdc3380d4ce15dda3",
+      "markers": [
+        "[07:18:09] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:457]: [PERIHELION_SMOKE] GUI PASS checks=345 panels=7 fonts=4",
+        "[07:18:10] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[07:18:15] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiRegressionProbe:run:174]: [PERIHELION_SMOKE] GUI_REGRESSIONS PASS checks=88",
+        "[07:18:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ClientStyleProbe:run:234]: [PERIHELION_SMOKE] CLIENT_STYLE PASS checks=471",
+        "[07:18:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:606]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    }
+  },
+  "backup": ".backups/before-client-styles-20261019-110718",
+  "rollback": "dry run, later-edit refusal, isolated apply and original-source preservation verified",
+  "preview": "forge/run-client-styles-4w47vuon"
+}

@@ -1,0 +1,645 @@
+{
+  "date": "2026-10-12",
+  "task": "Regroup modules by function and remove Exploits from GUI and HUD",
+  "modules": {
+    "fastplace": {
+      "name": "FastPlace",
+      "category": "WORLD"
+    },
+    "fullbright": {
+      "name": "Fullbright",
+      "category": "RENDER"
+    },
+    "nobob": {
+      "name": "NoBob",
+      "category": "RENDER"
+    },
+    "timer": {
+      "name": "Timer",
+      "category": "MOVEMENT"
+    },
+    "nohurtcam": {
+      "name": "NoHurtCam",
+      "category": "RENDER"
+    },
+    "nofov": {
+      "name": "NoFOV",
+      "category": "RENDER"
+    },
+    "antiblind": {
+      "name": "AntiBlind",
+      "category": "RENDER"
+    },
+    "wtap": {
+      "name": "WTap",
+      "category": "COMBAT"
+    },
+    "sprint": {
+      "name": "Sprint",
+      "category": "MOVEMENT"
+    },
+    "clickgui": {
+      "name": "ClickGUI",
+      "category": "CLIENT"
+    },
+    "hud": {
+      "name": "HUD",
+      "category": "RENDER"
+    },
+    "flight": {
+      "name": "Flight",
+      "category": "MOVEMENT"
+    },
+    "speed": {
+      "name": "Speed",
+      "category": "MOVEMENT"
+    },
+    "step": {
+      "name": "Step",
+      "category": "MOVEMENT"
+    },
+    "waterwalk": {
+      "name": "Water Walk",
+      "category": "MOVEMENT"
+    },
+    "safewalk": {
+      "name": "Safe Walk",
+      "category": "MOVEMENT"
+    },
+    "stasis": {
+      "name": "Stasis",
+      "category": "MOVEMENT"
+    },
+    "fastbreak": {
+      "name": "Fast Break",
+      "category": "WORLD"
+    },
+    "invmove": {
+      "name": "Inv Move",
+      "category": "MOVEMENT"
+    },
+    "refill": {
+      "name": "Refill",
+      "category": "PLAYER"
+    },
+    "autoarmor": {
+      "name": "Auto Armor",
+      "category": "PLAYER"
+    },
+    "blockin": {
+      "name": "Block In",
+      "category": "WORLD"
+    },
+    "beddefender": {
+      "name": "Bed Defender",
+      "category": "WORLD"
+    },
+    "breaker": {
+      "name": "Breaker",
+      "category": "WORLD"
+    },
+    "camera": {
+      "name": "Camera",
+      "category": "RENDER"
+    },
+    "autof5": {
+      "name": "Auto F5",
+      "category": "RENDER"
+    },
+    "nameprotect": {
+      "name": "Name Protect",
+      "category": "RENDER"
+    },
+    "minigameaim": {
+      "name": "Minigame Aim",
+      "category": "MISC"
+    },
+    "regen": {
+      "name": "Regen",
+      "category": "PLAYER"
+    },
+    "fastuse": {
+      "name": "Fast Use",
+      "category": "PLAYER"
+    },
+    "antivoid": {
+      "name": "Anti Void",
+      "category": "MOVEMENT"
+    },
+    "eagle": {
+      "name": "Eagle",
+      "category": "MOVEMENT"
+    },
+    "antifireball": {
+      "name": "Anti Fireball",
+      "category": "COMBAT"
+    },
+    "noslow": {
+      "name": "No Slow",
+      "category": "MOVEMENT"
+    },
+    "phase": {
+      "name": "Phase",
+      "category": "MOVEMENT"
+    },
+    "longjump": {
+      "name": "Long Jump",
+      "category": "MOVEMENT"
+    },
+    "autoeat": {
+      "name": "Auto Eat",
+      "category": "PLAYER"
+    },
+    "chestaura": {
+      "name": "Chest Aura",
+      "category": "WORLD"
+    },
+    "antibot": {
+      "name": "Anti Bot",
+      "category": "COMBAT"
+    },
+    "friends": {
+      "name": "Friends",
+      "category": "COMBAT"
+    },
+    "freecam": {
+      "name": "Freecam",
+      "category": "RENDER"
+    },
+    "zoom": {
+      "name": "Zoom",
+      "category": "RENDER"
+    },
+    "ambience": {
+      "name": "Ambience",
+      "category": "RENDER"
+    },
+    "blockesp": {
+      "name": "Block ESP",
+      "category": "RENDER"
+    },
+    "breadcrumbs": {
+      "name": "Breadcrumbs",
+      "category": "RENDER"
+    },
+    "trajectories": {
+      "name": "Trajectories",
+      "category": "RENDER"
+    },
+    "bedplates": {
+      "name": "Bed Plates",
+      "category": "RENDER"
+    },
+    "shaderesp": {
+      "name": "Shader ESP",
+      "category": "RENDER"
+    },
+    "tickbase": {
+      "name": "Tick Base",
+      "category": "COMBAT"
+    },
+    "lagrange": {
+      "name": "Lag Range",
+      "category": "COMBAT"
+    },
+    "backtrack": {
+      "name": "Back Track",
+      "category": "COMBAT"
+    },
+    "aimassist": {
+      "name": "Aim Assist",
+      "category": "COMBAT"
+    },
+    "autoclicker": {
+      "name": "Auto Clicker",
+      "category": "COMBAT"
+    },
+    "autoswap": {
+      "name": "Auto Swap",
+      "category": "PLAYER"
+    },
+    "derp": {
+      "name": "Derp",
+      "category": "MISC"
+    },
+    "inputfixes": {
+      "name": "Input Fixes",
+      "category": "CLIENT"
+    },
+    "disabler": {
+      "name": "Disabler",
+      "category": "MISC"
+    },
+    "autochat": {
+      "name": "Auto Chat",
+      "category": "MISC"
+    },
+    "bedwarsutility": {
+      "name": "BedWars Utility",
+      "category": "MISC"
+    },
+    "esp": {
+      "name": "ESP",
+      "category": "RENDER"
+    },
+    "nametags": {
+      "name": "Name Tags",
+      "category": "RENDER"
+    },
+    "targetesp": {
+      "name": "Target ESP",
+      "category": "RENDER"
+    },
+    "scaffold": {
+      "name": "Scaffold",
+      "category": "WORLD"
+    },
+    "aura": {
+      "name": "Aura",
+      "category": "COMBAT"
+    },
+    "freelook": {
+      "name": "Free Look",
+      "category": "RENDER"
+    },
+    "chams": {
+      "name": "Chams",
+      "category": "RENDER"
+    },
+    "skeletons": {
+      "name": "Skeletons",
+      "category": "RENDER"
+    },
+    "bowaimbot": {
+      "name": "Bow Aimbot",
+      "category": "COMBAT"
+    },
+    "autoprojectile": {
+      "name": "Auto Projectile",
+      "category": "COMBAT"
+    },
+    "criticals": {
+      "name": "Criticals",
+      "category": "COMBAT"
+    },
+    "velocity": {
+      "name": "Velocity",
+      "category": "COMBAT"
+    },
+    "hitselect": {
+      "name": "Hit Select",
+      "category": "COMBAT"
+    },
+    "targetstrafe": {
+      "name": "Target Strafe",
+      "category": "MOVEMENT"
+    },
+    "autoapple": {
+      "name": "Auto Apple",
+      "category": "PLAYER"
+    },
+    "autopot": {
+      "name": "Auto Pot",
+      "category": "PLAYER"
+    },
+    "autoextinguish": {
+      "name": "Auto Extinguish",
+      "category": "PLAYER"
+    },
+    "nofall": {
+      "name": "No Fall",
+      "category": "MOVEMENT"
+    },
+    "manager": {
+      "name": "Manager",
+      "category": "PLAYER"
+    },
+    "stealer": {
+      "name": "Stealer",
+      "category": "PLAYER"
+    },
+    "clutch": {
+      "name": "Clutch",
+      "category": "WORLD"
+    },
+    "jumpreset": {
+      "name": "Jump Reset",
+      "category": "COMBAT"
+    },
+    "blink": {
+      "name": "Blink",
+      "category": "MISC"
+    },
+    "fakelag": {
+      "name": "Fake Lag",
+      "category": "MISC"
+    }
+  },
+  "moves": {
+    "fastplace": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java"
+    },
+    "timer": {
+      "from": "MISC",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java"
+    },
+    "fastbreak": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+    },
+    "invmove": {
+      "from": "PLAYER",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+    },
+    "blockin": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+    },
+    "beddefender": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+    },
+    "breaker": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+    },
+    "antifireball": {
+      "from": "PLAYER",
+      "to": "COMBAT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+    },
+    "antivoid": {
+      "from": "PLAYER",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+    },
+    "eagle": {
+      "from": "PLAYER",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+    },
+    "chestaura": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ConvenienceModules.java"
+    },
+    "antibot": {
+      "from": "MISC",
+      "to": "COMBAT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+    },
+    "friends": {
+      "from": "MISC",
+      "to": "COMBAT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+    },
+    "autoswap": {
+      "from": "MISC",
+      "to": "PLAYER",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+    },
+    "inputfixes": {
+      "from": "MISC",
+      "to": "CLIENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+    },
+    "scaffold": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java"
+    },
+    "targetstrafe": {
+      "from": "COMBAT",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+    },
+    "nofall": {
+      "from": "PLAYER",
+      "to": "MOVEMENT",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+    },
+    "autoapple": {
+      "from": "COMBAT",
+      "to": "PLAYER",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+    },
+    "autopot": {
+      "from": "COMBAT",
+      "to": "PLAYER",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+    },
+    "autoextinguish": {
+      "from": "COMBAT",
+      "to": "PLAYER",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+    },
+    "clutch": {
+      "from": "PLAYER",
+      "to": "WORLD",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ClutchModule.java"
+    },
+    "blink": {
+      "from": "PLAYER",
+      "to": "MISC",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java"
+    },
+    "fakelag": {
+      "from": "PLAYER",
+      "to": "MISC",
+      "file": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java"
+    }
+  },
+  "build": {
+    "status": "passed",
+    "unitTests": {
+      "core": {
+        "tests": 156,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "forge": {
+        "tests": 118,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "gameplayPreservation": "Verified Java body tokens in all 13 affected module files, after only expected category substitutions; imports/comments/whitespace excluded. IDs, settings and event behavior unchanged.",
+  "nativeRuns": {
+    "forge": {
+      "run": "forge/run-smoke-forge-0axbb12y",
+      "passed": true,
+      "exitCode": 0,
+      "scenario": "ui",
+      "artifactSha256": "d02ac230d0574381a8f1ca3dee764477f9f7794288c8aab94280ed33676d7cad",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "93875f710db9ea5a09c9f91d81765e3c054f5807b155084e98ec65b624cf5689",
+        "forge/src/smoke/java/perihelion/smoke/AuraPreProbe.java": "4638092cdbd530d22e44add35349aaf77d2fb4af73556971f986b702f08c9972",
+        "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "eda5bc91bd7d0f0b1f0f15bc2bd25ebd66d876715d01b3fcc5298760c9351c48",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "bbf20fc8a9b6f1e0694087111d9858a1081e4d10bb7ee22c133a37ac54d1da3c",
+        "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "e776bcefd32d660d72f25c275dc34014a0e264bb1ba7ad8ec79ae5feadb36c62",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleActionProbe.java": "6f3ca64a2320d07508ee944106364244ddf34be4cf3e852ec57081461f35d4ab",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "8d0adc02d7f797ac095306d19ed8899bee38a56cf92c5948289d4ef6ca72894c",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "04689f95f5972b23ffa60362ff8717995fd2a7afb0fcc9c599ed9fa8cd87f55e",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "a6bfea780569d6a50323e291410c457df12727a7e39300dce564538490589887",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "a1fa5f418e20fc4dcc6d29055001c0d088760353776cc8ca9d1f1b62a6acf4b7",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "6835c7d25f2251a7036fb9f4772e3bf447c6b3a150dcf66a705014ca3f8165ef",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "3651e8c57ccb898996987e04697a9b59fae3cee7063f83e67f06876d3e8a4d1c"
+      },
+      "checks": {
+        "GUI": 212,
+        "UI_THEME": 233,
+        "HUD_CHAT": 88,
+        "PRODUCTION_HUD": 63
+      },
+      "markers": [
+        "[20:24:44] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:24:50] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:24:53] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:393]: [PERIHELION_SMOKE] GUI PASS checks=212 panels=7 fonts=4",
+        "[20:24:57] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:225]: PERIHELION_SMOKE UI_THEME checks=233 fonts=3 scales=1,1.05 PASS",
+        "[20:24:58] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:437]: PERIHELION_SMOKE HUD_CHAT checks=88 PASS",
+        "[20:24:58] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:455]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=63",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=133 worldEvents=6"
+      ],
+      "warnings": [
+        "[ALSOFT] (WW) 3 Buffers not deleted"
+      ],
+      "unexpectedJavaSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "MixinApplyError": 0,
+        "OutOfMemoryError": 0,
+        "SIGSEGV": 0
+      },
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n"
+    },
+    "optifine": {
+      "run": "forge/run-smoke-optifine-e2lum7uo",
+      "passed": true,
+      "exitCode": 0,
+      "scenario": "ui",
+      "artifactSha256": "d02ac230d0574381a8f1ca3dee764477f9f7794288c8aab94280ed33676d7cad",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "93875f710db9ea5a09c9f91d81765e3c054f5807b155084e98ec65b624cf5689",
+        "forge/src/smoke/java/perihelion/smoke/AuraPreProbe.java": "4638092cdbd530d22e44add35349aaf77d2fb4af73556971f986b702f08c9972",
+        "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "eda5bc91bd7d0f0b1f0f15bc2bd25ebd66d876715d01b3fcc5298760c9351c48",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "bbf20fc8a9b6f1e0694087111d9858a1081e4d10bb7ee22c133a37ac54d1da3c",
+        "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "e776bcefd32d660d72f25c275dc34014a0e264bb1ba7ad8ec79ae5feadb36c62",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleActionProbe.java": "6f3ca64a2320d07508ee944106364244ddf34be4cf3e852ec57081461f35d4ab",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "8d0adc02d7f797ac095306d19ed8899bee38a56cf92c5948289d4ef6ca72894c",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "04689f95f5972b23ffa60362ff8717995fd2a7afb0fcc9c599ed9fa8cd87f55e",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "a6bfea780569d6a50323e291410c457df12727a7e39300dce564538490589887",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "a1fa5f418e20fc4dcc6d29055001c0d088760353776cc8ca9d1f1b62a6acf4b7",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "6835c7d25f2251a7036fb9f4772e3bf447c6b3a150dcf66a705014ca3f8165ef",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "3651e8c57ccb898996987e04697a9b59fae3cee7063f83e67f06876d3e8a4d1c"
+      },
+      "checks": {
+        "GUI": 212,
+        "UI_THEME": 233,
+        "HUD_CHAT": 88,
+        "PRODUCTION_HUD": 63
+      },
+      "markers": [
+        "[20:25:33] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:25:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=241 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:25:39] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:393]: [PERIHELION_SMOKE] GUI PASS checks=212 panels=7 fonts=4",
+        "[20:25:42] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:225]: PERIHELION_SMOKE UI_THEME checks=233 fonts=3 scales=1,1.05 PASS",
+        "[20:25:43] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:437]: PERIHELION_SMOKE HUD_CHAT checks=88 PASS",
+        "[20:25:43] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:455]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=63",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=133 worldEvents=6"
+      ],
+      "warnings": [
+        "[ALSOFT] (WW) 3 Buffers not deleted"
+      ],
+      "unexpectedJavaSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "MixinApplyError": 0,
+        "OutOfMemoryError": 0,
+        "SIGSEGV": 0
+      },
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n"
+    }
+  },
+  "backup": {
+    "path": ".backups/before-category-layout-20261012",
+    "archiveSha256": "0afe692d54c45642363dd6f77c500de449f6904f898c6a142b5df0e7b13625d7",
+    "note": "Scoped production baseline; enum/panel pre-edit changes reconstructed from inspected lines. HUD navigator baseline recovered from unchanged archive. Test/docs baseline captures initial grouping updates, as described in backup README."
+  },
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "d02ac230d0574381a8f1ca3dee764477f9f7794288c8aab94280ed33676d7cad"
+  },
+  "visualReview": {
+    "screenshots": [
+      "forge/run-smoke-forge-0axbb12y/clickgui.png",
+      "forge/run-smoke-forge-0axbb12y/ui-modules-sans.png",
+      "forge/run-smoke-forge-0axbb12y/hud-production.png"
+    ],
+    "result": "Seven labeled GUI panels, sorted rows and six HUD rows visible with full background; no Exploits panel."
+  },
+  "sameArtifactAndFixtureSources": true,
+  "affectedSourcesSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java": "a3df872b4c2170278e108543ef8522ca515b1be53cfd044d38f85fc9b39dbb27",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java": "71f7005ee34a4bea5e95f61da3f62328b6987e9a8892dae3c603b6d427d6696c",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java": "3ab8cb7c72d289a9659ef6bcd12a024e434fae704c9f81c00e48aa5c96de317a",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "d4789bdfe18c25eda5e810ebba8f8879d8634d5506557e8961a368043e02870b",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java": "26e74406b6c0bed999058645a54d2e0740c96c05ed9d57d17a0e8b76915e223d",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ConvenienceModules.java": "143ac8a37dedf9881319bbb0586c9b562d6ef1bd96f9cae9870956a3546ea04f",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java": "c7360a5d1b39e5756bab74c50ec248f66ccc0f4c3ec122099cf3e7d41cddb794",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "c4a6d37031f45408d964080b8e1cb72202f098a109717c0d8df43aa38be5d135",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "1bf136630934f3ceb98764e44e97942d87ef372719a6e47eeb6ea2740ad47c5d",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "45252a554b7cba7df8edfd806d490a0553b13bae12bbc8816c24360e6000b81d",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java": "be97869a3a36bc538e9e216ef690398e30e33c3802559c92b33875624986a1f4",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ClutchModule.java": "759a9093bcd9dd45be88807b10359f30132f14e22bbac8363db0660fcbc43584",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java": "503a12df56ea87ee368ca2364612f17e8a0dd5180321587db8ffdd16a82d45d5",
+    "forge/src/test/java/perihelion/integration/minecraft189/hud/HudNavigatorTest.java": "a9305394808f8be6f716cc56cf643b1c9a9ceed1446e6c9c5f4c0c5881796d25",
+    "forge/src/test/java/perihelion/integration/minecraft189/gui/GuiLogicTest.java": "11955edb2805a55a5a30a523a491f0e404e7de3f8619bc4e7ba159f9696f09d8",
+    "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "bbf20fc8a9b6f1e0694087111d9858a1081e4d10bb7ee22c133a37ac54d1da3c",
+    "core/src/main/java/perihelion/core/module/ModuleCategory.java": "8a779c97d1a5af0a807ba229e75dea12cd8b93622dd7219f811e43d950bce806",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/PanelScreen.java": "a500a060ddbb31693d60f5088a41bbd48ba77d75e9eca5ed5d3e2281a8e2e4f4",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudNavigator.java": "129ec2249af681802136b0ce065f25a17d4016994175f866fc1fd40ba5fb507d",
+    "docs/CLICKGUI.md": "005b4afdd8218f504d06dd4db8136296841603e3f2075b5d1fcdea9023393280",
+    "docs/HUD.md": "224d73cc5ff860df6663f3d43e1ae202c70fbd5eb957d84857c80d0a43e0dc73",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudRenderer.java": "0de8ba009a9dd9429d6fe62e4df070dd1f0f07de680219bd6237799d14dfe877",
+    "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "8d0adc02d7f797ac095306d19ed8899bee38a56cf92c5948289d4ef6ca72894c"
+  }
+}

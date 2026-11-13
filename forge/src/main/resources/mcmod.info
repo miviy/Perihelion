@@ -1,0 +1,10 @@
+[
+  {
+    "modid": "perihelion",
+    "name": "Perihelion",
+    "description": "Minecraft 1.8.9 client foundation.",
+    "version": "${version}",
+    "mcversion": "1.8.9",
+    "clientSideOnly": true
+  }
+]

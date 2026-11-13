@@ -1,0 +1,45 @@
+{
+  "date": "2026-11-04",
+  "donor": "Yuri 1cb86ad94ce1f01aa9b715577163c8ecc47b7def (read-only)",
+  "artifact": "forge/build/verified/beddefender-rotations-20261104/Perihelion-0.1.0.jar",
+  "sha256": "5d8e51c66dc8c257c28ee328e48fbe980509fea7a9dfa8798b4c3c3ee58eb41b",
+  "unitTests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 447,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "packagedSmoke": "forge/run-smoke-forge-ob1ndhqy/result.json",
+  "smokePassed": true,
+  "buildingAuditChecks": 12,
+  "focusedRotationChecks": 197,
+  "completeShellCases": 24,
+  "firstSubmittedPassPlacements": 24,
+  "matrix": {
+    "bedFacings": 4,
+    "sensitivities": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "fps": [
+      30,
+      240
+    ]
+  },
+  "manualLaunch": "forge/run-manual-beddefender-rotations-thjlfk_f/manual-launch.json",
+  "preEditSource": ".backups/beddefender-rotations-20261104-061859",
+  "limits": [
+    "Local Forge/Java 8 offline tests",
+    "Roof fixtures stand on the side layer after side completion",
+    "No authenticated Hypixel/Grim acceptance or bypass guarantee"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-25",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifactSha256": "90338944bc0645c3675f7f44b1fa3bda203e02531b991a71be6998e7b65f509c",
+  "bytes": 1236434,
+  "build": "Gradle check PASS; architecture, Java 8 and remapped distribution checks passed",
+  "unitTests": {
+    "core": {
+      "tests": 147,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 22,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runs": [
+    {
+      "variant": "forge",
+      "scenario": "world",
+      "directory": "forge/run-smoke-forge-1gi__k69",
+      "passed": true,
+      "exitCode": 0,
+      "guiChecks": 42,
+      "categories": 8,
+      "fonts": 4,
+      "guiScales": [
+        0.75,
+        1,
+        1.5
+      ],
+      "moduleChecks": 84,
+      "renderChecks": 55,
+      "controlChecks": 30,
+      "hudChecks": 261,
+      "artifactSha256": "90338944bc0645c3675f7f44b1fa3bda203e02531b991a71be6998e7b65f509c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "53b8ef40a44a1934aaf5b926b9fcb71bf30a48b30622e608f04614df3bdf9a0f",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "7c82a757300dff622ad1cbe92aa0963052a66baa354f670f254dd6ae69ed4ade",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "d46bded7f73e6eb85edc0a8f8d9ce2b8cc14e8bbc245c136a36f5993468a8257",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "optifineSha256": null,
+      "shutdown": "STOPPED subscriptions=0 queued=0 config=present",
+      "physicalWindowInputFocused": false,
+      "vanillaQueuedChunkExceptionsAfterFixtureUnload": 25
+    },
+    {
+      "variant": "optifine",
+      "scenario": "world",
+      "directory": "forge/run-smoke-optifine-fhl9bwz3",
+      "passed": true,
+      "exitCode": 0,
+      "guiChecks": 42,
+      "categories": 8,
+      "fonts": 4,
+      "guiScales": [
+        0.75,
+        1,
+        1.5
+      ],
+      "moduleChecks": 84,
+      "renderChecks": 55,
+      "controlChecks": 30,
+      "hudChecks": 261,
+      "artifactSha256": "90338944bc0645c3675f7f44b1fa3bda203e02531b991a71be6998e7b65f509c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "53b8ef40a44a1934aaf5b926b9fcb71bf30a48b30622e608f04614df3bdf9a0f",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "7c82a757300dff622ad1cbe92aa0963052a66baa354f670f254dd6ae69ed4ade",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "d46bded7f73e6eb85edc0a8f8d9ce2b8cc14e8bbc245c136a36f5993468a8257",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "optifineSha256": "2739760a70fca6ae5c7dc817bcc6283f18f55e38fa23778da7f387a6b724b2c4",
+      "shutdown": "STOPPED subscriptions=0 queued=0 config=present",
+      "physicalWindowInputFocused": false,
+      "vanillaQueuedChunkExceptionsAfterFixtureUnload": 25
+    }
+  ],
+  "donors": {
+    "Arsenic": {
+      "commit": "d6f3a3d40a6d3f14826a42002abf343c61c46ecb",
+      "worktreeClean": true
+    },
+    "OpenMyau-Plus": {
+      "commit": "52c8492c68ed14a0dd6137d0c21f912c463af8d9",
+      "worktreeClean": true
+    },
+    "Project-Coolware": {
+      "commit": "29d1e0974a49f81e829ab12ecbeada0c145f0d1a",
+      "worktreeClean": true
+    },
+    "Yuri": {
+      "commit": "0a4bd400784ef529d238311de5ce867e815794e2",
+      "worktreeClean": true
+    }
+  },
+  "notes": [
+    "Behavior probes run inside real packaged Minecraft/Forge OpenGL contexts; logical input calls share native screen handlers, not OS-level automation.",
+    "All four fonts, conditional settings and all reusable editor types exercised.",
+    "Search disable clears filtering; hidden/collapsed panel state, z-order and GUI preferences persist via the existing config store.",
+    "The screenshot HUD label behind the toolbar is from the test fixture, not production GUI content.",
+    "Queued vanilla chunk callbacks log NullPointerException during fixture world unload, also observed before this GUI; all runs still rejoin and shut down normally.",
+    "Physical keyboard/mouse sessions, OS fullscreen switching, shaders, resource-pack fonts, long-duration play and arbitrary mod combinations were not tested.",
+    "The repository has no tracked source baseline. A pre-change file-hash inventory identified modified existing files for scope review; no unrelated source files changed."
+  ]
+}

@@ -1,0 +1,1784 @@
+{
+  "goal_status": "active",
+  "source_revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+  "definition_count": 102,
+  "native_mappings": 77,
+  "presentation_exclusions": 22,
+  "deferred_count": 3,
+  "native_ui_preserved": true,
+  "registry_source": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GameplayModules.java",
+  "source_candidates_can_include_unregistered_legacy_classes": true,
+  "per_module_requirements_to_audit": [
+    "Settings, defaults, bounds and mode semantics",
+    "Candidate eligibility, distance boundaries and stable ordering",
+    "Event phases and transitions between PRE, motion and POST",
+    "Rotation equations, sensitivity quantization, movement/jump correction and handoff",
+    "Clock origin, sampling frequency, inclusive deadlines and toggle persistence",
+    "Packet content, order, cancellation, silent replay and dependent actions",
+    "Live setting/mode changes, enable/disable and world/session retirement",
+    "Interactions with other active modules and manual input",
+    "Donor-visible features missing from the native mapping"
+  ],
+  "current_iteration": {
+    "report": "docs/YURI_PARITY_LOOP_3_2026-10-18.json",
+    "status": "424 tests and full Forge/OptiFine suites pass on verified baseline plus all eight live parity edits; evolving combined account-manager checkout remains unverified",
+    "corrections": [
+      "Lag Range lazily samples the source ThreadLocalRandom delay only on new range entry",
+      "Persistent completion preserves eligible restoring hotbar handoffs; actual potion/client-swap/server-swap/manual-input cases pass",
+      "Previous verified artifact fails the new actual-module restoration check; rebuilt parity checkpoint passes it"
+    ]
+  },
+  "next_evidence_driven_checks": [
+    {
+      "area": "Combined shared checkout integration",
+      "evidence": "Account-manager task is concurrently adding/building source. First combined build failed on then-missing UI classes; second failed in shared Loom cache setup. Parity-owned files match the tested coherent checkpoint.",
+      "status": "pending stable combined build and packaged verification; no unrelated account files changed or removed"
+    },
+    {
+      "area": "Live placement intermittent failure",
+      "evidence": "One OptiFine 60-cap run placed no blocks. Unchanged-production diagnostic Forge and OptiFine reruns placed 10 or 11 blocks at both caps with no corrections. Cause remains unestablished; preserve original failure and diagnostics.",
+      "status": "open intermittent failure; final updated-artifact Forge/OptiFine pair passes both caps"
+    },
+    {
+      "area": "Recovery pause and input interactions",
+      "evidence": "Recheck actual normal-completion versus interrupted hotbar state and timing when higher-priority routines compete.",
+      "status": "actual completed potion with restoring client/server Auto Swap and manual input now covered; additional MLG/expiry/interleaving combinations remain"
+    },
+    {
+      "area": "Module-by-module settings/modes and missing features",
+      "evidence": "Continue all 77 native mappings and resolve the three explicitly deferred definitions. Fingerprint/startup checks do not prove these requirements.",
+      "status": "pending full requirements audit"
+    },
+    {
+      "area": "Broader first-effect and inventory predicate alignment",
+      "evidence": "Auto Pot first-effect selection differed from donor; inspect adjacent native potion/item predicates against their actual consumers without changing shared inventory policy speculatively.",
+      "status": "Auto Pot first-effect runtime cases pass under both runtimes; adjacent consumers remain to review"
+    },
+    {
+      "area": "Lag Range random sampling frequency",
+      "evidence": "CombatTimingModules.LagRange computes a sampled delay on every Motion PRE, while donor LagRangeModule samples only when entering a new active range cycle. Source-selected delay distribution is covered, but sampling frequency still differs.",
+      "status": "corrected; sampler-call/endpoint unit regressions and packaged full-suite evidence in loop 3"
+    }
+  ],
+  "not_proven": [
+    "Absence of all bugs or mistakes",
+    "Exhaustive equivalence for every module/mode/setting/interleaving",
+    "Authenticated multiplayer and live anti-cheat acceptance"
+  ],
+  "modules": {
+    "combat/AuraModule.java": {
+      "classification": "native-implementation",
+      "native_id": "aura",
+      "donor_sha256": "e0c0613c5bf1cfc3a3ed0c0b8122dfaa5e38ea25e89469cdafad7b4f9a61da88",
+      "declared_setting_labels_detected": [
+        "Attack Range",
+        "Auto Block",
+        "Auto Disable",
+        "Block On Hurt Ticks",
+        "Block Range",
+        "Body Ease",
+        "Hypixel Keep Sprint",
+        "Keep Sprint",
+        "ML Ease",
+        "Max CPS",
+        "Max Rotation Speed",
+        "Min CPS",
+        "Min Rotation Speed",
+        "Mode",
+        "Move Fix",
+        "Only Block If Hurt",
+        "Ray Cast",
+        "Rotations",
+        "Seek Range",
+        "Simulate Mouse Clicks",
+        "Swing Range",
+        "Switch Speed",
+        "Target Priority",
+        "Through Walls"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/AutoExtinguishModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoextinguish",
+      "donor_sha256": "1dd5cf3ae76ff453253e193fd134caa96a3f54bbe9aa209b67ae7f765d1f45c7",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/AutoPotModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autopot",
+      "donor_sha256": "a892cc07ecab9d245872cd9ebf6a4732785609562087ec990d607192854a2a14",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Health",
+        "Max Aim Ticks"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven",
+      "selected_evidence": "YURI_PARITY_LOOP_2_2026-10-18.json: first-effect whitelist/health/active-duration cases plus previous recovery checks; broader interleavings remain."
+    },
+    "combat/AutoProjectileModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoprojectile",
+      "donor_sha256": "c613dc2c89109b8756fd25a21dc6b6efb2148d91c88ab6686340600a7d2ef07f",
+      "declared_setting_labels_detected": [
+        "Line Of Sight",
+        "Swap Mode",
+        "Target Range"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/BackTrackModule.java": {
+      "classification": "native-implementation",
+      "native_id": "backtrack",
+      "donor_sha256": "a7c2b9ad6a1970eb86fbb5db7c26125ff0f0fa8848e55bcf3929dd13ac222620",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Max Range",
+        "Min Range",
+        "Mode",
+        "Only Kill Aura",
+        "Style"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BackTrackModule.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/BowAimbotModule.java": {
+      "classification": "native-implementation",
+      "native_id": "bowaimbot",
+      "donor_sha256": "b7263b9f71c456e080348593eda0f90e6dc5ac50a8bf461db42b9c7284d9fe6b",
+      "declared_setting_labels_detected": [
+        "Predict",
+        "Range",
+        "Through walls"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/CriticalsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "criticals",
+      "donor_sha256": "db1dd701786013a85f5ade0568bf0ac7c542e2a4ec93a49221a03c04d6740c0c",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "On Ground Check"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/DisplaceModule.java": {
+      "classification": "native-implementation",
+      "native_id": "displace",
+      "donor_sha256": "47c59fad599472657cf98d5432491bfb3bb18e592586185f9b81a17cea0e5f10",
+      "declared_setting_labels_detected": [
+        "Angle",
+        "Cooldown",
+        "Max Hurt Time",
+        "Mode",
+        "Only Knockback Items",
+        "Players Only",
+        "Range",
+        "Render Arrow"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/DisplaceModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/HitSelectModule.java": {
+      "classification": "native-implementation",
+      "native_id": "hitselect",
+      "donor_sha256": "0e44fd249ec30c05fd8c045c906fa7881036d9665a34105d0d5f516c6f21adae",
+      "declared_setting_labels_detected": [
+        "Active Range",
+        "Counter Hit",
+        "On Hurt Time",
+        "Target Search Range",
+        "Trade Hurt Time",
+        "Trade Timeout"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HitSelectModule.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/LagRangeModule.java": {
+      "classification": "native-implementation",
+      "native_id": "lagrange",
+      "donor_sha256": "733172f35a563cd533c46fa8bcc838b5a2cf75a2e73bbeb5f640fc270b94175d",
+      "declared_setting_labels_detected": [
+        "Delay Entity Movements",
+        "Delay Teleports",
+        "Delay Velocity",
+        "Max Delay",
+        "Max Range",
+        "Min Delay",
+        "Min Range",
+        "Mode",
+        "Only With Kill Aura",
+        "Render Lag Pos"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketPositionMarker.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven",
+      "selected_evidence": "YURI_PARITY_LOOP_2_2026-10-18.json: render option, position source/lifecycle/visibility and actual GL checks; whole module remains unproven."
+    },
+    "combat/TargetStrafeModule.java": {
+      "classification": "native-implementation",
+      "native_id": "targetstrafe",
+      "donor_sha256": "001dd6d5d66a776d2347f9d7fc1d19815132c233542a620c10bc4f4920d09d93",
+      "declared_setting_labels_detected": [
+        "Hold Jump",
+        "Range"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/TickBaseModule.java": {
+      "classification": "native-implementation",
+      "native_id": "tickbase",
+      "donor_sha256": "12e9019a066ce9245e749f6147b4d638f2db0667d658c6d6cca71ec4901c9388",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Only With Kill Aura"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "combat/VelocityModule.java": {
+      "classification": "native-implementation",
+      "native_id": "velocity",
+      "donor_sha256": "c425b5f7509d57c97d0f980dbaac8198247bf03cdae2af7810716f7edff8a772",
+      "declared_setting_labels_detected": [
+        "Ignore On Fire",
+        "Intave Mode",
+        "Mode",
+        "Reduce Ticks",
+        "Velocity X Modifier",
+        "Velocity Y Modifier",
+        "Velocity Z Modifier"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/AimAssistModule.java": {
+      "classification": "native-implementation",
+      "native_id": "aimassist",
+      "donor_sha256": "48d281bd340dfa39272662140b87acb48e837193e94e209e6033d536eb5af6a1",
+      "declared_setting_labels_detected": [
+        "Aim Vertically",
+        "Check Block Break",
+        "Distance",
+        "Horizontal Speed",
+        "Ignore Teams",
+        "Invisibles",
+        "Max Angle",
+        "Mobs",
+        "Mode",
+        "Players",
+        "Require Mouse Down",
+        "Strafe Increase",
+        "Swords Only",
+        "Target Area",
+        "Target Mode",
+        "Vertical Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AssistModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AimAssistModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/AutoClickerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoclicker",
+      "donor_sha256": "87739e43a1e66f73a3d9a39f49af66fbe47bcae7bfebfa00791e48ef8c342372",
+      "declared_setting_labels_detected": [
+        "Break Blocks",
+        "Max CPS",
+        "Min CPS",
+        "Weapons Only"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AssistModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/BlockHitModule.java": {
+      "classification": "native-implementation",
+      "native_id": "blockhit",
+      "donor_sha256": "641f87ec2ff016ce72f71357faa67338b770a4ffcefb462ba254ddce417e410c",
+      "declared_setting_labels_detected": [
+        "Block Chance",
+        "Block Delay",
+        "Combo Delay",
+        "Range"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/BlockInModule.java": {
+      "classification": "native-implementation",
+      "native_id": "blockin",
+      "donor_sha256": "2be8c1a021a00e8d115ea21d6c8b8e3b34f75395596a34a264c539b81b32185c",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Disable In Creative",
+        "Disable Obsidian",
+        "Disable When Complete",
+        "Only While Middle Clicking",
+        "Prioritize Stronger Blocks",
+        "Show Percentage",
+        "Silent Aim",
+        "Silent Swing",
+        "Skip Near Bed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BlockInModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/ClutchModule.java": {
+      "classification": "native-implementation",
+      "native_id": "clutch",
+      "donor_sha256": "968e76f699eb3165200532a1cf8d4759b6f1e0015fbdf61d42f7a8176ecee128",
+      "declared_setting_labels_detected": [
+        "Place Delay Max",
+        "Place Delay Min",
+        "Rotation Speed Max",
+        "Rotation Speed Min"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ClutchModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/EagleModule.java": {
+      "classification": "native-implementation",
+      "native_id": "eagle",
+      "donor_sha256": "a31725776ff92bed19c85b686f3625b5f13a5df746f4713f7799bff078d7b24d",
+      "declared_setting_labels_detected": [
+        "Block Check",
+        "Delay",
+        "Direction Check",
+        "Sneak Check"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/HitboxExpandModule.java": {
+      "classification": "native-implementation",
+      "native_id": "hitboxexpand",
+      "donor_sha256": "0ac4af0d40d4cf14e678d611230d740d57ee00e91713ba5c4144006355ac03e7",
+      "declared_setting_labels_detected": [
+        "Amount"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/KeepSprintModule.java": {
+      "classification": "native-implementation",
+      "native_id": "keepsprint",
+      "donor_sha256": "27f86fd7d62dbd583b93ed60718fd9ba02db213ce861c69081b238ff8d7ef053",
+      "declared_setting_labels_detected": [
+        "Attack Motion",
+        "Chance"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/ReachModule.java": {
+      "classification": "native-implementation",
+      "native_id": "reach",
+      "donor_sha256": "1d8beae9f575b3de96edde04d8bfc3e95c5f77de9d322ddfb164d3ade883f71a",
+      "declared_setting_labels_detected": [
+        "Max Range",
+        "Min Range"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "ghost/TriggerBotModule.java": {
+      "classification": "native-implementation",
+      "native_id": "triggerbot",
+      "donor_sha256": "c3b9bb7976e6eb80ca4d6441703ee018cbee7ed12d722054eff855708fef4a70",
+      "declared_setting_labels_detected": [
+        "Max CPS",
+        "Min CPS",
+        "Weapons Only"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GhostCombatModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/AntiBotModule.java": {
+      "classification": "native-implementation",
+      "native_id": "antibot",
+      "donor_sha256": "f42baff53026b97df2ac85a227cd9ae00f129dbc2d7d8592db2e723e365aaa64",
+      "declared_setting_labels_detected": [
+        "Check Age",
+        "Check Latency",
+        "Check Valid Name",
+        "FOV Check",
+        "Max FOV",
+        "Tablist Check"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/AutoServerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoserver",
+      "donor_sha256": "7da52b3598208f1a504a2852ecd84b6d8eba8b9a752708ae5a39ce5d375f2c9b",
+      "declared_setting_labels_detected": [
+        "Double Password",
+        "Password"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AutoServerModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/AutoSwapModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoswap",
+      "donor_sha256": "a0a8763da1a85e51642b36c4d71a66d2b823912b03b9ddc8de10ada748421df2",
+      "declared_setting_labels_detected": [
+        "Sneak Only",
+        "Swap Back",
+        "Swap Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/BasketballModule.java": {
+      "classification": "native-implementation",
+      "native_id": "basketball",
+      "donor_sha256": "d0889720192ce6e8eeee7b8554fd6e456a4d9025f45f685f1fd51271703ca69d",
+      "declared_setting_labels_detected": [
+        "Hoop Distance",
+        "Power"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BasketballModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/BedWarsUtilsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "bedwarsutility",
+      "donor_sha256": "a618bbf68c02177fc7aebc9b6f35baf997a2dcaea79d268cbcd3f336214362e3",
+      "declared_setting_labels_detected": [
+        "Include Stone Swords",
+        "Notify Armor",
+        "Notify Events",
+        "Notify Sweats",
+        "Notify Sword",
+        "Walk To Gen"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BedWarsUtilsModule.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/DerpModule.java": {
+      "classification": "native-implementation",
+      "native_id": "derp",
+      "donor_sha256": "10eb8f51b105440fd0098f3cb81de94cf851cc2f75dbfa37a8e09d9a89c66af0",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Move Fix",
+        "Pitch",
+        "Rotation Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/DiscordRPCModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "343c8f248c4751886626f3a4e9a591619bfbef00fb7d2940bc4313fcf1fc5529",
+      "declared_setting_labels_detected": [
+        "Show Server",
+        "Show Timestamp"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "misc/FriendsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "friends",
+      "donor_sha256": "9ecdc205da34547686e67a9b0d3b6fba23043c149c604c98af3e5e27b0137aed",
+      "declared_setting_labels_detected": [
+        "Mid-Click Add"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/GUIClickerModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "8bea1189e151858f9efad9680840181c10f8c03ac5db40fdd61e6ddbcf5cef1f",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "misc/InputFixesModule.java": {
+      "classification": "native-implementation",
+      "native_id": "inputfixes",
+      "donor_sha256": "9eb3129a53b5c26c141461fcc220fee88a514d9020335a7bd7dba91c3aa1c564",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/InsultsModule.java": {
+      "classification": "deferred",
+      "native_id": null,
+      "donor_sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "unimplemented deferred feature"
+    },
+    "misc/ItemDelaysModule.java": {
+      "classification": "native-implementation",
+      "native_id": "fastplace",
+      "donor_sha256": "95ccae94cd3e5a1760dde43b6b637ef4df4f0bc972264d91dc997d314165ef34",
+      "declared_setting_labels_detected": [
+        "Allow Blocks",
+        "Allow Projectiles",
+        "Delay"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/MinigameAimModule.java": {
+      "classification": "native-implementation",
+      "native_id": "minigameaim",
+      "donor_sha256": "077a59fd9ebe95d0a3acc690415c1033cfdd70c56303ca3aef02e35e30253fac",
+      "declared_setting_labels_detected": [
+        "Aimbot Mode",
+        "Auto Ammo",
+        "Auto Heal",
+        "Auto Revive",
+        "Buffer",
+        "Delay",
+        "FOV",
+        "Game",
+        "Health",
+        "Hitbox",
+        "Hud",
+        "Prediction Scale",
+        "Prediction Ticks",
+        "Priority",
+        "Range",
+        "Rotation Speed",
+        "Show FOV",
+        "Show Prediction",
+        "Silent"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MinigameAimModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/PoolModule.java": {
+      "classification": "native-implementation",
+      "native_id": "pool",
+      "donor_sha256": "55877689a817fd7ca9c7d77680e17eb6ac384080c4953b8493e9b78cd6a9cb87",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PoolModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/TimerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "timer",
+      "donor_sha256": "fd5834df56c3828f47d07d24b952374329d8223fc87e7e2ed210b4a343891e20",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Time Amount",
+        "Time Amount 2"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "misc/ToggleSoundsModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "12bcb2968060d9fe98dc7148eb5800d7ac41f539f9ff042407b4d4c08a70d783",
+      "declared_setting_labels_detected": [
+        "Toggle Sounds",
+        "Volume"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "movement/FlightModule.java": {
+      "classification": "native-implementation",
+      "native_id": "flight",
+      "donor_sha256": "d86d080cb4af51c90c747191852e5ef389c6c7e53cf3e9c78440147bbfe713c7",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Motion Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/InvMoveModule.java": {
+      "classification": "native-implementation",
+      "native_id": "invmove",
+      "donor_sha256": "577727001360fc4682a25380d725a0f5408c4fd1a24fda8d3843f276d05ef0ed",
+      "declared_setting_labels_detected": [
+        "Allow jumping",
+        "Allow midair",
+        "Allow movement",
+        "Allow rotating",
+        "Allow speed potion",
+        "Allow sprinting",
+        "Chest & others",
+        "Inventory",
+        "Modify motion after click",
+        "Motion",
+        "Slow motion when necessary"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InvMoveModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/LongJumpModule.java": {
+      "classification": "native-implementation",
+      "native_id": "longjump",
+      "donor_sha256": "e699b2faeeecfed7e66ddc4a9869b71dc917bb22c17f28c6ca932386dcbec27f",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Fireball",
+        "Fireball Mode",
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/NoSlowModule.java": {
+      "classification": "native-implementation",
+      "native_id": "noslow",
+      "donor_sha256": "a281811cf31e8d0f424399c8c5b513a9e3e6e6aba1598b0073d2c6b61e17daae",
+      "declared_setting_labels_detected": [
+        "Bow Items",
+        "Food Items",
+        "Mode",
+        "Potion Items",
+        "Sword Items"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/PhaseModule.java": {
+      "classification": "native-implementation",
+      "native_id": "phase",
+      "donor_sha256": "886009cd79c08e6ae97906e91c04097e83cb1ad852d50a84ce23292ee69cd25c",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/SafeWalkModule.java": {
+      "classification": "native-implementation",
+      "native_id": "safewalk",
+      "donor_sha256": "f77b9f66eebd916e50fe35fe239856ad8114841ecc509daac418e84723c5ad31",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/SpeedModule.java": {
+      "classification": "native-implementation",
+      "native_id": "speed",
+      "donor_sha256": "e4e598c47f2afaab32631bb1287cc8390f1df1b175509e31080ada4ec00dfff5",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/SprintModule.java": {
+      "classification": "native-implementation",
+      "native_id": "sprint",
+      "donor_sha256": "edbbc667ff2dfc2103acc0b92498d0c0548f9ab3c5fb8edd69571561e43e2fac",
+      "declared_setting_labels_detected": [
+        "Cancel Invis"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/SprintModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/StasisModule.java": {
+      "classification": "native-implementation",
+      "native_id": "stasis",
+      "donor_sha256": "2f667082f61f3f61d673caf9e9bcd778b8eb17e9cde0d07f10c3033533df1b95",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/StepModule.java": {
+      "classification": "native-implementation",
+      "native_id": "step",
+      "donor_sha256": "5964359fd7fba2f9a8979d78d1ed9113d2784b5ccc77203b9c83fc93323e3591",
+      "declared_setting_labels_detected": [
+        "Height",
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "movement/WaterWalkModule.java": {
+      "classification": "native-implementation",
+      "native_id": "waterwalk",
+      "donor_sha256": "24fcafaf011974a29d477a7513bf9edafcfaf89cec7cdad9cec18bea173d9b08",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/AntiFireballModule.java": {
+      "classification": "native-implementation",
+      "native_id": "antifireball",
+      "donor_sha256": "8eca5392802cd523d64d72f3f141c078d8e3283bf5ab13fad1f922a51fd85b95",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/AntiVoidModule.java": {
+      "classification": "native-implementation",
+      "native_id": "antivoid",
+      "donor_sha256": "a71022a477f551c46590849cdcabb5865b068977ee2608bee81c48ad1daef3e9",
+      "declared_setting_labels_detected": [
+        "Distance",
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/AutoArmorModule.java": {
+      "classification": "native-implementation",
+      "native_id": "autoarmor",
+      "donor_sha256": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Inventory only",
+        "Stop when moving"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/BedDefenderModule.java": {
+      "classification": "native-implementation",
+      "native_id": "beddefender",
+      "donor_sha256": "9596fe6ace23eb257fb9d1cf3fc03d66674431ac86b14a2bc6605d186a0e9422",
+      "declared_setting_labels_detected": [
+        "Move Fix",
+        "Place Delay",
+        "Range",
+        "Rotation Tolerance",
+        "Show Progress",
+        "Speed",
+        "Swing"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/BlinkModule.java": {
+      "classification": "native-implementation",
+      "native_id": "blink",
+      "donor_sha256": "e1ba3c063aafb440ff7f6019a7016bd88bb92beff68137f9f41d6f4e20555482",
+      "declared_setting_labels_detected": [
+        "Cancel Received Packets",
+        "Delay",
+        "Mode",
+        "Render Blink Pos"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java",
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketPositionMarker.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven",
+      "selected_evidence": "YURI_PARITY_LOOP_2_2026-10-18.json: render option, position source/lifecycle/visibility and actual GL checks; whole module remains unproven."
+    },
+    "player/BreakerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "breaker",
+      "donor_sha256": "cb2e6cb21ccaf110d25836709e6704811d96e8af3cea8eb0f92e66f6fe818df2",
+      "declared_setting_labels_detected": [
+        "Auto Tool",
+        "Break Mode",
+        "Breaker Range",
+        "Move Fix",
+        "Progress Bar",
+        "Visual Swing",
+        "Whitelist"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/FastBreakModule.java": {
+      "classification": "native-implementation",
+      "native_id": "fastbreak",
+      "donor_sha256": "c918c6315b073eb9bdae0206635abd1b202878c817d86d38e33654547114d168",
+      "declared_setting_labels_detected": [
+        "Delay",
+        "Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/FastUseModule.java": {
+      "classification": "native-implementation",
+      "native_id": "fastuse",
+      "donor_sha256": "fb9a09e9bbece8bc161ff2ea74210c72a9b19d6d98791fb8e66eb63033b93e00",
+      "declared_setting_labels_detected": [
+        "Bow Items",
+        "Food Items",
+        "Potion Items",
+        "Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/ManagerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "manager",
+      "donor_sha256": "24dd399a6b7d0444950276cfe46f23db5aacde0f5525834139d582bcce10635f",
+      "declared_setting_labels_detected": [
+        "Axe Slot",
+        "Block Slot",
+        "Bow Slot",
+        "Clutch Slot",
+        "Delay",
+        "Drop Archery",
+        "Drop Food",
+        "Drop Shears",
+        "Gapple Slot",
+        "Instant",
+        "Inv Only",
+        "Manage Axe",
+        "Manage Blocks",
+        "Manage Bow",
+        "Manage Clutch",
+        "Manage Gapple",
+        "Manage Pickaxe",
+        "Manage Potion",
+        "Manage Projectile",
+        "Manage Shovel",
+        "Manage Weapon",
+        "Move Arrows",
+        "Not Moving",
+        "Pickaxe Slot",
+        "Potion Slot",
+        "Projectile Slot",
+        "Send Inv Packets",
+        "Shovel Slot",
+        "Swap Blocks",
+        "Weapon Slot"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/NoFallModule.java": {
+      "classification": "native-implementation",
+      "native_id": "nofall",
+      "donor_sha256": "b7ba6d8d24fc7b890d373b6f22ae8adf65d2748cfee88a4be3b5d96049bbba2b",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/RefillModule.java": {
+      "classification": "native-implementation",
+      "native_id": "refill",
+      "donor_sha256": "5bdbd61e1796efc6907184d5411cea6237eed0c05a8e6fd7936d6458452baa5f",
+      "declared_setting_labels_detected": [
+        "Auto Close"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/RegenModule.java": {
+      "classification": "native-implementation",
+      "native_id": "regen",
+      "donor_sha256": "5ab636fe40a6c81d3912d19204855efd155f598bf218404f66ed269e136890b1",
+      "declared_setting_labels_detected": [
+        "Minimum Health",
+        "Speed"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/ScaffoldModule.java": {
+      "classification": "native-implementation",
+      "native_id": "scaffold",
+      "donor_sha256": "7763bd7bc0ec871f18fcfbaf1ce1bb0604da6fd3f9a2cfa28778933cdff3b2c9",
+      "declared_setting_labels_detected": [
+        "Auto Disable",
+        "Auto Jump",
+        "Block Counter",
+        "Expand",
+        "Hypixel Larp Mode",
+        "Hypixel Telly",
+        "Keep Y",
+        "Max Rotation Speed",
+        "Min Rotation Speed",
+        "Mode",
+        "Move Fix",
+        "Place Delay",
+        "Randomized Speed Max",
+        "Randomized Speed Min",
+        "Ray Cast",
+        "Rotations",
+        "Safe Walk",
+        "Sneak",
+        "Sneak Every",
+        "Sprint Mode",
+        "Swap Mode",
+        "Telly Diagonal Ticks",
+        "Telly Jump Down Ticks",
+        "Telly Straight Ticks",
+        "Tower Mode",
+        "Tower Move"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "player/StealerModule.java": {
+      "classification": "native-implementation",
+      "native_id": "stealer",
+      "donor_sha256": "202277511b38f5d064c3e93d901dfda4d9653a37b1a7ac3b8349f3b94306b3f1",
+      "declared_setting_labels_detected": [
+        "Auto Close",
+        "Auto Disable",
+        "Distance Multiplier",
+        "Distance Scaling",
+        "Grab Mouse",
+        "Instant",
+        "Max Delay",
+        "Min Delay",
+        "Miss Click",
+        "Miss Click Chance",
+        "Miss Recovery Max",
+        "Miss Recovery Min",
+        "Position Multiplier",
+        "Position Scaling",
+        "Steal Delay",
+        "Steal Trash Items"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/AmbienceModule.java": {
+      "classification": "native-implementation",
+      "native_id": "ambience",
+      "donor_sha256": "f5c10beba8d1659c057da7b4ead1c649bb3864743d3070bcd19173a31d76445d",
+      "declared_setting_labels_detected": [
+        "Client Color Fog",
+        "Client Color Light Map",
+        "Mode",
+        "Real World Time",
+        "Shader Sky",
+        "Time"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/AnimationsModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "bcd88680cff5a33ba9f9863ff416ca721c09f791954ed6399fd81c59ebda23eb",
+      "declared_setting_labels_detected": [
+        "Block Animations",
+        "Dont Reset Block",
+        "Flux Swing",
+        "Spin Speed",
+        "Swing While Eating"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ArmorRatioModule.java": {
+      "classification": "native-implementation",
+      "native_id": "armorratio",
+      "donor_sha256": "ab03b94b9b54ff24a9c332608314b6430078c4c45fbae118e09d40c54ae49b36",
+      "declared_setting_labels_detected": [
+        "Height",
+        "Include Weapon",
+        "Outline",
+        "Size",
+        "Through Walls"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ArmorRatioModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/AutoF5Module.java": {
+      "classification": "native-implementation",
+      "native_id": "autof5",
+      "donor_sha256": "9c79c48baa20832cf4e894b0fc4a335cbbc31e0f0b4db55f19388f3a60d103b3",
+      "declared_setting_labels_detected": [
+        "On Aura",
+        "On Scaffold"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/BlockESPModule.java": {
+      "classification": "native-implementation",
+      "native_id": "blockesp",
+      "donor_sha256": "eae0102459f18864327974b77b80b53da927c485259536281c9fbfc47fd6bc6a",
+      "declared_setting_labels_detected": [
+        "Alpha",
+        "Bed Range",
+        "Bed Update Rate",
+        "Beds",
+        "Chests",
+        "Client Color",
+        "Ender Chests",
+        "Filled",
+        "Line Width",
+        "Outline",
+        "Through Walls"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/BreadcrumbsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "breadcrumbs",
+      "donor_sha256": "ba35f7cb50011008051c80dd50ab45dba93f26164ee492c9b8453baf02fee354",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/CameraModule.java": {
+      "classification": "native-implementation",
+      "native_id": "camera",
+      "donor_sha256": "0c119b2e4b6de325ee53277cc01a12081cc9a8a9841a6b6902dd3975ca6e6789",
+      "declared_setting_labels_detected": [
+        "Full Bright",
+        "No Blindness",
+        "No Boss Bar",
+        "No Fire Overlay",
+        "No Haste Swing",
+        "No Hurt Camera",
+        "Scale",
+        "Slowdown",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CameraModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/CapesModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "0d0ed1b90575dcdaa6e30b29bc41fdaa81a4514b49d853d27859abcf1d635c75",
+      "declared_setting_labels_detected": [
+        "Cape"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/CatEarsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "catears",
+      "donor_sha256": "9ef82c7d9325bc4456a2c0c1677d6e6fc72530f005f259bfae9330bf48074224",
+      "declared_setting_labels_detected": [
+        "Bypass"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CatEarsModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/ChamsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "chams",
+      "donor_sha256": "6273e21147aae62a2c1a5135ae3c28faf84c7e8bcd6ccfe3d3b3b25e7af36703",
+      "declared_setting_labels_detected": [
+        "Tile Entities"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/ChinaHatModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "e9718579a9ae094ade2a7643383c308d86bb0246f24639c23f540304f51d0b8b",
+      "declared_setting_labels_detected": [
+        "Color Mode",
+        "Quality",
+        "Rotate",
+        "Show In First Person"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ClickGUIModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "90386584d4f84089e4fd0718261532d47455fe9400bbae3bb26c9916ee20d2c3",
+      "declared_setting_labels_detected": [
+        "Close Previous",
+        "Color",
+        "Color Speed",
+        "Keybinds In GUI",
+        "Logo In GUIS",
+        "Mode",
+        "Style",
+        "Tooltips"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ClientInfoModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "24b818fd7ee3f22836212bc9cc859353173b00e8cec1234e04d8cee1b95e2170",
+      "declared_setting_labels_detected": [
+        "Coords",
+        "FPS",
+        "Mode",
+        "Speed",
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/CustomMinecraftModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": null,
+      "donor_sha256": "0804f5bee5aff27c0ac99a31841983ded998c484ed9e177dffc5d27fd254531d",
+      "declared_setting_labels_detected": [
+        "Boss Bar Text",
+        "Chat",
+        "GUI Buttons",
+        "Held Item Name",
+        "Hotbar XP Font",
+        "Item Tooltips",
+        "Paused Screen Text",
+        "S45 Packet Titles",
+        "Shader GUI BG",
+        "Status Effects",
+        "Stream Indicator"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ESPModule.java": {
+      "classification": "native-implementation",
+      "native_id": "esp",
+      "donor_sha256": "970d5a1f46a2546df091caa446facfb7e90405ab63383c4ef90def4c3b0411ab",
+      "declared_setting_labels_detected": [
+        "Chest ESP",
+        "ESP BG",
+        "ESP BG Alpha",
+        "ESP Line Width",
+        "ESP Outline",
+        "ESP Outline Alpha",
+        "ESP Outline Width",
+        "Health BG Alpha",
+        "Health Bar Left Align",
+        "Health Bars",
+        "Health Line Alpha",
+        "Health Line Width",
+        "Health Outline",
+        "Health Outline Alpha",
+        "Health Outline Width",
+        "Held Item",
+        "Held Item BG",
+        "Held Item BG Alpha",
+        "Held Item Custom Font",
+        "Held Item Scale",
+        "Mode",
+        "Render Self"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/EffectsModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "f01986bb3c39553edf65250d7bd052062cbd4f5186f8fc43b4f10e211381e838",
+      "declared_setting_labels_detected": [
+        "Bed Burst",
+        "Bed Burst Count",
+        "Bed Burst Lifetime",
+        "Bed Burst Size",
+        "Bed Burst Speed",
+        "Bed Sound",
+        "Damage Numbers",
+        "Damage Particle Mode",
+        "Damage Particles",
+        "Dots",
+        "Dots Lifetime",
+        "Dots Spawn Rate",
+        "Hearts",
+        "Hearts Lifetime",
+        "Hearts Spawn Rate",
+        "Kill Impact",
+        "Kill Impact Aberration",
+        "Kill Impact Duration",
+        "Kill Impact Strength",
+        "Only While Moving",
+        "Opacity",
+        "Pulse",
+        "Rainbow",
+        "Rainbow Duration",
+        "Rainbow Line Width"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/FreeLookModule.java": {
+      "classification": "native-implementation",
+      "native_id": "freelook",
+      "donor_sha256": "38c4a95c65df237c818440e9c2bd03c6e67819b697f54b61782522b430254f15",
+      "declared_setting_labels_detected": [
+        "Hold",
+        "Invert Pitch"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/HornsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "horns",
+      "donor_sha256": "e40c3743cf29f3c592452b61a02a846d2815a6fefa85eb1d42891cb06463ea43",
+      "declared_setting_labels_detected": [
+        "Client Color",
+        "Glow",
+        "Render Others",
+        "Render Self"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HornsModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/HotbarModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "1b2aae5701c1e2402dfd55616670818ac0a994360147e28b2e626d732b40d448",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ImageRendererModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "a8c4ef4df9dc0168d93e6eca4e2feb9501e2af0a4cb596410186fd1f3bb01efc",
+      "declared_setting_labels_detected": [
+        "Bounce Speed",
+        "DVD Bounce",
+        "Image",
+        "Size",
+        "URL"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/KeybindInfoModule.java": {
+      "classification": "deferred",
+      "native_id": null,
+      "donor_sha256": "87b512bb21a07bd9d55ec957a322ac013ede3d2bd7a2b9b9ceb2c100bea953d8",
+      "declared_setting_labels_detected": [
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "unimplemented deferred feature"
+    },
+    "render/MediaInfoModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "51500ff20cf11fae1cf5f731e89b30504560d67e0923b3e866d278f8b00b67ec",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ModListModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "61d39f71f01cfd004c1b53b30737197f9fec562cfcfd922c0e2e274ea9f9075e",
+      "declared_setting_labels_detected": [
+        "Background",
+        "Background Opacity",
+        "Bold",
+        "Color Mode",
+        "Font Size",
+        "Hide Misc",
+        "Hide Suffix",
+        "Hide Visuals",
+        "Line",
+        "Line Width",
+        "Lowercase",
+        "No Spaces",
+        "Offset",
+        "Outline",
+        "Padding",
+        "Suffix Mode",
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/MotionBlurModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "a38c3a9a55e246e86e802d629227670b38a2a772bc8e421a3feaae7cca6b88d7",
+      "declared_setting_labels_detected": [
+        "Blur Amount"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/NameProtectModule.java": {
+      "classification": "native-implementation",
+      "native_id": "nameprotect",
+      "donor_sha256": "1e1c69fdfc93904f7a2482a90b01b962c1fcd5b475ecd6012ec8f7ea41ba4f72",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/NameTagsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "nametags",
+      "donor_sha256": "d28632aa59a1ff7e5a36dbf4c32b394990fd38fdf6814fe27defa268cc5d2af2",
+      "declared_setting_labels_detected": [
+        "Background",
+        "Custom Font",
+        "Render Self",
+        "Scale"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/PentagramModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "ec3bd9e00a8e64439dbb8dafa33f8684dc87dca08238649425d2d26440829abb",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Only On Aura",
+        "Only On Jump",
+        "Only On Scaffold",
+        "Size"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/PostProcessingModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "14e71a6f09e25b81e6b945c76ecd0f0d593bb3be7efd69806ae8715cb93f7abf",
+      "declared_setting_labels_detected": [
+        "Bloom",
+        "Bloom Offset",
+        "Bloom Radius",
+        "Bloom Strength",
+        "Blur",
+        "Blur Radius",
+        "Shadow",
+        "Shadow Strength"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ScoreboardModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "ca8c77449a640d815ddcc3e3922b6aa94b5fd9c62996ef5b00f1f7cd1b9c968d",
+      "declared_setting_labels_detected": [
+        "Center Text",
+        "Custom Font",
+        "Remove Scoreboard",
+        "Scoreboard Style",
+        "Smart Y",
+        "Y Offset",
+        "Yuri Rect"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/SessionInfoModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "0e9feb5c0e4837b8eff8c89c1cd7850e04fe2067d9100f5bf035d960ad3dd974",
+      "declared_setting_labels_detected": [
+        "Mode",
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/ShaderESPModule.java": {
+      "classification": "native-implementation",
+      "native_id": "shaderesp",
+      "donor_sha256": "2607300a1bfa92a4ae5e9610bcb090f34f26095d759e2e6861fd4ac7479fe89f",
+      "declared_setting_labels_detected": [
+        "Mode"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ShaderESPModule.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/SkeletonsModule.java": {
+      "classification": "native-implementation",
+      "native_id": "skeletons",
+      "donor_sha256": "c5c7b0d2019e5096deb343b3d36df9731910127ebae712f99872118bc36a63ff",
+      "declared_setting_labels_detected": [
+        "Render Self",
+        "Skeletons Width",
+        "Use Client Colors"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/SkinChangerModule.java": {
+      "classification": "deferred",
+      "native_id": null,
+      "donor_sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+      "declared_setting_labels_detected": [
+        "Custom URL",
+        "Skin",
+        "Slim",
+        "URL"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "unimplemented deferred feature"
+    },
+    "render/TargetESPModule.java": {
+      "classification": "native-implementation",
+      "native_id": "targetesp",
+      "donor_sha256": "5c1f09a0c8584eba32a2592ab5036df69448c85ebbbe13d27265509c26504304",
+      "declared_setting_labels_detected": [
+        "Image Mode",
+        "Mark Mode",
+        "Only Players"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/TargetHudModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "3404d6a6e23cb82affbd0fc699e8b21d8ce115035223b84ae48fe0e0a248051a",
+      "declared_setting_labels_detected": [
+        "Follow Offset",
+        "Follow Target",
+        "Grid",
+        "Mode",
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/TrajectoriesModule.java": {
+      "classification": "native-implementation",
+      "native_id": "trajectories",
+      "donor_sha256": "4cd3b3dd6d156f07b1d9fb105531ca6e4e1243e7eac3747a8f7b6bf38405d66f",
+      "declared_setting_labels_detected": [],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "completion_status": "requirement-level completeness remains unproven"
+    },
+    "render/WatermarkModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "832644d6ac1bd75f1feae971daad7c4b8ffe4e026d1f3008eb80946cf6db72c5",
+      "declared_setting_labels_detected": [
+        "Client Name",
+        "FPS",
+        "Ping",
+        "Protocol",
+        "TPS",
+        "Time",
+        "Type"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    },
+    "render/YuriChatModule.java": {
+      "classification": "excluded-client-ui",
+      "native_id": "",
+      "donor_sha256": "fd43abeac041d6a066880b39f92a8690e09f50ea21d5da646ecef1fd41155932",
+      "declared_setting_labels_detected": [
+        "Use Custom Font"
+      ],
+      "setting_label_extraction_is_not_a_complete_specification": true,
+      "source_candidates": [],
+      "completion_status": "presentation excluded by the keep-native-UI instruction"
+    }
+  },
+  "deferred_requirement_notes": {
+    "Insults": {
+      "status": "unimplemented",
+      "source_sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+      "trigger": "Source KillEventManager remembers the last attacked living entity and emits when it disappears from loadedEntityList; Insults filters players. This is removal detection, not proof of a kill.",
+      "modes": "Normal or Hypixel; Hypixel server routing chooses /shout for configured uppercase sidebar game strings, otherwise /ac.",
+      "native_requirements": "World-bound attack/removal tracking, typed mode, native chat submission and cleanup; no donor manager/event bus."
+    },
+    "Keybind Info": {
+      "status": "unimplemented",
+      "source_sha256": "87b512bb21a07bd9d55ec957a322ac013ede3d2bd7a2b9b9ceb2c100bea953d8",
+      "filter": "Enabled modules excluding itself, bound key, key-name length exactly one; case-insensitive label order.",
+      "animation": "Frame delta clamped to 0.1 seconds, lerp factor min(1, delta*12), fade retirement below 0.001; 10px slide.",
+      "native_requirements": "Native fonts/theme/drag/config/GL ownership while retaining rows, key labels, empty state and animation behavior."
+    },
+    "Skin Changer": {
+      "status": "unimplemented",
+      "source_sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+      "settings": "Slim true, Custom URL false, five named presets (default Bombies), custom URL; reset local profile textures on enable/change/disable.",
+      "integration": "Donor SkinManager selects local session profile by name and supplies replacement SKIN metadata/model; native account skin hooks are being added by the separate active task and must be reviewed for reuse after stabilization.",
+      "native_requirements": "Native lifecycle/client-thread texture invalidation and asynchronous texture delivery; no donor SkinManager/client architecture."
+    }
+  }
+}

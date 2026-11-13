@@ -1,0 +1,42 @@
+name: Build and tests
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: build-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Java 8 compiler and test runtime
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+      - name: Record Java 8 toolchain
+        run: echo "PERIHELION_JAVA8_HOME=$JAVA_HOME" >> "$GITHUB_ENV"
+      - name: Install Gradle runtime
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Test and verify distribution
+        run: ./gradlew --no-daemon -Dorg.gradle.java.installations.paths="$PERIHELION_JAVA8_HOME" clean check assemble
+      - name: Upload mod and verification reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Perihelion-${{ github.sha }}
+          retention-days: 14
+          path: |
+            forge/build/libs/Perihelion-*.jar
+            forge/build/reports/distribution.txt
+            core/build/reports/tests/
+            forge/build/reports/tests/
+          if-no-files-found: warn

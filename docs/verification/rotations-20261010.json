@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-10",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1754320,
+    "sha256": "66205b2e7a1551d14fbe6ccb553cf438c7b45eff258ce8429d632478986c7f7e"
+  },
+  "build": {
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew check assemble --offline",
+    "passed": true,
+    "core": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 64,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runs": {
+    "forge": {
+      "run": "forge/run-smoke-forge-_5as2zy2",
+      "logSha256": "02eda1d1f0caef0030c99ddb635d49307e70fa9f96bf2d748a9c80efe7ddbd3e",
+      "passed": true,
+      "artifactSha256": "66205b2e7a1551d14fbe6ccb553cf438c7b45eff258ce8429d632478986c7f7e",
+      "rotationChecks": 100,
+      "controlChecks": 51,
+      "moduleLifecycleChecks": 364,
+      "gameplayChecks": 139,
+      "deepGameplayChecks": 125,
+      "qualityGameplayChecks": 56,
+      "renderChecks": 55,
+      "productionHudChecks": 55,
+      "guiChecks": 103,
+      "networkChecks": 46,
+      "ultraSafeImpossibleFace": {
+        "medianMs": 4.884792,
+        "maxMs": 19.034833
+      },
+      "blockEspMaxRangeFirstTick": {
+        "medianMs": 1.076833,
+        "maxMs": 1.919875
+      },
+      "unexpectedErrors": [],
+      "knownAndInjectedErrorLines": 161,
+      "shutdownSubscriptions": 0,
+      "shutdownQueuedTasks": 0,
+      "worldUnloadRejoinPassed": true
+    },
+    "optifine": {
+      "run": "forge/run-smoke-optifine-k9tzfqbn",
+      "logSha256": "1b85e85a5b9292c318d2cd822c0ac391dc26bee8c9417ca2248c1b35c7b4a661",
+      "passed": true,
+      "artifactSha256": "66205b2e7a1551d14fbe6ccb553cf438c7b45eff258ce8429d632478986c7f7e",
+      "rotationChecks": 100,
+      "controlChecks": 51,
+      "moduleLifecycleChecks": 364,
+      "gameplayChecks": 139,
+      "deepGameplayChecks": 125,
+      "qualityGameplayChecks": 56,
+      "renderChecks": 55,
+      "productionHudChecks": 55,
+      "guiChecks": 103,
+      "networkChecks": 46,
+      "ultraSafeImpossibleFace": {
+        "medianMs": 5.116291,
+        "maxMs": 21.67375
+      },
+      "blockEspMaxRangeFirstTick": {
+        "medianMs": 0.745708,
+        "maxMs": 0.798708
+      },
+      "unexpectedErrors": [],
+      "knownAndInjectedErrorLines": 161,
+      "shutdownSubscriptions": 0,
+      "shutdownQueuedTasks": 0,
+      "worldUnloadRejoinPassed": true
+    }
+  },
+  "coverage": {
+    "independentMovementComparisons": 22500,
+    "movingScaffoldCases": 18,
+    "staticScaffoldModes": 4,
+    "staticScaffoldSwapModes": 2,
+    "staticScaffoldRayModes": 3,
+    "actualLocalBucketAndWebPrediction": true,
+    "lookBeforeInteractions": true,
+    "actualLocalPlayerRendererPitch": true,
+    "sameWalkingOwnerRequired": true,
+    "nativeAuraSlowMovementAndSprintJumps": true,
+    "sourceArchiveOriginalFiles": 342
+  },
+  "limits": [
+    "Local native game/renderer and packet-submission fixtures; no authenticated multiplayer proof.",
+    "No guarantee of server acceptance, successful damage prevention, latency behavior or server-specific module equivalence.",
+    "Packet buffering/filtering can delay submitted movement independently; no server receipt acknowledgement is inferred.",
+    "No gameplay FPS claim from microbenchmarks."
+  ],
+  "backup": {
+    "path": ".backups/before-rotations-20260930-021758",
+    "archiveSha256": "e72f4d747eb8d8ebd133ccee1d3c134e5a9e7cc7de0d29dd4015ef915309a506",
+    "helper": "scripts/restore-rotations.py"
+  }
+}

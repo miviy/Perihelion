@@ -1,0 +1,306 @@
+{
+  "date": "2026-09-28",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifact_sha256": "3da12fd1038bc55e133999066379c406e2abc1f0b370fa3b1694b4c756a00b9b",
+  "artifact_bytes": 1666169,
+  "build_command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew check --offline",
+  "unit_tests": {
+    "core": {
+      "tests": 147,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "coverage": {
+    "donor_definitions": 86,
+    "native_mappings": 65,
+    "excluded_presentation_definitions": 21,
+    "gameplay_modules": 77,
+    "production_definitions": 78,
+    "scaffold_bridge_slot_ray_combinations": 24,
+    "ultra_safe_reference_scenarios": 8,
+    "deterministic_ray_box_comparisons": 20000
+  },
+  "runtime": {
+    "forge": {
+      "log": "forge/run-smoke-forge-spechkx5/launch.log",
+      "result": "forge/run-smoke-forge-spechkx5/result.json",
+      "launch_manifest": "forge/run-smoke-forge-spechkx5/launch-manifest.json",
+      "log_sha256": "d51cc61b0a6ed6714e927e86fa338d276cdd386f6daf2bedadcbeabd44509948",
+      "artifact_sha256": "3da12fd1038bc55e133999066379c406e2abc1f0b370fa3b1694b4c756a00b9b",
+      "passed": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "355833c9e4b1316887febb6031cd1cb79c0fcd0cb04343a085638d550a71e071",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "c327803ee43268349128b805757e6cf425b78a8c281ea93ce8aaecb7eeade706",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "assertions": {
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "shared_controls": 30,
+        "gui": 52
+      },
+      "performance_ms": {
+        "ultraSafeImpossibleFace": {
+          "median": 13.858125,
+          "maximum": 39.36525,
+          "calls": 7
+        },
+        "blockEspMaxRangeFirstTick": {
+          "median": 1.912458,
+          "maximum": 2.624917,
+          "calls": 7
+        }
+      },
+      "shutdown_markers_present": true
+    },
+    "optifine_m5": {
+      "log": "forge/run-smoke-optifine-8gz3cocq/launch.log",
+      "result": "forge/run-smoke-optifine-8gz3cocq/result.json",
+      "launch_manifest": "forge/run-smoke-optifine-8gz3cocq/launch-manifest.json",
+      "log_sha256": "419b34a78b8169c0c2d1fdcb1cdf192896fd9af99c3ebe32b81adc80d1c7d3eb",
+      "artifact_sha256": "3da12fd1038bc55e133999066379c406e2abc1f0b370fa3b1694b4c756a00b9b",
+      "passed": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "2b96ec59fbba9717997b4a7a333ff11f546247d5be078cbaeda15e8bc164780f",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "c327803ee43268349128b805757e6cf425b78a8c281ea93ce8aaecb7eeade706",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "assertions": {
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "shared_controls": 30,
+        "gui": 52
+      },
+      "performance_ms": {
+        "ultraSafeImpossibleFace": {
+          "median": 10.270584,
+          "maximum": 33.535375,
+          "calls": 7
+        },
+        "blockEspMaxRangeFirstTick": {
+          "median": 1.5245,
+          "maximum": 1.996583,
+          "calls": 7
+        }
+      },
+      "shutdown_markers_present": true,
+      "independent_shutdown_report": [
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    }
+  },
+  "earlier_incomplete_final_artifact_runs": [
+    {
+      "log": "forge/run-smoke-optifine-zzg2bier/launch.log",
+      "result": "forge/run-smoke-optifine-zzg2bier/result.json",
+      "launch_manifest": "forge/run-smoke-optifine-zzg2bier/launch-manifest.json",
+      "log_sha256": "bf408c57512c00c2d0a536e1dcbb3b930a95d80d211f318bea51a9cebf38e737",
+      "artifact_sha256": "3da12fd1038bc55e133999066379c406e2abc1f0b370fa3b1694b4c756a00b9b",
+      "passed": false,
+      "exit_code": 0,
+      "timed_out": false,
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "355833c9e4b1316887febb6031cd1cb79c0fcd0cb04343a085638d550a71e071",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "c327803ee43268349128b805757e6cf425b78a8c281ea93ce8aaecb7eeade706",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "assertions": {
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "shared_controls": 30,
+        "gui": 52
+      },
+      "performance_ms": {
+        "ultraSafeImpossibleFace": {
+          "median": 13.89125,
+          "maximum": 44.590334,
+          "calls": 7
+        },
+        "blockEspMaxRangeFirstTick": {
+          "median": 2.068583,
+          "maximum": 2.311083,
+          "calls": 7
+        }
+      },
+      "shutdown_markers_present": false
+    },
+    {
+      "log": "forge/run-smoke-optifine-futm1bpu/launch.log",
+      "result": "forge/run-smoke-optifine-futm1bpu/result.json",
+      "launch_manifest": "forge/run-smoke-optifine-futm1bpu/launch-manifest.json",
+      "log_sha256": "f93f7b45bb9a45743d9200775197dfa2dd5e9e33778ee4c5361d673e0ac58a0a",
+      "artifact_sha256": "3da12fd1038bc55e133999066379c406e2abc1f0b370fa3b1694b4c756a00b9b",
+      "passed": false,
+      "exit_code": 0,
+      "timed_out": false,
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "355833c9e4b1316887febb6031cd1cb79c0fcd0cb04343a085638d550a71e071",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "c327803ee43268349128b805757e6cf425b78a8c281ea93ce8aaecb7eeade706",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "assertions": {
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "shared_controls": 30,
+        "gui": 52
+      },
+      "performance_ms": {
+        "ultraSafeImpossibleFace": {
+          "median": 18.840167,
+          "maximum": 68.751375,
+          "calls": 7
+        },
+        "blockEspMaxRangeFirstTick": {
+          "median": 2.022791,
+          "maximum": 2.581708,
+          "calls": 7
+        }
+      },
+      "shutdown_markers_present": false
+    }
+  ],
+  "baseline": {
+    "run": {
+      "log": "forge/run-smoke-forge-p1cqr_3x/launch.log",
+      "result": "forge/run-smoke-forge-p1cqr_3x/result.json",
+      "launch_manifest": "forge/run-smoke-forge-p1cqr_3x/launch-manifest.json",
+      "log_sha256": "2465d65a0596279d872fd5dc57efb7c1b8ab668ab1e783370599ae9675b3e8b9",
+      "artifact_sha256": "00efda5fdcbff064a488095ba36d2188c0d8d7fedf40c55aef9c4ef8b6cf4b0f",
+      "passed": false,
+      "exit_code": 0,
+      "timed_out": false,
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "355833c9e4b1316887febb6031cd1cb79c0fcd0cb04343a085638d550a71e071",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "3822ac79e4a6dd98ad4763c5a49c9ec1fb271501ab6d2f599444056d751f3741",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "c327803ee43268349128b805757e6cf425b78a8c281ea93ce8aaecb7eeade706",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "assertions": {
+        "deep_gameplay": null,
+        "gameplay": null,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "shared_controls": 30,
+        "gui": null
+      },
+      "performance_ms": {
+        "ultraSafeImpossibleFace": {
+          "median": 30.860208,
+          "maximum": 50.1525,
+          "calls": 7
+        }
+      },
+      "shutdown_markers_present": true
+    },
+    "reproduced": [
+      "Aura dead target between prepare and action",
+      "Aura removed target between prepare and action",
+      "Aura screen opened between prepare and action",
+      "Aura weapon restriction invalidated between phases",
+      "Aura missing held item during active item use null-pointer exception",
+      "Shared placement out of reach after planning"
+    ]
+  },
+  "donors": {
+    "Arsenic": {
+      "revision": "d6f3a3d40a6d3f14826a42002abf343c61c46ecb",
+      "clean": true
+    },
+    "OpenMyau-Plus": {
+      "revision": "52c8492c68ed14a0dd6137d0c21f912c463af8d9",
+      "clean": true
+    },
+    "Project-Coolware": {
+      "revision": "29d1e0974a49f81e829ab12ecbeada0c145f0d1a",
+      "clean": true
+    },
+    "Yuri": {
+      "revision": "0a4bd400784ef529d238311de5ce867e815794e2",
+      "clean": true
+    }
+  },
+  "backup": {
+    "archive": ".backups/before-deep-audit-20260927-224355/source.tar.gz",
+    "sha256": "17eaf10cf91f651436d799084b051298cc39be029d9104cb2f1237821ddcc1d4",
+    "original_files": 285,
+    "rollback_script": "scripts/restore-deep-audit.py",
+    "rollback_verification": {
+      "passed": true,
+      "isolated_copy": ".backups/rollback-verification-gwwkw3ks",
+      "affected_files": 23,
+      "modified_files": 14,
+      "added_files": 9,
+      "dry_run_passed": true,
+      "later_edit_refusal_passed": true,
+      "original_hashes_restored": true,
+      "additions_removed": true,
+      "affected_file_checkpoint_verified": true,
+      "real_source_unchanged": true
+    }
+  },
+  "limits": [
+    "Local packaged synthetic fixtures, not authenticated multiplayer or server bypass proof.",
+    "Not exhaustive across every module setting, input sequence, support geometry, tower mode, GPU or shader pack.",
+    "Native adaptations and donor wiring defects prevent a claim of universal packet-for-packet equality.",
+    "Performance samples are seven synchronous calls, not FPS benchmarks or a time deadline; workload and warm-up vary.",
+    "Two earlier OptiFine runs omitted shutdown output despite normal exit. Final checks pass without changing launcher criteria; the earlier cause remains unconfirmed.",
+    "Rollback preserves source only; rebuild after reverting."
+  ]
+}

@@ -1,0 +1,681 @@
+{
+  "schemaVersion": 1,
+  "modules": {
+    "antibot": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "tablist-check": true,
+        "check-valid-name": true,
+        "check-age": true,
+        "check-latency": true,
+        "fov-check": true,
+        "max-fov": 90
+      }
+    },
+    "antifireball": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "antivoid": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla",
+        "distance": 5
+      }
+    },
+    "aura": {
+      "enabled": false,
+      "binding": {
+        "device": "KEYBOARD",
+        "code": 19
+      },
+      "settings": {
+        "targets": [
+          "players",
+          "hostiles",
+          "teammates",
+          "invisibles"
+        ],
+        "mode": "single",
+        "seek-range": 6.0,
+        "simulate-mouse-clicks": true,
+        "attack-range": 3.0,
+        "swing-range": 6.0,
+        "block-range": 6.0,
+        "min-cps": 18.8,
+        "max-cps": 20.0,
+        "auto-block": "fake",
+        "only-block-if-hurt": false,
+        "block-on-hurt-ticks": 4,
+        "through-walls": false,
+        "rotations": "normal",
+        "min-rotation-speed": 5.5,
+        "max-rotation-speed": 8.0,
+        "body-ease": 0.2,
+        "ml-ease": 0.2,
+        "ray-cast": true,
+        "move-fix": "silent",
+        "keep-sprint": false,
+        "hypixel-keep-sprint": false,
+        "auto-disable": true
+      }
+    },
+    "autoarmor": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "delay": 150,
+        "stop-when-moving": false,
+        "inventory-only": false
+      }
+    },
+    "autoextinguish": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "autopot": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "health": 15,
+        "delay": 0,
+        "max-aim-ticks": 10
+      }
+    },
+    "autoprojectile": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "target-range": 10.0,
+        "swap-mode": "server"
+      }
+    },
+    "autoserver": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "modes": [
+          "register",
+          "auto_play"
+        ],
+        "password": "yuri420",
+        "double-password": true
+      }
+    },
+    "autoswap": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "sneak-only": true,
+        "swap-mode": "client",
+        "swap-back": true
+      }
+    },
+    "backtrack": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "min-range": 2.0,
+        "max-range": 6.0,
+        "max-delay": 80.0,
+        "only-kill-aura": true
+      }
+    },
+    "beddefender": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "range": 5.0,
+        "place-delay": 80,
+        "speed": 100.0,
+        "rotation-tolerance": 35.0,
+        "swing": true,
+        "move-fix": true
+      }
+    },
+    "bedwarsutility": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "notify-sword": true,
+        "include-stone-swords": false,
+        "notify-armor": true
+      }
+    },
+    "blink": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "constant",
+        "delay": 20,
+        "cancel-received-packets": true
+      }
+    },
+    "bowaimbot": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "range": 80,
+        "through-walls": false
+      }
+    },
+    "breaker": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "legit",
+        "range": 3.0,
+        "auto-tool": true,
+        "visual-swing": true,
+        "move-fix": true,
+        "whitelist": true
+      }
+    },
+    "criticals": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "packet",
+        "on-ground-check": true
+      }
+    },
+    "derp": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "client",
+        "pitch": 90.0,
+        "rotation-speed": 1.0,
+        "move-fix": true
+      }
+    },
+    "disabler": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "eagle": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "delay": 50,
+        "block-check": true,
+        "direction-check": false,
+        "sneak-check": true
+      }
+    },
+    "fastbreak": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "speed": 15,
+        "delay": 0
+      }
+    },
+    "fastuse": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "speed": 15,
+        "food-items": true,
+        "potion-items": true,
+        "bow-items": true
+      }
+    },
+    "flight": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "motion",
+        "motion-speed": 0.9
+      }
+    },
+    "friends": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mid-click-add": true
+      }
+    },
+    "hitselect": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "inputfixes": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "invmove": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "inventory": "vanilla",
+        "chest": "vanilla"
+      }
+    },
+    "fastplace": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "delay": 0,
+        "allow-blocks": true,
+        "allow-projectiles": false
+      }
+    },
+    "lagrange": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "lag",
+        "min-range": 3.5,
+        "max-range": 4.2,
+        "min-delay": 50,
+        "max-delay": 200,
+        "delay-teleports": true,
+        "delay-velocity": true,
+        "delay-entity-movements": true,
+        "only-with-kill-aura": true
+      }
+    },
+    "longjump": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "fireball": true,
+        "fireball-mode": "legit",
+        "delay": 400
+      }
+    },
+    "manager": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "instant": false,
+        "inv-only": true,
+        "send-inv-packets": true,
+        "not-moving": false,
+        "swap-blocks": true,
+        "drop-archery": false,
+        "move-arrows": true,
+        "drop-food": false,
+        "drop-shears": true,
+        "manage-weapon": true,
+        "manage-pickaxe": true,
+        "manage-axe": true,
+        "manage-shovel": true,
+        "manage-bow": true,
+        "manage-block": true,
+        "manage-gapple": true,
+        "manage-potion": true,
+        "manage-clutch": true,
+        "manage-projectile": false,
+        "delay": 120,
+        "weapon-slot": 1,
+        "pickaxe-slot": 2,
+        "axe-slot": 3,
+        "shovel-slot": 4,
+        "bow-slot": 5,
+        "block-slot": 6,
+        "gapple-slot": 7,
+        "potion-slot": 8,
+        "clutch-slot": 9,
+        "projectile-slot": 9
+      }
+    },
+    "minigameaim": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "game": "zombie",
+        "silent": true,
+        "show-prediction": true,
+        "show-fov": true,
+        "auto-heal": true,
+        "auto-revive": true,
+        "auto-ammo": false,
+        "hud": true,
+        "prediction-scale": 1.0,
+        "prediction-ticks": 2,
+        "delay": 4,
+        "buffer": 3,
+        "fov": 90.0,
+        "health": 3,
+        "aimbot-mode": "auto_fire",
+        "hitbox": "hitscan_head",
+        "priority": "closest",
+        "range": 4.5,
+        "rotation-speed": 10.0
+      }
+    },
+    "nofall": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla"
+      }
+    },
+    "noslow": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla",
+        "food-items": true,
+        "potion-items": true,
+        "sword-items": true,
+        "bow-items": true
+      }
+    },
+    "phase": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "normal"
+      }
+    },
+    "refill": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "auto-close": true
+      }
+    },
+    "regen": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "minimum-health": 15,
+        "speed": 20
+      }
+    },
+    "safewalk": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "scaffold": {
+      "enabled": false,
+      "binding": {
+        "device": "KEYBOARD",
+        "code": 48
+      },
+      "settings": {
+        "mode": "telly",
+        "hypixel-larp": true,
+        "hypixel-telly": true,
+        "telly-straight": 6,
+        "telly-diagonal": 4,
+        "telly-jump-down": 1,
+        "rotations": "randomized",
+        "randomized-speed-min": 7.0,
+        "randomized-speed-max": 10.0,
+        "min-rotation": 10.0,
+        "max-rotation": 10.0,
+        "place-delay": 0,
+        "ray-cast": "strict",
+        "swap-mode": "client",
+        "sprint": "none",
+        "tower": "none",
+        "tower-move": true,
+        "move-fix": true,
+        "auto-jump": false,
+        "keep-y": true,
+        "sneak": false,
+        "sneak-every": 1,
+        "safe-walk": false,
+        "expand": 0.0,
+        "block-counter": true,
+        "auto-disable": false
+      }
+    },
+    "speed": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla",
+        "speed": 0.9
+      }
+    },
+    "sprint": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "cancel-invis": true
+      }
+    },
+    "stasis": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {}
+    },
+    "stealer": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "instant": false,
+        "steal-delay": 50,
+        "min-delay": 5,
+        "max-delay": 5,
+        "steal-trash-items": false,
+        "auto-close": true,
+        "auto-disable": false,
+        "distance-scaling": false,
+        "distance-multiplier": 15,
+        "position-scaling": false,
+        "position-multiplier": 5,
+        "miss-click": false,
+        "miss-click-chance": 15,
+        "miss-recovery-min": 80,
+        "miss-recovery-max": 220
+      }
+    },
+    "step": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla",
+        "height": 1.0
+      }
+    },
+    "targetstrafe": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "range": 1.0,
+        "hold-jump": false
+      }
+    },
+    "tickbase": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "delay": 20,
+        "only-with-kill-aura": true
+      }
+    },
+    "timer": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "constant",
+        "time-amount": 1.0,
+        "time-amount-2": 1.0
+      }
+    },
+    "velocity": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "legit",
+        "ignore-on-fire": true,
+        "velocity-x-modifier": 0.0,
+        "velocity-y-modifier": 1.0,
+        "velocity-z-modifier": 0.0,
+        "intave-mode": "intave_latest"
+      }
+    },
+    "wtap": {
+      "enabled": true,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "chance": 100
+      }
+    },
+    "waterwalk": {
+      "enabled": false,
+      "binding": {
+        "device": "NONE",
+        "code": 0
+      },
+      "settings": {
+        "mode": "vanilla"
+      }
+    }
+  }
+}

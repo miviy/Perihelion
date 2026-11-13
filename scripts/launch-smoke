@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# Uses Python only to prepare an isolated Java 8 launch; no accounts are read.
+set -eu
+script_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+if [ -n "${PERIHELION_PYTHON:-}" ]; then
+    exec "$PERIHELION_PYTHON" "$script_dir/launch-smoke.py" "$@"
+fi
+if [ -x "$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3" ]; then
+    exec "$HOME/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3" "$script_dir/launch-smoke.py" "$@"
+fi
+exec python3 "$script_dir/launch-smoke.py" "$@"

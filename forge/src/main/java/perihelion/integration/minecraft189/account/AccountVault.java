@@ -1,0 +1,135 @@
+package perihelion.integration.minecraft189.account;
+
+import com.google.gson.*;
+import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.security.SecureRandom;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.GCMParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
+/** AES-GCM at rest with an owner-only local key, atomic replacement and a last-good backup. */
+public final class AccountVault {
+  public static final int MAX_BYTES = 16 * 1024 * 1024;
+  private final Path directory, file, key;
+  private final SecureRandom random = new SecureRandom();
+  private boolean writable;
+
+  public AccountVault(Path directory) {
+    this.directory = directory;
+    file = directory.resolve("accounts.vault");
+    key = directory.resolve("accounts.key");
+  }
+
+  public synchronized JsonObject load() throws Exception {
+    Files.createDirectories(directory);
+    restrict(directory, true);
+    if (!Files.exists(file)) {
+      if (Files.exists(file.resolveSibling("accounts.vault.bak")))
+        throw new IOException(
+            "Account file is missing; restore accounts.vault.bak before continuing.");
+      keyBytes();
+      writable = true;
+      JsonObject empty = new JsonObject();
+      empty.addProperty("version", 1);
+      return empty;
+    }
+    byte[] bytes = readBounded(file);
+    if (bytes.length < 32 || bytes[0] != 'P' || bytes[1] != 'A' || bytes[2] != 1)
+      throw new IOException("Unrecognized account file. Existing files were preserved.");
+    Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+    cipher.init(
+        Cipher.DECRYPT_MODE,
+        new SecretKeySpec(keyBytes(), "AES"),
+        new GCMParameterSpec(128, Arrays.copyOfRange(bytes, 3, 15)));
+    cipher.updateAAD(new byte[] {'P', 'A', 1});
+    JsonObject json =
+        new JsonParser()
+            .parse(new String(cipher.doFinal(bytes, 15, bytes.length - 15), StandardCharsets.UTF_8))
+            .getAsJsonObject();
+    if (!json.has("version") || json.get("version").getAsInt() != 1)
+      throw new IOException("Unsupported account file version. Existing files were preserved.");
+    writable = true;
+    return json;
+  }
+
+  public synchronized void save(JsonObject json) throws Exception {
+    if (!writable) throw new IOException("Account storage is locked after a load failure.");
+    byte[] plain = json.toString().getBytes(StandardCharsets.UTF_8);
+    if (plain.length > MAX_BYTES - 64) throw new IOException("Account file is too large.");
+    byte[] nonce = new byte[12];
+    random.nextBytes(nonce);
+    Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+    cipher.init(
+        Cipher.ENCRYPT_MODE,
+        new SecretKeySpec(keyBytes(), "AES"),
+        new GCMParameterSpec(128, nonce));
+    cipher.updateAAD(new byte[] {'P', 'A', 1});
+    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+    bytes.write(new byte[] {'P', 'A', 1});
+    bytes.write(nonce);
+    bytes.write(cipher.doFinal(plain));
+    Path temporary = Files.createTempFile(directory, "accounts-", ".tmp");
+    try {
+      restrict(temporary, false);
+      try (FileChannel out = FileChannel.open(temporary, StandardOpenOption.WRITE)) {
+        ByteBuffer buffer = ByteBuffer.wrap(bytes.toByteArray());
+        while (buffer.hasRemaining()) out.write(buffer);
+        out.force(true);
+      }
+      if (Files.exists(file)) {
+        Path backup = file.resolveSibling("accounts.vault.bak");
+        Files.copy(file, backup, StandardCopyOption.REPLACE_EXISTING);
+        restrict(backup, false);
+      }
+      try {
+        Files.move(
+            temporary, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+      } catch (AtomicMoveNotSupportedException e) {
+        Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING);
+      }
+    } finally {
+      Files.deleteIfExists(temporary);
+    }
+  }
+
+  private byte[] keyBytes() throws Exception {
+    if (!Files.exists(key)) {
+      if (Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak")))
+        throw new IOException(
+            "Account key is missing. Restore accounts.key; no data was overwritten.");
+      byte[] bytes = new byte[16];
+      random.nextBytes(bytes);
+      try (OutputStream out = Files.newOutputStream(key, StandardOpenOption.CREATE_NEW)) {
+        restrict(key, false);
+        out.write(bytes);
+      }
+    }
+    restrict(key, false);
+    byte[] bytes = readBounded(key);
+    if (bytes.length != 16) throw new IOException("Invalid account key.");
+    return bytes;
+  }
+
+  private static void restrict(Path path, boolean directory) throws IOException {
+    try {
+      Files.setPosixFilePermissions(
+          path, PosixFilePermissions.fromString(directory ? "rwx------" : "rw-------"));
+    } catch (UnsupportedOperationException ignored) {
+      /* Windows relies on the user's profile ACL. */
+    }
+  }
+
+  public static byte[] readBounded(Path path) throws IOException {
+    if (!Files.isRegularFile(path) || Files.size(path) > MAX_BYTES)
+      throw new IOException("Choose a regular file under 16 MiB.");
+    try (InputStream in = Files.newInputStream(path)) {
+      return AccountHttp.read(in, MAX_BYTES);
+    }
+  }
+}

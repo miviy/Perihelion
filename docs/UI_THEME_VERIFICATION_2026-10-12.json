@@ -1,0 +1,346 @@
+{
+  "date": "2026-10-12",
+  "scope": "Shared native GUI, Configs, HUD editor, navigation and selectable HUD fonts",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "9d62aae7f8fb489b8271c4d727b9ed1b751a326a8ad54acb85b9e81738d60912",
+    "bytes": 1850718
+  },
+  "build": {
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon check assemble --offline",
+    "passed": true,
+    "tests": {
+      "core": {
+        "tests": 156,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "forge": {
+        "tests": 111,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "nativeRuns": {
+    "forge": {
+      "runDirectory": "forge/run-smoke-forge-fdqjj78_",
+      "passed": true,
+      "artifactSha256": "9d62aae7f8fb489b8271c4d727b9ed1b751a326a8ad54acb85b9e81738d60912",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "18006c484cbe9f967b86de18e8082e51902d7380395e0fe84a46f403a3c5d205",
+        "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "729b7e6e0883998557b0a2519abd03f789a2e178963541db820be989742ff7a2",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "d06413e678f65a3e931a94a4a7d4b6ef1a162ac60eec7d19e61d1f589dc608db",
+        "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "eaa006285f5875c00690a35d1e9618db638fac4f18d8a20a4f074231276d3915",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "984556ce47a716b59a9d0acac01a4fa87cc93cdd3c53df4d33226a92318c1bff",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "a8000ef49d5418447c5f649a1d259999af50b12b710252423406483a662e4f70",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "e02258abf4495ec07b23e79b514275a1c3f4d65af4db7d5c5e4e5fd412b191fa",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "checks": {
+        "uiTheme": 207,
+        "fonts": [
+          "Current",
+          "Minecraft",
+          "Monospace"
+        ],
+        "scales": [
+          1,
+          1.05
+        ],
+        "gui": 111,
+        "productionHud": 55,
+        "chatHud": 83,
+        "rotations": 296,
+        "scaffoldTerrain": 263,
+        "scaffoldTerrainCases": 72,
+        "combatFlow": 49,
+        "livePlayTicks": 125
+      },
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "unexpectedRuntimeSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "MixinApplyError": 0,
+        "MixinTransformerError": 0
+      },
+      "warnings": [
+        "[11:33:39] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[11:34:07] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "markers": [
+        "[11:33:41] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[11:33:42] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[11:33:42] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[11:33:45] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=241 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[11:33:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=false",
+        "[11:33:46] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ModuleHookProbe:run:349]: PERIHELION_SMOKE MODULES checks=376 PASS",
+        "[11:33:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.DeepGameplayProbe:run:99]: PERIHELION_SMOKE DEEP_GAMEPLAY checks=125 PASS",
+        "[11:33:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.QualityGameplayProbe:run:79]: PERIHELION_SMOKE QUALITY_GAMEPLAY checks=56 PASS",
+        "[11:33:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.Yuri13Probe:run:169]: PERIHELION_SMOKE YURI13 checks=98 PASS",
+        "[11:33:47] [Client thread/INFO] [STDOUT]: [perihelion.smoke.YuriLatestProbe:run:240]: PERIHELION_SMOKE YURI_LATEST checks=27 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CompatibilityQolProbe:run:146]: PERIHELION_SMOKE COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GameplayHookProbe:run:376]: PERIHELION_SMOKE GAMEPLAY checks=139 PASS",
+        "[11:33:49] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[11:33:53] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:223]: PERIHELION_SMOKE UI_THEME checks=207 fonts=3 scales=1,1.05 PASS",
+        "[11:33:54] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:404]: PERIHELION_SMOKE HUD_CHAT checks=83 PASS",
+        "[11:33:54] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:430]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=55",
+        "[11:33:59] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=1 distance=9.33998289236024 bridgeBlocks=8 PASS",
+        "[11:34:02] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=2 distance=9.33998299158094 bridgeBlocks=8 PASS",
+        "[11:34:02] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=328 PASS",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=268 worldEvents=12",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "captures": {
+        "docs/verification/ui-theme-20261012/forge-ui-configs-minecraft-fractional.png": "01269c063184b639845e559c46ab6c7dd984ba352ee963f18506b2dabf534e41",
+        "docs/verification/ui-theme-20261012/forge-ui-configs-minecraft.png": "fd0c4434df4936bbbd228fce49ca3c45add14512e15783c3e40193999c951d31",
+        "docs/verification/ui-theme-20261012/forge-ui-configs-mono-fractional.png": "7b730eacaaa563c6eecd862cb62914ef57f4adcaa17bb4d5e6f7294f643132db",
+        "docs/verification/ui-theme-20261012/forge-ui-configs-mono.png": "b15a11413d43869ee1984be7f9f57baff4c0428d4f66b5a744dcbd943a4ca0d2",
+        "docs/verification/ui-theme-20261012/forge-ui-configs-sans-fractional.png": "2e0538d60107518ec8fb2ec9d295cbdb0af486809273cfd4bc41c1a01bfdae85",
+        "docs/verification/ui-theme-20261012/forge-ui-configs-sans.png": "5f8d90544351fe96978a47d8ac2c1a150834f697145369e330f670f69721b9e3",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-minecraft-fractional.png": "066a612ee71f8599173f0f23d91d750a14e8070962f7f5dbdf758e4db0b57b49",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-minecraft.png": "54824ca82453706cd398fb94e70418fb7e1934f5d1901b862e29729b4ceb0253",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-mono-fractional.png": "3e893923705ef0ce609dda9748cac92fa262d95be28dc32222e7c67c65e3ad0f",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-mono.png": "500a82936fc2614b11abca097defe8d26a3948de76b489cbe12ce48114392d61",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-sans-fractional.png": "6f5fabe8a34b0fee2f7b7deb128771d5a31ebeca35ded15a1a5f07da1a854580",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-chat-sans.png": "d6c120bdb1decfb8bebfa8f0bc94f25832430129ae5ff6e4831c5c012520d0b3",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-minecraft-fractional.png": "e7467cef7a559a01d99f4411cb5b614decf4b93525c8c6a3a6fb2d61b28fe173",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-minecraft.png": "7bb524dc614f59a8bda6ebdcccc4f6904d41c8040b1aa7588551e9e7e572e013",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-mono-fractional.png": "9858f6f57cd29af752849c42b41801f6196b24f4e152c3078b737eaf6e317794",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-mono.png": "c3036a9a252d506463549f232f5e58918b1270f4229250a489af722fa1037a0c",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-sans-fractional.png": "9773f55d6cafb3327883409b364ef8a8e1c8e1b13c155b151af05d38bbb8cb21",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-editor-sans.png": "a225ac5934a80f098b7b03e78687ff77fe0fecce1e396d75e9fc2932e92d31ac",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-minecraft-fractional.png": "3dd4a27b99b605ed1c334b84a4be5f9baf837ab536b813c63c89b0deb5846615",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-minecraft.png": "7a76bb04715e61a901237aed6dafeceb410c8ec0c827301c3cb6802adbed7644",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-mono-fractional.png": "94542ff85056ea6773b3399e392def7bdda336b5c1e61065acabfabe5cc6e498",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-mono.png": "4aaed69f7092eae51f98ddedc69d8347df5f5180ec1ec70eca01e152a5238e06",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-sans-fractional.png": "b41f23ead72a6be51c88a9707b6481c56b20ea39c997694d444288a6d740b583",
+        "docs/verification/ui-theme-20261012/forge-ui-hud-elements-sans.png": "ebba6810b982e1965f345f317e321f5c1794ec95f43d369fa23b8dfef7c918d6",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-minecraft-fractional.png": "f9dae9f7e73510126f1b17599d102cfd84f60fbb482552afa1752ba5465cbf4b",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-minecraft.png": "c1a920c058f6c101aec87c4c96999eac76591692872cc9a2d4739566874793c6",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-mono-fractional.png": "cb2a7c2024f41718084ed9adc9257b9b3a05c61564fc4415e1bd1f8bb4795210",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-mono.png": "21d4db9b370b280063dd6e78eca029b82d51f10dea74b3838c86d2446c86bbde",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-sans-fractional.png": "54ce2f87bf54eba26db2d436743c461d4e4aecbb9a82284dd0a71a92849ebba7",
+        "docs/verification/ui-theme-20261012/forge-ui-modules-sans.png": "7a04c7c38b6fa52dda5bded34263e803afea457e58debc5d1fe955868a12b3e9"
+      }
+    },
+    "optifine": {
+      "runDirectory": "forge/run-smoke-optifine-2kocbwye",
+      "passed": true,
+      "artifactSha256": "9d62aae7f8fb489b8271c4d727b9ed1b751a326a8ad54acb85b9e81738d60912",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "18006c484cbe9f967b86de18e8082e51902d7380395e0fe84a46f403a3c5d205",
+        "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "729b7e6e0883998557b0a2519abd03f789a2e178963541db820be989742ff7a2",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "d06413e678f65a3e931a94a4a7d4b6ef1a162ac60eec7d19e61d1f589dc608db",
+        "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "eaa006285f5875c00690a35d1e9618db638fac4f18d8a20a4f074231276d3915",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "984556ce47a716b59a9d0acac01a4fa87cc93cdd3c53df4d33226a92318c1bff",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "a8000ef49d5418447c5f649a1d259999af50b12b710252423406483a662e4f70",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "e02258abf4495ec07b23e79b514275a1c3f4d65af4db7d5c5e4e5fd412b191fa",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "checks": {
+        "uiTheme": 207,
+        "fonts": [
+          "Current",
+          "Minecraft",
+          "Monospace"
+        ],
+        "scales": [
+          1,
+          1.05
+        ],
+        "gui": 111,
+        "productionHud": 55,
+        "chatHud": 83,
+        "rotations": 296,
+        "scaffoldTerrain": 263,
+        "scaffoldTerrainCases": 72,
+        "combatFlow": 49,
+        "livePlayTicks": 125
+      },
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "unexpectedRuntimeSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "MixinApplyError": 0,
+        "MixinTransformerError": 0
+      },
+      "warnings": [
+        "[11:32:26] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[11:32:53] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "markers": [
+        "[11:32:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[11:32:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[11:32:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[11:32:32] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=false",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ModuleHookProbe:run:349]: PERIHELION_SMOKE MODULES checks=376 PASS",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.DeepGameplayProbe:run:99]: PERIHELION_SMOKE DEEP_GAMEPLAY checks=125 PASS",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.QualityGameplayProbe:run:79]: PERIHELION_SMOKE QUALITY_GAMEPLAY checks=56 PASS",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.Yuri13Probe:run:169]: PERIHELION_SMOKE YURI13 checks=98 PASS",
+        "[11:32:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.YuriLatestProbe:run:240]: PERIHELION_SMOKE YURI_LATEST checks=27 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CompatibilityQolProbe:run:146]: PERIHELION_SMOKE COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GameplayHookProbe:run:376]: PERIHELION_SMOKE GAMEPLAY checks=139 PASS",
+        "[11:32:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[11:32:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:223]: PERIHELION_SMOKE UI_THEME checks=207 fonts=3 scales=1,1.05 PASS",
+        "[11:32:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:404]: PERIHELION_SMOKE HUD_CHAT checks=83 PASS",
+        "[11:32:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:430]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=55",
+        "[11:32:45] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=1 distance=9.339982876705903 bridgeBlocks=8 PASS",
+        "[11:32:48] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:111]: PERIHELION_SMOKE LIVE_BRIDGE phase=2 distance=9.339982935617968 bridgeBlocks=8 PASS",
+        "[11:32:48] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=328 PASS",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=267 worldEvents=12",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "captures": {
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-minecraft-fractional.png": "1f91eea81c95077ec3ec7bddb2e11e4f9e1c0c33aaa32c31e457ca67403a0382",
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-minecraft.png": "f458cf249b1302c3f9cfb301cdd65a7953ca6afd41148c7d54ac00cd089a56c5",
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-mono-fractional.png": "651a8a8b501d609f53652783f3b60b0d4fecba150b7674cb9998703c77bf0ab0",
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-mono.png": "b9095e59744be0a49aac39c07ec6b0e201c1c73439e2b28f6273711b155a97ec",
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-sans-fractional.png": "d2dbdb2feb7c775fd0e4b79915e662fbbdd1ebb34742edfbccb5f5d60f57c8ea",
+        "docs/verification/ui-theme-20261012/optifine-ui-configs-sans.png": "cf52fc0701a175f2be113e06df92552123bbc76f7795ab79640baf0bea4a0cb6",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-minecraft-fractional.png": "51c3fc7294f50a6530463e38b3b5de3053d7f77593a386b8525c13c2e7fa5cca",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-minecraft.png": "26b042de3e74a755bd7b74f35b08beda65f404b43eef1a46730a837fd24c8a4a",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-mono-fractional.png": "99ff495b6d08b92867f76db349a388c988ed7e6746b83f7310eead3488f03a8e",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-mono.png": "37a1ef97131a8910297253392793b13c6e98feb23e151c0cf0088bff95551070",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-sans-fractional.png": "edb0e49f73de0d5b13b1c2a998b6e2d0e2d9c472c2ead904a7999b423fe22fc9",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-chat-sans.png": "d7b4d2699f158bcae02b63c90d6e99493039392b019bab5f6a6392393b642acf",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-minecraft-fractional.png": "1de6e21b44ce4c4b5985157c952b611b0e358de8c70771ac750eeee450c4b183",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-minecraft.png": "0ce936391bfa3181a7a3d19816820c0bd6f5d48a8bb36ad630545994f0be36a4",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-mono-fractional.png": "978ccbf21e7de009811d52a69ba84cf5d4f9c85a03b0461ef7dcdaf4c4a4848b",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-mono.png": "1ae3654ca94d2862eaa49b8377533c9a27bc32ed622875bcbb7d28d9fd522e1b",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-sans-fractional.png": "44cc255d46573763fe3bb4b6aa0cac79f3adb281e7f08407fea64bf9776dbea8",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-editor-sans.png": "14d39e91f415a503a0da60520105fdbb5139aec2518f17ce72c13fd577c23cdb",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-minecraft-fractional.png": "1501a0507744760257ab3fa93d5b71eeb8237b081d935942352d0a40c5404fe9",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-minecraft.png": "812d68ff325f2552ac2f99a49116472d8a81997e5910f42685f172bb2f6d6835",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-mono-fractional.png": "705f83c4c3e26f4a000a843943a029e0478fddf21e060cdd3931cf2dc65092a9",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-mono.png": "a8a3d8b266e33d57332617fae469fc4b5f8b58ec14472c2a400d37c7aca77549",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-sans-fractional.png": "c93b3279f4eaa3aca5cbe1532504949383f180acc7730429bb432395bcd6e629",
+        "docs/verification/ui-theme-20261012/optifine-ui-hud-elements-sans.png": "f1cd6edf7c94be85d49b04da1389ff65cee07a8dd2656ff4f66a70e2827669b8",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-minecraft-fractional.png": "271b74030dec70f500c332c66892dee25d74ca48344b795b5f7df9abb3d2b489",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-minecraft.png": "669a2ae295b8ddfd46d96d30c3bc975a844a315541ae3fe559cebe5055118a01",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-mono-fractional.png": "334f16aa9cb70b02f41c4574aafc20cdadf77b4c8f858c9b85779b5448f0e286",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-mono.png": "2cb48af3686bbb315ddd7910c252ed7460ceb45205387b8dbf2ecd5b554012bf",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-sans-fractional.png": "e29b0aadc8053b44000b2faef56e6d056c4ced7fc73eb751e428a525fe910e18",
+        "docs/verification/ui-theme-20261012/optifine-ui-modules-sans.png": "37d49e467656ddf16c5a667698a792b87e3b0eaa81d40c60c157d59f26372ebe"
+      }
+    }
+  },
+  "sameFinalArtifactAndFixtureSources": true,
+  "donors": {
+    "Arsenic": {
+      "head": "d6f3a3d40a6d3f14826a42002abf343c61c46ecb",
+      "clean": true
+    },
+    "OpenMyau-Plus": {
+      "head": "52c8492c68ed14a0dd6137d0c21f912c463af8d9",
+      "clean": true
+    },
+    "Project-Coolware": {
+      "head": "29d1e0974a49f81e829ab12ecbeada0c145f0d1a",
+      "clean": true
+    },
+    "Yuri": {
+      "head": "6f5603e0c0eed253741bacdcd4135830c916602e",
+      "clean": true
+    }
+  },
+  "visualReview": {
+    "agent": "visual_review",
+    "readOnly": true,
+    "approved": true,
+    "reviewedCaptureRun": "forge/run-smoke-forge-s7r9h4o_",
+    "sameArtifactSha256": "9d62aae7f8fb489b8271c4d727b9ed1b751a326a8ad54acb85b9e81738d60912",
+    "references": "Local adjust_visuals screenshots; GUI blue header/charcoal panels and configurable lavender/salmon HUD",
+    "resolved": [
+      "shared compact controls",
+      "helper text contrast",
+      "default category overlap",
+      "Elements popup preview bleed-through"
+    ],
+    "finalResult": "Current, Minecraft and fractional Monospace labels clear, aligned and unclipped; no actionable visual defect"
+  },
+  "fixtureRepairs": [
+    {
+      "run": "forge/run-smoke-forge-5exvyx9e",
+      "issue": "Independent Aim Assist fixture used the live cursor with pause-mining enabled",
+      "repair": "Explicitly disable pause-mining for the independent aiming fixture"
+    },
+    {
+      "run": "forge/run-smoke-optifine-tmtftb_e",
+      "issue": "Randomized strict Scaffold timing assumed one exact convergence step",
+      "repair": "Bound randomized convergence to six additional motion steps; immediate deterministic checks and packet order retained"
+    },
+    {
+      "run": "forge/run-smoke-optifine-05f2wacc",
+      "issue": "Disposable world paused after losing desktop focus; UI and chat HUD checks passed but real movement remained zero",
+      "repair": "Disable pause-on-lost-focus in disposable SmokeProbe initialization; preserve actual movement/bridge assertions"
+    },
+    {
+      "issue": "Initial preset setup attempted update instead of create; late overlay observer had no callback telemetry",
+      "repair": "Use native preset create with guarded cleanup, and post real Forge Chat events to verify menu gating with unchanged history"
+    }
+  ],
+  "limitations": [
+    "Local packaged Forge/OptiFine integrated-world evidence only; no authenticated multiplayer/API or anti-cheat bypass proof",
+    "Current/Monospace family is resolved by the platform JRE; unsupported custom glyphs retain native Minecraft fallback",
+    "Fixture player names/stats in screenshots are test data"
+  ],
+  "rollback": {
+    "backup": ".backups/before-ui-theme-20261012-143341",
+    "sourceFiles": 418,
+    "archiveSha256": "cae3dba7a68a383140b34438a348f5b7a1957ff137b43e969a67dfe0c5d1b50a",
+    "contentVerifiedBeforeEdits": true,
+    "helper": "scripts/restore-ui-theme.py",
+    "dryRun": "passed",
+    "isolatedApply": "passed",
+    "isolatedLaterEditRefusal": "passed",
+    "unaffectedFilePreserved": "passed"
+  }
+}

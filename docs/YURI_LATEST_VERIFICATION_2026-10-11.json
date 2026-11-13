@@ -1,0 +1,172 @@
+{
+  "checked_at": "2026-10-11T21:20:54.170143-04:00",
+  "yuri_revision": "50d7322b85cb8de096241077ca3130e9e9715d20",
+  "native_adaptations_retained": true,
+  "coverage": {
+    "native-implementation": 63,
+    "deferred": 4,
+    "excluded-client-ui": 21
+  },
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1792381,
+    "sha256": "4981575cef33ab83c91c8f3f901119142cea42b2ac8709388d1e40c5f2918e04"
+  },
+  "unit": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 88,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "final_runs": [
+    {
+      "run": "forge/run-smoke-forge-xw0w0v7g",
+      "passed": true,
+      "exit_code": 0,
+      "variant": "forge",
+      "artifact_sha256": "4981575cef33ab83c91c8f3f901119142cea42b2ac8709388d1e40c5f2918e04",
+      "log_sha256": "e20f452e64ce48a2476d99b746eec7acadf33cd3d70dff93f14c22505601f6d5",
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "549a3aaf7f2aa856c7a03fa99ffb2709d24aa153f0dfb873aaf76277f98e0f3c",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "d7eaad9d2a3ee48b845a6b7776163801665f0eeaa07e1cf57603151343bf031c",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "444dd96ec7f8eb021e3b435742b96ad25bbb13019d7ac2ba4e3887f42eeb919b",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0f31423bc92648f1444f3b5a7b1796f37353293d9c5a3906a8576c616f1c6bbc",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "80f5f2633838184a76171b1489fa5c0b751e3dcdb4bcd4e55ce172b9d2c50249",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "268c685f9d8039e1e590648dce2dede988f8baad4e3d03e9c377c1d9c8f27747",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "4255145644ee77d6cd416f0ee21fa7b0728d0cac16bde1a4efeb41f296c18f13",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "f476e75f54e6d3c41b03a2576ac699357440c7f8a7f61fd66830758803d28063",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "markers": [
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "SCAFFOLD_TERRAIN checks=335 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=64 rawEvents=32 unbufferedEvents=30 PASS",
+        "ROTATIONS checks=274 PASS",
+        "] PASS scenario=full ticks=269 worldEvents=10",
+        "] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    },
+    {
+      "run": "forge/run-smoke-optifine-aamdg195",
+      "passed": true,
+      "exit_code": 0,
+      "variant": "optifine",
+      "artifact_sha256": "4981575cef33ab83c91c8f3f901119142cea42b2ac8709388d1e40c5f2918e04",
+      "log_sha256": "6e1198a792c7c9a3d78dc0eae098ab79106f72ffd0b289f0031f232515cdaf70",
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "549a3aaf7f2aa856c7a03fa99ffb2709d24aa153f0dfb873aaf76277f98e0f3c",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "d7eaad9d2a3ee48b845a6b7776163801665f0eeaa07e1cf57603151343bf031c",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "444dd96ec7f8eb021e3b435742b96ad25bbb13019d7ac2ba4e3887f42eeb919b",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0f31423bc92648f1444f3b5a7b1796f37353293d9c5a3906a8576c616f1c6bbc",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "80f5f2633838184a76171b1489fa5c0b751e3dcdb4bcd4e55ce172b9d2c50249",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "268c685f9d8039e1e590648dce2dede988f8baad4e3d03e9c377c1d9c8f27747",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "4255145644ee77d6cd416f0ee21fa7b0728d0cac16bde1a4efeb41f296c18f13",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "f476e75f54e6d3c41b03a2576ac699357440c7f8a7f61fd66830758803d28063",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "markers": [
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "SCAFFOLD_TERRAIN checks=335 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=64 rawEvents=32 unbufferedEvents=30 PASS",
+        "ROTATIONS checks=274 PASS",
+        "] PASS scenario=full ticks=265 worldEvents=10",
+        "] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    }
+  ],
+  "nonpassing_runs": [
+    {
+      "run": "forge/run-smoke-forge-a4m9bbbx",
+      "phase": "fixture compilation",
+      "reason": "Missing local reset helper in added probe; repaired."
+    },
+    {
+      "run": "forge/run-smoke-forge-p0qttwsc",
+      "phase": "gameplay",
+      "reason": "Auto Projectile prematurely restored slot for an unchanged creative stack; corrected sendUseItem return semantics."
+    },
+    {
+      "run": "forge/run-smoke-optifine-lp4ecfz7",
+      "exit_code": -6,
+      "all_assertions_and_cleanup_passed": true,
+      "reason": "Native SIGSEGV in libobjcMsgSend.dylib on macOS AppKit Thread during shutdown. Unchanged artifact rerun passed; broader native shutdown stability remains unproven.",
+      "crash_report": "forge/run-smoke-optifine-lp4ecfz7/hs_err_pid15863.log",
+      "crash_report_sha256": "4e8babd32fdcd74b9452d77e9100d08360259beccaaeac26f6fbf1312093284c"
+    }
+  ],
+  "backup": {
+    "path": ".backups/before-yuri-latest-20261011-205438",
+    "archive_sha256": "b48d34b2c9d01049651aa9526f0eec08713e16d6cee84258bcbc520f4ddbc468",
+    "members": 375
+  },
+  "donor_checkout": {
+    "revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+    "status": ""
+  },
+  "limits": [
+    "Inventories and unchanged donor sources do not prove every native mode equivalent.",
+    "No authenticated multiplayer or public-server bypass acceptance tested.",
+    "Earlier native AppKit shutdown failure retained despite a passing rerun."
+  ],
+  "source_script_sha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/control/MinecraftControls.java": "adceae60aa9e017158d91e1e9c5e56800d82e31931ee5ad17377d23eb086464b",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectilePacketGate.java": "6b11208b3c3e398e34e3549322b43e698727dbd1b0a66a60465ad2244f3c11b3",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MinigameAimModule.java": "30d6057d9538070bfed1df7b556c36b66431702438d362237828a81e14fffbc9",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java": "cb6fdff3688d3011761628ce3993228b284aea5558ad91220e6f8fc69623411b",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/LootPolicy.java": "1211fc768c679c9c933238c16a9b95735ee3043ee5423aa0ad251be5eb280c90",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GameplayModules.java": "ecd7fd2d60b6dedb8c10054314dd3cf01e25133b3b867cff7c1ecffca15d3c31",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "9a53a3746bf87d915834e4bb5c0b023aa43a0e23d404b52ea1197cd951502e27",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java": "4f495e8db8dbe66bcea285583ebc42c05058944083c0b3c0c79ad6005091af81",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java": "6a11115e5bd755ef5205c12d445da1b21ef637289532e8d33718d56ff2b118a7",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java": "47ac2c6cee48c201f2fde4270ec93fa1f13249c7114437fe7c0a35e5475335ca",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java": "b649c0ca4ed9d7a31adc94060175ef32894a45444237e32efb630e55e6769609",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HitSelectState.java": "a05a1a7ee170a2d28f9ce2b912f01fdc90f3a64ec494aee622e625be6fd5f513",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TellyTiming.java": "973b8a3abfb1e3f31777ecc414547c32af622ef2818984054ff46e562a371ed9",
+    "forge/src/test/java/perihelion/integration/minecraft189/module/BuiltinModulesTest.java": "71268d838a8989ed6b767096e78d3189eb524eda011692a6e432e8f80518f870",
+    "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/TellyTimingTest.java": "aed9fdc7120105520bb41a6fd700190a70e0c955db09ddc3ac26ac10de089790",
+    "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/ProjectilePacketGateTest.java": "b99937abcd9f966d411b1048fcc451d5d5406b26185f3105fee6b37bada91ae3",
+    "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/HitSelectStateTest.java": "c27c93eef39ab91077c672f5ecc520c816eaee636f9037837ea63face50194b5",
+    "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "268c685f9d8039e1e590648dce2dede988f8baad4e3d03e9c377c1d9c8f27747",
+    "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "f476e75f54e6d3c41b03a2576ac699357440c7f8a7f61fd66830758803d28063",
+    "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17",
+    "scripts/restore-yuri-latest.py": "dc57b815a6fcebb772b66c94714cb4dbdcc44338c02a87be8be6cb40883274bf",
+    "scripts/yuri-latest-audit.py": "94bdd6b0c45442a8e772038bc5e9bbf872b5bffd991c51eff6980a7bdcb20015",
+    ".gitignore": "bd37e80bf5f99537fdcc49a4439c736a1c292651ad9d0b33b3112287fc6652de"
+  },
+  "rollback_verification": {
+    "dry_run": true,
+    "isolated_apply": true,
+    "later_edit_refusal": true,
+    "workspace_preserved": true,
+    "affected_files": 31
+  }
+}

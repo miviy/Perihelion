@@ -1,0 +1,148 @@
+{
+  "issue": "Scaffold commits placement on POST",
+  "correction": "PRE placement before the next walking packet, using the identical previous submitted rotation owner/value.",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1793896,
+    "sha256": "5c86f3b86fff4309937ab6070e627fc8af5af4dc411491a9e457469a209cb995"
+  },
+  "unit": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 88,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "final_runs": [
+    {
+      "run": "forge/run-smoke-forge-f0ierfkr",
+      "variant": "forge",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "5c86f3b86fff4309937ab6070e627fc8af5af4dc411491a9e457469a209cb995",
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "b6df9d474d6d8a51934d76c2398205b26ddb2c93dd1b71ecea837434f5271f08",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0f31423bc92648f1444f3b5a7b1796f37353293d9c5a3906a8576c616f1c6bbc",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "80f5f2633838184a76171b1489fa5c0b751e3dcdb4bcd4e55ce172b9d2c50249",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "44cd0dee45f66627962570f45c5bae78e5c1c3cec13e75de64041096c12dce2f",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "log_sha256": "f5e7342e6f6448bd4f0a3c12214671125581b63522d86eb914f06c2853f4608e",
+      "markers": [
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=296 PASS",
+        "LIVE_PLAY ticks=125 frames=318 PASS",
+        "] STALE_ENTITY_PACKETS checks=2 PASS",
+        "] STALE_WORLD_PACKETS checks=3 PASS",
+        "] PASS scenario=full ticks=268 worldEvents=10",
+        "] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    },
+    {
+      "run": "forge/run-smoke-optifine-w3vwiccf",
+      "variant": "optifine",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "5c86f3b86fff4309937ab6070e627fc8af5af4dc411491a9e457469a209cb995",
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "b6df9d474d6d8a51934d76c2398205b26ddb2c93dd1b71ecea837434f5271f08",
+        "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0f31423bc92648f1444f3b5a7b1796f37353293d9c5a3906a8576c616f1c6bbc",
+        "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+        "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "80f5f2633838184a76171b1489fa5c0b751e3dcdb4bcd4e55ce172b9d2c50249",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "fe8012547429a9ee5a77040542586d2fb1773559a89d99810761dcd75827aeab",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+        "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "44cd0dee45f66627962570f45c5bae78e5c1c3cec13e75de64041096c12dce2f",
+        "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+        "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+        "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "5e4f271ef68d9af75e592a16c555c908b305e07cf32f96db1ff4f22a4d4fcf17"
+      },
+      "log_sha256": "f5f378921a9f454c63a652296289ce3977d11c4faad77bdeea5fbf85b63849d5",
+      "markers": [
+        "YURI13 checks=98 PASS",
+        "YURI_LATEST checks=27 PASS",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=296 PASS",
+        "LIVE_PLAY ticks=125 frames=323 PASS",
+        "] STALE_ENTITY_PACKETS checks=2 PASS",
+        "] STALE_WORLD_PACKETS checks=3 PASS",
+        "] PASS scenario=full ticks=267 worldEvents=10",
+        "] STOPPED subscriptions=0 queued=0 config=present"
+      ]
+    }
+  ],
+  "changed_source_script_sha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/mixin/ClientPacketMixin.java": "579a7dc6cc085c25f70233493507d88b76ae44dac203a7a4bf5a3f316eff97e1",
+    "forge/src/main/java/perihelion/integration/minecraft189/event/PlayerControlEvent.java": "386c9985d8b669e6d8a37be816fdb79bc84d1e4748cb1d4ad5988937f32f799f",
+    "forge/src/main/java/perihelion/integration/minecraft189/control/MinecraftControls.java": "cf2fb1212b3723cf3a3de40666744e13b24b76c086efd7862e3e956c0d41261b",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/Placement.java": "b9c0a63df85ccecfc1a6e2570f87d3db9dc4bd0c1bb33b7efd2ddf5f17e69dc4",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java": "fdf335d94af79b39b61dc531fb42a84973ee392b682eabea7654bdcfd47a9a08",
+    "forge/src/main/java/perihelion/bootstrap/forge/ForgeClientAdapter.java": "4047a911535eaa68857436586e33bb02128f527fe12f23447fd907b071783534",
+    "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "44cd0dee45f66627962570f45c5bae78e5c1c3cec13e75de64041096c12dce2f",
+    "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "8e1534c9a2271d6971ac4c0866912d38f9298ef2c5b39c3668bb666b0bfb3cba",
+    "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "232829d6e5e1524dca8cb9cb4772ae58d1227cd00b0b6ba20504710bbeeaf6ff",
+    "scripts/restore-scaffold-pre.py": "7eeb0a1e3aa704b11fcf47c932625a2bb0ecb281a02ebcde00f19441be3ae1a3",
+    "scripts/smoke/SmokeProbe.java": "b6df9d474d6d8a51934d76c2398205b26ddb2c93dd1b71ecea837434f5271f08"
+  },
+  "investigation_runs": [
+    {
+      "run": "forge/run-smoke-forge-4d9bs3gd",
+      "passed": false,
+      "reason": "Late correction ACK and inherited short Fake Lag delay mixed with buffer test. Drained ACK at peer and explicitly set delay; passing diagnostic rerun used unchanged production artifact."
+    },
+    {
+      "run": "forge/run-smoke-optifine-bu_gz3pc",
+      "all_assertions_passed": true,
+      "runtime_health": "unexpected unload-time NPEs",
+      "observed_failures": {
+        "handleMultiBlockChange": 2,
+        "handleSetSlot": 1
+      },
+      "correction": "Added existing post-thread-handoff identity guard to both paths and deterministic old-handler deliveries."
+    }
+  ],
+  "backup": {
+    "backup": ".backups/before-scaffold-pre-20261011-215933",
+    "archive_sha256": "b9f5f8a8368a50efb2471d450b641a0a985158bcabe20416574ba775f622d4cf"
+  },
+  "rollback_dry_run_passed": true,
+  "donor_status": "",
+  "limitations": [
+    "No connection or retest on the user external test server.",
+    "Screenshot does not identify the exact server checker.",
+    "Local packet-order correctness does not establish every anti-cheat accepts the module."
+  ]
+}

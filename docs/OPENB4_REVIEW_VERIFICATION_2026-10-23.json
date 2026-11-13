@@ -1,0 +1,96 @@
+{
+  "donor": {
+    "revision": "3d63944cc79be890c013cc79e5ed92d3533b48a5",
+    "reference": "../donor_clients/OpenB4/OpenB4",
+    "readOnly": true,
+    "trackedCheckoutClean": true
+  },
+  "artifact": {
+    "path": "forge/build/verified/openb4-review-20261023/Perihelion-0.1.0.jar",
+    "sha256": "f3d7fcffc8d35fffd2be04c56cff8a6d1e74ef4c0ded780772b78a314a03ec94",
+    "bytes": 12733623
+  },
+  "modulesCorrected": 11,
+  "moduleRegistryCount": 96,
+  "userSettingsAdded": 0,
+  "dependenciesAdded": 0,
+  "existingDefaultsPreserved": true,
+  "junit": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 406,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "b4UnitTests": 52,
+  "packagedRuns": {
+    "forge": {
+      "directory": "forge/run-smoke-forge-z5sgl3lt",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "artifactSha256": "f3d7fcffc8d35fffd2be04c56cff8a6d1e74ef4c0ded780772b78a314a03ec94",
+      "shutdownClean": true,
+      "b4Checks": {
+        "building": 50,
+        "combatNetwork": 55,
+        "movementBedWars": 96,
+        "manualCombat": 180
+      },
+      "b4TotalChecks": 381,
+      "fixtureSourcesMatchCurrent": true,
+      "fixtureSourceCount": 54,
+      "launchManifestSha256": "5f738dd6f66f367fe94bd9e092de49e23f64649ace3732eaf07ba949b16b7e7c",
+      "resultSha256": "a38748045451426e835e2cad08682c4a0bec1324f5ae37b5abebf1b51e89d7f1",
+      "logSha256": "c26b3b66bf93cbdbbd9c7a57a82ddbc67ddf36d8e7ed845736f07c6261698eb3"
+    },
+    "optifine": {
+      "directory": "forge/run-smoke-optifine-tg3bhwzu",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "artifactSha256": "f3d7fcffc8d35fffd2be04c56cff8a6d1e74ef4c0ded780772b78a314a03ec94",
+      "shutdownClean": true,
+      "b4Checks": {
+        "building": 50,
+        "combatNetwork": 55,
+        "movementBedWars": 96,
+        "manualCombat": 180
+      },
+      "b4TotalChecks": 381,
+      "fixtureSourcesMatchCurrent": true,
+      "fixtureSourceCount": 54,
+      "launchManifestSha256": "fbfb046252ebdc5589a02a1651d3b23f8e5057c879049bf77849071224c47423",
+      "resultSha256": "464afc464949cd3255cb67272c88028a477b57b876d2d7aef7781f743069205c",
+      "logSha256": "a0ddf62dee6db6c14f30f5e78bf046a378d09c03c70307a233fe27fc79bfe765",
+      "optifineSha256": "2739760a70fca6ae5c7dc817bcc6283f18f55e38fa23778da7f387a6b724b2c4"
+    }
+  },
+  "rollback": {
+    "affectedFilesTested": 47,
+    "added": 12,
+    "originalArchiveSha256": "aaacc776a95db1977499ab0fdced740bac13a9013838f59084e96e5b27413fe5",
+    "dryRun": true,
+    "isolatedRestore": true,
+    "laterEditRefused": true,
+    "corruptArchiveRefused": true,
+    "unrelatedPreserved": true,
+    "liveSourcePreserved": true
+  },
+  "manualClientReceipt": ".backups/openb4-review-manual.json",
+  "evidenceLimits": [
+    "Selected B4 policies and branches; not every donor settings combination.",
+    "Native ownership, connection/world guards and bounded packet queues remain.",
+    "No live Grim Simulation or authenticated Hypixel shop/server validation.",
+    "Intentional fault-injection and legacy platform warnings occur in smoke logs; clean shutdown is verified separately."
+  ]
+}

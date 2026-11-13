@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 60 432 368" fill="currentColor" role="img" aria-labelledby="title desc">
+  <title id="title">Perihelion — folded light</title>
+  <desc id="desc">One continuous accretion mass surrounds an empty circular shadow. An upper lens folds into the mass through an off-center tapered passage.</desc>
+  <path fill-rule="evenodd" d="
+    M54 306
+    C119 291 126 262 130 221
+    C143 134 194 76 266 76
+    C346 76 397 137 409 219
+    C425 215 438 209 452 204
+    L446 230
+    C430 264 422 299 403 325
+    C363 384 311 410 249 408
+    C174 406 109 365 54 306 Z
+
+    M362 235
+    A92 92 0 1 1 178 235
+    A92 92 0 1 1 362 235 Z
+
+    M54 306
+    C150 282 143 185 195 135
+    C226 104 269 108 300 126
+    C258 120 223 135 199 168
+    C171 199 161 259 139 285
+    C114 301 81 308 54 306 Z
+  "/>
+</svg>

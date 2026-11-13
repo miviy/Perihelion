@@ -1,0 +1,116 @@
+{
+  "date": "2026-09-30",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1747854,
+    "sha256": "8fd9bc3f5c418bcf4ac52b0c1105a56b2658de7e5a94e4f292b61d6cb3891f51"
+  },
+  "build": {
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew check assemble --offline",
+    "passed": true,
+    "coreTests": 155,
+    "forgeTests": 62,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "runs": {
+    "forge": {
+      "run": "forge/run-smoke-forge-p1419hx4",
+      "passed": true,
+      "artifactSha256": "8fd9bc3f5c418bcf4ac52b0c1105a56b2658de7e5a94e4f292b61d6cb3891f51",
+      "productionHudChecks": 55,
+      "guiChecks": 103,
+      "moduleLifecycleChecks": 364,
+      "gameplayChecks": 139,
+      "deepGameplayChecks": 125,
+      "qualityGameplayChecks": 56,
+      "renderChecks": 55,
+      "controlChecks": 30,
+      "networkChecks": 46,
+      "hudRender100Nanoseconds": 191142083,
+      "renderDataResamples": 0,
+      "shutdownSubscriptions": 0,
+      "shutdownQueuedTasks": 0,
+      "unexpectedNpeMissingMemberOrOom": false,
+      "screenshots": {
+        "production": {
+          "path": "docs/verification/hud-adjust-production-forge.png",
+          "sha256": "b7836436c901cf56ba70557f45bab187315ba5a47a119daebc8ba18f549820cc"
+        },
+        "reference-layout": {
+          "path": "docs/verification/hud-adjust-reference-layout-forge.png",
+          "sha256": "5d0e732881122e93e24c7b81bfb70aa046b9b50a7eef30e0748906b1fef5d7ea"
+        },
+        "in-world": {
+          "path": "docs/verification/hud-adjust-in-world-forge.png",
+          "sha256": "e58d4703e8980db9014f811d06c5bcb9f93df0828ac62c30358566f26107c091"
+        },
+        "editor": {
+          "path": "docs/verification/hud-adjust-editor-forge.png",
+          "sha256": "96eb793c8ac015b915c04c0b17e80758a378daec1ea513b806d1a163aa3373c7"
+        }
+      }
+    },
+    "optifine": {
+      "run": "forge/run-smoke-optifine-v5y7q1ey",
+      "passed": true,
+      "artifactSha256": "8fd9bc3f5c418bcf4ac52b0c1105a56b2658de7e5a94e4f292b61d6cb3891f51",
+      "productionHudChecks": 55,
+      "guiChecks": 103,
+      "moduleLifecycleChecks": 364,
+      "gameplayChecks": 139,
+      "deepGameplayChecks": 125,
+      "qualityGameplayChecks": 56,
+      "renderChecks": 55,
+      "controlChecks": 30,
+      "networkChecks": 46,
+      "hudRender100Nanoseconds": 111627208,
+      "renderDataResamples": 0,
+      "shutdownSubscriptions": 0,
+      "shutdownQueuedTasks": 0,
+      "unexpectedNpeMissingMemberOrOom": false,
+      "screenshots": {
+        "production": {
+          "path": "docs/verification/hud-adjust-production-optifine.png",
+          "sha256": "8241796c8ad1c5fab2b2060dbc9f3bd2a38a600780c5f48b3b288dff466b3a94"
+        },
+        "reference-layout": {
+          "path": "docs/verification/hud-adjust-reference-layout-optifine.png",
+          "sha256": "782857ee28c7f23b2b085d8fb67367c9733c25a67a6d079d016cbe059b3da19d"
+        },
+        "in-world": {
+          "path": "docs/verification/hud-adjust-in-world-optifine.png",
+          "sha256": "a42ce86d68d1cad613554868875b3be77c5a06b6a00dfa963e2cfa880667986a"
+        },
+        "editor": {
+          "path": "docs/verification/hud-adjust-editor-optifine.png",
+          "sha256": "77d59f6ecb37e7e48b1302cd1b29cb125353f52c882da3a5b3b54af33c3df1c7"
+        }
+      }
+    }
+  },
+  "appearance": [
+    "existing GUI Sans atlas",
+    "neutral translucent panels without header rules",
+    "65px category navigator",
+    "11px rows",
+    "224px player table",
+    "left stepped module outline",
+    "full armor percentages",
+    "default effects above footer"
+  ],
+  "limits": [
+    "Exact screenshot font unknown; no pixel-identity claim.",
+    "External statistics cells intentionally blank; no invented K/D, WS, FK/D or W/L.",
+    "In-world captures use the real renderer with synthetic local players and temporarily hidden fixture chat.",
+    "Synthetic draw timing includes driver costs, is not FPS or authenticated multiplayer evidence.",
+    "Legacy Forge signature/Twitch/audio messages and intentional fault injections remain in the logs."
+  ],
+  "rollback": {
+    "snapshot": ".backups/before-hud-adjust-20260929-212153",
+    "archiveSha256": "1d0fd2f0f018102bf6f36c2f868cacf668f7a5a4df11546a20b17584cbd9d4f1",
+    "helper": "scripts/restore-hud-adjust.py",
+    "verification": "See snapshot rollback-verification.json"
+  }
+}

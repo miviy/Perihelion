@@ -1,0 +1,270 @@
+{
+  "recorded_at_utc": "2026-10-18T11:11:16.752649+00:00",
+  "donor": {
+    "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+    "checkout_clean": true,
+    "read_only": true
+  },
+  "scope": {
+    "donor_definitions": 102,
+    "native_mappings": 77,
+    "presentation_exclusions": 22,
+    "deferred": [
+      "Insults",
+      "Skin Changer",
+      "Keybind Info"
+    ],
+    "production_modules_including_clickgui": 95,
+    "ui": "Perihelion menus and HUD retained"
+  },
+  "repairs": [
+    {
+      "module": "Back Track",
+      "issue": "Live legacy/timed policy switches could strand an infinite-deadline FIFO head.",
+      "change": "Retire old capture state and flush original-session FIFO before reacquisition; preserve deadlines for same-policy delay edits.",
+      "donor_difference": "Intentionally fixes a donor edge-case stall."
+    },
+    {
+      "module": "Hit Select",
+      "issue": "Evaluation ran during player input rather than before entity/player updates.",
+      "change": "Evaluate once at ClientTickEvent.START; END does not reevaluate."
+    },
+    {
+      "module": "Aura",
+      "issue": "Late ticks retained old cooldown phase and own Hypixel release added another blocked attack tick.",
+      "change": "Reset due cooldown from current monotonic time; truncate configured intervals; initial CPS delay; exact own-release packet identity exemption while foreign C08/C07 traffic still gates attacks."
+    }
+  ],
+  "build": {
+    "status": "pass",
+    "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 2218947,
+    "sha256": "bcaafb767a532200a7163a13bc13d2755e2abd723e0681e4ddd782126a62283f",
+    "check_log": ".backups/yuri-followup-check.log",
+    "checks": [
+      "check",
+      "verifyMixinRuntime",
+      "verifyJar"
+    ],
+    "gradle_java": 17,
+    "test_and_game_java": 8,
+    "environment": "Exact cached pinned Mixin selected through .backups/yuri131-pinned-mixin.init.gradle; runtime checksum verification retained; macOS desktop access for font tests and OpenGL."
+  },
+  "unit_tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 220,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "unit_total": 376,
+  "packaged_smokes": {
+    "forge": {
+      "status": "pass",
+      "result": "forge/run-smoke-forge-e3wwvce0/result.json",
+      "manifest": "forge/run-smoke-forge-e3wwvce0/launch-manifest.json",
+      "launch_log": "forge/run-smoke-forge-e3wwvce0/launch.log",
+      "artifact_sha256": "bcaafb767a532200a7163a13bc13d2755e2abd723e0681e4ddd782126a62283f",
+      "fixture_sources_verified": 30,
+      "markers": [
+        "[PERIHELION_SMOKE] VERSION value=0.1.0",
+        "[PERIHELION_SMOKE] INITIALIZED scenario=full",
+        "[19:51:04] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[PERIHELION_SMOKE] TITLE stableTicks=20",
+        "[PERIHELION_SMOKE] PROFILE phase=title tickIntervals=18 tickMeanMs=49.13252544444445 tickMaxMs=67.362917 frameIntervals=27 frameMeanMs=32.591606481481485 frameMaxMs=34.752833 liveHeapBytes=496366448",
+        "[19:51:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[19:51:05] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CREATING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=1 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[19:51:09] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[19:51:11] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=true",
+        "[PERIHELION_SMOKE] WORLD generation=2 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=3 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=4 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=5 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=6 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=7 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=8 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=9 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=10 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=11 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=12 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=13 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=14 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=15 ready=true connection=SINGLEPLAYER",
+        "[19:51:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=341 panels=7 fonts=4",
+        "[19:51:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:242]: [PERIHELION_SMOKE] HUD_RENDER_100_NS=246254750 snapshots=0 players=8 armor=4",
+        "[19:51:18] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[PERIHELION_SMOKE] WORLD generation=16 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=17 ready=true connection=SINGLEPLAYER",
+        "[19:51:27] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] JOINED generation=17 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=first-world tickIntervals=38 tickMeanMs=51.830928710526315 tickMaxMs=204.253042 frameIntervals=91 frameMeanMs=19.242854395604393 frameMaxMs=84.428791 liveHeapBytes=617361584",
+        "[PERIHELION_SMOKE] WORLD generation=18 ready=false connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] WORLD generation=19 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=19",
+        "[PERIHELION_SMOKE] REJOINING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=20 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[PERIHELION_SMOKE] REJOINED generation=20 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=second-world tickIntervals=38 tickMeanMs=58.44261731578948 tickMaxMs=87.274416 frameIntervals=125 frameMeanMs=17.766142335999998 frameMaxMs=75.918458 liveHeapBytes=487842872",
+        "[PERIHELION_SMOKE] PROFILE cumulativeCoreDispatches=31065 cumulativeCoreDispatchNanos=1536396177 clientThreadAllocatedBytes=5292101104 subscriptionsAfterProbeClose=3 queued=0 includesMinecraftAndProbe=true",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=254 worldEvents=20",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    },
+    "optifine": {
+      "status": "pass",
+      "result": "forge/run-smoke-optifine-exmvd06t/result.json",
+      "manifest": "forge/run-smoke-optifine-exmvd06t/launch-manifest.json",
+      "launch_log": "forge/run-smoke-optifine-exmvd06t/launch.log",
+      "artifact_sha256": "bcaafb767a532200a7163a13bc13d2755e2abd723e0681e4ddd782126a62283f",
+      "fixture_sources_verified": 30,
+      "markers": [
+        "[PERIHELION_SMOKE] VERSION value=0.1.0",
+        "[PERIHELION_SMOKE] INITIALIZED scenario=full",
+        "[19:52:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[PERIHELION_SMOKE] TITLE stableTicks=20",
+        "[PERIHELION_SMOKE] PROFILE phase=title tickIntervals=18 tickMeanMs=37.958432888888886 tickMaxMs=66.44075 frameIntervals=21 frameMeanMs=32.170757904761906 frameMaxMs=34.708625 liveHeapBytes=389200464",
+        "[19:52:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:socketRoundTrip:370]: [PERIHELION_SMOKE] PASS loopbackPacketCodec tcp=true authenticated=false world=false",
+        "[19:52:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.NetworkHookProbe:run:86]: [PERIHELION_SMOKE] PASS networkHooks checks=46 transformedClass=net.minecraft.network.NetworkManager",
+        "[PERIHELION_SMOKE] CREATING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=1 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=FIRST_WORLD nonblocking=true",
+        "[19:52:31] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[19:52:33] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:387]: [PERIHELION_SMOKE] PASS sharedControls checks=51 inputFocused=true",
+        "[PERIHELION_SMOKE] WORLD generation=2 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=3 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=4 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=5 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=6 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=7 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=8 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=9 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=10 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=11 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=12 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=13 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] WORLD generation=14 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=15 ready=true connection=SINGLEPLAYER",
+        "[19:52:39] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:449]: [PERIHELION_SMOKE] GUI PASS checks=341 panels=7 fonts=4",
+        "[19:52:39] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:242]: [PERIHELION_SMOKE] HUD_RENDER_100_NS=236627250 snapshots=0 players=8 armor=4",
+        "[19:52:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[PERIHELION_SMOKE] WORLD generation=16 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] WORLD generation=17 ready=true connection=SINGLEPLAYER",
+        "[19:52:48] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:611]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] JOINED generation=17 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=first-world tickIntervals=38 tickMeanMs=53.07926205263158 tickMaxMs=84.653292 frameIntervals=116 frameMeanMs=17.00589655172414 frameMaxMs=45.583375 liveHeapBytes=469238776",
+        "[PERIHELION_SMOKE] WORLD generation=18 ready=false connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] WORLD generation=19 ready=false connection=DISCONNECTED",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] UNLOADED generation=19",
+        "[PERIHELION_SMOKE] REJOINING isolated flat world",
+        "[PERIHELION_SMOKE] WORLD generation=20 ready=true connection=SINGLEPLAYER",
+        "[PERIHELION_SMOKE] CONFIG saved=true reloaded=true phase=SECOND_WORLD nonblocking=true",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion status",
+        "[PERIHELION_SMOKE] COMMAND consumed=/perihelion invalid-smoke-command",
+        "[PERIHELION_SMOKE] REJOINED generation=20 stableTicks=40",
+        "[PERIHELION_SMOKE] PROFILE phase=second-world tickIntervals=38 tickMeanMs=55.64996052631579 tickMaxMs=68.506459 frameIntervals=128 frameMeanMs=16.5068014375 frameMaxMs=19.166208 liveHeapBytes=367380256",
+        "[PERIHELION_SMOKE] PROFILE cumulativeCoreDispatches=34427 cumulativeCoreDispatchNanos=1332926130 clientThreadAllocatedBytes=5373238152 subscriptionsAfterProbeClose=3 queued=0 includesMinecraftAndProbe=true",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=258 worldEvents=20",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] SHUTDOWN stdoutError=false"
+      ]
+    }
+  },
+  "source_inventory": {
+    "current": "102 definitions: 77 native, 22 presentation exclusions, 3 deferred",
+    "historical_snapshot": "341 Java fingerprints and 88 prior release definitions verified",
+    "inventory_is_not_runtime_parity": true
+  },
+  "rollback": {
+    "followup_backup": ".backups/before-yuri-followup-20261017-192836",
+    "members_verified": 638,
+    "sha256": "2fb4e90841b4cd4efb2d0d87d44f66e3010aae80bbf3b9d5e4ba5cd33ef1fff2",
+    "full_update_backup": ".backups/before-yuri-131-20261017-100824",
+    "full_update_helper": "scripts/restore-yuri131.py",
+    "dry_run": "pass",
+    "later_edit_refusal": "pass",
+    "isolated_restore": "pass",
+    "affected_files": 107,
+    "unchanged_build_files_preserved": 2,
+    "recovery_checkpoint_hashes": "pass"
+  },
+  "development_attempts": [
+    {
+      "run": "forge/run-smoke-forge-ttz2jogr",
+      "status": "failed_fixture_tick_ledger",
+      "reason": "Gameplay, TCP, UI, HUD and live bridging probes passed. Synthetic START/END events from the Hit Select phase test affected the global Forge/core tick comparison; added exact measured synthetic-event accounting without relaxing the native bridge assertion."
+    },
+    {
+      "run": "forge/run-smoke-forge-3kyttd4u",
+      "status": "failed_fixture_ledger",
+      "reason": "New gameplay and TCP assertions all passed; the strict global event ledger omitted the new Hypixel TCP events. Added a scoped event counter instead of weakening the equality check."
+    },
+    {
+      "run": "forge/run-smoke-forge-zqdloger",
+      "status": "failed_fixture",
+      "reason": "Handoff target setup did not establish an eligible rotation."
+    },
+    {
+      "run": "forge/run-smoke-forge-g8ll7gtj",
+      "status": "failed_fixture",
+      "reason": "PLAYERS-only fixture excluded white-named same-team target; explicitly enabled TEAMMATES for ownership test."
+    },
+    {
+      "run": "forge/run-smoke-forge-lfm0ae3z",
+      "status": "failed_fixture",
+      "reason": "Integrated-server local channel intentionally skips raw multiplayer callbacks; moved Hypixel packet-window cases to serialized localhost TCP."
+    },
+    {
+      "status": "failed_smoke_compile",
+      "reason": "Smoke sources compile without game classes; replaced direct Packet-returning accessor use with reflection."
+    },
+    {
+      "run": "forge/run-smoke-forge-t4y7smuh",
+      "status": "stopped_invalid_fixture",
+      "exit_code": 143,
+      "reason": "Nested foreign-send test violated RawHookBridge prohibition on recursive sends. Fault logging recursively rendered suppressed/cause chains; stopped this isolated run. Replaced invalid case with foreign C07 between walking and PRE; raw callback contract unchanged. Shutdown failure in this aborted run is not counted as a pass."
+    }
+  ],
+  "limits": [
+    "Local transformed-client, real codec/TCP and unit evidence; no authenticated multiplayer or anti-cheat acceptance test.",
+    "No exact two-client runtime equivalence or exhaustive mode/setting matrix established.",
+    "Previously documented native submitted-rotation boundary, bounds/session checks, targeting policy and deferred features remain.",
+    "Raw packet callbacks prohibit recursive sends; unsupported recursive test was removed, not enabled in production.",
+    "Engine/FML/OpenAL warnings remain separate from module cleanup; see raw logs."
+  ],
+  "historical_artifact_only": true,
+  "superseded_by": "YURI_131_SECOND_CHECK_2026-10-18.json"
+}

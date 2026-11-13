@@ -1,0 +1,162 @@
+import groovy.json.JsonSlurper
+import java.security.MessageDigest
+import java.util.jar.JarFile
+
+// Inspect the actual remapped distribution rather than trusting intermediate task success.
+tasks.register('verifyJar') {
+    group = 'verification'
+    description = 'Verifies the remapped mod, bytecode target, mixin mappings and dependency boundaries.'
+    dependsOn tasks.named('remapJar')
+    def artifact = tasks.named('remapJar').flatMap { it.archiveFile }
+    inputs.file artifact
+    inputs.property 'version', project.version
+    def report = layout.buildDirectory.file('reports/distribution.txt')
+    outputs.file report
+    doLast {
+        def file = artifact.get().asFile
+        new JarFile(file).withCloseable { jar ->
+            def names = jar.entries().collect { it.name }
+            def require = { boolean valid, String message ->
+                if (!valid) throw new GradleException(message)
+            }
+            require(names.size() == names.toSet().size(), 'Duplicate entries in distribution')
+            [
+                'perihelion/core/lifecycle/ClientRuntime.class',
+                'perihelion/core/control/SharedControls.class',
+                'perihelion/integration/minecraft189/control/MinecraftControls.class',
+                'perihelion/bootstrap/forge/PerihelionMod.class',
+                'perihelion/bootstrap/forge/PerihelionVersion.class',
+                'perihelion/bootstrap/forge/PerihelionLoadingPlugin.class',
+                'perihelion/integration/minecraft189/mixin/NetworkManagerMixin.class',
+                'perihelion/integration/minecraft189/mixin/MinecraftLifecycleMixin.class',
+                'perihelion/integration/minecraft189/mixin/ChatCommandMixin.class',
+                'perihelion/integration/minecraft189/mixin/KeyBindingMixin.class',
+                'perihelion/integration/minecraft189/mixin/PlayerControllerMixin.class',
+                'perihelion/integration/minecraft189/mixin/PlayerControlsMixin.class',
+                'perihelion/integration/minecraft189/compat/ControlMixinPlugin.class',
+                'perihelion/integration/minecraft189/compat/MotionHookStatus.class',
+                'perihelion/integration/minecraft189/mixin/CameraEffectsMixin.class',
+                'perihelion/integration/minecraft189/mixin/PlayerFovMixin.class',
+                'META-INF/licenses/Yuri.txt',
+                'assets/perihelion/rotationpresets/legit.csv',
+                'assets/perihelion/rotationpresets/ai.csv',
+                'perihelion/integration/minecraft189/module/gameplay/GameplayModules.class',
+                'perihelion/integration/minecraft189/network/PacketBufferScope.class',
+                'org/spongepowered/asm/launch/MixinBootstrap.class',
+                'org/spongepowered/asm/lib/ClassReader.class',
+                'mixins.perihelion.json', 'mixins.perihelion.refmap.json', 'mcmod.info', 'LICENSE.txt'
+            ].each { require(names.contains(it), "Missing runtime entry: ${it}") }
+            def forbidden = ['net/minecraft/', 'net/minecraftforge/', 'io/netty/', 'org/lwjgl/',
+                             'com/google/', 'org/objectweb/asm/', 'org/junit/', 'perihelion/smoke/',
+                             'perihelion/benchmark/']
+            names.findAll { it.endsWith('.class') }.each { name ->
+                require(!forbidden.any { name.startsWith(it) }, "Unwanted bundled class: ${name}")
+                byte[] bytes = jar.getInputStream(jar.getJarEntry(name)).withCloseable { it.bytes }
+                int major = ((bytes[6] & 255) << 8) | (bytes[7] & 255)
+                require(major <= 52, "Requires Java newer than 8: ${name} (${major})")
+                if (name.startsWith('perihelion/')) require(major == 52, "Wrong Perihelion bytecode target: ${name}")
+                if (name.startsWith('perihelion/core/')) {
+                    String constants = new String(bytes, 'ISO-8859-1')
+                    ['net/minecraft/', 'net/minecraftforge/', 'org/spongepowered/', 'io/netty/', 'org/lwjgl/'].each {
+                        require(!constants.contains(it), "Core references game/loader class: ${name}: ${it}")
+                    }
+                }
+            }
+            def attributes = jar.manifest.mainAttributes
+            require(attributes.getValue('FMLCorePlugin') == 'perihelion.bootstrap.forge.PerihelionLoadingPlugin', 'Missing core plugin')
+            require(attributes.getValue('FMLCorePluginContainsFMLMod') == 'true', 'Forge mod discovery disabled')
+            require(attributes.getValue('ModSide') == 'CLIENT', 'Distribution must be client-only')
+            require(attributes.getValue('TweakClass') == 'org.spongepowered.asm.launch.MixinTweaker', 'Missing Mixin tweaker')
+            def json = { String name -> jar.getInputStream(jar.getJarEntry(name)).withCloseable { new JsonSlurper().parse(it) } }
+            def metadata = json('mcmod.info')[0]
+            require(metadata.modid == 'perihelion' && metadata.mcversion == '1.8.9' && metadata.version == project.version.toString(), 'Incorrect mod metadata')
+            def mixins = json('mixins.perihelion.json')
+            require(mixins.required == true && mixins.injectors.defaultRequire == 1, 'Mixin injection requirements missing')
+            require(mixins.plugin == 'perihelion.integration.minecraft189.compat.ControlMixinPlugin', 'Missing rotation compatibility check')
+            require(mixins.client.toSet() == ['MinecraftLifecycleMixin', 'AccountSessionMixin', 'AccountSkinMixin', 'MouseOverMixin', 'HeadCosmeticMixin', 'FontRendererMixin', 'MenuBackgroundMixin', 'MenuButtonMixin', 'MenuPrimitivesMixin', 'MenuSlotMixin', 'MenuTextFieldMixin', 'ChatCommandMixin', 'ChatCompletionMixin', 'NetworkManagerMixin',
+                    'KeyBindingMixin', 'PlayerControllerMixin', 'PlayerControlsMixin', 'MovementInputMixin', 'CameraEffectsMixin', 'PlayerFovMixin',
+                    'EntityMovementMixin', 'BlockCollisionMixin', 'GameplayAccessMixin', 'ClientPacketMixin', 'WalkingPacketMixin',
+                    'ItemUseMixin', 'SwordPoseMixin', 'FreeLookMixin', 'ModelPoseMixin', 'ModelRenderMixin', 'RotationModelMixin', 'HandEffectsMixin', 'BossOverlayMixin', 'SwingDurationMixin', 'HitSlowdownMixin', 'JumpDirectionMixin', 'TileRenderMixin'].toSet(), 'Unexpected client mixins')
+            require(mixins.refmap == 'mixins.perihelion.refmap.json', 'Incorrect reference map')
+            def mappings = json(mixins.refmap).mappings
+            mixins.client.each { name ->
+                def path = "perihelion/integration/minecraft189/mixin/${name}"
+                require(names.contains("${path}.class".toString()), "Missing configured mixin: ${name}")
+                if (!(name in ['GameplayAccessMixin', 'AccountSessionMixin', 'WalkingPacketMixin'])) require(mappings[path.toString()] != null && !mappings[path.toString()].isEmpty(), "Missing mappings for ${name}")
+            }
+            def walkingBytes = jar.getInputStream(jar.getJarEntry('perihelion/integration/minecraft189/mixin/WalkingPacketMixin.class')).withCloseable { new String(it.bytes, 'ISO-8859-1') }
+            require(walkingBytes.contains('field_149477_b'), 'Walking packet Y shadow not remapped')
+            def sessionBytes = jar.getInputStream(jar.getJarEntry('perihelion/integration/minecraft189/mixin/AccountSessionMixin.class')).withCloseable { new String(it.bytes, 'ISO-8859-1') }
+            ['field_71449_j', 'field_181038_N'].each { require(sessionBytes.contains(it), "Missing remapped account-session shadow: ${it}") }
+            require(!names.any { it.startsWith('me/proxycracked/') || it.startsWith('config/') || it.endsWith('.vault') || it.endsWith('.key') }, 'Donor code or private account data bundled')
+            ['EntityMovementMixin': ['moveEntity(DDD)V', 'moveFlying(FFF)V'],
+             'ModelRenderMixin': ['renderName(Lnet/minecraft/entity/EntityLivingBase;DDD)V'],
+             'RotationModelMixin': ['doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V'],
+             'TileRenderMixin': ['renderTileEntityAt(Lnet/minecraft/tileentity/TileEntity;DDDFI)V'],
+             'HitSlowdownMixin': ['attackTargetEntityWithCurrentItem'],
+             'JumpDirectionMixin': ['jump'],
+             'MenuBackgroundMixin': ['drawBackground'],
+             'MenuButtonMixin': ['drawButton'],
+             'MenuPrimitivesMixin': ['drawString', 'drawCenteredString', 'drawTexturedModalRect(IIIIII)V'],
+             'MenuSlotMixin': ['overlayBackground'],
+             'MenuTextFieldMixin': ['drawTextBox']].each { name, methods ->
+                def entries = mappings["perihelion/integration/minecraft189/mixin/${name}".toString()]
+                methods.each { method -> require(entries[method]?.contains('func_'), "Missing gameplay SRG mapping: ${name}.${method}") }
+            }
+            def network = mappings['perihelion/integration/minecraft189/mixin/NetworkManagerMixin']
+            require(network['sendPacket(Lnet/minecraft/network/Packet;)V'] ==
+                    'Lnet/minecraft/network/NetworkManager;func_179290_a(Lnet/minecraft/network/Packet;)V', 'Client send fact SRG mapping missing')
+            require(network['sendPacket(Lnet/minecraft/network/Packet;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V'] ==
+                    'Lnet/minecraft/network/NetworkManager;func_179288_a(Lnet/minecraft/network/Packet;Lio/netty/util/concurrent/GenericFutureListener;[Lio/netty/util/concurrent/GenericFutureListener;)V', 'Client send fact overload mapping missing')
+            require(network['dispatchPacket(Lnet/minecraft/network/Packet;[Lio/netty/util/concurrent/GenericFutureListener;)V'] ==
+                    'Lnet/minecraft/network/NetworkManager;func_150732_b(Lnet/minecraft/network/Packet;[Lio/netty/util/concurrent/GenericFutureListener;)V', 'Outbound SRG mapping missing')
+            require(network['channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/Packet;)V'] ==
+                    'Lnet/minecraft/network/NetworkManager;channelRead0(Lio/netty/channel/ChannelHandlerContext;Lnet/minecraft/network/Packet;)V', 'Inbound descriptor missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/MinecraftLifecycleMixin']['shutdownMinecraftApplet()V'] ==
+                    'Lnet/minecraft/client/Minecraft;func_71405_e()V', 'Shutdown SRG mapping missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/ChatCommandMixin']['sendChatMessage(Ljava/lang/String;Z)V'] ==
+                    'Lnet/minecraft/client/gui/GuiScreen;func_175281_b(Ljava/lang/String;Z)V', 'Local chat command SRG mapping missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/ChatCompletionMixin']['sendAutocompleteRequest(Ljava/lang/String;Ljava/lang/String;)V'] ==
+                    'Lnet/minecraft/client/gui/GuiChat;func_146405_a(Ljava/lang/String;Ljava/lang/String;)V', 'Local command completion SRG mapping missing')
+            def controls = mappings['perihelion/integration/minecraft189/mixin/PlayerControlsMixin']
+            require(mappings['perihelion/integration/minecraft189/mixin/MovementInputMixin']['updatePlayerMoveState()V'] ==
+                    'Lnet/minecraft/util/MovementInputFromOptions;func_78898_a()V', 'Post-input SRG mapping missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/GameplayAccessMixin']['runTick'] ==
+                    'Lnet/minecraft/client/Minecraft;func_71407_l()V', 'Tick selection SRG mapping missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/GameplayAccessMixin']['Lnet/minecraft/client/renderer/EntityRenderer;getMouseOver(F)V'] ==
+                    'Lnet/minecraft/client/renderer/EntityRenderer;func_78473_a(F)V', 'Tick selection target mapping missing')
+            require(controls['onLivingUpdate()V'] == 'Lnet/minecraft/client/entity/EntityPlayerSP;func_70636_d()V' &&
+                    controls['onUpdateWalkingPlayer()V'] == 'Lnet/minecraft/client/entity/EntityPlayerSP;func_175161_p()V', 'Player control SRG mappings missing')
+            require(controls['Lnet/minecraft/client/entity/EntityPlayerSP;rotationYaw:F'] == 'Lnet/minecraft/client/entity/EntityPlayerSP;field_70177_z:F' &&
+                    controls['Lnet/minecraft/client/entity/EntityPlayerSP;rotationPitch:F'] == 'Lnet/minecraft/client/entity/EntityPlayerSP;field_70125_A:F', 'Rotation SRG mappings missing')
+            def slots = mappings['perihelion/integration/minecraft189/mixin/PlayerControllerMixin']
+            require(slots['syncCurrentPlayItem()V'] == 'Lnet/minecraft/client/multiplayer/PlayerControllerMP;func_78750_j()V' &&
+                    slots['Lnet/minecraft/entity/player/InventoryPlayer;currentItem:I'] == 'Lnet/minecraft/entity/player/InventoryPlayer;field_70461_c:I', 'Hotbar SRG mappings missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/KeyBindingMixin']['isKeyDown()Z'] ==
+                    'Lnet/minecraft/client/settings/KeyBinding;func_151470_d()Z', 'Key state SRG mapping missing')
+            ['Fullbright', 'Sprint', 'NoFov', 'WTap', 'NoBob', 'NoHurtCam', 'Timer', 'AntiBlind', 'FastPlace'].each {
+                require(names.contains("perihelion/integration/minecraft189/module/${it}Module.class".toString()), "Missing production module: ${it}")
+            }
+            def camera = mappings['perihelion/integration/minecraft189/mixin/CameraEffectsMixin']
+            ['hurtCameraEffect(F)V': 'func_78482_e(F)V', 'setupViewBobbing(F)V': 'func_78475_f(F)V',
+             'setupFog(IF)V': 'func_78468_a(IF)V', 'updateFogColor(F)V': 'func_78466_h(F)V',
+             'updateLightmap(F)V': 'func_78472_g(F)V'].each { named, srg ->
+                require(camera[named] == "Lnet/minecraft/client/renderer/EntityRenderer;${srg}", "Camera SRG mapping missing: ${named}")
+            }
+            require(camera['Lnet/minecraft/client/settings/GameSettings;gammaSetting:F'] ==
+                    'Lnet/minecraft/client/settings/GameSettings;field_74333_Y:F', 'Gamma SRG mapping missing')
+            require(camera['Lnet/minecraft/entity/EntityLivingBase;isPotionActive(Lnet/minecraft/potion/Potion;)Z'] ==
+                    'Lnet/minecraft/entity/EntityLivingBase;func_70644_a(Lnet/minecraft/potion/Potion;)Z', 'Visual potion SRG mapping missing')
+            require(mappings['perihelion/integration/minecraft189/mixin/PlayerFovMixin']['getFovModifier()F'] ==
+                    'Lnet/minecraft/client/entity/AbstractClientPlayer;func_175156_o()F', 'FOV SRG mapping missing')
+            require(slots['attackEntity(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)V'] ==
+                    'Lnet/minecraft/client/multiplayer/PlayerControllerMP;func_78764_a(Lnet/minecraft/entity/player/EntityPlayer;Lnet/minecraft/entity/Entity;)V', 'Attack SRG mapping missing')
+            String hash = MessageDigest.getInstance('SHA-256').digest(file.bytes).encodeHex().toString()
+            def destination = report.get().asFile
+            destination.parentFile.mkdirs()
+            destination.text = "artifact=${file.name}\nsha256=${hash}\nbytes=${file.length()}\nentries=${names.size()}\njava=8\nverified=metadata,mixins,refmap,bundled-runtime,dependency-boundaries\n"
+            logger.lifecycle("Verified ${file.name} (${file.length()} bytes), SHA-256 ${hash}")
+        }
+    }
+}
+tasks.named('check') { dependsOn tasks.named('verifyJar') }

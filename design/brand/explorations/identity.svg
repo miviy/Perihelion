@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="#10171f" role="img" aria-labelledby="name description">
+  <title id="name">Perihelion — Lensing mantle</title>
+  <desc id="description">An empty circular event horizon held inside a broad asymmetric lens. A continuous accretion ribbon folds beneath the void and merges into the rising right shoulder.</desc>
+  <path fill-rule="evenodd" d="
+    M 425 168
+    C 386 119 327 93 260 93
+    C 160 93 100 165 100 249
+    C 100 273 90 297 74 312
+    C 111 307 144 292 165 276
+    C 180 325 233 344 290 315
+    C 344 287 384 243 408 209
+    C 376 286 318 338 252 355
+    C 192 370 137 360 96 340
+    C 134 411 206 440 279 428
+    C 371 413 426 344 427 263
+    C 429 236 440 211 456 196
+    C 421 206 386 217 357 223
+    C 376 206 400 188 425 168
+    Z
+    M 326 236
+    A 74 74 0 1 1 178 236
+    A 74 74 0 1 1 326 236
+    Z
+  "/>
+</svg>

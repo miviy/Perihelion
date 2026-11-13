@@ -1,0 +1,36 @@
+{
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "sha256": "5e3b50f85b5b341d52af521e6a7a55cc0d0f81f304fbe4d8f225bfa1ec6c8a21",
+  "tests": {
+    "core": 156,
+    "forge": 152,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "nativeRuns": [
+    {
+      "path": "forge/run-smoke-forge-_ikdogbp",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "sha256": "5e3b50f85b5b341d52af521e6a7a55cc0d0f81f304fbe4d8f225bfa1ec6c8a21",
+      "guiChecks": 331,
+      "themeChecks": 240
+    },
+    {
+      "path": "forge/run-smoke-optifine-o3bx2w91",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "sha256": "5e3b50f85b5b341d52af521e6a7a55cc0d0f81f304fbe4d8f225bfa1ec6c8a21",
+      "guiChecks": 331,
+      "themeChecks": 240
+    }
+  ],
+  "limitations": [
+    "640x360 attempt stopped before GUI in the existing HUD scale-2 fixture.",
+    "Final OptiFine shutdown stdoutError=true; fallback STOPPED and cleanup checks passed.",
+    "OpenAL shutdown warning: 3 Buffers not deleted."
+  ]
+}

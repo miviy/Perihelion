@@ -1,0 +1,971 @@
+{
+  "revision": "50d7322b85cb8de096241077ca3130e9e9715d20",
+  "release_revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+  "reference": ".references/yuri-50d7322b85cb8de096241077ca3130e9e9715d20",
+  "upstream": "https://github.com/unleg1t/Yuri/tree/50d7322b85cb8de096241077ca3130e9e9715d20",
+  "module_count": 88,
+  "classification": {
+    "native-implementation": 63,
+    "deferred": 4,
+    "excluded-client-ui": 21
+  },
+  "meaning": "Source and registration coverage with native adaptations. Neither identical code nor proof of every mode or public-server bypass acceptance.",
+  "modules": {
+    "combat/AuraModule.java": {
+      "status": "native-implementation",
+      "native": "aura",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "da5f80aae4aa059d47aa340836bea7700a9c5537",
+      "donor_sha256": "9248e0117158da95460e52ee397cf5aed00322809d3737a39e04d865e32ef678",
+      "changed_since_release": true,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "combat/AutoExtinguishModule.java": {
+      "status": "native-implementation",
+      "native": "autoextinguish",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "12e114fadd682d5d4fc5041a02145d8d661e35ec",
+      "donor_sha256": "1dd5cf3ae76ff453253e193fd134caa96a3f54bbe9aa209b67ae7f765d1f45c7",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/AutoPotModule.java": {
+      "status": "native-implementation",
+      "native": "autopot",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "7d70f6ef7e00afe215fe7b627f1476aa2d05d7a4",
+      "donor_sha256": "04be7d23c4129a024fa512fb34d3a92b6411848217af0b3a5f3ad1bcf80e21cc",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/AutoProjectileModule.java": {
+      "status": "native-implementation",
+      "native": "autoprojectile",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "3289ff3d9aaf8314189198a4995df7fac66a1290",
+      "donor_sha256": "2703523609f2339e6d474e8c74c4c0f54228f2f99c82303a9233ebd24fbe2c06",
+      "changed_since_release": true,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "combat/BackTrackModule.java": {
+      "status": "native-implementation",
+      "native": "backtrack",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "ad7577585035849c0e2e55e711434fff77f6024d",
+      "donor_sha256": "f81f32daa80f30ead0b0fb43e80338681ab7d7357aa6119e74fac39f5c865607",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/BowAimbotModule.java": {
+      "status": "native-implementation",
+      "native": "bowaimbot",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "0ad239b897612650efb35df7575e9f7b97f620ee",
+      "donor_sha256": "3728209ef6453423ffb3ec4a5595fda4c1786cbc0bb66a21bb99de0b5cce3879",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ProjectileModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/CriticalsModule.java": {
+      "status": "native-implementation",
+      "native": "criticals",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "078bb4361923dccdd6f21a200bb62dcd8df49ea9",
+      "donor_sha256": "a25df3e2dc3454ac8b98eb577ebbedb9b5b806301196511c89eb14a8f916ef83",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/HitSelectModule.java": {
+      "status": "native-implementation",
+      "native": "hitselect",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "85f851faa71f2a4d3e43a5aaf514d92b3187a2f5",
+      "donor_sha256": "cc6c414f487d1075a7926d0f38f3f1b0f7591128bc8d95b6a625fa78b9064b6d",
+      "changed_since_release": true,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "combat/LagRangeModule.java": {
+      "status": "native-implementation",
+      "native": "lagrange",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "abb244c0bfe38a1812ed3c5da6ab7ba4c1ec797e",
+      "donor_sha256": "733172f35a563cd533c46fa8bcc838b5a2cf75a2e73bbeb5f640fc270b94175d",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/TargetStrafeModule.java": {
+      "status": "native-implementation",
+      "native": "targetstrafe",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "bc42ea8255947f9e7df90f0389aababe969cc432",
+      "donor_sha256": "001dd6d5d66a776d2347f9d7fc1d19815132c233542a620c10bc4f4920d09d93",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/TickBaseModule.java": {
+      "status": "native-implementation",
+      "native": "tickbase",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "347802932614731d417d28de959503d5ce3de2cb",
+      "donor_sha256": "12e9019a066ce9245e749f6147b4d638f2db0667d658c6d6cca71ec4901c9388",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatTimingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/VelocityModule.java": {
+      "status": "native-implementation",
+      "native": "velocity",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "87934db1d836dc6bcb15cde39866c1ad6aa4b3b7",
+      "donor_sha256": "479fef9157f08bd2bf073ecc699defbe13cb0c86e7ec76305bfc448746c913b6",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CombatModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "combat/WTapModule.java": {
+      "status": "native-implementation",
+      "native": "wtap",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "6045dd26453e9f244f17a82277642537dbf059c5",
+      "donor_sha256": "b0a1acc74276c679c06f172b4b61e56e67d41d3f04a6ccf7d2b93001e1662464",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/WTapModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/AntiBotModule.java": {
+      "status": "native-implementation",
+      "native": "antibot",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "4b31a029501511e58ab65c9e23b5672a8cb8e87a",
+      "donor_sha256": "f42baff53026b97df2ac85a227cd9ae00f129dbc2d7d8592db2e723e365aaa64",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/AutoServerModule.java": {
+      "status": "deferred",
+      "native": null,
+      "note": "Deferred: automatic policy acceptance, reports and chat actions require separate product decisions.",
+      "donor_git_blob": "66f92b9bb97866139be54dbc210e064b30310d97",
+      "donor_sha256": "381db4916beaf0543b143cd48c21d0ec29a9f40a0795c2f4e29fee522344a5e7",
+      "changed_since_release": false
+    },
+    "misc/AutoSwapModule.java": {
+      "status": "native-implementation",
+      "native": "autoswap",
+      "note": "1.3 behavior follow-up recorded in YURI_1_3_IMPLEMENTATION_2026-10-10.md; existing native features retained.",
+      "donor_git_blob": "20927a8257eb7b1119c187030cfa1d3bdab18ba9",
+      "donor_sha256": "db95b8048e4b7bc11369ddc2eee044837f48825beb07d870e4bc497637c06be4",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/BedWarsUtilityModule.java": {
+      "status": "native-implementation",
+      "native": "bedwarsutility",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "54278551c24158409d9799cccf2dd7bb68487fe0",
+      "donor_sha256": "dc18204f8c7fb5317e94888fbe35d1a7a1679e935d51a76b5cae14090d75b5a0",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/DerpModule.java": {
+      "status": "native-implementation",
+      "native": "derp",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "d7563ebfffbcf3e7b4212e3da12c02cbe42001c9",
+      "donor_sha256": "10eb8f51b105440fd0098f3cb81de94cf851cc2f75dbfa37a8e09d9a89c66af0",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "misc/DisablerModule.java": {
+      "status": "native-implementation",
+      "native": "disabler",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "8bddf04ea15c9400f049575eeee4f608cb999347",
+      "donor_sha256": "00a7024bdbed648530333505aee1f1070fdbb82d6d36062e77d15f019ab7fd14",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/DiscordRPCModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "faa8023aa095a5e5d61d39f659dcf71d5338c032",
+      "donor_sha256": "343c8f248c4751886626f3a4e9a591619bfbef00fb7d2940bc4313fcf1fc5529",
+      "changed_since_release": false
+    },
+    "misc/FriendsModule.java": {
+      "status": "native-implementation",
+      "native": "friends",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "21a73d6bcc5806a6be10f72e3d9734a4e78943e7",
+      "donor_sha256": "9ecdc205da34547686e67a9b0d3b6fba23043c149c604c98af3e5e27b0137aed",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/GUIClickerModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "879de64116ef35e21cad2b1d19f2fc8188bd258e",
+      "donor_sha256": "8bea1189e151858f9efad9680840181c10f8c03ac5db40fdd61e6ddbcf5cef1f",
+      "changed_since_release": false
+    },
+    "misc/InputFixesModule.java": {
+      "status": "native-implementation",
+      "native": "inputfixes",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "8869503d118cf23fced83465b3331b2c7d2efc83",
+      "donor_sha256": "9eb3129a53b5c26c141461fcc220fee88a514d9020335a7bd7dba91c3aa1c564",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/InsultsModule.java": {
+      "status": "deferred",
+      "native": null,
+      "note": "Deferred: automatic insults were not recommended for import.",
+      "donor_git_blob": "7fdc10d52e3f0a2c064fb7a84bce571ba67d2e89",
+      "donor_sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+      "changed_since_release": false
+    },
+    "misc/ItemDelaysModule.java": {
+      "status": "native-implementation",
+      "native": "fastplace",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "e50b4b3425f4b71a2da759afd8eac771366fe00d",
+      "donor_sha256": "940818f3d113f0477a378f1400f390844dd17b2d47f5437195718af86494e7a6",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/FastPlaceModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/MinigameAimModule.java": {
+      "status": "native-implementation",
+      "native": "minigameaim",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "4f9b964edcb5420e1a6a83667f51016b4211586b",
+      "donor_sha256": "077a59fd9ebe95d0a3acc690415c1033cfdd70c56303ca3aef02e35e30253fac",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MinigameAimModule.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "misc/TimerModule.java": {
+      "status": "native-implementation",
+      "native": "timer",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "cdcd60b99bbc6b2c4ef53d94853b730d7d2d002e",
+      "donor_sha256": "fd5834df56c3828f47d07d24b952374329d8223fc87e7e2ed210b4a343891e20",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/TimerModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "misc/ToggleSoundsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "7cd4e6f2098ec55aa87ee6307e1584e19fb325c1",
+      "donor_sha256": "8b101b8705bfbbd13e210d387672c544a455ba4cf8ca5e26b0bcaf73ac08cec8",
+      "changed_since_release": false
+    },
+    "movement/FlightModule.java": {
+      "status": "native-implementation",
+      "native": "flight",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "54065c1a7ca92ed699334a64a44febbefdb142c3",
+      "donor_sha256": "d86d080cb4af51c90c747191852e5ef389c6c7e53cf3e9c78440147bbfe713c7",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/LongJumpModule.java": {
+      "status": "native-implementation",
+      "native": "longjump",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "38532a5cfe616ddcdabf3c2326c8807657181761",
+      "donor_sha256": "e699b2faeeecfed7e66ddc4a9869b71dc917bb22c17f28c6ca932386dcbec27f",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/NoSlowModule.java": {
+      "status": "native-implementation",
+      "native": "noslow",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "5ab4e2fba68c1502b81762d7162d8c8ffd252d2b",
+      "donor_sha256": "a281811cf31e8d0f424399c8c5b513a9e3e6e6aba1598b0073d2c6b61e17daae",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/PhaseModule.java": {
+      "status": "native-implementation",
+      "native": "phase",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "aa110238ff43556ad1af1743028a5e3a240e1587",
+      "donor_sha256": "886009cd79c08e6ae97906e91c04097e83cb1ad852d50a84ce23292ee69cd25c",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AdditionalMovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/SafeWalkModule.java": {
+      "status": "native-implementation",
+      "native": "safewalk",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "215de618cedf8e67561e1d31e5ec2d2a5858be2d",
+      "donor_sha256": "f77b9f66eebd916e50fe35fe239856ad8114841ecc509daac418e84723c5ad31",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/SpeedModule.java": {
+      "status": "native-implementation",
+      "native": "speed",
+      "note": "1.3 behavior follow-up recorded in YURI_1_3_IMPLEMENTATION_2026-10-10.md; existing native features retained.",
+      "donor_git_blob": "03f7eb8e8890d25b7b179682b75d2bf67aab4d9f",
+      "donor_sha256": "e4e598c47f2afaab32631bb1287cc8390f1df1b175509e31080ada4ec00dfff5",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/SprintModule.java": {
+      "status": "native-implementation",
+      "native": "sprint",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "96dc29d08d8553477ee05dece2d62017bcbed223",
+      "donor_sha256": "edbbc667ff2dfc2103acc0b92498d0c0548f9ab3c5fb8edd69571561e43e2fac",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/SprintModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/StasisModule.java": {
+      "status": "native-implementation",
+      "native": "stasis",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "637c773a976a232c2c51fd6c098a6cc84a7e9971",
+      "donor_sha256": "2f667082f61f3f61d673caf9e9bcd778b8eb17e9cde0d07f10c3033533df1b95",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/StepModule.java": {
+      "status": "native-implementation",
+      "native": "step",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "aff4d7d9c9aef5f716d39c22e68d2687bd492682",
+      "donor_sha256": "5964359fd7fba2f9a8979d78d1ed9113d2784b5ccc77203b9c83fc93323e3591",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "movement/WaterWalkModule.java": {
+      "status": "native-implementation",
+      "native": "waterwalk",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "4c07477420640eb4db5a904367876adeacbbcf6f",
+      "donor_sha256": "24fcafaf011974a29d477a7513bf9edafcfaf89cec7cdad9cec18bea173d9b08",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/AntiFireballModule.java": {
+      "status": "native-implementation",
+      "native": "antifireball",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "bff3e26c8a0d1f8977e79992fb38d9202ce811de",
+      "donor_sha256": "8eca5392802cd523d64d72f3f141c078d8e3283bf5ab13fad1f922a51fd85b95",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/AntiVoidModule.java": {
+      "status": "native-implementation",
+      "native": "antivoid",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "424813f4d18e57174ea20e0e3263318d20134876",
+      "donor_sha256": "a71022a477f551c46590849cdcabb5865b068977ee2608bee81c48ad1daef3e9",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/AutoArmorModule.java": {
+      "status": "native-implementation",
+      "native": "autoarmor",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "35dc2016cf2ee7cb1df5999e89e52f9cb4d12a3f",
+      "donor_sha256": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/BedDefenderModule.java": {
+      "status": "native-implementation",
+      "native": "beddefender",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "10193b45570bd7659c9f049670b4f9d1184d2e53",
+      "donor_sha256": "9596fe6ace23eb257fb9d1cf3fc03d66674431ac86b14a2bc6605d186a0e9422",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/BlinkModule.java": {
+      "status": "native-implementation",
+      "native": "blink",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "4e1f5a6325a218c85a9eb4ec29fd49d24f798253",
+      "donor_sha256": "e1ba3c063aafb440ff7f6019a7016bd88bb92beff68137f9f41d6f4e20555482",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PacketModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/BreakerModule.java": {
+      "status": "native-implementation",
+      "native": "breaker",
+      "note": "1.3 behavior follow-up recorded in YURI_1_3_IMPLEMENTATION_2026-10-10.md; existing native features retained.",
+      "donor_git_blob": "a4cac5cefb3d91043c7a1c6cfef4780b282d2a62",
+      "donor_sha256": "94209692065f53ac729b817480728e828cb45fb472dca5e28b9a5c9edd722350",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/EagleModule.java": {
+      "status": "native-implementation",
+      "native": "eagle",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "e68be11850851c163599477155b51e4bc7eb79e4",
+      "donor_sha256": "2e28449a0de99689debbae7989eb0b08ec92e3718d924bf6d9ab40d5d24f8637",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/FastBreakModule.java": {
+      "status": "native-implementation",
+      "native": "fastbreak",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "d89cb3f2bb26c09274dcadb4779feac7639a99f1",
+      "donor_sha256": "c918c6315b073eb9bdae0206635abd1b202878c817d86d38e33654547114d168",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/FastUseModule.java": {
+      "status": "native-implementation",
+      "native": "fastuse",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "aa680f84ff30dda51791d9265edfb2c8c7e45b68",
+      "donor_sha256": "fb9a09e9bbece8bc161ff2ea74210c72a9b19d6d98791fb8e66eb63033b93e00",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/InvMoveModule.java": {
+      "status": "native-implementation",
+      "native": "invmove",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "a743c435e93cfdd3dba41735040b2230b02eb13a",
+      "donor_sha256": "4045ac49fd2ed05399fe5fe6f9fead1b783996501a33713b344d1e97e4b17bdf",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/ManagerModule.java": {
+      "status": "native-implementation",
+      "native": "manager",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "f5086b0d7810fd55b5185e611b755770a2f3d2d0",
+      "donor_sha256": "24dd399a6b7d0444950276cfe46f23db5aacde0f5525834139d582bcce10635f",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/NoFallModule.java": {
+      "status": "native-implementation",
+      "native": "nofall",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "9f2fa0a3f4031e9652950cbb7a66fb201d286a29",
+      "donor_sha256": "b7ba6d8d24fc7b890d373b6f22ae8adf65d2748cfee88a4be3b5d96049bbba2b",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RecoveryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/RefillModule.java": {
+      "status": "native-implementation",
+      "native": "refill",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "6d38dd9f794386e1e145fe11696a24bbb3737d30",
+      "donor_sha256": "3ff51cedb2d3cdde650c15278b525519801c167b7587048fdfacbb3a489171ed",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/RegenModule.java": {
+      "status": "native-implementation",
+      "native": "regen",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "7ee97ece1bf0bea7812b17e3754e5246d53d116e",
+      "donor_sha256": "5ab636fe40a6c81d3912d19204855efd155f598bf218404f66ed269e136890b1",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "player/ScaffoldModule.java": {
+      "status": "native-implementation",
+      "native": "scaffold",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "f5e732c69ed776014234cb4d6d74e51f1c04e166",
+      "donor_sha256": "99095a9f7bcab07f7327c462a1c5f748db34d7e8724076a5395a807916ac7981",
+      "changed_since_release": true,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "player/StealerModule.java": {
+      "status": "native-implementation",
+      "native": "stealer",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "4795883a6819004feb3b1df5131546cbb149a861",
+      "donor_sha256": "202277511b38f5d064c3e93d901dfda4d9653a37b1a7ac3b8349f3b94306b3f1",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryManagementModules.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "render/AmbienceModule.java": {
+      "status": "native-implementation",
+      "native": "ambience",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "2771d217eabeb3042f2d4f6bad9146beaf0a4bd5",
+      "donor_sha256": "f5c10beba8d1659c057da7b4ead1c649bb3864743d3070bcd19173a31d76445d",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/AnimationsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "5dc2f47e2647931980197156afbbc60def5570fa",
+      "donor_sha256": "bcd88680cff5a33ba9f9863ff416ca721c09f791954ed6399fd81c59ebda23eb",
+      "changed_since_release": false
+    },
+    "render/AutoF5Module.java": {
+      "status": "native-implementation",
+      "native": "autof5",
+      "note": "Native camera ownership; see COMPATIBILITY_QOL_2026-10-11.md.",
+      "donor_git_blob": "c96e163097e69177e59110e9ca50df8266c7ce78",
+      "donor_sha256": "9c79c48baa20832cf4e894b0fc4a335cbbc31e0f0b4db55f19388f3a60d103b3",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/BlockESPModule.java": {
+      "status": "native-implementation",
+      "native": "blockesp",
+      "note": "1.3 behavior follow-up recorded in YURI_1_3_IMPLEMENTATION_2026-10-10.md; existing native features retained.",
+      "donor_git_blob": "9a7ba90cdf36bcbf9a5b7111ecffdb9e0004688a",
+      "donor_sha256": "eae0102459f18864327974b77b80b53da927c485259536281c9fbfc47fd6bc6a",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/BreadcrumbsModule.java": {
+      "status": "native-implementation",
+      "native": "breadcrumbs",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "2d305b3eb726501c2a7de3c32e5fffa2d9de525d",
+      "donor_sha256": "ba35f7cb50011008051c80dd50ab45dba93f26164ee492c9b8453baf02fee354",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/CameraModule.java": {
+      "status": "native-implementation",
+      "native": "camera",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "08b0d9a107584ba3d0b2effcea430fb5c75c8f5a",
+      "donor_sha256": "2d75c1479a4996e1462584d5c0601e29cdb93830828dd0abbedfea39746a774f",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/CameraModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/CapesModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "db895faecda97cfa995f77a250cf42321e0d8dc4",
+      "donor_sha256": "d87de4bf6739d613d3b5255512b9bd0e614b017368dccb9bf537dfecfed939a2",
+      "changed_since_release": false
+    },
+    "render/ChamsModule.java": {
+      "status": "native-implementation",
+      "native": "chams",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "c0dda96decffed561203e5e3954676cdb1577766",
+      "donor_sha256": "6273e21147aae62a2c1a5135ae3c28faf84c7e8bcd6ccfe3d3b3b25e7af36703",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/ChinaHatModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "f5758754b5848abacb7948104d7d3ad50d34c868",
+      "donor_sha256": "e9718579a9ae094ade2a7643383c308d86bb0246f24639c23f540304f51d0b8b",
+      "changed_since_release": false
+    },
+    "render/ClickGUIModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "a8257af5f7fde446193f84ef846ae4eaaf4aa51c",
+      "donor_sha256": "f0dd7f9e2c15e50575abacecf1794d3211759c942b425b462447347e971a5241",
+      "changed_since_release": false
+    },
+    "render/ClientInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "3b69aeddb75ab0fd57afbdf6de628c6aa15b492b",
+      "donor_sha256": "2ff52d3c24b9670e0bf922dfafd6d47120d367958347c87d06c8bd047cf05914",
+      "changed_since_release": false
+    },
+    "render/ESPModule.java": {
+      "status": "native-implementation",
+      "native": "esp",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "085d47246edd6119f4d825b68a58b9f98bc1c980",
+      "donor_sha256": "970d5a1f46a2546df091caa446facfb7e90405ab63383c4ef90def4c3b0411ab",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/EffectsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "3b9ea6dcfcc06e45729bf58d515ab49482c4bed0",
+      "donor_sha256": "f01986bb3c39553edf65250d7bd052062cbd4f5186f8fc43b4f10e211381e838",
+      "changed_since_release": false
+    },
+    "render/FreeLookModule.java": {
+      "status": "native-implementation",
+      "native": "freelook",
+      "note": "1.3 behavior follow-up recorded in YURI_1_3_IMPLEMENTATION_2026-10-10.md; existing native features retained.",
+      "donor_git_blob": "d0d2fa3f34f801a4b76236988c889f00e11f724a",
+      "donor_sha256": "38c4a95c65df237c818440e9c2bd03c6e67819b697f54b61782522b430254f15",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/HotbarModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "46211de52a585603fcbf5fe1008c91913e3d37af",
+      "donor_sha256": "1b2aae5701c1e2402dfd55616670818ac0a994360147e28b2e626d732b40d448",
+      "changed_since_release": false
+    },
+    "render/ImageRendererModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "31587b1774d3ea2e67d6892367d47a5f4087603b",
+      "donor_sha256": "a8c4ef4df9dc0168d93e6eca4e2feb9501e2af0a4cb596410186fd1f3bb01efc",
+      "changed_since_release": false
+    },
+    "render/KeybindInfoModule.java": {
+      "status": "deferred",
+      "native": null,
+      "note": "Optional new 1.3 feature, outside the requested behavior updates.",
+      "donor_git_blob": "bf1dec1f1a8f16e5af83e9614c1dc25a6bba9daf",
+      "donor_sha256": "0efe2c271e2f8f73a6e15984d200d9cb85a57bf97dedf9db7b7d6ee24c43239e",
+      "changed_since_release": false
+    },
+    "render/MediaInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "ee95e052c8cae754add55a262a1a4b72aade9492",
+      "donor_sha256": "51500ff20cf11fae1cf5f731e89b30504560d67e0923b3e866d278f8b00b67ec",
+      "changed_since_release": false
+    },
+    "render/ModListModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "66a0cfa20a2ebaf5eb29dd35321bd08b8c36c808",
+      "donor_sha256": "61d39f71f01cfd004c1b53b30737197f9fec562cfcfd922c0e2e274ea9f9075e",
+      "changed_since_release": false
+    },
+    "render/MotionBlurModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "ff8f71e0bc7dd8b69642fc161b92a8330d2b094a",
+      "donor_sha256": "a38c3a9a55e246e86e802d629227670b38a2a772bc8e421a3feaae7cca6b88d7",
+      "changed_since_release": false
+    },
+    "render/NameProtectModule.java": {
+      "status": "native-implementation",
+      "native": "nameprotect",
+      "note": "Native text render/measurement hooks; see COMPATIBILITY_QOL_2026-10-11.md.",
+      "donor_git_blob": "52ba5b0600dec3c1fb188a575f15483b313b9ad0",
+      "donor_sha256": "1e1c69fdfc93904f7a2482a90b01b962c1fcd5b475ecd6012ec8f7ea41ba4f72",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/NameTagsModule.java": {
+      "status": "native-implementation",
+      "native": "nametags",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "c8f28883291bf38398a322032e4430b42bc5ca75",
+      "donor_sha256": "4565c2d685f94648ac067c0fe644e0c39c3b57f6be635d525d1a32030ef27c83",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/PentagramModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "ae870085ee1a6f517b5ca73d7dbea20d49e0696d",
+      "donor_sha256": "2db720c5b32b78fbf8da68c0fa380e02dc3e2a51f58a11215cbbf35096110d38",
+      "changed_since_release": false
+    },
+    "render/PostProcessingModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "a8a5d29d2fc2bfd6f7c47748777fc97917e63bed",
+      "donor_sha256": "14e71a6f09e25b81e6b945c76ecd0f0d593bb3be7efd69806ae8715cb93f7abf",
+      "changed_since_release": false
+    },
+    "render/ScoreboardModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "51bf08326f80e94946b3adf73129f13698f8a97f",
+      "donor_sha256": "9d8849f44ee376423342d195b6151b829551d84ed48a608515fcd9e1b4398d44",
+      "changed_since_release": false
+    },
+    "render/SessionInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "9e2bdf6edd01cf2e550b98fe9785c3123996f993",
+      "donor_sha256": "0e9feb5c0e4837b8eff8c89c1cd7850e04fe2067d9100f5bf035d960ad3dd974",
+      "changed_since_release": false
+    },
+    "render/ShaderESPModule.java": {
+      "status": "native-implementation",
+      "native": "shaderesp",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "102423f079c2714a80b206420dba827a9eb612fd",
+      "donor_sha256": "2607300a1bfa92a4ae5e9610bcb090f34f26095d759e2e6861fd4ac7479fe89f",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ShaderESPModule.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/SkeletonsModule.java": {
+      "status": "native-implementation",
+      "native": "skeletons",
+      "note": "See YURI_LATEST_AUDIT_2026-10-11.md for current behavior and limits.",
+      "donor_git_blob": "f7cdf52f9b0125a7a4c9f0552285a5956560e7d4",
+      "donor_sha256": "4e154bad9c2dc444aafea43b1c85238782c0c3d758a6e8344d64491d3ac9e4de",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java"
+      ],
+      "review": "latest behavior correction and regression coverage"
+    },
+    "render/SkinChangerModule.java": {
+      "status": "deferred",
+      "native": null,
+      "note": "Deferred: URL fetching and skin assets need a separate bounded download design.",
+      "donor_git_blob": "fefdab34a31e454b14ef552e28b2c9c96ee7b307",
+      "donor_sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+      "changed_since_release": false
+    },
+    "render/TargetESPModule.java": {
+      "status": "native-implementation",
+      "native": "targetesp",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "d471647c0d60284de1ae326ffe74b135c5c61bd8",
+      "donor_sha256": "5c1f09a0c8584eba32a2592ab5036df69448c85ebbbe13d27265509c26504304",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScreenVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/TargetHudModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "298b02db3d854768e26b90e36f1f66d5d274188d",
+      "donor_sha256": "164f4a3941bd5e696c939c3981e10abbafdc95fa14b788168a6a0c7d7de8b987",
+      "changed_since_release": false
+    },
+    "render/TrajectoriesModule.java": {
+      "status": "native-implementation",
+      "native": "trajectories",
+      "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md.",
+      "donor_git_blob": "18ac776e4ee0c871253505a79a8c5d0faf9ec266",
+      "donor_sha256": "4cd3b3dd6d156f07b1d9fb105531ca6e4e1243e7eac3747a8f7b6bf38405d66f",
+      "changed_since_release": false,
+      "native_files": [
+        "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java"
+      ],
+      "review": "upstream module unchanged since 1.3; native adaptations retained"
+    },
+    "render/WatermarkModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "979914ed8a08585be291fb55dc5646ed1a5133e8",
+      "donor_sha256": "9c93f362e3a203e145d8cdcfd1efabcb6b26ba50c73c47cd91a351e13520f9cb",
+      "changed_since_release": false
+    },
+    "render/YuriChatModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "note": "Client presentation/cosmetic feature; retain Perihelion UI.",
+      "donor_git_blob": "95e05f290c49c0432fdcc74c700993037e2649bd",
+      "donor_sha256": "fd43abeac041d6a066880b39f92a8690e09f50ea21d5da646ecef1fd41155932",
+      "changed_since_release": false
+    }
+  }
+}

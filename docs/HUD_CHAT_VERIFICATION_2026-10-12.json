@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-12",
+  "scope": "Chat HUD visibility and dragging; clicked-player actions; GUI column settings; native targeted Freecam; session pins; official Hypixel API lookups; lifecycle/input cleanup",
+  "build": "check assemble --offline",
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 107,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1840890,
+    "sha256": "edfdd62a6aa5573b6052cc953eb7af940e24d002f84596c246ddfe58d5c012bf"
+  },
+  "nativeRuns": [
+    {
+      "directory": "forge/run-smoke-forge-2zlu88pr",
+      "variant": "forge",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "edfdd62a6aa5573b6052cc953eb7af940e24d002f84596c246ddfe58d5c012bf",
+      "chatChecks": 83,
+      "markers": [
+        "[10:18:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[10:18:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[10:18:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[10:18:30] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[10:18:30] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:404]: PERIHELION_SMOKE HUD_CHAT checks=83 PASS",
+        "[10:18:30] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:412]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=55",
+        "[10:18:38] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=321 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=268 worldEvents=12"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "InvalidMixinException": 0,
+        "MixinApplyError": 0
+      },
+      "captures": [
+        {
+          "path": "docs/verification/hud-chat-player-actions-forge.png",
+          "sha256": "26017abac0c4404efc74cdf3f36b90b5d2f36f3df538111b38c43ac443d435fe",
+          "visuallyInspected": true,
+          "statsData": null
+        },
+        {
+          "path": "docs/verification/hud-chat-hypixel-stats-forge.png",
+          "sha256": "9646dda9e695b5e8127523bcd3f2648d2796591865e2018b4600ba39c1b5f8b8",
+          "visuallyInspected": true,
+          "statsData": "deterministic API fixture"
+        }
+      ],
+      "shutdownReport": "forge/run-smoke-forge-2zlu88pr/shutdown-report.txt",
+      "stdoutError": true
+    },
+    {
+      "directory": "forge/run-smoke-optifine-849phxa5",
+      "variant": "optifine",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "edfdd62a6aa5573b6052cc953eb7af940e24d002f84596c246ddfe58d5c012bf",
+      "chatChecks": 83,
+      "markers": [
+        "[10:17:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ScaffoldTerrainProbe:run:238]: PERIHELION_SMOKE SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "[10:17:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RotationPipelineProbe:run:199]: PERIHELION_SMOKE ROTATIONS checks=296 PASS",
+        "[10:17:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.CombatFlowProbe:run:231]: PERIHELION_SMOKE COMBAT_FLOW checks=49 PASS",
+        "[10:17:17] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:365]: [PERIHELION_SMOKE] GUI PASS checks=111 panels=8 fonts=4",
+        "[10:17:18] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:404]: PERIHELION_SMOKE HUD_CHAT checks=83 PASS",
+        "[10:17:18] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:412]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=55",
+        "[10:17:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.LiveGameplayProfile:tick:113]: PERIHELION_SMOKE LIVE_PLAY ticks=125 frames=331 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] PASS scenario=full ticks=267 worldEvents=12",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "NoSuchFieldError": 0,
+        "VerifyError": 0,
+        "OutOfMemoryError": 0,
+        "InvalidMixinException": 0,
+        "MixinApplyError": 0
+      },
+      "captures": [
+        {
+          "path": "docs/verification/hud-chat-player-actions-optifine.png",
+          "sha256": "84b81e344130b2efb78a157015d0eaa9af3735a97aff9b35860c59a3924b62d6",
+          "visuallyInspected": true,
+          "statsData": null
+        },
+        {
+          "path": "docs/verification/hud-chat-hypixel-stats-optifine.png",
+          "sha256": "dea09cd297c0cae2959d918ab10cf57185af77402728d2fc593c50a392cee9e5",
+          "visuallyInspected": true,
+          "statsData": "deterministic API fixture"
+        }
+      ],
+      "shutdownReport": "forge/run-smoke-optifine-849phxa5/shutdown-report.txt",
+      "stdoutError": false
+    }
+  ],
+  "totalTests": 263,
+  "runtimeNotes": [
+    "Forge final shutdown report records stdoutError=true after all teardown assertions passed. The existing smoke harness writes an independent report because another JVM shutdown hook can close stdout; no outstanding subscriptions/tasks or uncleared hooks were found.",
+    "Legacy Minecraft/OpenAL shutdown emits buffers-not-deleted/audio-library warnings. No new module exception signature was found."
+  ],
+  "limits": [
+    "Native runs use local/integrated worlds and synthetic pointer/key events through native transformed GuiChat/Forge draw/lifecycle routes. They do not establish authenticated multiplayer or anticheat acceptance.",
+    "API card/column values in native captures are fixtures. HTTP header, endpoint, redirects, response bounds, errors, rate backoff, revision/cache/closure behavior were unit tested with transport doubles. No live authenticated Hypixel API request was made.",
+    "The report command builder and local-server guard were verified; no report was submitted and the remote Hypixel report GUI was not opened."
+  ],
+  "captureInvestigations": [
+    {
+      "directory": "forge/run-smoke-forge-u68dbolv",
+      "result": "All assertions passed; early captures retained prior editor pixels. Framebuffer clearing was added to the fixture."
+    },
+    {
+      "directory": "forge/run-smoke-optifine-s2ig87cz",
+      "result": "All direct interaction assertions passed; full native-frame coverage was added afterward."
+    },
+    {
+      "directories": [
+        "forge/run-smoke-optifine-56a08noj",
+        "forge/run-smoke-optifine-khsia4pk",
+        "forge/run-smoke-optifine-crimb0nq"
+      ],
+      "result": "Native OptiFine frame replaced vanilla GuiChat with GuiChatOF after the fixture opened a popup. The fixture now performs the actual startup frame before interaction and uses the authoritative screen; no production change was needed."
+    }
+  ],
+  "earlierMenuImplementation": {
+    "directory": "forge/run-smoke-forge-f8y0_535",
+    "artifactSha256": "c8c5c7e5f65fdcb3009b526855a50a8cad91f6b86386e7853f4916798d16d32e",
+    "chatChecks": 67,
+    "supersededByFinalLifecycleChecks": true
+  },
+  "rollback": {
+    "backup": ".backups/before-hud-chat-20261012-045051",
+    "originalFiles": 404,
+    "archiveSha256": "fcfab6d38afe745e7e4edcefaddc51476f3a21f078f04115d919365dd8c112c6",
+    "dryRunVerified": true,
+    "isolatedApplyVerified": true,
+    "laterEditRefusalVerified": true,
+    "isolatedReport": ".backups/before-hud-chat-20261012-045051/rollback-test.json"
+  }
+}

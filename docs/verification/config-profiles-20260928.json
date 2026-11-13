@@ -1,0 +1,127 @@
+{
+  "date": "2026-09-28",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifact_bytes": 1684328,
+  "artifact_sha256": "ac7b884ba4969905946f9132dc1f674f4e2947a962c6323aa797906c483df16e",
+  "build_command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew check --offline",
+  "unit_tests": {
+    "core": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 47,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runtime": {
+    "forge": {
+      "passed": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "forge/run-smoke-forge-4kml5g4v/launch.log",
+      "log_sha256": "23c05eb8144e711e0144ba1f4f4c6c3397ad9bfc934de4a4b73c45ce3db1842c",
+      "result": "forge/run-smoke-forge-4kml5g4v/result.json",
+      "launch_manifest": "forge/run-smoke-forge-4kml5g4v/launch-manifest.json",
+      "artifact_sha256": "ac7b884ba4969905946f9132dc1f674f4e2947a962c6323aa797906c483df16e",
+      "assertions": {
+        "gui": 103,
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "controls": 30
+      },
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "2b96ec59fbba9717997b4a7a333ff11f546247d5be078cbaeda15e8bc164780f",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "shutdown_markers_present": true
+    },
+    "optifine_m5": {
+      "passed": true,
+      "exit_code": 0,
+      "timed_out": false,
+      "log": "forge/run-smoke-optifine-bq3_vsw1/launch.log",
+      "log_sha256": "99e5f2a824bb459d31c638f14b4cf87b903ad23ab164efe37148c80bd20521be",
+      "result": "forge/run-smoke-optifine-bq3_vsw1/result.json",
+      "launch_manifest": "forge/run-smoke-optifine-bq3_vsw1/launch-manifest.json",
+      "artifact_sha256": "ac7b884ba4969905946f9132dc1f674f4e2947a962c6323aa797906c483df16e",
+      "assertions": {
+        "gui": 103,
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "module_lifecycle": 356,
+        "network": 46,
+        "render": 55,
+        "controls": 30
+      },
+      "fixture_source_sha256": {
+        "scripts/smoke/SmokeProbe.java": "2b96ec59fbba9717997b4a7a333ff11f546247d5be078cbaeda15e8bc164780f",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "6bde8317676062e2e5d44110c350f35a41dabf119312dbe138c248f6848bb514",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "0bcf81da413428892a1958f6b9d504f925562a17799fdc3372796071c6e50ddf",
+        "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "04a8e1b062a66a3cbb81d0ee55097583cea16271760ebd5ba09f2291263ec54f",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "shutdown_markers_present": true
+    }
+  },
+  "coverage": [
+    "GUI preset create/list/load/update/delete with confirmation and prior-version backup",
+    "Transformed dot-command interception, unknown commands consumed locally, no outgoing packet events",
+    "Transformed local Tab completion, no server autocomplete request",
+    "Config action bounds and at least four list rows at menu scales 0.75, 1.05 and 1.5",
+    "Snapshot ownership, duplicate creation refusal, named-file backup and recoverable deletion",
+    "Invalid names, symlinks, missing presets, malformed JSON and future schemas",
+    "Live edit during load rejects stale result; shutdown completes pending load without late application",
+    "Existing idle-tick no-write and change-coalescing tests remain passing",
+    "Full existing gameplay, registry lifecycle, render and unload/rejoin/shutdown checks"
+  ],
+  "backup": {
+    "directory": ".backups/before-config-profiles-20260928-084101",
+    "source_files": 294,
+    "archive_sha256": "95bdda5c3848c8e7d99653b252a7aad753fbddd9d93a4ea953a5bc62cc9bc747",
+    "restore_script": "scripts/restore-config-profiles.py",
+    "rollback_verified_in_disposable_copy": true,
+    "rollback_evidence": ".backups/before-config-profiles-20260928-084101/rollback-verification.json"
+  },
+  "limits": [
+    "Operating-system file and folder launch is implemented but not invoked by the gameplay smoke; file associations depend on the OS.",
+    "Named presets are explicit snapshots; only the current setup autosaves.",
+    "Local synthetic worlds and loopback network tests do not establish authenticated multiplayer or all third-party mod compatibility."
+  ],
+  "earlier_runs": [
+    {
+      "log": "forge/run-smoke-forge-egg6o7_e/launch.log",
+      "status": "fixture failed",
+      "reason": "Old fixed GUI click used y=22, which the new tab navigation correctly clamps to y=30. Fixture moved below navigation."
+    },
+    {
+      "log": "forge/run-smoke-forge-jeafxdmj/launch.log",
+      "status": "fixture failed",
+      "reason": "Tab-completion fixture used wrong SRG method spelling; corrected using local mapping table."
+    },
+    {
+      "log": "forge/run-smoke-forge-z77lho0y/launch.log",
+      "status": "passed before final small-window adjustment",
+      "artifact_sha256": "71e5f01f41ec73f5a68953c9af3699f4803d11af34856c031917e6f7330aea4c",
+      "gui_assertions": 76
+    }
+  ]
+}

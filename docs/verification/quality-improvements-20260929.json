@@ -1,0 +1,84 @@
+{
+  "date": "2026-09-29",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "bytes": 1704000,
+  "sha256": "a8084696ed4275082e753289db83d761aab2734c5d2372fe508f983d4dd9e0ed",
+  "unit_tests": {
+    "core": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 52,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "smoke": {
+    "forge": {
+      "directory": "forge/run-smoke-forge-8zgefehc",
+      "passed": true,
+      "artifact_sha256": "a8084696ed4275082e753289db83d761aab2734c5d2372fe508f983d4dd9e0ed",
+      "log_sha256": "84ce02ac9e200ed8ea402fb71144ff9508d6d4b2bd081766ce28b0398564c3d2",
+      "checks": {
+        "quality": 56,
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "lifecycle": 360,
+        "gui": 103,
+        "network": 46,
+        "controls": 30,
+        "render": 55
+      },
+      "trajectory_probe_ms": {
+        "100_cached_draws": 5.255833,
+        "100_recalculated_draws": 31.876458
+      },
+      "fixture_sources_sha256": {
+        "scripts/smoke/SmokeProbe.java": "8fba8ee1dd5e3604c2e9ea195d557187537687015433caa0d2eed843c8f8a3e5",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "c60f94b32e80b98191834d5b34335baf64b6b32838cd96036adadac63a8f5aa0",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "8d54a2dd379f9b29990bb0864bcf4900dd537de7a1fbeb549ee888a2c1246156"
+      }
+    },
+    "optifine": {
+      "directory": "forge/run-smoke-optifine-8z5463y7",
+      "passed": true,
+      "artifact_sha256": "a8084696ed4275082e753289db83d761aab2734c5d2372fe508f983d4dd9e0ed",
+      "log_sha256": "92a055256bf1033a20ceaa293436637666f37f30a03f904e783453e2dcff6315",
+      "checks": {
+        "quality": 56,
+        "deep_gameplay": 125,
+        "gameplay": 139,
+        "lifecycle": 360,
+        "gui": 103,
+        "network": 46,
+        "controls": 30,
+        "render": 55
+      },
+      "trajectory_probe_ms": {
+        "100_cached_draws": 6.277291,
+        "100_recalculated_draws": 31.194458
+      },
+      "fixture_sources_sha256": {
+        "scripts/smoke/SmokeProbe.java": "8fba8ee1dd5e3604c2e9ea195d557187537687015433caa0d2eed843c8f8a3e5",
+        "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "c60f94b32e80b98191834d5b34335baf64b6b32838cd96036adadac63a8f5aa0",
+        "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "8d54a2dd379f9b29990bb0864bcf4900dd537de7a1fbeb549ee888a2c1246156"
+      }
+    }
+  },
+  "limitations": [
+    "Local synthetic gameplay and loopback networking are not authenticated multiplayer verification.",
+    "Trajectory timings include drawing and are not FPS benchmarks."
+  ],
+  "rollback": {
+    "directory": ".backups/before-quality-fixes-20260929-092937",
+    "source_file_count": 307,
+    "archive": "source-only.tar.gz",
+    "archive_sha256": "61cb55ad0a228630d2ca8ea1465eb2a9fceccb3a84fd9cfddfef040282be816b",
+    "helper": "scripts/restore-quality-fixes.py",
+    "verification": ".backups/before-quality-fixes-20260929-092937/rollback-verification.json"
+  }
+}

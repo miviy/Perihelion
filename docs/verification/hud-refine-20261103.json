@@ -1,0 +1,113 @@
+{
+  "date": "2026-11-03",
+  "artifact": "forge/build/verified/hud-refine-20261103/Perihelion-0.1.0.jar",
+  "artifactSha256": "8b93df7e1f6bff5e9f3f9e11a53194603d44714a819874e82b0b57e761db9307",
+  "tests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 444,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "scenarios": {
+    "forge": {
+      "passed": true,
+      "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-_vwy74f4",
+      "checks": [
+        "[20:15:59] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudStyleProbe:blurPixels:343]: [PERIHELION_SMOKE] HUD_BLUR_PIXELS raw=13110.25 filtered=0.25 partial=13",
+        "[20:15:59] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudStyleProbe:run:280]: [PERIHELION_SMOKE] HUD_STYLE PASS checks=37",
+        "[20:16:12] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:710]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=112",
+        "[20:16:13] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiFontProbe:hud:175]: [PERIHELION_SMOKE] GUI_FONTS_HUD PASS checks=18",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=130 worldEvents=6",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "screenshots": [
+        "forge/build/verified/hud-refine-20261103/forge/hud-clean-checkpoint.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-refined-in-world.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-arraylist-gradient-blur.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-arraylist-inter.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-customize-text.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-settings-simple.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-customize-panel-blur.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-target-blur-off.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-target-blur-on.png",
+        "forge/build/verified/hud-refine-20261103/forge/hud-blur-coverage.png"
+      ]
+    },
+    "optifine": {
+      "passed": true,
+      "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-4q6c3m8g",
+      "checks": [
+        "[20:17:07] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudStyleProbe:blurPixels:343]: [PERIHELION_SMOKE] HUD_BLUR_PIXELS raw=13110.25 filtered=0.25 partial=13",
+        "[20:17:07] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudStyleProbe:run:280]: [PERIHELION_SMOKE] HUD_STYLE PASS checks=37",
+        "[20:17:20] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:710]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=112",
+        "[20:17:22] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiFontProbe:hud:175]: [PERIHELION_SMOKE] GUI_FONTS_HUD PASS checks=18",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=131 worldEvents=6",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "screenshots": [
+        "forge/build/verified/hud-refine-20261103/optifine/hud-clean-checkpoint.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-refined-in-world.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-arraylist-gradient-blur.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-arraylist-inter.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-customize-text.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-settings-simple.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-customize-panel-blur.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-target-blur-off.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-target-blur-on.png",
+        "forge/build/verified/hud-refine-20261103/optifine/hud-blur-coverage.png"
+      ]
+    }
+  },
+  "visualReview": {
+    "agent": "hud_visual_review",
+    "iterations": 3,
+    "verdict": "Compact defaults closely match user reference style; no material visual blocker in final captures.",
+    "rowPitchAt720": 15,
+    "glyphInkHeightAt720": 10,
+    "watermarkHeightAt720": 30,
+    "reference": "User-provided Astralis screenshots; native Perihelion implementation."
+  },
+  "changes": [
+    "Compact glyph-based HUD leading independent of menu scaling",
+    "Connected rounded silhouette shared by tint, blur and shadow",
+    "Separable Gaussian blur with fractional mask coverage",
+    "Essential settings tabs with Advanced and Reset look",
+    "Tighter default padding and low-opacity near-black backgrounds"
+  ],
+  "limits": [
+    "Local packaged UI and synthetic native GPU checks; no live multiplayer acceptance test.",
+    "Manual client uses a separate offline test profile; original profile and accounts were not modified."
+  ],
+  "backup": ".backups/hud-refine-20261026-2240",
+  "restore": "python3 scripts/restore-hud-refine.py (dry run; --apply restores guarded snapshot)",
+  "manualLaunch": {
+    "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-hud-refine-qh6t_qhv",
+    "pid": 26439,
+    "artifactSha256": "8b93df7e1f6bff5e9f3f9e11a53194603d44714a819874e82b0b57e761db9307",
+    "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/hud-refine-20261103/Perihelion-0.1.0.jar",
+    "sourceManifest": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-_vwy74f4/launch-manifest.json",
+    "smokeProbeInstalled": false,
+    "offlineTestProfile": true,
+    "previewWorld": "PerihelionSmoke",
+    "hudEnabled": true,
+    "appearanceDefaultsAppliedInPreviewOnly": true,
+    "sourceConfigDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-hud-clean-thvqk6jh/config/perihelion",
+    "createdAt": "2026-11-04T01:18:08.514212+00:00",
+    "liveness": {
+      "pid": 26439,
+      "alive": true,
+      "onScreenWindows": 1,
+      "verifiedAtUnix": 1793755156.61487
+    }
+  }
+}

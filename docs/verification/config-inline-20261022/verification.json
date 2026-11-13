@@ -1,0 +1,36 @@
+{
+  "artifact": "forge/build/verified/config-inline-20261022/Perihelion-0.1.0.jar",
+  "sha256": "ce2c233320fb998ad8c1d53f5367efcc99f9bf3fab0e3b763935ac26fe4df33a",
+  "unitTests": {
+    "core": {
+      "tests": 162,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 349,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "native": {
+    "forge": {
+      "passed": true,
+      "inline": "[09:41:40] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ConfigDropdownProbe:run:174]: [PERIHELION_SMOKE] CONFIG_INLINE PASS checks=182",
+      "shutdownClean": true
+    },
+    "optifine": {
+      "passed": true,
+      "inline": "[09:42:54] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ConfigDropdownProbe:run:174]: [PERIHELION_SMOKE] CONFIG_INLINE PASS checks=182",
+      "shutdownClean": true
+    }
+  },
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/modern/ConfigActions.java": "608bbbaa4de48adf1db95d1b948b63766dbc571ed3925de727a0f1dd5cf51577",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/modern/ModernScreen.java": "69e3850a554d71f530de20e2fb74a639b2ec48eb887eb8ac652c546d244fdab1",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/modern/ModernTheme.java": "02831d6f9cdfc623c1237c9f85013575fa935fff23ec14c37825448eeb755268"
+  },
+  "ui": "Inline module-style settings, standard width, checkbox renderer, active theme fill, rounded clipping, scrolling and normal input propagation."
+}

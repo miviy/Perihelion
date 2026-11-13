@@ -1,0 +1,193 @@
+{
+  "date": "2026-10-12",
+  "scope": "GUI/HUD utility geometry, Search area, typography, independent Logo and Tab GUI, grouped player actions",
+  "build": "check assemble --offline",
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 116,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "artifact": {
+    "path": "forge/build/verified/gui-hud-20261012/Perihelion-0.1.0.jar",
+    "bytes": 1865373,
+    "sha256": "476d662b35a0bfb03a1cd13ff6853f2c637d8b358b6a52e091c22f43898bed9e"
+  },
+  "sharedBuildArtifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "f77fca55e068f6be8c7f240f172d0bc5b54b06ad6371a5ceb4a60791a2606e64",
+    "note": "Concurrent gameplay builds changed the shared artifact after UI verification; the exact tested JAR is preserved separately."
+  },
+  "nativeRuns": [
+    {
+      "variant": "forge",
+      "directory": "forge/run-smoke-forge-7gkniet_",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "476d662b35a0bfb03a1cd13ff6853f2c637d8b358b6a52e091c22f43898bed9e",
+      "markers": [
+        "[18:22:13] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[18:22:15] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[18:22:18] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:366]: [PERIHELION_SMOKE] GUI PASS checks=120 panels=8 fonts=4",
+        "[18:22:22] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:224]: PERIHELION_SMOKE UI_THEME checks=207 fonts=3 scales=1,1.05 PASS",
+        "[18:22:22] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:437]: PERIHELION_SMOKE HUD_CHAT checks=88 PASS",
+        "[18:22:22] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:452]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=62",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=133 worldEvents=6",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "IllegalStateException": 0,
+        "[PERIHELION_SMOKE] FAIL": 0
+      },
+      "captures": [
+        "docs/verification/gui-hud-20261012/forge-ui-modules-sans-fractional.png",
+        "docs/verification/gui-hud-20261012/forge-clickgui-settings-isolated.png",
+        "docs/verification/gui-hud-20261012/forge-ui-configs-sans.png",
+        "docs/verification/gui-hud-20261012/forge-ui-hud-editor-sans.png",
+        "docs/verification/gui-hud-20261012/forge-ui-hud-elements-sans.png",
+        "docs/verification/gui-hud-20261012/forge-hud-chat-player-actions-in-world.png",
+        "docs/verification/gui-hud-20261012/forge-hud-chat-hypixel-stats-in-world.png",
+        "docs/verification/gui-hud-20261012/forge-clickgui-movable-utilities.png"
+      ],
+      "expectedFixtureExceptions": {
+        "Intentional HUD fixture failure": 1
+      }
+    },
+    {
+      "variant": "optifine",
+      "directory": "forge/run-smoke-optifine-5b5_69a8",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "476d662b35a0bfb03a1cd13ff6853f2c637d8b358b6a52e091c22f43898bed9e",
+      "markers": [
+        "[18:22:48] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[18:22:51] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[18:22:54] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:366]: [PERIHELION_SMOKE] GUI PASS checks=120 panels=8 fonts=4",
+        "[18:22:57] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:224]: PERIHELION_SMOKE UI_THEME checks=207 fonts=3 scales=1,1.05 PASS",
+        "[18:22:57] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudChatProbe:run:437]: PERIHELION_SMOKE HUD_CHAT checks=88 PASS",
+        "[18:22:57] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:452]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=62",
+        "[PERIHELION_SMOKE] STALE_ENTITY_PACKETS checks=2 PASS",
+        "[PERIHELION_SMOKE] STALE_WORLD_PACKETS checks=3 PASS",
+        "[PERIHELION_SMOKE] REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=138 worldEvents=6",
+        "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "[PERIHELION_SMOKE] HOOK target=cleared",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "IllegalStateException": 0,
+        "[PERIHELION_SMOKE] FAIL": 0
+      },
+      "captures": [
+        "docs/verification/gui-hud-20261012/optifine-ui-modules-sans-fractional.png",
+        "docs/verification/gui-hud-20261012/optifine-clickgui-settings-isolated.png",
+        "docs/verification/gui-hud-20261012/optifine-ui-configs-sans.png",
+        "docs/verification/gui-hud-20261012/optifine-ui-hud-editor-sans.png",
+        "docs/verification/gui-hud-20261012/optifine-ui-hud-elements-sans.png",
+        "docs/verification/gui-hud-20261012/optifine-hud-chat-player-actions-in-world.png",
+        "docs/verification/gui-hud-20261012/optifine-hud-chat-hypixel-stats-in-world.png",
+        "docs/verification/gui-hud-20261012/optifine-clickgui-movable-utilities.png"
+      ],
+      "expectedFixtureExceptions": {
+        "Intentional HUD fixture failure": 1
+      }
+    }
+  ],
+  "uiSourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/GuiTheme.java": "e9cfb6b6f2115a4c99b5fdfc58226eecbec1c3d59459fafeb65a13d359355a2b",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/ClickGuiModule.java": "2e5de5a9cab7a076eae228462ba120c78581bda7d1dc26e89306963b38f0b798",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/font/GuiFonts.java": "13cde97ea4cedc67266b771df41058c9301d97e08a68b1b0b8db379e10cf25bc",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/PanelScreen.java": "c14bf3362d35a4817339df13a61722ba27e334e8d568c2fd662cc7e83d6d482f",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/ConfigPanel.java": "02fc591c1ad0d0a6e0cc7c3ac734c0da7a11309658e7087c59f9c12175b950a9",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/UtilityLayout.java": "48e479ff9165c0b9e7bea85966f3b909995c02183dbc4b9e583bfa0dab71603a",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/UiCanvas.java": "bef25b0f18fb6f3c933b5a1d35e1001dc1f0dd45b1b3eff3de4c735c834fadf0",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/SettingControl.java": "01dbb50cd21fb60a748f0c346c8db6905acc52139d2774964192f4d190261fe0",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudRenderer.java": "c721d9937f5ea74ef138cc9f7fab5fb2eecb18715f99248fc68fe89d02b62b4b",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HypixelStats.java": "2aa2609d714fa453ff969cd7bc74ba47ac1f26a84d1d3e0678d53ab672e4a49c",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudModule.java": "9b469e146ffd8372517a0c5bc1e151bfda88e12ec2f404b4d809c736712a68b6",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudEditor.java": "2f9f9a9f32bbd5b3e30ded5de67acc232f593777fe46426b7713e92c24125904",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudChatInteraction.java": "516ebc81ddc5ef9e70985a91bdf2162fcbc0918f3db1e8ac69a7da4fbe708cb1",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java": "0b228f9288716eb77d55a574245f9f1c0a3fb65c3577ec7ae68ba3cdf280bee9",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerTags.java": "26fbfd3f67dd384c1ce4c16449eb454a5ee203dea24ffc3b0d3bee62b721a113"
+  },
+  "backup": {
+    "directory": ".backups/before-gui-hud-20261012-181022",
+    "files": 479,
+    "archiveSha256": "e75c0bf20eb62d9dd1fa2f4390ef3113bd1d9f92c9652406c3702340594c2c2f",
+    "rollbackFiles": [
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/GuiTheme.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/ClickGuiModule.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/font/GuiFonts.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/PanelScreen.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/ConfigPanel.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/UtilityLayout.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/UiCanvas.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/SettingControl.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/hud/HudRenderer.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/hud/HypixelStats.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/hud/HudModule.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/hud/HudEditor.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/hud/HudChatInteraction.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/TargetingModules.java",
+      "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PlayerTags.java",
+      "forge/src/test/java/perihelion/integration/minecraft189/gui/GuiLogicTest.java",
+      "forge/src/test/java/perihelion/integration/minecraft189/hud/HypixelLookupTest.java",
+      "forge/src/test/java/perihelion/integration/minecraft189/hud/HudSettingsTest.java",
+      "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java",
+      "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java",
+      "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java",
+      "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java",
+      "scripts/launch-smoke.py",
+      "scripts/smoke/SmokeProbe.java",
+      "docs/CLICKGUI.md",
+      "docs/HUD.md"
+    ]
+  },
+  "limits": [
+    "No authenticated Hypixel API or reporting session was supplied.",
+    "Language and violations remain explicitly unavailable; Target is a board tag.",
+    "Focused ui scenario preserves full gameplay assertions unchanged, excludes gameplay fixtures/live bridging, and covers UI, unload/rejoin, config and teardown."
+  ],
+  "broaderRuns": [
+    {
+      "directory": "forge/run-smoke-forge-j4lo0lik",
+      "passed": false,
+      "exitCode": -6,
+      "artifactSha256": "acd7c660d1b469e36bd249f9562d0a90657545869c0d6339694a80532ac278cc",
+      "note": "Sandboxed native launch aborted before a client window; retried outside the sandbox."
+    },
+    {
+      "directory": "forge/run-smoke-forge-rpo2azw8",
+      "passed": false,
+      "exitCode": 0,
+      "artifactSha256": "acd7c660d1b469e36bd249f9562d0a90657545869c0d6339694a80532ac278cc",
+      "note": "Earlier artifact passed UI fixtures; broader run failed low-FPS live movement threshold: distance 0.9922 blocks with 2 bridge blocks."
+    },
+    {
+      "directory": "forge/run-smoke-forge-ryls3gtn",
+      "passed": false,
+      "exitCode": -6,
+      "artifactSha256": "476d662b35a0bfb03a1cd13ff6853f2c637d8b358b6a52e091c22f43898bed9e",
+      "note": "Verified UI artifact full run stopped in the concurrently changing gameplay projectile fixture: changed projectile stack cancels action and releases controls."
+    }
+  ]
+}

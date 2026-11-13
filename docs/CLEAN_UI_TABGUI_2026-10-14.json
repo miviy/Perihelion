@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-14",
+  "scope": "Compact UI, HUD cleanup and stable editable TabGUI",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1974881,
+    "sha256": "7c35ed86343c1e14a50a2a12f844bf4f0e9224820e0eab25fef90c70ee010e81"
+  },
+  "unit_tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 163,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "native_ui_runs": [
+    {
+      "directory": "forge/run-smoke-forge-mkxjyn3i",
+      "passed": true,
+      "exit_code": 0,
+      "checks": {
+        "GUI": 327,
+        "TAB_GUI": 91,
+        "UI_THEME": 233,
+        "PRODUCTION_HUD": 84,
+        "HUD": 261,
+        "RENDER": 61
+      },
+      "shutdown_clean": true,
+      "screenshots": [
+        "forge/run-smoke-forge-mkxjyn3i/clickgui-enabled-row.png",
+        "forge/run-smoke-forge-mkxjyn3i/clickgui-readable-minecraft.png",
+        "forge/run-smoke-forge-mkxjyn3i/clickgui-settings.png",
+        "forge/run-smoke-forge-mkxjyn3i/hud-arraylist-options.png",
+        "forge/run-smoke-forge-mkxjyn3i/tab-gui-settings.png"
+      ]
+    },
+    {
+      "directory": "forge/run-smoke-optifine-f5jtmb3b",
+      "passed": true,
+      "exit_code": 0,
+      "checks": {
+        "GUI": 327,
+        "TAB_GUI": 91,
+        "UI_THEME": 233,
+        "PRODUCTION_HUD": 84,
+        "HUD": 261,
+        "RENDER": 61
+      },
+      "shutdown_clean": true,
+      "screenshots": [
+        "forge/run-smoke-optifine-f5jtmb3b/clickgui-enabled-row.png",
+        "forge/run-smoke-optifine-f5jtmb3b/clickgui-readable-minecraft.png",
+        "forge/run-smoke-optifine-f5jtmb3b/clickgui-settings.png",
+        "forge/run-smoke-optifine-f5jtmb3b/hud-arraylist-options.png",
+        "forge/run-smoke-optifine-f5jtmb3b/tab-gui-settings.png"
+      ]
+    }
+  ],
+  "backup": ".backups/before-clean-ui-20261014-145921/",
+  "visual_review": {
+    "subagent": true,
+    "result": "Final screenshots show readable controls, fitting labels and unobstructed TabGUI settings."
+  },
+  "remaining_log_messages": [
+    "Legacy Forge signature and Twitch initialization messages",
+    "OpenAL shutdown: 3 Buffers not deleted",
+    "hud-smoke-broken listener failure is an intentional fault-isolation test"
+  ]
+}

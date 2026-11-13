@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-13",
+  "reference": {
+    "url": "https://github.com/MichaelStetson/Modern-Lazify",
+    "commit": "50428890f1f6754ad5b0859293d9421420c3ac9b"
+  },
+  "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/modern-lazify-20261013/Perihelion-0.1.0.jar",
+  "artifact_sha256": "b30118952e44823c55dd31acb0d4fdbf6fd6618a7454750382dce940c5243692",
+  "checks": "check assemble --offline passed",
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 149,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "native": {
+    "forge": {
+      "directory": "forge/run-smoke-forge-0w35wfal",
+      "passed": true,
+      "artifact_sha256": "b30118952e44823c55dd31acb0d4fdbf6fd6618a7454750382dce940c5243692",
+      "overlay_checks": 26,
+      "chat_checks": 88,
+      "production_hud_checks": 84,
+      "stale_entity_checks": 3,
+      "unexpected_task_errors": 0,
+      "shutdown_report": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "fixture_manifest_sha256": "b0c2e872fd345be124fa4fc61f808a7c894e8fcc3a43cd2a19f69753a2d9a1cc",
+      "images": {
+        "modern-lazify-overlay.png": "5c523f8c70665367efcc7d9b5315017e42761cc85c434e81986c3473a5111699",
+        "hud-chat-player-actions-in-world.png": "44a8825e761fe407b5a6dda34351656fa03f21b18c2d7aff5bbc265d1e736e8a"
+      }
+    },
+    "optifine_m5": {
+      "directory": "forge/run-smoke-optifine-bgqt6ok2",
+      "passed": true,
+      "artifact_sha256": "b30118952e44823c55dd31acb0d4fdbf6fd6618a7454750382dce940c5243692",
+      "overlay_checks": 26,
+      "chat_checks": 88,
+      "production_hud_checks": 84,
+      "stale_entity_checks": 3,
+      "unexpected_task_errors": 0,
+      "shutdown_report": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "fixture_manifest_sha256": "13e6b8bb96c07b12fc4655c397adef065c3efaba7349f28b2c5d5be7d0657ce7",
+      "images": {
+        "modern-lazify-overlay.png": "f03f171d45857e26e06b2caee01f1266b927b67914e1bfe56ee8278b8015b3fd",
+        "hud-chat-player-actions-in-world.png": "401a544ed9d751ca50812506cc49bc389ce6f7a66dd684fe9f7c23b6896839d5"
+      }
+    }
+  },
+  "public_java8_api_log": "ABYSS provider=abyss fields=2 nick=false status=\nPRISM provider= fields=0 nick=false status=prism profile identity/response invalid\nBORDIC provider=bordic fields=13 nick=false status=\nJAVA8_PUBLIC_API PASS (no credentials; public fixture UUID)\n",
+  "public_api_limitations": [
+    "No authenticated provider keys or Hypixel session supplied.",
+    "Abyss only responded over its public HTTP endpoint. No credentials sent.",
+    "Prism mismatched UUID responses rejected.",
+    "Bordic sessions and Urchin require keys; Seraph unauthenticated probe returned HTTP 502."
+  ],
+  "prior_failures": [
+    {
+      "run": "forge/run-smoke-forge-64s3i6cc",
+      "cause": "New fixture read HUD renderer while disabled; corrected probe activation."
+    },
+    {
+      "run": "forge/run-smoke-forge-3b0g_flv",
+      "cause": "Older chat fixture used previous private updatePlayers signature; corrected fixture."
+    },
+    {
+      "run": "forge/run-smoke-forge-639ihsmh",
+      "cause": "Full run passed; queued S19 head-look task NPE exposed on unload. Added same after-handoff retired-world guard as movement/teleport."
+    },
+    {
+      "run": "forge/run-smoke-forge-ri03cgp5",
+      "cause": "Overlay/chat checks passed, 10-FPS bridging profile returned zero placed blocks once. Exact same final artifact passed full Forge and OptiFine on subsequent runs; cause remains unproven."
+    }
+  ],
+  "backup": {
+    "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/before-modern-lazify-20261013-154135",
+    "files": 557,
+    "archive_sha256": "47e38e02f7526f81c69736ae66001033ce331ec20518c3b22ac51d854ade8722",
+    "rollback": "scripts/restore-modern-lazify.py",
+    "concurrent_work_preserved": true,
+    "note": "Rollback allowlists only this task. Removes only Modern-Lazify section from shared DONORS.md; concurrent Breaker source and documents are excluded."
+  },
+  "changed_file_sha256": {
+    "docs/DONORS.md": "ac4165d2c40b63f35bb265f3a7a09a7d7d146e7765fce39b532a336639041906",
+    "docs/HUD.md": "ca2116596a2aaa241ad5f943d013dd2b9f391f9ce5f711bad2fc19e3ce66cdd9",
+    "docs/MODERN_LAZIFY_2026-10-13.md": "57dc45d60558ba9cd3e93d5b1646a66d9d25d4ba816f9c57c72b70d57cc40739",
+    "scripts/restore-modern-lazify.py": "ee5374851b0cc8ab53899af1c5ca0474ae3b9be5196b55b9b5d77213a14587ed",
+    "scripts/smoke/SmokeProbe.java": "f891a470853c9c5d8d3cca5bbf0145b66100969af23495de7f6176dde87ab491",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudChatInteraction.java": "a3143fa934a044018fff9ea4718b338de99f474745e6c61fa08afa803c020093",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudModule.java": "d55bd764b29190cd9a618ceade920d07ccca4722b1d49c32ffa204663c0f7a28",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudRenderer.java": "459ee795c9462fe215d0fdfe2ed62d23e1fe72ebc586ff61e228e7b8c20cc45e",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlayEncounters.java": "faa9c3b0ee775a12a7e5ddeebbe7f2020b4b6bd8e9bd09f9bb831065cba04cb2",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlayHttp.java": "0ff1d05bce7434ca3963e21de1a881b1b6a803b69f3f2aa0ba7c1cd41362ec48",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlayLookup.java": "e75d5bb263467f6bd914cd9f340279b4f259b1ae6bd2cf2a8637e0216a8120a1",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlayProfile.java": "0a4e6712b3740d218e8085859a6057f1c80e343b478a46650b8d8f00d203708c",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlaySettings.java": "e12c42572fa8b362cf83c8be4f0f6ef8400af8608252f031e02974eab08683e3",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/OverlayTracker.java": "6dfbb9c67eb8879993a8beb252d3f9fad4f52b51703e96b99ba9122ef9feeda9",
+    "forge/src/main/java/perihelion/integration/minecraft189/mixin/ClientPacketMixin.java": "d94402eb7a804ca8dd5fa79b5a78325d13ba559110a22436716dab4c91a1f7ab",
+    "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "418488e79f9af2eab601134ce3ddaf3bdb662fd513fc4a885deafb37f3a5610a",
+    "forge/src/smoke/java/perihelion/smoke/OverlayHookProbe.java": "cd471f62446bbe96f1e6f621107ba66a92d13dac59677b2958fa524c70ed3978",
+    "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "b1c7c850d0161bb81b7fcaca4fbc003f1c39807d26fdd475eb9a93ec36acc248",
+    "forge/src/test/java/perihelion/integration/minecraft189/hud/HudSettingsTest.java": "d4d96fdee56659b7dd8f634bfd0deff9f53c058a259a6068decca4c3177c392b",
+    "forge/src/test/java/perihelion/integration/minecraft189/hud/OverlayTest.java": "582ef7c218dc2bba03ba0631f57dd80f8877dd2436ca61d26e50ee73dd601524"
+  },
+  "scope": "Modern-Lazify overlay/statistics behavior through native Perihelion architecture. Visual replacements, automatic identity-denick matching, shop mixin and party-chat broadcasts not imported."
+}

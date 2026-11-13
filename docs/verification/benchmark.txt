@@ -1,0 +1,25 @@
+Perihelion event dispatch microbenchmark
+Timestamp: 2026-09-20T19:50:14.187Z
+Java: 1.8.0_502 / OpenJDK 64-Bit Server VM / Azul Systems, Inc.
+OS: Mac OS X 26.6.2 / aarch64
+One JVM, 5 warmup batches then 9 measured batches per case; 500000 posts/batch.
+Client thread guard enabled; built-in timing disabled; reused noncancellable event.
+Includes listener arithmetic; excludes registration, event creation, faults and Minecraft.
+Current-thread allocation counter: enabled
+
+Listeners: 0
+  ns/post samples: 4.960, 5.059, 5.031, 10.349, 5.037, 5.006, 8.460, 17.183, 5.059
+  bytes/post samples: 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+  ns/post min=4.960 median=5.059 max=17.183; median bytes/post=0.000000
+
+Listeners: 1
+  ns/post samples: 18.888, 18.739, 23.855, 22.280, 25.669, 21.766, 25.004, 21.618, 17.583
+  bytes/post samples: 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+  ns/post min=17.583 median=21.766 max=25.669; median bytes/post=0.000000
+
+Listeners: 100
+  ns/post samples: 399.259, 385.554, 386.156, 397.080, 392.221, 402.937, 387.502, 385.205, 402.339
+  bytes/post samples: 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000
+  ns/post min=385.205 median=392.221 max=402.937; median bytes/post=0.000000
+Consumed checksum: 164522597074992
+Indicative dispatch-only measurement. No FPS or cross-machine performance claim.

@@ -1,0 +1,274 @@
+{
+  "date": "2026-10-10",
+  "scope": "Local source, unit, packaging and disposable Minecraft 1.8.9 worlds; no public-server acceptance test.",
+  "artifact": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "3eccad2ac01f5e097b5d600adcc34506f68865a6d38415a01f00be64e8cc8430",
+    "bytes": 1766622,
+    "smokeFixturesIncluded": false
+  },
+  "donor": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/donor_clients/Yuri",
+    "revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+    "trackedAndUntrackedClean": true,
+    "auraReferenceRevision": "c4d18a89b857139974bb0aac6dfdae6eeec08c61"
+  },
+  "unitTests": {
+    "core": {
+      "tests": 155,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 72,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "buildLog": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/yuri13-build.log",
+  "runs": {
+    "forge": {
+      "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-5dtysc3c",
+      "passed": true,
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-5dtysc3c/result.json",
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-5dtysc3c/launch.log",
+      "shutdownReport": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-5dtysc3c/shutdown-report.txt",
+      "artifactSha256": "3eccad2ac01f5e097b5d600adcc34506f68865a6d38415a01f00be64e8cc8430",
+      "newBehaviorChecks": 90,
+      "rotationChecks": 120,
+      "unexpectedExceptions": [],
+      "resultSha256": "4f8024c8507c9e7700556f2a75ca292d927e30d2c309b9828d2727284a05dc46",
+      "logSha256": "fd90027a27f163b6998dc6a4e728050bb9dccdd8e55994ee8f0c795cad0ffbd3",
+      "shutdownReportSha256": "02bb15e38e45e1400cacabe638549ffb109af1e55d4997ada20cc7e45ac17afd"
+    },
+    "optifine": {
+      "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-uvpipifr",
+      "passed": true,
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-uvpipifr/result.json",
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-uvpipifr/launch.log",
+      "shutdownReport": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-uvpipifr/shutdown-report.txt",
+      "artifactSha256": "3eccad2ac01f5e097b5d600adcc34506f68865a6d38415a01f00be64e8cc8430",
+      "newBehaviorChecks": 90,
+      "rotationChecks": 120,
+      "unexpectedExceptions": [],
+      "resultSha256": "f8fa1969621a9fa2a39b1b26e2f6885a2ce8cf47e8d569e230b5de60bbb33d1b",
+      "logSha256": "e0a3410541c7303c5378abe3e56cc2920e303c8a6fce25065569eac7b84b7d3b",
+      "shutdownReportSha256": "02bb15e38e45e1400cacabe638549ffb109af1e55d4997ada20cc7e45ac17afd"
+    }
+  },
+  "launcherRegression": {
+    "cases": 4,
+    "passed": true,
+    "caseNames": [
+      "closed-stdout",
+      "shutdown-failure",
+      "missing-cleanup",
+      "normal-stdout"
+    ],
+    "method": "Isolated launcher function with synthetic child-process log and independent shutdown report."
+  },
+  "warnings": [
+    "Intentional fault-isolation fixtures",
+    "Forge unsigned metadata",
+    "Unavailable legacy Twitch integration",
+    "OpenAL shutdown buffer warning"
+  ],
+  "quickPortSourceCheck": "No production added-line matches for external HTTP endpoints, process execution, credential handling or file-I/O patterns. Donor security review is separate.",
+  "rollbackArchive": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/before-yuri13-20261010-202950/source-only.tar.gz",
+  "changedSourceAndScriptFiles": [
+    {
+      "path": "core/src/main/java/perihelion/core/control/HotbarSelection.java",
+      "status": "modified",
+      "beforeSha256": "dd029844de0e93acfa439a124b8053704697ba9697c6824696a1521fa863c2d4",
+      "afterSha256": "eeadb7f099a29fd4e4e3e9230810d40841c7280f4e1ff864f723867ab31be780"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/control/EntityStateAccess.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "0b018355c3816833390f577280ce9ad654f6547c75a6603e98d4a6781ddc56b0"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/control/MinecraftControls.java",
+      "status": "modified",
+      "beforeSha256": "319693de0d5ebf2e838db5db10578fa567df73571f45d6f88ab04a659cf9c080",
+      "afterSha256": "76c18cd5d78eca5d2f69a2081a85c591fbc790caf7e9a633615003cb4409410b"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/control/PlayerRotationAccess.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "93441eb993f544fa91464b9592251020335cf7c42f25a86562e2906eee88bc21"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/control/StateOverride.java",
+      "status": "modified",
+      "beforeSha256": "046134ce8fff908d185b6e62676705e0443122905a092c878659cb8b09e520a3",
+      "afterSha256": "19d87ef4fe531976f81839e62f845bea5c5ca26cf84bef4cdb8d832c9afc2c9f"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/event/CameraViewEvent.java",
+      "status": "modified",
+      "beforeSha256": "72c517da575f321998f516d9922b31a412e1fbfb957513fa2179e165954616b3",
+      "afterSha256": "49e3f8ceb9df50b32a7c50eeeee210fd9c49fa5df97471122b2502c672f6bf6f"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/event/ModelRotationEvent.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "9635549fe2ecc9723414d55e0714cb94b43092d4c53a9fe30dd209faa6de365f"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/event/MovementYawEvent.java",
+      "status": "modified",
+      "beforeSha256": "59e56c0caf90cb403475c7b9267673dd9f2e51d3bfbcb9949c6cba71b39f694b",
+      "afterSha256": "c27562faea639b52357ce008d2fdc1f5cca835dde1e34c5a4ec43e82e17c61f6"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/mixin/EntityMovementMixin.java",
+      "status": "modified",
+      "beforeSha256": "79e625509dd9999e27e647a28e4013bc6528c04d89383344623f70a727397aa4",
+      "afterSha256": "9f13c954181507e25142c91eb11464584efc8ede2d07992e9018e707b22e612b"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/mixin/FreeLookMixin.java",
+      "status": "modified",
+      "beforeSha256": "6c22b162ece9f7d7835f431688d8ef8412399ea507543c2bee7d0ca58fa1c840",
+      "afterSha256": "58ba44a0054e78b7880e4be52523386accad83e29b419237e3d5e291c7571e1c"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/mixin/JumpDirectionMixin.java",
+      "status": "modified",
+      "beforeSha256": "825f81842ef0126835ca00ab96a2dd2eafbe63b6eb93d433ed725bed9e4d51db",
+      "afterSha256": "38473818d7a99c66cb2ee4c6057688792e54bc012fcba99baa6499cfdc1a7f97"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/mixin/PlayerControlsMixin.java",
+      "status": "modified",
+      "beforeSha256": "4f05accecfb541e1e0b66cc2bb71b2b850f36a514d3e4730495bb3f1c7749d5d",
+      "afterSha256": "b18397b1e76083978232473132f1796db6d59b7df327fc710287596c3d8e3a59"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/AuraModule.java",
+      "status": "modified",
+      "beforeSha256": "2ee842074e4a5ca25e9117fd019f4f9d9bd85907d6aa4cf1a111f9666d30445b",
+      "afterSha256": "bab5febde7ffd98c7abab71f0d5323dd6ec68fab38bcb272b743267e8e5a4863"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java",
+      "status": "modified",
+      "beforeSha256": "b683e1ddea0f0a636aabfc7eef6ef3d0bdf097df46819faa77adc62aaa38efe7",
+      "afterSha256": "aafc62a6988ae938709e3fe5194511f0dbd0ec6cc535dca0064176e7837543be"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/FreeLookAngles.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "021bbcf00b71deee79285605efa38a66af5a0196305b0192b0e9f1169897e112"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/InventoryPolicy.java",
+      "status": "modified",
+      "beforeSha256": "c077059460dfe6ed3168b2f0b32650d119c73026d8ac81612cb6bc4b2a1c80d6",
+      "afterSha256": "4521ddc36dd790d3b5590aeb7354553535b2a2ec1f08bb7a0897dfe72db4d7ca"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java",
+      "status": "modified",
+      "beforeSha256": "9c175cf320af543ef8348c5d1681b1b8246b2b712baed000aadf801d1fe7cef7",
+      "afterSha256": "8dd9db131cb815999b947e3d444d155ded7ff484b7a36a2a61bffe32ee871b95"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java",
+      "status": "modified",
+      "beforeSha256": "6b2e7b302d5c80f658529166a733dba06d13b3d276fb908088be82c75a1e04f7",
+      "afterSha256": "9549944ba147c74b6590fc2c0a7ce8c32491edab0115c5c535636eee16760fd4"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/RotationDynamics.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "17435a048b0657c4dd1812818d7ed02be6feeb931a2e0ac39218771e6a87584c"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldModule.java",
+      "status": "modified",
+      "beforeSha256": "e4edfe84fdf1aa2386340b6253dcb8f813e5b97742ffe6f0ade7cb160e6ed6bd",
+      "afterSha256": "43fe716667dd421c72a64558c3642e5aea0f247e9f8f42ea658ab62b916a169b"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldRotations.java",
+      "status": "modified",
+      "beforeSha256": "c91cc5678422e732628bc010ac07e8d7a12bc07a51d76ebfe17a952b5a542856",
+      "afterSha256": "63e65b8784e3d4dadf4712bd2ea582cc2e335fbb2b09c46233480184746da7cc"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/UtilityModules.java",
+      "status": "modified",
+      "beforeSha256": "3017c672db4b9ae998ec918762f6753b495ec5a2b546a5ceacc5e2f820e1db69",
+      "afterSha256": "72546e0459ceb47779374879bf89200b6b5c1347582f70fde701cc3f785f24fd"
+    },
+    {
+      "path": "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/WorldVisualModules.java",
+      "status": "modified",
+      "beforeSha256": "cba40477d7758b522907e0572489a5cd11ac14f376dc7b348f6f030cbc9d9bfe",
+      "afterSha256": "1ac96724366295347ece9f3cb2ac71fb4caa05a24b5b42175ef4824b4cbd26eb"
+    },
+    {
+      "path": "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java",
+      "status": "modified",
+      "beforeSha256": "8b9f7ad536862e20d68e020e0291acb759b4a0444fb18108e0388b31729e9f3c",
+      "afterSha256": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b"
+    },
+    {
+      "path": "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java",
+      "status": "modified",
+      "beforeSha256": "d0adcddd954a98fb88abcb2b67ed8b8efe12f18d54ff6c8d646bfd7cc169701b",
+      "afterSha256": "444dd96ec7f8eb021e3b435742b96ad25bbb13019d7ac2ba4e3887f42eeb919b"
+    },
+    {
+      "path": "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java",
+      "status": "modified",
+      "beforeSha256": "fb8bf243542e5b74ee0d38b434841d0c6acd15dc379b97dfa02e0289024d901a",
+      "afterSha256": "22a3d99f591d809b34c725f2133b89b461fa80566c0794f9ce514e6713e44df1"
+    },
+    {
+      "path": "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "d12eacec9c4913b14e65cf9fc02eccda5ce0626769f12de2996de5fb3576aa9e"
+    },
+    {
+      "path": "forge/src/test/java/perihelion/integration/minecraft189/control/StateOverrideTest.java",
+      "status": "modified",
+      "beforeSha256": "e47687823431e84d4bbab7b72632e1ba23678dbd796815f1103823f4c9972d41",
+      "afterSha256": "bcce06577e5e608449057bfc0f8b5a133e8e22730354967c3786ce7a415e9b3e"
+    },
+    {
+      "path": "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/FreeLookAnglesTest.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "25ed3fd8853fe2723c4cea6732be1f1e3fb266ad455d9045eb8461a0bc3c88cb"
+    },
+    {
+      "path": "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/RotationDynamicsTest.java",
+      "status": "added",
+      "beforeSha256": null,
+      "afterSha256": "0d50ab1c433adb1128d783d1d7dcc376fd606a86fb3d886ab28a57c4f3cf08cc"
+    },
+    {
+      "path": "scripts/launch-smoke.py",
+      "status": "modified",
+      "beforeSha256": "b939ba33ff8fe04564a8649a8aa64428caf6d85cbdda1f4093ad22a19a8344f3",
+      "afterSha256": "03a81c8bfb15df78bb56895a67ed03748ba83665e3be2672f6496d268b7c1998"
+    },
+    {
+      "path": "scripts/yuri-port-inventory.py",
+      "status": "modified",
+      "beforeSha256": "c22def9b874c6d489a5f99b752b34a32c1538f62962f9774f39a2f5da8b866bd",
+      "afterSha256": "123c1e5c8bd7b5368b30490aabd8081488d26eeddc44b2a20c8490536d940243"
+    }
+  ]
+}

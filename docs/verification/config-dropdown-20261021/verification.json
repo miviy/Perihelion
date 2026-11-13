@@ -1,0 +1,41 @@
+{
+  "artifact": "forge/build/verified/config-dropdown-20261021/Perihelion-0.1.0.jar",
+  "sha256": "4ae1c28ea1cc40b145f5e8de97a31f41ba2c927265d7c074a3d52fdd447532d1",
+  "unitTests": {
+    "core": {
+      "tests": 162,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 349,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "native": {
+    "forge": {
+      "passed": true,
+      "configMarker": "[19:32:25] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ConfigDropdownProbe:run:158]: [PERIHELION_SMOKE] CONFIG_DROPDOWN PASS checks=166",
+      "shutdownClean": true
+    },
+    "optifine": {
+      "passed": true,
+      "configMarker": "[19:33:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ConfigDropdownProbe:run:168]: [PERIHELION_SMOKE] CONFIG_DROPDOWN PASS checks=167",
+      "shutdownClean": true
+    }
+  },
+  "sourceSha256": {
+    "core/src/main/java/perihelion/core/lifecycle/ConfigController.java": "65a91d1c47e51bcadfe59ea6cf400a39d1b71570fdade10d6431c1caf568bcbb",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/modern/ConfigActions.java": "60ec899f25160960b596c72827c3cd77ebb967debf4630e9b812adc715081736",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/modern/ModernScreen.java": "4387b0875e81d0947ff6448e0bc0975779da8cd8610f58e81c9659e4c4ab52e5"
+  },
+  "rollback": {
+    "guardedLaterEdits": true,
+    "restoredAllChecksums": true,
+    "preservedThemes": true
+  },
+  "scope": "New visuals config dropdown; existing Old Adjust/Raven browsers retained"
+}

@@ -1,0 +1,432 @@
+{
+  "combat/AuraModule.java": {
+    "status": "native-implementation",
+    "native": "aura",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/AutoAppleModule.java": {
+    "status": "native-implementation",
+    "native": "autoapple",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/AutoExtinguishModule.java": {
+    "status": "native-implementation",
+    "native": "autoextinguish",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/AutoPotModule.java": {
+    "status": "native-implementation",
+    "native": "autopot",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/AutoProjectileModule.java": {
+    "status": "native-implementation",
+    "native": "autoprojectile",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/BackTrackModule.java": {
+    "status": "native-implementation",
+    "native": "backtrack",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/BowAimbotModule.java": {
+    "status": "native-implementation",
+    "native": "bowaimbot",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/CriticalsModule.java": {
+    "status": "native-implementation",
+    "native": "criticals",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/HitSelectModule.java": {
+    "status": "native-implementation",
+    "native": "hitselect",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/LagRangeModule.java": {
+    "status": "native-implementation",
+    "native": "lagrange",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/TargetStrafeModule.java": {
+    "status": "native-implementation",
+    "native": "targetstrafe",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/TickBaseModule.java": {
+    "status": "native-implementation",
+    "native": "tickbase",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/VelocityModule.java": {
+    "status": "native-implementation",
+    "native": "velocity",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "combat/WTapModule.java": {
+    "status": "native-implementation",
+    "native": "wtap",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/AntiBotModule.java": {
+    "status": "native-implementation",
+    "native": "antibot",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/AutoChatModule.java": {
+    "status": "native-implementation",
+    "native": "autochat",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/AutoSwapModule.java": {
+    "status": "native-implementation",
+    "native": "autoswap",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/BedWarsUtilityModule.java": {
+    "status": "native-implementation",
+    "native": "bedwarsutility",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/DerpModule.java": {
+    "status": "native-implementation",
+    "native": "derp",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/DisablerModule.java": {
+    "status": "native-implementation",
+    "native": "disabler",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/DiscordRPCModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "misc/FriendsModule.java": {
+    "status": "native-implementation",
+    "native": "friends",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/GUIClickerModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "misc/InputFixesModule.java": {
+    "status": "native-implementation",
+    "native": "inputfixes",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/ItemDelaysModule.java": {
+    "status": "native-implementation",
+    "native": "fastplace",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/MinigameAimModule.java": {
+    "status": "native-implementation",
+    "native": "minigameaim",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/TimerModule.java": {
+    "status": "native-implementation",
+    "native": "timer",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "misc/ToggleSoundsModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "movement/FlightModule.java": {
+    "status": "native-implementation",
+    "native": "flight",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/LongJumpModule.java": {
+    "status": "native-implementation",
+    "native": "longjump",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/NoSlowModule.java": {
+    "status": "native-implementation",
+    "native": "noslow",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/PhaseModule.java": {
+    "status": "native-implementation",
+    "native": "phase",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/SafeWalkModule.java": {
+    "status": "native-implementation",
+    "native": "safewalk",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/SpeedModule.java": {
+    "status": "native-implementation",
+    "native": "speed",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/SprintModule.java": {
+    "status": "native-implementation",
+    "native": "sprint",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/StasisModule.java": {
+    "status": "native-implementation",
+    "native": "stasis",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/StepModule.java": {
+    "status": "native-implementation",
+    "native": "step",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "movement/WaterWalkModule.java": {
+    "status": "native-implementation",
+    "native": "waterwalk",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/AntiFireballModule.java": {
+    "status": "native-implementation",
+    "native": "antifireball",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/AntiVoidModule.java": {
+    "status": "native-implementation",
+    "native": "antivoid",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/AutoArmorModule.java": {
+    "status": "native-implementation",
+    "native": "autoarmor",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/BedDefenderModule.java": {
+    "status": "native-implementation",
+    "native": "beddefender",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/BlinkModule.java": {
+    "status": "native-implementation",
+    "native": "blink",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/BlockInModule.java": {
+    "status": "native-implementation",
+    "native": "blockin",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/BreakerModule.java": {
+    "status": "native-implementation",
+    "native": "breaker",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/EagleModule.java": {
+    "status": "native-implementation",
+    "native": "eagle",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/FakeLagModule.java": {
+    "status": "native-implementation",
+    "native": "fakelag",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/FastBreakModule.java": {
+    "status": "native-implementation",
+    "native": "fastbreak",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/FastUseModule.java": {
+    "status": "native-implementation",
+    "native": "fastuse",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/InvMoveModule.java": {
+    "status": "native-implementation",
+    "native": "invmove",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/ManagerModule.java": {
+    "status": "native-implementation",
+    "native": "manager",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/NoFallModule.java": {
+    "status": "native-implementation",
+    "native": "nofall",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/RefillModule.java": {
+    "status": "native-implementation",
+    "native": "refill",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/RegenModule.java": {
+    "status": "native-implementation",
+    "native": "regen",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/ScaffoldModule.java": {
+    "status": "native-implementation",
+    "native": "scaffold",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "player/StealerModule.java": {
+    "status": "native-implementation",
+    "native": "stealer",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/AmbienceModule.java": {
+    "status": "native-implementation",
+    "native": "ambience",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/AnimationsModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/BlockESPModule.java": {
+    "status": "native-implementation",
+    "native": "blockesp",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/BreadcrumbsModule.java": {
+    "status": "native-implementation",
+    "native": "breadcrumbs",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/CameraModule.java": {
+    "status": "native-implementation",
+    "native": "camera",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/CapesModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ChamsModule.java": {
+    "status": "native-implementation",
+    "native": "chams",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/ChinaHatModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ClickGUIModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ClientInfoModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ESPModule.java": {
+    "status": "native-implementation",
+    "native": "esp",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/EffectsModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/FreeLookModule.java": {
+    "status": "native-implementation",
+    "native": "freelook",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/HotbarModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ImageRendererModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/MediaInfoModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ModListModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/MotionBlurModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/NameTagsModule.java": {
+    "status": "native-implementation",
+    "native": "nametags",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/PentagramModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/PostProcessingModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ScoreboardModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/SessionInfoModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/ShaderESPModule.java": {
+    "status": "native-implementation",
+    "native": "shaderesp",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/SkeletonsModule.java": {
+    "status": "native-implementation",
+    "native": "skeletons",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/TargetESPModule.java": {
+    "status": "native-implementation",
+    "native": "targetesp",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/TargetHudModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/TrajectoriesModule.java": {
+    "status": "native-implementation",
+    "native": "trajectories",
+    "note": "Native lifecycle/settings implementation; behavior differences and verification limits are recorded in YURI_PORT.md."
+  },
+  "render/WatermarkModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  },
+  "render/YuriChatModule.java": {
+    "status": "excluded-client-ui",
+    "native": "",
+    "note": "Client presentation/cosmetic feature; retain Perihelion UI."
+  }
+}

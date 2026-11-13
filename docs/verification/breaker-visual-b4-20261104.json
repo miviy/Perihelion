@@ -1,0 +1,82 @@
+{
+  "feature": "Breaker Visual and expanded B4 controls",
+  "donor": {
+    "name": "OpenB4",
+    "revision": "3d63944cc79be890c013cc79e5ed92d3533b48a5",
+    "readOnly": true,
+    "statusClean": true
+  },
+  "artifact": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "000d2d2eec5f290c0bcac64cd0f7ac9e6b14f5f1993649e1b337dcf1c5a65001",
+    "verifiedCopy": "forge/build/verified/breaker-visual-b4-20261104/Perihelion-0.1.0.jar"
+  },
+  "build": {
+    "check": "PASS",
+    "remapJar": "PASS",
+    "units": {
+      "core": {
+        "tests": 164,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "forge": {
+        "tests": 449,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  },
+  "smoke": {
+    "passed": true,
+    "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-ma71yg8c",
+    "cases": 62,
+    "checks": 1890,
+    "render": "PASS framebuffer and state restoration",
+    "homeBedSuite": "HOME_BED checks=26 PASS",
+    "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-ma71yg8c/result.json",
+    "preview": "/Users/wmcul/dev/perihelion_workspace/Perihelion/docs/verification/breaker-visual-route-20261104.png",
+    "cleanup": "subscriptions=0 queued=0"
+  },
+  "secondReview": [
+    "B4 Legit floor differs from a speed multiplier and Swap credit",
+    "B4 four/two/17 update countdowns",
+    "Direct-bed setting parity with submitted-rotation guard",
+    "Server confirmation and bounded rejection retry",
+    "Visual transitions and zero gameplay claims",
+    "Empty Visual scan respects Rate",
+    "Same-connection packet suppression and own-entity velocity",
+    "Native Aura and Speed coordination"
+  ],
+  "manualLaunch": {
+    "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-breaker-visual-z9j8wzfm",
+    "pid": 58613,
+    "selectedMode": "VISUAL",
+    "probeJar": false,
+    "automaticClose": false,
+    "verifiedRunning": true,
+    "verifiedAtUtc": "2026-11-04T13:40:53.810540+00:00",
+    "evidence": "PID 58613 alive after 55 seconds; native startup/modules=96 and final texture atlas initialized; verified mod hash; no smoke probe or smoke arguments."
+  },
+  "limits": [
+    "Local offline Forge client and PLAY-peer checks",
+    "No live Hypixel acceptance or guarantee of complete donor equivalence",
+    "Visual selects the fastest sampled reachable route, not a global movement-path optimum",
+    "B4 glass-as-opening shortcut remains excluded; native rotation/tool ownership remains mandatory"
+  ],
+  "backup": ".backups/breaker-visual-20261104-080952/",
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "3087286cd5667e1fed93d939cbf876d3b3da6142b482f2565f9a6fffe2e70d3e",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerPlan.java": "d5c593dc13db614e39e47c40ca88d44ae64062edba71e7486c5e195e9c58a5ec",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerMining.java": "05d8e894cfdac2d83130b57d99c48ae1c2ec248a62bfc565205f368fad91b1f7",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerTiming.java": "4baf971f3b31e4f6bb773bb793912e891e92fd93da7d762e8061096cb3c57d09",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerVisual.java": "6b5336c62ede911ffdd8531915975ea0548fef4191bd1327fb00cf2a994db868",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/MovementModules.java": "ec20d281066b011bb018861c1482f7bb7a7d4a3494ecffa552b651c0c53a3a60",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GameplayModules.java": "296056bc0c5976c0e7ff7fea53729b40c677500b69e07d71b9fc6f9276ce84ed",
+    "forge/src/smoke/java/perihelion/smoke/BreakerLayerProbe.java": "59eb8bad38b26e779c317ba16307f157c325a9e9bda12984675fded53f0b4d96",
+    "forge/src/smoke/java/perihelion/smoke/BreakerVisualProbe.java": "affb41146f91fbbdbe028d3fc359b16c11aa9c070e2a341fbb1b1bcb20856f73",
+    "forge/src/test/java/perihelion/integration/minecraft189/module/gameplay/BreakerTimingTest.java": "8777e53e17b09c76946e2d9aa2892863b6c9bccd6960df621773b348722ab557"
+  }
+}

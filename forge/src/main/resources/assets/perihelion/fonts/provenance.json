@@ -1,0 +1,281 @@
+{
+  "schemaVersion": 1,
+  "description": "Unmodified static Regular and Bold faces bundled for the native GUI atlas. No font installation or network access is needed at runtime. Filenames may be simplified; embedded names and font data are unchanged.",
+  "families": [
+    {
+      "family": "Inter",
+      "repository": "https://github.com/rsms/inter",
+      "revision": "e3a3d4c57d5ecc01453a575621882a384c1995a3",
+      "ref": "v4.1",
+      "archive": "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip",
+      "archiveSha256": "9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/Inter-OFL.txt",
+      "licenseArchivePath": "LICENSE.txt",
+      "licenseSha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "faces": [
+        {
+          "file": "Inter-Regular.ttf",
+          "style": "Regular",
+          "source": "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip",
+          "archivePath": "extras/ttf/Inter-Regular.ttf",
+          "sha256": "40d692fce188e4471e2b3cba937be967878f631ad3ebbbdcd587687c7ebe0c82",
+          "bytes": 411640,
+          "static": true
+        },
+        {
+          "file": "Inter-Bold.ttf",
+          "style": "Bold",
+          "source": "https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip",
+          "archivePath": "extras/ttf/Inter-Bold.ttf",
+          "sha256": "288316099b1e0a47a4716d159098005eef7c0066921f34e3200393dbdb01947f",
+          "bytes": 420428,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "Roboto",
+      "repository": "https://github.com/googlefonts/roboto-2",
+      "revision": "ab4876f650a4aeb9b661c83fee47f908c739bb70",
+      "ref": "v2.138",
+      "license": "Apache-2.0",
+      "licenseFile": "META-INF/licenses/fonts/Roboto-Apache-2.0.txt",
+      "licenseSource": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/LICENSE",
+      "licenseSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "faces": [
+        {
+          "file": "Roboto-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/src/hinted/Roboto-Regular.ttf",
+          "upstreamPath": "src/hinted/Roboto-Regular.ttf",
+          "sha256": "56a45233d29f11b4dfb86d248e921939d115778f87325e7ae8cc108383d6664d",
+          "bytes": 515100,
+          "static": true
+        },
+        {
+          "file": "Roboto-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/src/hinted/Roboto-Bold.ttf",
+          "upstreamPath": "src/hinted/Roboto-Bold.ttf",
+          "sha256": "61f89f8db49261c2f6106e8dccc35df7b2f7ed909020db40a3fc905e95f99334",
+          "bytes": 514260,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "RobotoCondensed",
+      "repository": "https://github.com/googlefonts/roboto-2",
+      "revision": "ab4876f650a4aeb9b661c83fee47f908c739bb70",
+      "ref": "v2.138",
+      "license": "Apache-2.0",
+      "licenseFile": "META-INF/licenses/fonts/RobotoCondensed-Apache-2.0.txt",
+      "licenseSource": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/LICENSE",
+      "licenseSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "faces": [
+        {
+          "file": "RobotoCondensed-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/src/hinted/RobotoCondensed-Regular.ttf",
+          "upstreamPath": "src/hinted/RobotoCondensed-Regular.ttf",
+          "sha256": "a9603db0f52e244064de480253ab7f48e6c21c22e24528207cab06d39abc7bb7",
+          "bytes": 516612,
+          "static": true
+        },
+        {
+          "file": "RobotoCondensed-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/googlefonts/roboto-2/ab4876f650a4aeb9b661c83fee47f908c739bb70/src/hinted/RobotoCondensed-Bold.ttf",
+          "upstreamPath": "src/hinted/RobotoCondensed-Bold.ttf",
+          "sha256": "2d06877e39956ec96dbafb0d152644e8b2245d647e58c7bb7c91bb2b15defa93",
+          "bytes": 502448,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "OpenSans",
+      "repository": "https://github.com/googlefonts/opensans",
+      "revision": "bd7e37632246368c60fdcbd374dbf9bad11969b6",
+      "ref": "HEAD",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/OpenSans-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/googlefonts/opensans/bd7e37632246368c60fdcbd374dbf9bad11969b6/OFL.txt",
+      "licenseSha256": "01cd5ffb3a528c219a86e49a814c6c53bd8a69b9a3c305dd237074ba1c811af7",
+      "faces": [
+        {
+          "file": "OpenSans-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/googlefonts/opensans/bd7e37632246368c60fdcbd374dbf9bad11969b6/fonts/ttf/OpenSans-Regular.ttf",
+          "upstreamPath": "fonts/ttf/OpenSans-Regular.ttf",
+          "sha256": "c53aceea2dcf5b4098099c0c4d0a061d17e178a049317b42a422b1a9f7f8eb59",
+          "bytes": 147528,
+          "static": true
+        },
+        {
+          "file": "OpenSans-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/googlefonts/opensans/bd7e37632246368c60fdcbd374dbf9bad11969b6/fonts/ttf/OpenSans-Bold.ttf",
+          "upstreamPath": "fonts/ttf/OpenSans-Bold.ttf",
+          "sha256": "27da758f4dcac9a65abe914c13b463b42982b9909bc65713424099f4810bd1e6",
+          "bytes": 147264,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "Lato",
+      "repository": "https://github.com/google/fonts",
+      "revision": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+      "ref": "HEAD",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/Lato-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/lato/OFL.txt",
+      "licenseSha256": "74ba064d03f1f1c4a952da936c3eb71866c34404916734de3cae73b34357e59e",
+      "faces": [
+        {
+          "file": "Lato-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/lato/Lato-Regular.ttf",
+          "upstreamPath": "ofl/lato/Lato-Regular.ttf",
+          "sha256": "d636e4683231f931eda222d588e944d082bfd3bdba02f928bee461c0f185b251",
+          "bytes": 656568,
+          "static": true
+        },
+        {
+          "file": "Lato-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/lato/Lato-Bold.ttf",
+          "upstreamPath": "ofl/lato/Lato-Bold.ttf",
+          "sha256": "8a0aace75d33794eece4b28187bfc1df0bbd2888b5d8a56e01788c8d65d16be1",
+          "bytes": 656544,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "Montserrat",
+      "repository": "https://github.com/JulietaUla/Montserrat",
+      "revision": "555facfb2a18c72c3c0380f0d9c0f060453a9058",
+      "ref": "HEAD",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/Montserrat-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/JulietaUla/Montserrat/555facfb2a18c72c3c0380f0d9c0f060453a9058/OFL.txt",
+      "licenseSha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e",
+      "faces": [
+        {
+          "file": "Montserrat-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/JulietaUla/Montserrat/555facfb2a18c72c3c0380f0d9c0f060453a9058/fonts/ttf/Montserrat-Regular.ttf",
+          "upstreamPath": "fonts/ttf/Montserrat-Regular.ttf",
+          "sha256": "3e8abe50c44c82e2242e97d1ec8c0d385c4890cdc50447bcdb8605c81a38cfb2",
+          "bytes": 445928,
+          "static": true
+        },
+        {
+          "file": "Montserrat-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/JulietaUla/Montserrat/555facfb2a18c72c3c0380f0d9c0f060453a9058/fonts/ttf/Montserrat-Bold.ttf",
+          "upstreamPath": "fonts/ttf/Montserrat-Bold.ttf",
+          "sha256": "bc6e854971cea46b463be6f9eef4d9cd52f51cfc1fc0dd90c9d3e6483dc0ec61",
+          "bytes": 454864,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "Poppins",
+      "repository": "https://github.com/google/fonts",
+      "revision": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+      "ref": "HEAD",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/Poppins-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/poppins/OFL.txt",
+      "licenseSha256": "6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573",
+      "faces": [
+        {
+          "file": "Poppins-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/poppins/Poppins-Regular.ttf",
+          "upstreamPath": "ofl/poppins/Poppins-Regular.ttf",
+          "sha256": "7e65201e9b79159e2300267cc885e16c8dcef2424cdfa09a29bfb0980a94a7ba",
+          "bytes": 160316,
+          "static": true
+        },
+        {
+          "file": "Poppins-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/google/fonts/47d54ca1ebb14fd864695f1d39dc734f39017c33/ofl/poppins/Poppins-Bold.ttf",
+          "upstreamPath": "ofl/poppins/Poppins-Bold.ttf",
+          "sha256": "983676516167748b74de6f4771fb384c664fd913acb8b471122ecacf5da5ea6c",
+          "bytes": 155996,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "MonaspaceNeon",
+      "repository": "https://github.com/githubnext/monaspace",
+      "revision": "a2ac2b32b959e86fc06d5c365ca912ffafbb079c",
+      "ref": "v1.200",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/MonaspaceNeon-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/githubnext/monaspace/a2ac2b32b959e86fc06d5c365ca912ffafbb079c/LICENSE",
+      "licenseSha256": "0e84e5f7dd6f05e74a00f2fb828ca43e489d954f5509ff0fa439ea18c0d35fe9",
+      "faces": [
+        {
+          "file": "MonaspaceNeon-Regular.otf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/githubnext/monaspace/a2ac2b32b959e86fc06d5c365ca912ffafbb079c/fonts/otf/MonaspaceNeon-Regular.otf",
+          "upstreamPath": "fonts/otf/MonaspaceNeon-Regular.otf",
+          "sha256": "6a7382f15a81b721d97f9a55d9ca64cf4017f2e1d65bd1e4be6eecff548f464d",
+          "bytes": 1835712,
+          "static": true
+        },
+        {
+          "file": "MonaspaceNeon-Bold.otf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/githubnext/monaspace/a2ac2b32b959e86fc06d5c365ca912ffafbb079c/fonts/otf/MonaspaceNeon-Bold.otf",
+          "upstreamPath": "fonts/otf/MonaspaceNeon-Bold.otf",
+          "sha256": "d9c3a5469708cb2e6ac7d41a11506fd018b3358041cae76ba49cc3e4d31c4381",
+          "bytes": 1855252,
+          "static": true
+        }
+      ]
+    },
+    {
+      "family": "JetBrainsMonoNerd",
+      "repository": "https://github.com/ryanoasis/nerd-fonts",
+      "revision": "fa7b859994228a9c8759f99c55a8d31ee92a1b5e",
+      "ref": "v3.4.0",
+      "license": "OFL-1.1",
+      "licenseFile": "META-INF/licenses/fonts/JetBrainsMonoNerd-OFL.txt",
+      "licenseSource": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/fa7b859994228a9c8759f99c55a8d31ee92a1b5e/patched-fonts/JetBrainsMono/Ligatures/Regular/OFL.txt",
+      "licenseSha256": "30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad",
+      "faces": [
+        {
+          "file": "JetBrainsMonoNerd-Regular.ttf",
+          "style": "Regular",
+          "source": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/fa7b859994228a9c8759f99c55a8d31ee92a1b5e/patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFont-Regular.ttf",
+          "upstreamPath": "patched-fonts/JetBrainsMono/Ligatures/Regular/JetBrainsMonoNerdFont-Regular.ttf",
+          "sha256": "0ec29a68b539ece7078fc714cebff0c0accb2f4948f8f7963d9f5e86633b12d9",
+          "bytes": 2469104,
+          "static": true
+        },
+        {
+          "file": "JetBrainsMonoNerd-Bold.ttf",
+          "style": "Bold",
+          "source": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/fa7b859994228a9c8759f99c55a8d31ee92a1b5e/patched-fonts/JetBrainsMono/Ligatures/Bold/JetBrainsMonoNerdFont-Bold.ttf",
+          "upstreamPath": "patched-fonts/JetBrainsMono/Ligatures/Bold/JetBrainsMonoNerdFont-Bold.ttf",
+          "sha256": "e82e27a7f37c9a0a13cc4e417503a149c6a0280586930772d2ebed803159c864",
+          "bytes": 2472872,
+          "static": true
+        }
+      ],
+      "additionalLicenseFile": "META-INF/licenses/fonts/NerdFonts-LICENSE.txt",
+      "additionalLicenseSource": "https://raw.githubusercontent.com/ryanoasis/nerd-fonts/fa7b859994228a9c8759f99c55a8d31ee92a1b5e/LICENSE",
+      "additionalLicenseSha256": "1f6ad4edae6479aaace3112ede5279a23284ae54b2a34db66357aef5f64df160"
+    }
+  ]
+}

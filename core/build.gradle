@@ -1,0 +1,24 @@
+dependencies {
+    api 'com.google.code.gson:gson:2.2.4'
+}
+
+// An explicit developer measurement, never included in check or any shipped JAR.
+sourceSets {
+    benchmark {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+tasks.register('benchmark', JavaExec) {
+    group = 'verification'
+    description = 'Measures steady-state event dispatch on Java 8 (not Minecraft FPS).'
+    dependsOn tasks.named('benchmarkClasses')
+    classpath = sourceSets.benchmark.runtimeClasspath
+    mainClass = 'perihelion.benchmark.EventDispatchBenchmark'
+    javaLauncher = javaToolchains.launcherFor {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+    def report = layout.buildDirectory.file('reports/benchmark.txt')
+    args report.get().asFile.absolutePath
+}

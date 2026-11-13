@@ -1,0 +1,57 @@
+{
+  "date": "2026-09-21",
+  "artifact": {
+    "artifact": "Perihelion-0.1.0.jar",
+    "sha256": "b1d54d487c800853651c523dc45f8335e80e4d70b0d2eef3b4b1a09b23579963",
+    "bytes": "1140017",
+    "entries": "698",
+    "java": "8",
+    "verified": "metadata,mixins,refmap,bundled-runtime,dependency-boundaries"
+  },
+  "tests": {
+    "core": 120,
+    "forge": 4,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "runs": [
+    {
+      "directory": "forge/run-smoke-forge-iwntkohg",
+      "variant": "forge",
+      "scenario": "world",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "b1d54d487c800853651c523dc45f8335e80e4d70b0d2eef3b4b1a09b23579963",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "15f94daaf1fa7de90a26dadc809b55685bb0e0f23a505c8d14621a7313853a0d",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "fa96e9184ac5083e7757e2372df97e84810360a7545df57951327d45180ae791",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72"
+      },
+      "controlMarkers": [
+        "[08:20:16] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:157]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=false"
+      ]
+    },
+    {
+      "directory": "forge/run-smoke-optifine-dyx027bm",
+      "variant": "optifine",
+      "scenario": "world",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "b1d54d487c800853651c523dc45f8335e80e4d70b0d2eef3b4b1a09b23579963",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "15f94daaf1fa7de90a26dadc809b55685bb0e0f23a505c8d14621a7313853a0d",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "fa96e9184ac5083e7757e2372df97e84810360a7545df57951327d45180ae791",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72"
+      },
+      "controlMarkers": [
+        "[08:24:20] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:157]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=false"
+      ]
+    }
+  ],
+  "limits": [
+    "Unfocused windows exercised the key fallback, not forced physical input.",
+    "No external multiplayer or riding rotation test.",
+    "Packet fixture and development launch were not rerun for this update."
+  ]
+}

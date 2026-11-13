@@ -1,0 +1,106 @@
+plugins {
+    id 'gg.essential.loom'
+    id 'com.github.johnrengelman.shadow'
+    id 'dev.architectury.architectury-pack200'
+}
+
+configurations {
+    bundled
+    implementation.extendsFrom bundled
+}
+
+dependencies {
+    minecraft 'com.mojang:minecraft:1.8.9'
+    mappings 'de.oceanlabs.mcp:mcp_stable:22-1.8.9'
+    forge 'net.minecraftforge:forge:1.8.9-11.15.1.2318-1.8.9'
+    implementation project(':core')
+    bundled('org.spongepowered:mixin:0.7.11-20180703.121122-1') { transitive = false }
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+}
+
+loom {
+    forge {
+        pack200Provider = new dev.architectury.pack200.java.Pack200Adapter()
+        mixinConfig 'mixins.perihelion.json'
+    }
+    mixin { defaultRefmapName = 'mixins.perihelion.refmap.json' }
+    runConfigs {
+        client {
+            programArgs '--tweakClass', 'org.spongepowered.asm.launch.MixinTweaker'
+            property 'fml.coreMods.load', 'perihelion.bootstrap.forge.PerihelionLoadingPlugin'
+            if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('mac')) {
+                vmArgs.remove('-XstartOnFirstThread')
+            }
+        }
+        remove server
+    }
+}
+
+def versionSources = layout.buildDirectory.dir('generated/sources/perihelionVersion/java')
+sourceSets.main.java.srcDir(versionSources)
+tasks.register('generateVersion') {
+    inputs.property 'version', project.version
+    outputs.dir versionSources
+    doLast {
+        def destination = versionSources.get().file('perihelion/bootstrap/forge/PerihelionVersion.java').asFile
+        destination.parentFile.mkdirs()
+        def literal = groovy.json.JsonOutput.toJson(project.version.toString())
+        destination.text = "package perihelion.bootstrap.forge;\nfinal class PerihelionVersion {\n    static final String VALUE = ${literal};\n    private PerihelionVersion() {}\n}\n"
+    }
+}
+tasks.named('compileJava') { dependsOn tasks.named('generateVersion') }
+
+tasks.named('processResources') {
+    inputs.property 'version', project.version
+    filesMatching('mcmod.info') { expand version: project.version }
+}
+
+def modManifest = [
+    'FMLCorePlugin': 'perihelion.bootstrap.forge.PerihelionLoadingPlugin',
+    'FMLCorePluginContainsFMLMod': 'true',
+    'ForceLoadAsMod': 'true',
+    'ModSide': 'CLIENT',
+    'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+    'TweakOrder': '0',
+    'MixinConfigs': 'mixins.perihelion.json'
+]
+
+tasks.named('jar') {
+    archiveClassifier = 'dev'
+    manifest { attributes modManifest }
+}
+tasks.named('shadowJar') {
+    configurations = [project.configurations.bundled]
+    from project(':core').sourceSets.main.output
+    archiveClassifier = 'dev-bundled'
+    manifest { attributes modManifest }
+    exclude 'META-INF/*.SF', 'META-INF/*.RSA', 'META-INF/*.DSA'
+    mergeServiceFiles()
+}
+tasks.named('remapJar') {
+    dependsOn tasks.named('shadowJar')
+    inputFile = tasks.named('shadowJar').flatMap { it.archiveFile }
+    archiveBaseName = 'Perihelion'
+    archiveClassifier = ''
+}
+tasks.named('assemble') { dependsOn tasks.named('remapJar') }
+
+// Gradle 8.4 cannot generate verification metadata for this timestamped snapshot
+// without a duplicate-key failure. Verify the exact bundled bytes explicitly.
+tasks.register('verifyMixinRuntime') {
+    group = 'verification'
+    inputs.files configurations.bundled
+    doLast {
+        def files = configurations.bundled.files
+        if (files.size() != 1) throw new GradleException('Unexpected bundled dependencies')
+        def actual = java.security.MessageDigest.getInstance('SHA-256')
+                .digest(files.first().bytes).encodeHex().toString()
+        if (actual != 'da3d6e47b9c12b5a312d89b67bc27e2429d823c09cde8a90299e9fdcc4eefc20') {
+            throw new GradleException('Bundled Mixin runtime checksum mismatch')
+        }
+    }
+}
+tasks.named('compileJava') { dependsOn tasks.named('verifyMixinRuntime') }
+tasks.named('shadowJar') { dependsOn tasks.named('verifyMixinRuntime') }
+
+apply from: rootProject.file('gradle/verify-distribution.gradle')

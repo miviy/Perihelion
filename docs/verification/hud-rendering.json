@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-21",
+  "artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+    "bytes": 1154477
+  },
+  "build": "check passed",
+  "tests": {
+    "core": 143,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "forge": 10
+  },
+  "runs": [
+    {
+      "directory": "forge/run-smoke-forge-x86io8jw",
+      "variant": "forge",
+      "scenario": "world",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "8668396ca57bfcc25c82a974fd15c26b2a1e5cf5e020544f300f21075262a859",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "markers": [
+        "[20:43:26] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:43:29] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=241 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:43:31] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:158]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=true",
+        "[PERIHELION_SMOKE] PASS scenario=world ticks=139 worldEvents=4",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "hudCapture": "docs/verification/hud-forge.png",
+      "hudCaptureSha256": "ce4bc38ff0044404bdb289be08e7077a4b2ef814ed1dab553139f588eab648df",
+      "hudCaptureVisuallyInspected": true
+    },
+    {
+      "directory": "forge/run-smoke-optifine-157834np",
+      "variant": "optifine",
+      "scenario": "world",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "0dcaf7be03117aeb8259f75bf4a304cafc3ceec16003d271c5752d2b33a0749c",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "8668396ca57bfcc25c82a974fd15c26b2a1e5cf5e020544f300f21075262a859",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "markers": [
+        "[20:46:03] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:85]: [PERIHELION_SMOKE] RENDER PASS checks=55 state=restored fonts=native",
+        "[20:46:06] [Client thread/INFO] [STDOUT]: [perihelion.smoke.HudHookProbe:frameEnd:152]: [PERIHELION_SMOKE] HUD PASS checks=261 guiScales=1,2 f1=hidden cancelled=hidden openScreen=behind exception=restored",
+        "[20:46:08] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ControlHookProbe:run:158]: [PERIHELION_SMOKE] PASS sharedControls checks=30 inputFocused=true",
+        "[PERIHELION_SMOKE] PASS scenario=world ticks=141 worldEvents=4",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "hudCapture": "docs/verification/hud-optifine.png",
+      "hudCaptureSha256": "88838df6bbe3706e6c4ee6e7304daf607bf5e6f69ce5ff6b1c3787c47b037422",
+      "hudCaptureVisuallyInspected": true
+    }
+  ],
+  "limits": [
+    "Isolated integrated worlds on this workstation; no external server, packet-only fixture or development launch rerun.",
+    "GUI scales 1 and 2 checked; window resizing and other font/resource packs not exercised.",
+    "OptiFine M5 without shader packs; arbitrary mod combinations and other GPUs not covered.",
+    "HUD fixture draws only in smoke runs; no production HUD components or modules added."
+  ]
+}

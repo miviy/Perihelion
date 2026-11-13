@@ -1,0 +1,835 @@
+{
+  "revision": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def",
+  "prior_audit_revision": "50d7322b85cb8de096241077ca3130e9e9715d20",
+  "module_count": 102,
+  "classification": {
+    "deferred": 3,
+    "excluded-client-ui": 22,
+    "native-implementation": 77
+  },
+  "removed_since_previous_audit": [
+    "combat/WTapModule.java",
+    "misc/BedWarsUtilityModule.java",
+    "misc/DisablerModule.java",
+    "player/EagleModule.java",
+    "player/InvMoveModule.java"
+  ],
+  "modules": {
+    "combat/AuraModule.java": {
+      "status": "native-implementation",
+      "native": "aura",
+      "donor_sha256": "e0c0613c5bf1cfc3a3ed0c0b8122dfaa5e38ea25e89469cdafad7b4f9a61da88",
+      "donor_git_blob": "b51b30a39324ceb998d05d4bb5ef434852c4e4be",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/AutoExtinguishModule.java": {
+      "status": "native-implementation",
+      "native": "autoextinguish",
+      "donor_sha256": "1dd5cf3ae76ff453253e193fd134caa96a3f54bbe9aa209b67ae7f765d1f45c7",
+      "donor_git_blob": "12e114fadd682d5d4fc5041a02145d8d661e35ec",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/AutoPotModule.java": {
+      "status": "native-implementation",
+      "native": "autopot",
+      "donor_sha256": "a892cc07ecab9d245872cd9ebf6a4732785609562087ec990d607192854a2a14",
+      "donor_git_blob": "9503316c69e3b53d60cbb3ea7481cbfc977e68d9",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/AutoProjectileModule.java": {
+      "status": "native-implementation",
+      "native": "autoprojectile",
+      "donor_sha256": "c613dc2c89109b8756fd25a21dc6b6efb2148d91c88ab6686340600a7d2ef07f",
+      "donor_git_blob": "e3f6722ff28692e47acca5e520fc35b7c51a6644",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/BackTrackModule.java": {
+      "status": "native-implementation",
+      "native": "backtrack",
+      "donor_sha256": "a7c2b9ad6a1970eb86fbb5db7c26125ff0f0fa8848e55bcf3929dd13ac222620",
+      "donor_git_blob": "5641173ac6b1bf71dd0bf670b1ea27fa9313a4f2",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/BowAimbotModule.java": {
+      "status": "native-implementation",
+      "native": "bowaimbot",
+      "donor_sha256": "b7263b9f71c456e080348593eda0f90e6dc5ac50a8bf461db42b9c7284d9fe6b",
+      "donor_git_blob": "34632788c12b05f30f24fa27aadfb8f468fb9ca8",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/CriticalsModule.java": {
+      "status": "native-implementation",
+      "native": "criticals",
+      "donor_sha256": "db1dd701786013a85f5ade0568bf0ac7c542e2a4ec93a49221a03c04d6740c0c",
+      "donor_git_blob": "22989467aee14e8b8de338f9e00b37a85b945609",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/DisplaceModule.java": {
+      "status": "native-implementation",
+      "native": "displace",
+      "donor_sha256": "47c59fad599472657cf98d5432491bfb3bb18e592586185f9b81a17cea0e5f10",
+      "donor_git_blob": "7669e30e57aded25cae2fcff49acac19c12a14b9",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/HitSelectModule.java": {
+      "status": "native-implementation",
+      "native": "hitselect",
+      "donor_sha256": "0e44fd249ec30c05fd8c045c906fa7881036d9665a34105d0d5f516c6f21adae",
+      "donor_git_blob": "d9cd4e8fbbf27aee0cb3256a364da197c7483ed3",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/LagRangeModule.java": {
+      "status": "native-implementation",
+      "native": "lagrange",
+      "donor_sha256": "733172f35a563cd533c46fa8bcc838b5a2cf75a2e73bbeb5f640fc270b94175d",
+      "donor_git_blob": "abb244c0bfe38a1812ed3c5da6ab7ba4c1ec797e",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/TargetStrafeModule.java": {
+      "status": "native-implementation",
+      "native": "targetstrafe",
+      "donor_sha256": "001dd6d5d66a776d2347f9d7fc1d19815132c233542a620c10bc4f4920d09d93",
+      "donor_git_blob": "bc42ea8255947f9e7df90f0389aababe969cc432",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/TickBaseModule.java": {
+      "status": "native-implementation",
+      "native": "tickbase",
+      "donor_sha256": "12e9019a066ce9245e749f6147b4d638f2db0667d658c6d6cca71ec4901c9388",
+      "donor_git_blob": "347802932614731d417d28de959503d5ce3de2cb",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "combat/VelocityModule.java": {
+      "status": "native-implementation",
+      "native": "velocity",
+      "donor_sha256": "c425b5f7509d57c97d0f980dbaac8198247bf03cdae2af7810716f7edff8a772",
+      "donor_git_blob": "3a3a3fa63136f0b8b58322a708a0264ee4bbda1d",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/AimAssistModule.java": {
+      "status": "native-implementation",
+      "native": "aimassist",
+      "donor_sha256": "48d281bd340dfa39272662140b87acb48e837193e94e209e6033d536eb5af6a1",
+      "donor_git_blob": "f3874058921bd4f81f19a9b05654a46cd6f9f8c3",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/AutoClickerModule.java": {
+      "status": "native-implementation",
+      "native": "autoclicker",
+      "donor_sha256": "87739e43a1e66f73a3d9a39f49af66fbe47bcae7bfebfa00791e48ef8c342372",
+      "donor_git_blob": "01f1bcce7c995d8925bb1241ed2ed8102626952d",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/BlockHitModule.java": {
+      "status": "native-implementation",
+      "native": "blockhit",
+      "donor_sha256": "641f87ec2ff016ce72f71357faa67338b770a4ffcefb462ba254ddce417e410c",
+      "donor_git_blob": "a8b2c444c8de4a43d0379d4905608c2eace7bf83",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/BlockInModule.java": {
+      "status": "native-implementation",
+      "native": "blockin",
+      "donor_sha256": "2be8c1a021a00e8d115ea21d6c8b8e3b34f75395596a34a264c539b81b32185c",
+      "donor_git_blob": "34f070f84b0d68d6bc619d9656f39394d4028037",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/ClutchModule.java": {
+      "status": "native-implementation",
+      "native": "clutch",
+      "donor_sha256": "968e76f699eb3165200532a1cf8d4759b6f1e0015fbdf61d42f7a8176ecee128",
+      "donor_git_blob": "c68de5a5d6e9ee91b12c6f415d25c3464988da16",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/EagleModule.java": {
+      "status": "native-implementation",
+      "native": "eagle",
+      "donor_sha256": "a31725776ff92bed19c85b686f3625b5f13a5df746f4713f7799bff078d7b24d",
+      "donor_git_blob": "48c439aca2a57c47dc7dda678aae1fc370bfac3e",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/HitboxExpandModule.java": {
+      "status": "native-implementation",
+      "native": "hitboxexpand",
+      "donor_sha256": "0ac4af0d40d4cf14e678d611230d740d57ee00e91713ba5c4144006355ac03e7",
+      "donor_git_blob": "cbd4e5d7d5d141dc357704222a2c03833cefb8d0",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/KeepSprintModule.java": {
+      "status": "native-implementation",
+      "native": "keepsprint",
+      "donor_sha256": "27f86fd7d62dbd583b93ed60718fd9ba02db213ce861c69081b238ff8d7ef053",
+      "donor_git_blob": "e5623f30305ace8e9e6bfd71ba2fb8566b785a56",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/ReachModule.java": {
+      "status": "native-implementation",
+      "native": "reach",
+      "donor_sha256": "1d8beae9f575b3de96edde04d8bfc3e95c5f77de9d322ddfb164d3ade883f71a",
+      "donor_git_blob": "684cd47d1bc6f3dd53dcab9d6f699fd404d608e7",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "ghost/TriggerBotModule.java": {
+      "status": "native-implementation",
+      "native": "triggerbot",
+      "donor_sha256": "c3b9bb7976e6eb80ca4d6441703ee018cbee7ed12d722054eff855708fef4a70",
+      "donor_git_blob": "441f8c4677743d91fe020e836e7155df7121c600",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/AntiBotModule.java": {
+      "status": "native-implementation",
+      "native": "antibot",
+      "donor_sha256": "f42baff53026b97df2ac85a227cd9ae00f129dbc2d7d8592db2e723e365aaa64",
+      "donor_git_blob": "4b31a029501511e58ab65c9e23b5672a8cb8e87a",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/AutoServerModule.java": {
+      "status": "native-implementation",
+      "native": "autoserver",
+      "donor_sha256": "7da52b3598208f1a504a2852ecd84b6d8eba8b9a752708ae5a39ce5d375f2c9b",
+      "donor_git_blob": "2fe5bffc1f558cd1076efed77b0365bd2832d7cb",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/AutoSwapModule.java": {
+      "status": "native-implementation",
+      "native": "autoswap",
+      "donor_sha256": "a0a8763da1a85e51642b36c4d71a66d2b823912b03b9ddc8de10ada748421df2",
+      "donor_git_blob": "c6b22bf934d6b3e092e6c20caddaef0b1f77d5ed",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/BasketballModule.java": {
+      "status": "native-implementation",
+      "native": "basketball",
+      "donor_sha256": "d0889720192ce6e8eeee7b8554fd6e456a4d9025f45f685f1fd51271703ca69d",
+      "donor_git_blob": "ce2458a46823f559f45d97f97715d5c3e7e323ba",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/BedWarsUtilsModule.java": {
+      "status": "native-implementation",
+      "native": "bedwarsutility",
+      "donor_sha256": "a618bbf68c02177fc7aebc9b6f35baf997a2dcaea79d268cbcd3f336214362e3",
+      "donor_git_blob": "75b5eb99077231d798b60acf9cfd931e0a28a752",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/DerpModule.java": {
+      "status": "native-implementation",
+      "native": "derp",
+      "donor_sha256": "10eb8f51b105440fd0098f3cb81de94cf851cc2f75dbfa37a8e09d9a89c66af0",
+      "donor_git_blob": "d7563ebfffbcf3e7b4212e3da12c02cbe42001c9",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/DiscordRPCModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "343c8f248c4751886626f3a4e9a591619bfbef00fb7d2940bc4313fcf1fc5529",
+      "donor_git_blob": "faa8023aa095a5e5d61d39f659dcf71d5338c032",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/FriendsModule.java": {
+      "status": "native-implementation",
+      "native": "friends",
+      "donor_sha256": "9ecdc205da34547686e67a9b0d3b6fba23043c149c604c98af3e5e27b0137aed",
+      "donor_git_blob": "21a73d6bcc5806a6be10f72e3d9734a4e78943e7",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/GUIClickerModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "8bea1189e151858f9efad9680840181c10f8c03ac5db40fdd61e6ddbcf5cef1f",
+      "donor_git_blob": "879de64116ef35e21cad2b1d19f2fc8188bd258e",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/InputFixesModule.java": {
+      "status": "native-implementation",
+      "native": "inputfixes",
+      "donor_sha256": "9eb3129a53b5c26c141461fcc220fee88a514d9020335a7bd7dba91c3aa1c564",
+      "donor_git_blob": "8869503d118cf23fced83465b3331b2c7d2efc83",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/InsultsModule.java": {
+      "status": "deferred",
+      "native": null,
+      "donor_sha256": "3d33ff924171c017b5ddb325765c49f7b680d0aec0b3072b411b039c6d24433c",
+      "donor_git_blob": "7fdc10d52e3f0a2c064fb7a84bce571ba67d2e89",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/ItemDelaysModule.java": {
+      "status": "native-implementation",
+      "native": "fastplace",
+      "donor_sha256": "95ccae94cd3e5a1760dde43b6b637ef4df4f0bc972264d91dc997d314165ef34",
+      "donor_git_blob": "f9dac3d6856f337b2ecc5942ec1d2790f944c8e9",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/MinigameAimModule.java": {
+      "status": "native-implementation",
+      "native": "minigameaim",
+      "donor_sha256": "077a59fd9ebe95d0a3acc690415c1033cfdd70c56303ca3aef02e35e30253fac",
+      "donor_git_blob": "4f9b964edcb5420e1a6a83667f51016b4211586b",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/PoolModule.java": {
+      "status": "native-implementation",
+      "native": "pool",
+      "donor_sha256": "55877689a817fd7ca9c7d77680e17eb6ac384080c4953b8493e9b78cd6a9cb87",
+      "donor_git_blob": "f0207e412710041393d0fa5012860c48af94a836",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/TimerModule.java": {
+      "status": "native-implementation",
+      "native": "timer",
+      "donor_sha256": "fd5834df56c3828f47d07d24b952374329d8223fc87e7e2ed210b4a343891e20",
+      "donor_git_blob": "cdcd60b99bbc6b2c4ef53d94853b730d7d2d002e",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "misc/ToggleSoundsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "12bcb2968060d9fe98dc7148eb5800d7ac41f539f9ff042407b4d4c08a70d783",
+      "donor_git_blob": "18cc7bf85e2974554c99198274684148f68f2ac7",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/FlightModule.java": {
+      "status": "native-implementation",
+      "native": "flight",
+      "donor_sha256": "d86d080cb4af51c90c747191852e5ef389c6c7e53cf3e9c78440147bbfe713c7",
+      "donor_git_blob": "54065c1a7ca92ed699334a64a44febbefdb142c3",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/InvMoveModule.java": {
+      "status": "native-implementation",
+      "native": "invmove",
+      "donor_sha256": "577727001360fc4682a25380d725a0f5408c4fd1a24fda8d3843f276d05ef0ed",
+      "donor_git_blob": "3d97922b736b9ad236b802df79c1d0729fc3e241",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/LongJumpModule.java": {
+      "status": "native-implementation",
+      "native": "longjump",
+      "donor_sha256": "e699b2faeeecfed7e66ddc4a9869b71dc917bb22c17f28c6ca932386dcbec27f",
+      "donor_git_blob": "38532a5cfe616ddcdabf3c2326c8807657181761",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/NoSlowModule.java": {
+      "status": "native-implementation",
+      "native": "noslow",
+      "donor_sha256": "a281811cf31e8d0f424399c8c5b513a9e3e6e6aba1598b0073d2c6b61e17daae",
+      "donor_git_blob": "5ab4e2fba68c1502b81762d7162d8c8ffd252d2b",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/PhaseModule.java": {
+      "status": "native-implementation",
+      "native": "phase",
+      "donor_sha256": "886009cd79c08e6ae97906e91c04097e83cb1ad852d50a84ce23292ee69cd25c",
+      "donor_git_blob": "aa110238ff43556ad1af1743028a5e3a240e1587",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/SafeWalkModule.java": {
+      "status": "native-implementation",
+      "native": "safewalk",
+      "donor_sha256": "f77b9f66eebd916e50fe35fe239856ad8114841ecc509daac418e84723c5ad31",
+      "donor_git_blob": "215de618cedf8e67561e1d31e5ec2d2a5858be2d",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/SpeedModule.java": {
+      "status": "native-implementation",
+      "native": "speed",
+      "donor_sha256": "e4e598c47f2afaab32631bb1287cc8390f1df1b175509e31080ada4ec00dfff5",
+      "donor_git_blob": "03f7eb8e8890d25b7b179682b75d2bf67aab4d9f",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/SprintModule.java": {
+      "status": "native-implementation",
+      "native": "sprint",
+      "donor_sha256": "edbbc667ff2dfc2103acc0b92498d0c0548f9ab3c5fb8edd69571561e43e2fac",
+      "donor_git_blob": "96dc29d08d8553477ee05dece2d62017bcbed223",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/StasisModule.java": {
+      "status": "native-implementation",
+      "native": "stasis",
+      "donor_sha256": "2f667082f61f3f61d673caf9e9bcd778b8eb17e9cde0d07f10c3033533df1b95",
+      "donor_git_blob": "637c773a976a232c2c51fd6c098a6cc84a7e9971",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/StepModule.java": {
+      "status": "native-implementation",
+      "native": "step",
+      "donor_sha256": "5964359fd7fba2f9a8979d78d1ed9113d2784b5ccc77203b9c83fc93323e3591",
+      "donor_git_blob": "aff4d7d9c9aef5f716d39c22e68d2687bd492682",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "movement/WaterWalkModule.java": {
+      "status": "native-implementation",
+      "native": "waterwalk",
+      "donor_sha256": "24fcafaf011974a29d477a7513bf9edafcfaf89cec7cdad9cec18bea173d9b08",
+      "donor_git_blob": "4c07477420640eb4db5a904367876adeacbbcf6f",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/AntiFireballModule.java": {
+      "status": "native-implementation",
+      "native": "antifireball",
+      "donor_sha256": "8eca5392802cd523d64d72f3f141c078d8e3283bf5ab13fad1f922a51fd85b95",
+      "donor_git_blob": "bff3e26c8a0d1f8977e79992fb38d9202ce811de",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/AntiVoidModule.java": {
+      "status": "native-implementation",
+      "native": "antivoid",
+      "donor_sha256": "a71022a477f551c46590849cdcabb5865b068977ee2608bee81c48ad1daef3e9",
+      "donor_git_blob": "424813f4d18e57174ea20e0e3263318d20134876",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/AutoArmorModule.java": {
+      "status": "native-implementation",
+      "native": "autoarmor",
+      "donor_sha256": "d49466336c56e437136c34fe64572452b53079310ddb5121bb6eb4d54391550d",
+      "donor_git_blob": "35dc2016cf2ee7cb1df5999e89e52f9cb4d12a3f",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/BedDefenderModule.java": {
+      "status": "native-implementation",
+      "native": "beddefender",
+      "donor_sha256": "9596fe6ace23eb257fb9d1cf3fc03d66674431ac86b14a2bc6605d186a0e9422",
+      "donor_git_blob": "10193b45570bd7659c9f049670b4f9d1184d2e53",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/BlinkModule.java": {
+      "status": "native-implementation",
+      "native": "blink",
+      "donor_sha256": "e1ba3c063aafb440ff7f6019a7016bd88bb92beff68137f9f41d6f4e20555482",
+      "donor_git_blob": "4e1f5a6325a218c85a9eb4ec29fd49d24f798253",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/BreakerModule.java": {
+      "status": "native-implementation",
+      "native": "breaker",
+      "donor_sha256": "cb2e6cb21ccaf110d25836709e6704811d96e8af3cea8eb0f92e66f6fe818df2",
+      "donor_git_blob": "cd78130c0e669b56e3d5e2ecf4c3e53767405568",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/FastBreakModule.java": {
+      "status": "native-implementation",
+      "native": "fastbreak",
+      "donor_sha256": "c918c6315b073eb9bdae0206635abd1b202878c817d86d38e33654547114d168",
+      "donor_git_blob": "d89cb3f2bb26c09274dcadb4779feac7639a99f1",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/FastUseModule.java": {
+      "status": "native-implementation",
+      "native": "fastuse",
+      "donor_sha256": "fb9a09e9bbece8bc161ff2ea74210c72a9b19d6d98791fb8e66eb63033b93e00",
+      "donor_git_blob": "aa680f84ff30dda51791d9265edfb2c8c7e45b68",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/ManagerModule.java": {
+      "status": "native-implementation",
+      "native": "manager",
+      "donor_sha256": "24dd399a6b7d0444950276cfe46f23db5aacde0f5525834139d582bcce10635f",
+      "donor_git_blob": "f5086b0d7810fd55b5185e611b755770a2f3d2d0",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/NoFallModule.java": {
+      "status": "native-implementation",
+      "native": "nofall",
+      "donor_sha256": "b7ba6d8d24fc7b890d373b6f22ae8adf65d2748cfee88a4be3b5d96049bbba2b",
+      "donor_git_blob": "9f2fa0a3f4031e9652950cbb7a66fb201d286a29",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/RefillModule.java": {
+      "status": "native-implementation",
+      "native": "refill",
+      "donor_sha256": "5bdbd61e1796efc6907184d5411cea6237eed0c05a8e6fd7936d6458452baa5f",
+      "donor_git_blob": "7bd022c8e02852d69c9f4e97253f554b8aabf0b1",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/RegenModule.java": {
+      "status": "native-implementation",
+      "native": "regen",
+      "donor_sha256": "5ab636fe40a6c81d3912d19204855efd155f598bf218404f66ed269e136890b1",
+      "donor_git_blob": "7ee97ece1bf0bea7812b17e3754e5246d53d116e",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/ScaffoldModule.java": {
+      "status": "native-implementation",
+      "native": "scaffold",
+      "donor_sha256": "7763bd7bc0ec871f18fcfbaf1ce1bb0604da6fd3f9a2cfa28778933cdff3b2c9",
+      "donor_git_blob": "0d06af2dc04b9eaa6ad085b68cc62ffac8fa767c",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "player/StealerModule.java": {
+      "status": "native-implementation",
+      "native": "stealer",
+      "donor_sha256": "202277511b38f5d064c3e93d901dfda4d9653a37b1a7ac3b8349f3b94306b3f1",
+      "donor_git_blob": "4795883a6819004feb3b1df5131546cbb149a861",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/AmbienceModule.java": {
+      "status": "native-implementation",
+      "native": "ambience",
+      "donor_sha256": "f5c10beba8d1659c057da7b4ead1c649bb3864743d3070bcd19173a31d76445d",
+      "donor_git_blob": "2771d217eabeb3042f2d4f6bad9146beaf0a4bd5",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/AnimationsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "bcd88680cff5a33ba9f9863ff416ca721c09f791954ed6399fd81c59ebda23eb",
+      "donor_git_blob": "5dc2f47e2647931980197156afbbc60def5570fa",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ArmorRatioModule.java": {
+      "status": "native-implementation",
+      "native": "armorratio",
+      "donor_sha256": "ab03b94b9b54ff24a9c332608314b6430078c4c45fbae118e09d40c54ae49b36",
+      "donor_git_blob": "7f0377787bf1d80f22bc18c47b311f13c54ffb51",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/AutoF5Module.java": {
+      "status": "native-implementation",
+      "native": "autof5",
+      "donor_sha256": "9c79c48baa20832cf4e894b0fc4a335cbbc31e0f0b4db55f19388f3a60d103b3",
+      "donor_git_blob": "c96e163097e69177e59110e9ca50df8266c7ce78",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/BlockESPModule.java": {
+      "status": "native-implementation",
+      "native": "blockesp",
+      "donor_sha256": "eae0102459f18864327974b77b80b53da927c485259536281c9fbfc47fd6bc6a",
+      "donor_git_blob": "9a7ba90cdf36bcbf9a5b7111ecffdb9e0004688a",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/BreadcrumbsModule.java": {
+      "status": "native-implementation",
+      "native": "breadcrumbs",
+      "donor_sha256": "ba35f7cb50011008051c80dd50ab45dba93f26164ee492c9b8453baf02fee354",
+      "donor_git_blob": "2d305b3eb726501c2a7de3c32e5fffa2d9de525d",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/CameraModule.java": {
+      "status": "native-implementation",
+      "native": "camera",
+      "donor_sha256": "0c119b2e4b6de325ee53277cc01a12081cc9a8a9841a6b6902dd3975ca6e6789",
+      "donor_git_blob": "d525cf9ac83ccbd1d23c4c695d3dee213d9a4760",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/CapesModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "0d0ed1b90575dcdaa6e30b29bc41fdaa81a4514b49d853d27859abcf1d635c75",
+      "donor_git_blob": "b811448d967a22ca77933b2bd82216e82b85e98b",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/CatEarsModule.java": {
+      "status": "native-implementation",
+      "native": "catears",
+      "donor_sha256": "9ef82c7d9325bc4456a2c0c1677d6e6fc72530f005f259bfae9330bf48074224",
+      "donor_git_blob": "dfc2655c8ac340dee2bbf512d0a12c57ea6e24c1",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ChamsModule.java": {
+      "status": "native-implementation",
+      "native": "chams",
+      "donor_sha256": "6273e21147aae62a2c1a5135ae3c28faf84c7e8bcd6ccfe3d3b3b25e7af36703",
+      "donor_git_blob": "c0dda96decffed561203e5e3954676cdb1577766",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ChinaHatModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "e9718579a9ae094ade2a7643383c308d86bb0246f24639c23f540304f51d0b8b",
+      "donor_git_blob": "f5758754b5848abacb7948104d7d3ad50d34c868",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ClickGUIModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "90386584d4f84089e4fd0718261532d47455fe9400bbae3bb26c9916ee20d2c3",
+      "donor_git_blob": "3bdd1cb81902a79914fd06f450165324c8515636",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ClientInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "24b818fd7ee3f22836212bc9cc859353173b00e8cec1234e04d8cee1b95e2170",
+      "donor_git_blob": "1b88b5e8ff7b4ac7cf97d4eafd0f041362689e0a",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/CustomMinecraftModule.java": {
+      "status": "excluded-client-ui",
+      "native": null,
+      "donor_sha256": "0804f5bee5aff27c0ac99a31841983ded998c484ed9e177dffc5d27fd254531d",
+      "donor_git_blob": "3ada6c02de26b0b5663eb402346f1da9af7b5024",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ESPModule.java": {
+      "status": "native-implementation",
+      "native": "esp",
+      "donor_sha256": "970d5a1f46a2546df091caa446facfb7e90405ab63383c4ef90def4c3b0411ab",
+      "donor_git_blob": "085d47246edd6119f4d825b68a58b9f98bc1c980",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/EffectsModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "f01986bb3c39553edf65250d7bd052062cbd4f5186f8fc43b4f10e211381e838",
+      "donor_git_blob": "3b9ea6dcfcc06e45729bf58d515ab49482c4bed0",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/FreeLookModule.java": {
+      "status": "native-implementation",
+      "native": "freelook",
+      "donor_sha256": "38c4a95c65df237c818440e9c2bd03c6e67819b697f54b61782522b430254f15",
+      "donor_git_blob": "d0d2fa3f34f801a4b76236988c889f00e11f724a",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/HornsModule.java": {
+      "status": "native-implementation",
+      "native": "horns",
+      "donor_sha256": "e40c3743cf29f3c592452b61a02a846d2815a6fefa85eb1d42891cb06463ea43",
+      "donor_git_blob": "92efe85241d77581c3953a2a0bc5cb5b1368fd45",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/HotbarModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "1b2aae5701c1e2402dfd55616670818ac0a994360147e28b2e626d732b40d448",
+      "donor_git_blob": "46211de52a585603fcbf5fe1008c91913e3d37af",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ImageRendererModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "a8c4ef4df9dc0168d93e6eca4e2feb9501e2af0a4cb596410186fd1f3bb01efc",
+      "donor_git_blob": "31587b1774d3ea2e67d6892367d47a5f4087603b",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/KeybindInfoModule.java": {
+      "status": "deferred",
+      "native": null,
+      "donor_sha256": "87b512bb21a07bd9d55ec957a322ac013ede3d2bd7a2b9b9ceb2c100bea953d8",
+      "donor_git_blob": "38fe75a0f97826a064f80e117217be0c28928f3b",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/MediaInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "51500ff20cf11fae1cf5f731e89b30504560d67e0923b3e866d278f8b00b67ec",
+      "donor_git_blob": "ee95e052c8cae754add55a262a1a4b72aade9492",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ModListModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "61d39f71f01cfd004c1b53b30737197f9fec562cfcfd922c0e2e274ea9f9075e",
+      "donor_git_blob": "66a0cfa20a2ebaf5eb29dd35321bd08b8c36c808",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/MotionBlurModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "a38c3a9a55e246e86e802d629227670b38a2a772bc8e421a3feaae7cca6b88d7",
+      "donor_git_blob": "ff8f71e0bc7dd8b69642fc161b92a8330d2b094a",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/NameProtectModule.java": {
+      "status": "native-implementation",
+      "native": "nameprotect",
+      "donor_sha256": "1e1c69fdfc93904f7a2482a90b01b962c1fcd5b475ecd6012ec8f7ea41ba4f72",
+      "donor_git_blob": "52ba5b0600dec3c1fb188a575f15483b313b9ad0",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/NameTagsModule.java": {
+      "status": "native-implementation",
+      "native": "nametags",
+      "donor_sha256": "d28632aa59a1ff7e5a36dbf4c32b394990fd38fdf6814fe27defa268cc5d2af2",
+      "donor_git_blob": "14ade2090a2b6832ea77eecda298aff55a526494",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/PentagramModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "ec3bd9e00a8e64439dbb8dafa33f8684dc87dca08238649425d2d26440829abb",
+      "donor_git_blob": "0720c8b5baa598336b8d822b0716ac40cbffeeed",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/PostProcessingModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "14e71a6f09e25b81e6b945c76ecd0f0d593bb3be7efd69806ae8715cb93f7abf",
+      "donor_git_blob": "a8a5d29d2fc2bfd6f7c47748777fc97917e63bed",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ScoreboardModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "ca8c77449a640d815ddcc3e3922b6aa94b5fd9c62996ef5b00f1f7cd1b9c968d",
+      "donor_git_blob": "9b961dca62303fce6b65976384907776b1a7f270",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/SessionInfoModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "0e9feb5c0e4837b8eff8c89c1cd7850e04fe2067d9100f5bf035d960ad3dd974",
+      "donor_git_blob": "9e2bdf6edd01cf2e550b98fe9785c3123996f993",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/ShaderESPModule.java": {
+      "status": "native-implementation",
+      "native": "shaderesp",
+      "donor_sha256": "2607300a1bfa92a4ae5e9610bcb090f34f26095d759e2e6861fd4ac7479fe89f",
+      "donor_git_blob": "102423f079c2714a80b206420dba827a9eb612fd",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/SkeletonsModule.java": {
+      "status": "native-implementation",
+      "native": "skeletons",
+      "donor_sha256": "c5c7b0d2019e5096deb343b3d36df9731910127ebae712f99872118bc36a63ff",
+      "donor_git_blob": "82504d85cb507a426d5f4b51e3f47bec62ab3dca",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/SkinChangerModule.java": {
+      "status": "deferred",
+      "native": null,
+      "donor_sha256": "905f743708b0477f88c4b13689606d0bc0d5c0d1d755db02bb1dacc1f7ecb150",
+      "donor_git_blob": "fefdab34a31e454b14ef552e28b2c9c96ee7b307",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/TargetESPModule.java": {
+      "status": "native-implementation",
+      "native": "targetesp",
+      "donor_sha256": "5c1f09a0c8584eba32a2592ab5036df69448c85ebbbe13d27265509c26504304",
+      "donor_git_blob": "d471647c0d60284de1ae326ffe74b135c5c61bd8",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/TargetHudModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "3404d6a6e23cb82affbd0fc699e8b21d8ce115035223b84ae48fe0e0a248051a",
+      "donor_git_blob": "08529db9b81722892253d92df421c8be6849f6c6",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/TrajectoriesModule.java": {
+      "status": "native-implementation",
+      "native": "trajectories",
+      "donor_sha256": "4cd3b3dd6d156f07b1d9fb105531ca6e4e1243e7eac3747a8f7b6bf38405d66f",
+      "donor_git_blob": "18ac776e4ee0c871253505a79a8c5d0faf9ec266",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/WatermarkModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "832644d6ac1bd75f1feae971daad7c4b8ffe4e026d1f3008eb80946cf6db72c5",
+      "donor_git_blob": "67478d08c9b1cf33265145f43b63b3ed8048a7ca",
+      "changed_since_previous_audit": true,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    },
+    "render/YuriChatModule.java": {
+      "status": "excluded-client-ui",
+      "native": "",
+      "donor_sha256": "fd43abeac041d6a066880b39f92a8690e09f50ea21d5da646ecef1fd41155932",
+      "donor_git_blob": "95e05f290c49c0432fdcc74c700993037e2649bd",
+      "changed_since_previous_audit": false,
+      "verification": "See YURI_131_IMPLEMENTATION.md and module notes. Source coverage alone is not identical-runtime or server proof."
+    }
+  }
+}

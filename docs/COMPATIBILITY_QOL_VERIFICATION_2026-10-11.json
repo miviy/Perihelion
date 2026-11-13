@@ -1,0 +1,270 @@
+{
+  "date": "2026-10-11",
+  "requestedScope": "priorities 1, 2, 3 and Auto F5 / Name Protect from 4",
+  "donor": {
+    "revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+    "clean": true,
+    "modified": false
+  },
+  "artifact": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/libs/Perihelion-0.1.0.jar",
+    "bytes": 1778496,
+    "sha256": "aa4e0ac5002d540bb9ff367f872da9793ffaf5269d0626444e3e48becfbb2ed8"
+  },
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 75,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "build": {
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon check assemble --offline",
+    "passed": true,
+    "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/compat-qol-build.log"
+  },
+  "runs": {
+    "forge_full": {
+      "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-557nvafq",
+      "passed": true,
+      "artifactSha256": "aa4e0ac5002d540bb9ff367f872da9793ffaf5269d0626444e3e48becfbb2ed8",
+      "resultSha256": "beadd63dc8507ba1bd9056e52cae3335a1db5d78a0f43142f87e6abe0f43c0cb",
+      "launchLogSha256": "ed6977c1229ad5128a7f5dc818ac9c0d0d783915ca139643ec30d64c90117611",
+      "shutdownReportSha256": "02bb15e38e45e1400cacabe638549ffb109af1e55d4997ada20cc7e45ac17afd",
+      "markers": [
+        "YURI13 checks=90 PASS",
+        "PERF watchdogImpossibleFace samples=40 medianMs=1.134917 p95Ms=1.305833 maxMs=1.52075",
+        "SCAFFOLD_TERRAIN checks=335 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=64 rawEvents=32 unbufferedEvents=30 PASS",
+        "ROTATIONS checks=272 PASS",
+        "LIVE_PROFILE phase=walking-baseline ticks=35 frames=116 elapsedMs=2239.436667 frameP95Ms=18.537208 frameMaxMs=30.088625 dispatches=454 totalDispatchMs=0.501834 meanDispatchUs=1.1053612334801761 allocatedBytes=63773128",
+        "LIVE_PROFILE phase=bridging-hud-esp-privacy-60cap ticks=45 frames=144 elapsedMs=2689.935625 frameP95Ms=21.713 frameMaxMs=51.283125 dispatches=22380 totalDispatchMs=87.680639 meanDispatchUs=3.9178122877569255 allocatedBytes=63647280",
+        "LIVE_BRIDGE phase=1 distance=9.33998291958676 bridgeBlocks=8 PASS",
+        "LIVE_PROFILE phase=bridging-hud-esp-privacy-10cap ticks=45 frames=22 elapsedMs=2467.789417 frameP95Ms=107.211958 frameMaxMs=107.525292 dispatches=4033 totalDispatchMs=24.575439 meanDispatchUs=6.093587651872055 allocatedBytes=38695880",
+        "LIVE_BRIDGE phase=2 distance=9.339982675538522 bridgeBlocks=8 PASS",
+        "LIVE_PLAY ticks=125 frames=315 PASS",
+        "STALE_ENTITY_PACKETS checks=2 PASS",
+        "REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "PASS scenario=full ticks=266 worldEvents=10",
+        "REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "HOOK target=cleared",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedRuntimeSignatures": []
+    },
+    "optifine_full": {
+      "directory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-t7b_j636",
+      "passed": true,
+      "artifactSha256": "aa4e0ac5002d540bb9ff367f872da9793ffaf5269d0626444e3e48becfbb2ed8",
+      "resultSha256": "b54883d4c349073f76c4a406afd458b19aafef942143792efcd26047e0771891",
+      "launchLogSha256": "22ca22c157438ca103ad7a674037c71e14f0701dcb1a444a3f629d631b1c6adf",
+      "shutdownReportSha256": "02bb15e38e45e1400cacabe638549ffb109af1e55d4997ada20cc7e45ac17afd",
+      "markers": [
+        "YURI13 checks=90 PASS",
+        "PERF watchdogImpossibleFace samples=40 medianMs=1.16075 p95Ms=1.43325 maxMs=1.550667",
+        "SCAFFOLD_TERRAIN checks=335 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=64 rawEvents=32 unbufferedEvents=30 PASS",
+        "ROTATIONS checks=272 PASS",
+        "LIVE_PROFILE phase=walking-baseline ticks=35 frames=118 elapsedMs=2270.09875 frameP95Ms=18.521834 frameMaxMs=28.812875 dispatches=481 totalDispatchMs=0.305947 meanDispatchUs=0.636064449064449 allocatedBytes=14741448",
+        "LIVE_PROFILE phase=bridging-hud-esp-privacy-60cap ticks=45 frames=144 elapsedMs=2657.418875 frameP95Ms=20.414708 frameMaxMs=24.351916 dispatches=22249 totalDispatchMs=88.154356 meanDispatchUs=3.9621716032181222 allocatedBytes=52808464",
+        "LIVE_BRIDGE phase=1 distance=9.339982919208637 bridgeBlocks=8 PASS",
+        "LIVE_PROFILE phase=bridging-hud-esp-privacy-10cap ticks=45 frames=22 elapsedMs=2483.6415 frameP95Ms=110.756375 frameMaxMs=116.415458 dispatches=4038 totalDispatchMs=41.99709 meanDispatchUs=10.400468053491826 allocatedBytes=34753872",
+        "LIVE_BRIDGE phase=2 distance=9.339982975552061 bridgeBlocks=8 PASS",
+        "LIVE_PLAY ticks=125 frames=323 PASS",
+        "STALE_ENTITY_PACKETS checks=2 PASS",
+        "REFERENCES phase=unload world=cleared player=cleared manager=cleared",
+        "PASS scenario=full ticks=274 worldEvents=10",
+        "REFERENCES phase=shutdown world=cleared player=cleared manager=cleared",
+        "HOOK target=cleared",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "unexpectedRuntimeSignatures": []
+    }
+  },
+  "investigation": {
+    "searchBaseline": {
+      "run": "forge/run-smoke-forge-shgvuld2",
+      "medianMs": 1.4525,
+      "p95Ms": 1.749417,
+      "maxMs": 1.93025,
+      "samples": 40,
+      "note": "Before duplicate pruning; benchmark completed, later terrain assertion failed and led to the documented fixes."
+    },
+    "worldOnlyBeforeUnloadGuard": {
+      "run": "forge/run-smoke-forge-lxq2m0da",
+      "assertionsPassed": true,
+      "unexpectedStaleEntityTaskErrors": 3,
+      "note": "S14 and S18 work executed after unload. Fixed by extending the native current-handler/world guard; both final variants explicitly deliver these packets after unload and have no unexpected runtime signatures."
+    }
+  },
+  "searchAttempts": {
+    "before": 4551,
+    "after": 2331,
+    "removed": "positive pitch offsets that clamp to the already-tested 90 degrees"
+  },
+  "limits": [
+    "Controlled localhost TCP codecs and private integrated-world evidence; no authenticated public-server acceptance claim.",
+    "Actual frame caps are test settings, not guaranteed observed FPS; samples include scheduling and rendering costs.",
+    "Timing samples are not statistically controlled hardware performance guarantees."
+  ],
+  "backup": {
+    "path": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/before-compat-qol-20261010-214117",
+    "sourceArchiveSha256": "002a2d710e7fc264959b8626d755bcefc7e5e58f01f3868915c19b2cbfd69f26",
+    "sourceManifestSha256": "8d699eddabdd98f344a0c38304494a7e4aac41705230924270d01a390ea6f861",
+    "verifiedFiles": 348
+  },
+  "changes": {
+    "core/src/main/java/perihelion/core/control/SharedControls.java": {
+      "beforeSha256": "1221b27939452ad80b502474551c45283bd0431ca30d05c6399a19043c7bcaac",
+      "afterSha256": "4183cf1868f3ca037f308efae378d1ad8e9609a146984b0470ffeb7798d8868b"
+    },
+    "core/src/main/java/perihelion/core/control/CameraPerspective.java": {
+      "beforeSha256": null,
+      "afterSha256": "285537497321910bcc8373238b9dac3a441680120c3d08cca69475023e86ff75"
+    },
+    "core/src/test/java/perihelion/core/control/SharedControlsTest.java": {
+      "beforeSha256": "b8157daa4d389eb473ba6423f7398a9de385c0289a431848aa35e3c69c977a6e",
+      "afterSha256": "5f5ca7fac90a5d0724ebc28a75548bbf2e1b11fadc94d2657dfb5801ca9b3122"
+    },
+    "forge/src/main/resources/mixins.perihelion.json": {
+      "beforeSha256": "d32ab0429b957e1eb4b0f37d156b40f1e7eef982741b0b42e5b3576b363697e7",
+      "afterSha256": "632c05f9c536c4cd7da2d148e5c4c53c6c8c5ea7c24d50469e58eed5589f7e41"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/HookBridge.java": {
+      "beforeSha256": "dbfbef7bd303bf60fa49b68d81f0078a0daeacc3fa891b084e012ad584617089",
+      "afterSha256": "b508cec16877259ca9636e236bd2e8f67d0ffba89cbd7b2c6a12c5676a547020"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/network/PacketOrderBarrier.java": {
+      "beforeSha256": null,
+      "afterSha256": "597400ccfe77bdd17342b17616f73794fb6ca7bb6903d20e30237fa57adde111"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/network/PacketBufferScope.java": {
+      "beforeSha256": "2a4640d0309eff6f659ff5dd7736391084634a45dee91015b8b03fa375478eb7",
+      "afterSha256": "9e36d503cda2596609fafbb6bc958c0946c00b88884db9f19d47483a87ddd42a"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/mixin/FontRendererMixin.java": {
+      "beforeSha256": null,
+      "afterSha256": "a7cacb4c5ed5d9df4d8f95c4a76b163a584bf165f3980506e975c242097f12a8"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/mixin/ClientPacketMixin.java": {
+      "beforeSha256": "64f16f2afa02d68c4e96dab8855dcc027e3ffbb6dafd67c8705c8429755d3753",
+      "afterSha256": "5ee3f5807747044b75eda2edc890ceff2ee7e31fc0c128102855b3f5afa0db8d"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/mixin/PlayerControlsMixin.java": {
+      "beforeSha256": "b18397b1e76083978232473132f1796db6d59b7df327fc710287596c3d8e3a59",
+      "afterSha256": "fa5f26f0abec19e5310dd90603bedd8be192eb8a9df3a4da964c45e7783c49bc"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/event/TextRenderEvent.java": {
+      "beforeSha256": null,
+      "afterSha256": "73e7e31b3b2e3715677bbf04a59998246c828791062784936112548f1ab66e3a"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/event/PacketSendEvent.java": {
+      "beforeSha256": "1ff47f659b2e47ce32fc05c588421a82b1edbac630070506b34522924cf2f642",
+      "afterSha256": "7da81d5f939e85d962ffd6cd5dcf23e7a973d72511cd5afce89dff1830c3e38b"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/control/MinecraftControls.java": {
+      "beforeSha256": "76c18cd5d78eca5d2f69a2081a85c591fbc790caf7e9a633615003cb4409410b",
+      "afterSha256": "fb08bd7b4a805167a59302ac712c6753a14a9c9abc5b4f93e53aa59c5595eadb"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/control/PlayerRotationAccess.java": {
+      "beforeSha256": "93441eb993f544fa91464b9592251020335cf7c42f25a86562e2906eee88bc21",
+      "afterSha256": "54023f7cb89c0ae3261dfef74025b87ce42006b321c4f9481904bf85a3fbff7e"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudFont.java": {
+      "beforeSha256": "a05db87e0b987adc7d7905a5c01b827f944c57e85ab3fd93ff6f318ac6c578c9",
+      "afterSha256": "427e351d05059d6bd596adb453222e6bb511be82fa92a7ca1f00fb46440118c3"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/font/GuiFonts.java": {
+      "beforeSha256": "bdbe8ce72cc1090e1934069b123b03a156de4d037b30060fb903bcf9560a5505",
+      "afterSha256": "3bd3955f63e8ea743e3ab13534f314774c1d5c10acc8b1de4a8e1d85b4c848eb"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/PrivacyModules.java": {
+      "beforeSha256": null,
+      "afterSha256": "bb0666a2d84aae6cd8450d4a5395d56e0c5709b389478c3f6ce14cc7713527d1"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ScaffoldRotations.java": {
+      "beforeSha256": "63e65b8784e3d4dadf4712bd2ea582cc2e335fbb2b09c46233480184746da7cc",
+      "afterSha256": "008021152f855f91584297c258c58287cf9d525486d2c75c1d6c3fa684add6f8"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/Placement.java": {
+      "beforeSha256": "3824073433f9c56debe0ab74d2c5eb1724379ba1652e561f44af870fb97fbb89",
+      "afterSha256": "c410f7c0f31fffece1d34b7d594183082823c55e92d5bb8cc71887d4855f6035"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GameplayModules.java": {
+      "beforeSha256": "5be5c576ca86eb22cead2e1f67c49fcd7e23a2f2e0f2cdfb1fae45a3842bfe0b",
+      "afterSha256": "f2379eb6bfb0c9ccab22556ddaf77767d8c7657d7ff1cb56aafc8789b3fef39d"
+    },
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/ModelVisualModules.java": {
+      "beforeSha256": "8dd9db131cb815999b947e3d444d155ded7ff484b7a36a2a61bffe32ee871b95",
+      "afterSha256": "2efd2be0dd87c7c9909a1830610a1abc9677d03bcd34cc8042fbc15b9fa48726"
+    },
+    "forge/src/main/java/perihelion/bootstrap/forge/ForgeClientAdapter.java": {
+      "beforeSha256": "5a335103476259bbce183899d310bc7d65494649623f32479e4ea74490524805",
+      "afterSha256": "413183d106a88b31fced03afdcd8b00a6469ca8ef98a61bf7a1495fabd18e9bf"
+    },
+    "forge/src/test/java/perihelion/integration/minecraft189/module/BuiltinModulesTest.java": {
+      "beforeSha256": "dc63e9cc8e10995c46267dcc3145576a99f462ae39884863a2f3d80e8f899e65",
+      "afterSha256": "88b69e082fb175adb1c155e17272ab237195966ed1bd1a5c4262dd28bd3b2fb4"
+    },
+    "forge/src/test/java/perihelion/integration/minecraft189/network/PacketOrderBarrierTest.java": {
+      "beforeSha256": null,
+      "afterSha256": "5beebb33f8a94e99a94cf81b3470cd371ce4198a4e898c495fee5e26e3c033a4"
+    },
+    "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": {
+      "beforeSha256": null,
+      "afterSha256": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8"
+    },
+    "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": {
+      "beforeSha256": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+      "afterSha256": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4"
+    },
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": {
+      "beforeSha256": null,
+      "afterSha256": "4255145644ee77d6cd416f0ee21fa7b0728d0cac16bde1a4efeb41f296c18f13"
+    },
+    "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": {
+      "beforeSha256": null,
+      "afterSha256": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66"
+    },
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": {
+      "beforeSha256": "22a3d99f591d809b34c725f2133b89b461fa80566c0794f9ce514e6713e44df1",
+      "afterSha256": "e440f93c3ff923620befeb4bd962687a45c48c2cb43af31a3552a606da7fa801"
+    },
+    "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": {
+      "beforeSha256": null,
+      "afterSha256": "d7eaad9d2a3ee48b845a6b7776163801665f0eeaa07e1cf57603151343bf031c"
+    },
+    "scripts/smoke/SmokeProbe.java": {
+      "beforeSha256": "d92127c95b3f8d5f0db3db05b1745f3a307ef0cff2838c0418937591839528af",
+      "afterSha256": "549a3aaf7f2aa856c7a03fa99ffb2709d24aa153f0dfb873aaf76277f98e0f3c"
+    },
+    "docs/COMPATIBILITY_QOL_2026-10-11.md": {
+      "beforeSha256": null,
+      "afterSha256": "dffc7fc9ed1ec1b11463685a1aec905e8217ab8bd8fe524934cb08385637bb36"
+    },
+    "docs/YURI_1_3_IMPLEMENTATION_2026-10-10.md": {
+      "beforeSha256": "ac060031bc175efa2cacea1f8791fe18d0a75cb17af49ea30555a11cd2a8d8d1",
+      "afterSha256": "91c2b15e596575f91f693b63dc7e3e693477b6192e25e1977f716467e29c57c0"
+    },
+    "docs/yuri-1.3-modules.json": {
+      "beforeSha256": "2b8a2a224c174686dea012c4b8a107f9457466d5bb536215c242af8727c1699b",
+      "afterSha256": "277bcc148d47894238b3731f3909420937a4a8cbe9b83775c2625445cf959f92"
+    },
+    "docs/DONORS.md": {
+      "beforeSha256": "7b99cb4d802a0ddaa20715709fb850e53f763f71be3b92f2f3aaba5759ee0f42",
+      "afterSha256": "ae276da3fd01b69ac0802784e688af65ed7b55c8ce7836f7e2ccd1c397281dd1"
+    },
+    "gradle/verify-distribution.gradle": {
+      "beforeSha256": "79b73f9e35aea46383559a96738bc3bf241afed0d8738ee5f5d609fc6222170f",
+      "afterSha256": "c197c1827fe2dffe3eb5c473386a045f0ff7b3edb7dcd27e26071fc4d65bb610",
+      "beforeSource": "Reconstructed by removing the single added expected-mixin member; see gradle-rollback-note.json."
+    }
+  }
+}

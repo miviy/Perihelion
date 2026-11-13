@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-25",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "sha256": "97d386a4589c31abf4d4ff8b32bff739f3ef4f25168cb4d291e5488abef58d60",
+  "bytes": 1239512,
+  "unitTests": {
+    "core": {
+      "tests": 147,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 23,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "runs": [
+    {
+      "directory": "forge/run-smoke-forge-soe9s8xi",
+      "scenario": "title",
+      "artifactSha256": "90338944bc0645c3675f7f44b1fa3bda203e02531b991a71be6998e7b65f509c",
+      "extraMods": [
+        {
+          "name": "f6e476a45d.jar",
+          "sha256": "1fc20eed4f90db663cb5eedf1585e4dfa3137a44f6f98f01ad122c33403a8c18"
+        },
+        {
+          "name": "animations-1.6.jar",
+          "sha256": "e78e085242dfff5e6a95a7a72fdc13e036b3b820ac455b5efcad19cb51624716"
+        }
+      ],
+      "passed": false,
+      "exitCode": 143,
+      "timedOut": true,
+      "rotationCompatibilityWarning": false,
+      "guiChecks": 0,
+      "rotationAndControlChecks": 0
+    },
+    {
+      "directory": "forge/run-smoke-optifine-nf09_5m5",
+      "scenario": "title",
+      "artifactSha256": "97d386a4589c31abf4d4ff8b32bff739f3ef4f25168cb4d291e5488abef58d60",
+      "extraMods": [
+        {
+          "name": "f6e476a45d.jar",
+          "sha256": "1fc20eed4f90db663cb5eedf1585e4dfa3137a44f6f98f01ad122c33403a8c18"
+        },
+        {
+          "name": "animations-1.6.jar",
+          "sha256": "e78e085242dfff5e6a95a7a72fdc13e036b3b820ac455b5efcad19cb51624716"
+        }
+      ],
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "rotationCompatibilityWarning": true,
+      "guiChecks": 0,
+      "rotationAndControlChecks": 0
+    },
+    {
+      "directory": "forge/run-smoke-optifine-eqmh5g4i",
+      "scenario": "world",
+      "artifactSha256": "97d386a4589c31abf4d4ff8b32bff739f3ef4f25168cb4d291e5488abef58d60",
+      "extraMods": [],
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "rotationCompatibilityWarning": false,
+      "guiChecks": 42,
+      "rotationAndControlChecks": 30
+    }
+  ],
+  "notes": [
+    "Original JAR failed with the exact motionYaw injection error with the isolated Raven and Animations JARs.",
+    "Exported target walking method contained only a call to Raven PostInit.onUpdateWalkingPlayer and return, no vanilla yaw/pitch reads.",
+    "Fixed JAR reaches a stable title screen with Raven, Animations and OptiFine and shuts down normally.",
+    "Normal Forge/OptiFine world probe retains both rotation hooks; 30 control, 84 module, 42 GUI, 55 render and 261 HUD assertions passed.",
+    "Compact GUI screenshot visually reviewed; the HUD event label is test-only.",
+    "No existing Prism configuration, account files or installed mod JARs were changed. The whole original nine-mod stack and active Raven gameplay modules were not tested.",
+    "Existing vanilla unload-time queued chunk exceptions remain in the world fixture."
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-04",
+  "donors": {
+    "OpenB4": "3d63944cc79be890c013cc79e5ed92d3533b48a5",
+    "Yuri": "1cb86ad94ce1f01aa9b715577163c8ecc47b7def"
+  },
+  "artifact": "forge/build/verified/breaker-b4-20261104/Perihelion-0.1.0.jar",
+  "sha256": "2c761f6cad6151dd332a682047ddec4dbb86417fcb81a0cfb7cf9a812af13aad",
+  "unitTests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 447,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "packagedSmoke": "forge/run-smoke-forge-8cso6axj/result.json",
+  "smokePassed": true,
+  "miningScenarios": 52,
+  "focusedAssertions": 1465,
+  "layersTested": [
+    1,
+    2,
+    3
+  ],
+  "materials": [
+    "wool",
+    "planks",
+    "end_stone",
+    "stained_hardened_clay",
+    "glass",
+    "obsidian",
+    "mixed",
+    "tnt"
+  ],
+  "secondPassReview": {
+    "completed": true,
+    "scope": [
+      "B4 mining strength/tool and target lifecycle",
+      "Exact second-update handoff",
+      "Newly exposed bed handoff",
+      "START callback retirement",
+      "Home-bed match/world lifetime",
+      "Zero-hardness instant break",
+      "Scoped foreign-dig rejection and release-use passthrough"
+    ]
+  },
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "f2f8a391e1cbfc0906e308d9094b5b9afc9d427592cf7e9f86807bd94057d229",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerPlan.java": "e6f27ed48dbdef709523ba7d23880e653e134d2fab03278e119bb858c441834d",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BreakerMining.java": "6d9ce2705bab6bf3792acc3a2bb1caf683428a6fb5621b09e872d595bdd10506"
+  },
+  "manualLaunch": "forge/run-manual-breaker-b4-eorv5mwd/manual-launch.json",
+  "preEditSource": ".backups/breaker-b4-20261104-065022",
+  "limits": [
+    "Local offline client/PLAY-loopback tests",
+    "No authenticated Hypixel/Grim acceptance",
+    "B4 Instant/Swap and ignore-slowdown/ground-spoof timing are not ported"
+  ]
+}

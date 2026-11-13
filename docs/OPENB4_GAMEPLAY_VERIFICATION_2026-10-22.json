@@ -1,0 +1,88 @@
+{
+  "donor": {
+    "revision": "3d63944cc79be890c013cc79e5ed92d3533b48a5",
+    "reference": "../donor_clients/OpenB4/OpenB4",
+    "readOnly": true
+  },
+  "artifact": {
+    "path": "forge/build/verified/openb4-gameplay-20261022/Perihelion-0.1.0.jar",
+    "sha256": "963826182a2733a18044f11cc0138cdf5da37d4bf2b335132ec6bc170dd000c1",
+    "bytes": 12722031
+  },
+  "modulesImproved": 16,
+  "moduleRegistryCount": 96,
+  "existingDefaultsPreserved": true,
+  "junit": {
+    "core": {
+      "tests": 162,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 391,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "b4UnitTests": 38,
+  "packagedRuns": {
+    "forge": {
+      "directory": "forge/run-smoke-forge-re2g_lh4",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "artifactSha256": "963826182a2733a18044f11cc0138cdf5da37d4bf2b335132ec6bc170dd000c1",
+      "shutdownClean": true,
+      "b4Checks": {
+        "building": 36,
+        "combatNetwork": 40,
+        "movementBedWars": 67,
+        "manualCombat": 59
+      },
+      "b4TotalChecks": 202,
+      "launchManifestSha256": "d42e9602451104d3d67e9725a7a434e937bc3c06e4206141f10bb6929badbe48",
+      "resultSha256": "4dc49d6b689c566ab3f51062e959b0118997237e66de98518f2801ef3e755b0c"
+    },
+    "optifine": {
+      "directory": "forge/run-smoke-optifine-t5d2b6_i",
+      "scenario": "full",
+      "passed": true,
+      "exitCode": 0,
+      "timedOut": false,
+      "artifactSha256": "963826182a2733a18044f11cc0138cdf5da37d4bf2b335132ec6bc170dd000c1",
+      "shutdownClean": true,
+      "b4Checks": {
+        "building": 36,
+        "combatNetwork": 40,
+        "movementBedWars": 67,
+        "manualCombat": 59
+      },
+      "b4TotalChecks": 202,
+      "launchManifestSha256": "c773a86d6014bb736430627f6e521bddc6dfc083677501b99933d73854f1798a",
+      "resultSha256": "6d083946ed751920fa80558a91820bf67d308baed134da056d7d771fff2160fd",
+      "optifineSha256": "2739760a70fca6ae5c7dc817bcc6283f18f55e38fa23778da7f387a6b724b2c4"
+    }
+  },
+  "rollback": {
+    "affectedFilesTested": 60,
+    "added": 34,
+    "originalArchiveSha256": "806262d882a88419a5f3e2e917bb4326f2d29f0a153c67ae32514b23d0a72fb4",
+    "dryRun": true,
+    "isolatedRestore": true,
+    "laterEditRefused": true,
+    "unrelatedPreserved": true,
+    "liveSourcePreserved": true,
+    "finalAffectedFiles": 61,
+    "finalDryRun": true
+  },
+  "evidenceLimits": [
+    "Selected B4 policies/default branches, not all source settings combinations.",
+    "Native bounded queues, control ownership, generation checks and environmental safeguards remain.",
+    "Fireball throw uses native BEFORE_ACTIONS instead of donor preMotion.",
+    "Milk countdown uses a native chat line.",
+    "No authenticated Hypixel shop or live-server bypass/performance validation."
+  ]
+}

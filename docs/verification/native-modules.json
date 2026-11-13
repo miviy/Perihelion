@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-25",
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifactSha256": "6944c59d8d381794b519d5f20be402825c8c0b3abaab08edc9b1e4451dc3582a",
+  "bytes": 1180916,
+  "unitTests": {
+    "core": {
+      "tests": 143,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 18,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "build": "check PASS; Java 8 bytecode, architecture, dependency boundaries and SRG hook mappings verified",
+  "runs": [
+    {
+      "variant": "forge",
+      "scenario": "world",
+      "directory": "forge/run-smoke-forge-nlh742ix",
+      "passed": true,
+      "exitCode": 0,
+      "moduleChecks": 84,
+      "artifactSha256": "6944c59d8d381794b519d5f20be402825c8c0b3abaab08edc9b1e4451dc3582a",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "82cbcd934b5609456e67f01ce7eeab44648209a70a5bb473cd1fb8eaea73227d",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "156b02a4290295fd2337c4ea179722ee58a23f824381ee32e76aba870ccf82e8",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "optifineSha256": null,
+      "shutdown": "STOPPED subscriptions=0 queued=0 config=present",
+      "physicalWindowInputFocused": false,
+      "vanillaQueuedChunkExceptionsAfterFixtureUnload": 25
+    },
+    {
+      "variant": "optifine",
+      "scenario": "world",
+      "directory": "forge/run-smoke-optifine-nht632l1",
+      "passed": true,
+      "exitCode": 0,
+      "moduleChecks": 84,
+      "artifactSha256": "6944c59d8d381794b519d5f20be402825c8c0b3abaab08edc9b1e4451dc3582a",
+      "fixtureSourceSha256": {
+        "scripts/smoke/SmokeProbe.java": "82cbcd934b5609456e67f01ce7eeab44648209a70a5bb473cd1fb8eaea73227d",
+        "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "b2f0b256fc276aeb2545c959af4771329d2ba19a3537d2aa4e33c7cff7c750ea",
+        "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+        "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "156b02a4290295fd2337c4ea179722ee58a23f824381ee32e76aba870ccf82e8",
+        "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "31d12096346a51f550b139ff1b9288d188fd9a8fa475dfd84d138b25e8011f72",
+        "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be"
+      },
+      "optifineSha256": "2739760a70fca6ae5c7dc817bcc6283f18f55e38fa23778da7f387a6b724b2c4",
+      "shutdown": "STOPPED subscriptions=0 queued=0 config=present",
+      "physicalWindowInputFocused": false,
+      "vanillaQueuedChunkExceptionsAfterFixtureUnload": 25
+    }
+  ],
+  "notes": [
+    "All nine production modules are registered, disabled and unbound by default.",
+    "Fullbright lightmap compared to vanilla gamma 100; saved gamma unchanged.",
+    "Actual FOV, hurt, bob, fog hooks and controller attack exercised; gameplay update events also posted directly for deterministic assertions.",
+    "Fault exceptions were deliberately injected in all nine modules, followed by explicit successful retries.",
+    "Vanilla queued chunk callbacks after fixture-driven unload log NullPointerException; also present in pre-change HUD smoke logs run-smoke-forge-x86io8jw and run-smoke-optifine-157834np. This is not a claim of error-free game logs.",
+    "External multiplayer, real keyboard movement, knockback effectiveness, long-duration play, shaders, custom lightmaps and arbitrary mod combinations not tested.",
+    "No donor repository modified."
+  ]
+}

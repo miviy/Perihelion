@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-03",
+  "donor": "Yuri 1cb86ad94ce1f01aa9b715577163c8ecc47b7def (read-only)",
+  "artifact": "forge/build/verified/scaffold-diagonal-20261103/Perihelion-0.1.0.jar",
+  "sha256": "6f8247f49a4c059e9a9448a896b9c4b9217ff8f7e8c68d8203e495784f144cc3",
+  "unitTests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 447,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "packagedSmoke": "forge/run-smoke-forge-bhyv37yo/result.json",
+  "smokePassed": true,
+  "movementCases": 480,
+  "diagonalCornerCases": 24,
+  "focusedAssertions": 5041,
+  "manualLaunch": "forge/run-manual-scaffold-diagonal-llou8hbg/manual-launch.json",
+  "preEditSource": ".backups/scaffold-diagonal-20261103-213923",
+  "fixes": [
+    "Reset Telly placement latch each landing",
+    "Open normal Telly gate at or after threshold",
+    "Classify diagonal from raw input world heading",
+    "Project Expand offsets using actual block-grid position"
+  ],
+  "preserved": [
+    "Existing settings and defaults",
+    "hypxile Sprint=None",
+    "Native sprint-jump impulse and movement correction"
+  ],
+  "limits": [
+    "Local Forge/Java 8 only",
+    "No authenticated Hypixel/Grim acceptance",
+    "Corner placement fixtures are not sustained public-server bridge tests"
+  ]
+}

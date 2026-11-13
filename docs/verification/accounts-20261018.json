@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-19",
+  "reference": {
+    "url": "https://github.com/sc6the/UniversalAccountManager",
+    "path": "../alt mannges/UniversalAccountManager",
+    "revision": "9e9b2479af877d90a4618bb4bb685009e19d789a",
+    "clean": true,
+    "donorCodeExecuted": false
+  },
+  "artifact": "forge/build/libs/Perihelion-0.1.0.jar",
+  "artifactBytes": 2379737,
+  "artifactSha256": "e0173f1c730ceb2e14b0c49f97a630bdd3e3cbb235ef8fac7bec6b98f0761005",
+  "verifiedCopy": "forge/build/verified/accounts-20261019/Perihelion-0.1.0.jar",
+  "sourceHashes": "forge/build/verified/accounts-20261019/source-sha256.json",
+  "build": {
+    "passed": true,
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon -I .backups/yuri131-pinned-mixin.init.gradle check assemble --offline",
+    "runtimeNote": "Existing pinned Mixin workaround retained runtime checksum/distribution checks. Java 8 font tests and native game used macOS desktop access."
+  },
+  "tests": {
+    "core": {
+      "tests": 161,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 296,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "accountTests": 33
+  },
+  "smokeRuns": [
+    {
+      "run": "forge/run-smoke-forge-tn7cqew2",
+      "passed": true,
+      "artifactSha256": "e0173f1c730ceb2e14b0c49f97a630bdd3e3cbb235ef8fac7bec6b98f0761005",
+      "accountUiChecks": 224,
+      "accountWorldChecks": 4,
+      "markers": [
+        "[00:35:21] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[00:35:21] [Client thread/INFO] [STDOUT]: [perihelion.smoke.AccountHookProbe:title:232]: PERIHELION_SMOKE ACCOUNTS PASS checks=224",
+        "[00:35:30] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:451]: [PERIHELION_SMOKE] GUI PASS checks=343 panels=7 fonts=4",
+        "[00:35:30] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[00:35:34] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:259]: PERIHELION_SMOKE UI_THEME checks=254 fonts=3 scales=1,1.05 PASS",
+        "[00:35:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiRegressionProbe:run:174]: [PERIHELION_SMOKE] GUI_REGRESSIONS PASS checks=88",
+        "[00:35:35] [Client thread/INFO] [STDOUT]: [perihelion.smoke.AccountHookProbe:world:268]: PERIHELION_SMOKE ACCOUNT_WORLD PASS checks=4",
+        "[00:35:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:605]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=144 worldEvents=6",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "shutdownStdoutError": false,
+      "result": "forge/run-smoke-forge-tn7cqew2/result.json",
+      "shutdownReport": "forge/run-smoke-forge-tn7cqew2/shutdown-report.txt"
+    },
+    {
+      "run": "forge/run-smoke-optifine-6oyyng3k",
+      "passed": true,
+      "artifactSha256": "e0173f1c730ceb2e14b0c49f97a630bdd3e3cbb235ef8fac7bec6b98f0761005",
+      "accountUiChecks": 224,
+      "accountWorldChecks": 4,
+      "markers": [
+        "[00:36:25] [Client thread/INFO] [STDOUT]: [perihelion.smoke.RenderHookProbe:run:104]: [PERIHELION_SMOKE] RENDER PASS checks=61 state=restored fonts=native",
+        "[00:36:25] [Client thread/INFO] [STDOUT]: [perihelion.smoke.AccountHookProbe:title:232]: PERIHELION_SMOKE ACCOUNTS PASS checks=224",
+        "[00:36:31] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiHookProbe:run:451]: [PERIHELION_SMOKE] GUI PASS checks=343 panels=7 fonts=4",
+        "[00:36:32] [Client thread/INFO] [STDOUT]: [perihelion.smoke.TabGuiProbe:run:153]: [PERIHELION_SMOKE] TAB_GUI PASS checks=91",
+        "[00:36:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.UiThemeProbe:run:259]: PERIHELION_SMOKE UI_THEME checks=254 fonts=3 scales=1,1.05 PASS",
+        "[00:36:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.GuiRegressionProbe:run:174]: [PERIHELION_SMOKE] GUI_REGRESSIONS PASS checks=88",
+        "[00:36:36] [Client thread/INFO] [STDOUT]: [perihelion.smoke.AccountHookProbe:world:268]: PERIHELION_SMOKE ACCOUNT_WORLD PASS checks=4",
+        "[00:36:37] [Client thread/INFO] [STDOUT]: [perihelion.smoke.ProductionHudProbe:run:605]: [PERIHELION_SMOKE] PRODUCTION_HUD PASS checks=93",
+        "[PERIHELION_SMOKE] PASS scenario=ui ticks=134 worldEvents=6",
+        "[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "shutdownStdoutError": false,
+      "result": "forge/run-smoke-optifine-6oyyng3k/result.json",
+      "shutdownReport": "forge/run-smoke-optifine-6oyyng3k/shutdown-report.txt"
+    }
+  ],
+  "backup": {
+    "path": ".backups/before-accounts-20261018-195538/source.tar.gz",
+    "files": 691,
+    "sha256": "73f7d07842c48d2ac72b73190ddc8e29137b52275f8fed9ece3e37c813fa43bb",
+    "extractedFilesHashVerified": true
+  },
+  "limits": [
+    "No real credentials, launcher account files, provider login or authenticated server connections were used in verification.",
+    "Device/browser sign-in, real cookies, store purchases/refunds, remote profile changes and live Hypixel behavior remain unverified.",
+    "The skin preview is a compact head; public name history uses Ashcon; cookie login uses current code/implicit grant paths, without the old donor SISU fallback.",
+    "This is source-behavior inspection and synthetic protocol/UI testing, not AV clearance or a controlled performance benchmark."
+  ],
+  "priorVerificationNotes": [
+    {
+      "run": "forge/run-smoke-forge-mdhm1jmf",
+      "note": "Initial world fixture attempted duplicate command registration; corrected to an isolated runtime."
+    },
+    {
+      "run": "forge/run-smoke-optifine-rhzsqq6j",
+      "note": "Earlier UI run passed with independent shutdown stdoutError=true. Both final same-artifact runs report false."
+    }
+  ]
+}

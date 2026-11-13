@@ -1,0 +1,182 @@
+{
+  "date": "2026-10-13",
+  "scope": "Breaker home-bed whitelist follow-up; pinned read-only donor comparison and native runtime ownership.",
+  "donor": {
+    "revision": "6f5603e0c0eed253741bacdcd4135830c916602e",
+    "clean": true,
+    "references": [
+      "src/main/java/ddlc/yuri/managers/impl/BreakerWhitelistManager.java",
+      "src/main/java/ddlc/yuri/modules/impl/player/BreakerModule.java",
+      "src/main/java/net/minecraft/network/play/server/S02PacketChat.java",
+      "src/main/java/net/minecraft/block/BlockBed.java"
+    ]
+  },
+  "behavior": {
+    "capture_while_disabled": true,
+    "persistent_across_module_toggles": true,
+    "fixed_spawn_search_anchor": true,
+    "scan_radius": 16,
+    "candidate_budget_per_input": 4096,
+    "retry_cooldown_input_passes": 20,
+    "coherent_loaded_halves_required": true,
+    "unknown_home_blocks_whitelisted_digging": true,
+    "match_reset_packet_type": 1,
+    "match_reset_phrase": "protect your bed",
+    "duplicate_window_input_passes": 20,
+    "world_loss_discards_references": true,
+    "runtime_owned_client_subscriptions": 3
+  },
+  "build": {
+    "command": "JAVA_HOME=\"$PWD/.tools/java17/Contents/Home\" GRADLE_USER_HOME=\"$PWD/.gradle-home\" ./gradlew --no-daemon check assemble --offline",
+    "passed": true,
+    "log": ".backups/before-breaker-whitelist-20261013-113307/build-final.log"
+  },
+  "unit_tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 131,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "new_unit_tests": 6,
+  "native_home_bed_assertions": 26,
+  "final_artifact": {
+    "path": "forge/build/libs/Perihelion-0.1.0.jar",
+    "sha256": "e35956e712403968fe658b419449aec34954fd631e6370b059a9013ea7cb0165",
+    "bytes": 1909960
+  },
+  "production_source_sha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/BuildingModules.java": "4bfb6505a3015a4a48b2a3eae5855c1d768ad825a2c1ed70c87090a38e19b198",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/GameplayModules.java": "849b8bbe4f4a8bbe25abe2514622a93e93749b68986de5a025246f49071fbe0a",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HomeBedState.java": "3037dc4d3caa359e5a9f5a3d1c40f632418cea44caca816f2cbca3e7182f1c10",
+    "forge/src/main/java/perihelion/integration/minecraft189/module/gameplay/HomeBedTracker.java": "64404a806ccad8889d704887b8623e1479be5cd1de52ec49e32ca37259711f15"
+  },
+  "fixture_source_sha256": {
+    "scripts/smoke/SmokeProbe.java": "bf32e5182a635f35b3c7b7cbfabed767654b2dd0a108e4100d0737c262f8b50b",
+    "forge/src/smoke/java/perihelion/smoke/AuraPreProbe.java": "4638092cdbd530d22e44add35349aaf77d2fb4af73556971f986b702f08c9972",
+    "forge/src/smoke/java/perihelion/smoke/CombatFlowProbe.java": "d1328994a1cf83ccd7c66f278526d1e910970aa6cea259707cbfb47a89cf8009",
+    "forge/src/smoke/java/perihelion/smoke/CompatibilityQolProbe.java": "a806c0d5b83fb75e6b3fe49cdd80536aa8ad25eb2232925b55632ff9cfa3c4db",
+    "forge/src/smoke/java/perihelion/smoke/ControlHookProbe.java": "285b0ec9ecf11af72176f340b9de9998ef199671512e0af1f46a5175ebf2725b",
+    "forge/src/smoke/java/perihelion/smoke/DeepGameplayProbe.java": "e6983ea06f6a9b5378c95683b6b2bbd321f9496aa43fc69fc8d390dabe4fda38",
+    "forge/src/smoke/java/perihelion/smoke/GameplayHookProbe.java": "eda5bc91bd7d0f0b1f0f15bc2bd25ebd66d876715d01b3fcc5298760c9351c48",
+    "forge/src/smoke/java/perihelion/smoke/GameplayLoopback.java": "11252fc9bd493016963088435fcae73325495b33f4981560e8f2cc5fe15bd3a8",
+    "forge/src/smoke/java/perihelion/smoke/GuiHookProbe.java": "68fcecfd263d9d6a7fbcb71ab28fda71d522f2de5961508bcb9ad29b905601cd",
+    "forge/src/smoke/java/perihelion/smoke/HomeBedProbe.java": "0dd8805cb1f7415b3ca830079f8d22b8521fedb6c1cf2ec2eea5639e49a1cfb5",
+    "forge/src/smoke/java/perihelion/smoke/HudChatProbe.java": "28bcb19d4d1870ca55fa868366c3c0dc012c18585af57e6225d6351678a11c6f",
+    "forge/src/smoke/java/perihelion/smoke/HudHookProbe.java": "725f26b8243f066e65c18cd1daf24cd0e6d9bbb18faa7ad3f6362e89e6560766",
+    "forge/src/smoke/java/perihelion/smoke/LiveGameplayProfile.java": "4831689fe4dcc969012f1bb2317f310e0156fe924a790b3dec72bfad1abb8f66",
+    "forge/src/smoke/java/perihelion/smoke/ModuleActionProbe.java": "928328477473f431a3230aaed6c60959bde0af506da4e4c21a1da3b0fe2dd3ec",
+    "forge/src/smoke/java/perihelion/smoke/ModuleHookProbe.java": "1f966e9842d6e2e7b7893d4ddd8c427efa3d102893349c423c08834dea3f80cf",
+    "forge/src/smoke/java/perihelion/smoke/NetworkHookProbe.java": "98d2e9a8d1d1a0f0a5231f151103ba928c31097c3f3b392ddcbb111a7db3a3a4",
+    "forge/src/smoke/java/perihelion/smoke/ProductionHudProbe.java": "fd04a12f34998d9c9544fde693757f5289466933c59b3eda4ee8820e08a65b8f",
+    "forge/src/smoke/java/perihelion/smoke/QualityGameplayProbe.java": "3a42ec640acbfb37aad519f6e67b728493d693d8cf6b4f0afa36d53cc4fb6e87",
+    "forge/src/smoke/java/perihelion/smoke/RenderHookProbe.java": "e0c6f89ef1cd1721ea6434293ebc71d957497a674e4bba843df8aec0990ed7be",
+    "forge/src/smoke/java/perihelion/smoke/RotationPipelineProbe.java": "780249ee2dfc0341d0b47e0ab2dba877f04d969fdc4af01024e876684a777c70",
+    "forge/src/smoke/java/perihelion/smoke/ScaffoldTerrainProbe.java": "8daa10ab668a017ccc78d151cb316f1d7263d4f7e38add294e598728dce6a087",
+    "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "a5765f86856cb7cae7d4fd4f03fa858fe14e4dfa3c933df415e469f15bc0a60b",
+    "forge/src/smoke/java/perihelion/smoke/Yuri13Probe.java": "6835c7d25f2251a7036fb9f4772e3bf447c6b3a150dcf66a705014ca3f8165ef",
+    "forge/src/smoke/java/perihelion/smoke/YuriLatestProbe.java": "3651e8c57ccb898996987e04697a9b59fae3cee7063f83e67f06876d3e8a4d1c"
+  },
+  "final_runs": [
+    {
+      "run_directory": "forge/run-smoke-forge-slrd6ill",
+      "result_file": "forge/run-smoke-forge-slrd6ill/result.json",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "e35956e712403968fe658b419449aec34954fd631e6370b059a9013ea7cb0165",
+      "assertion_markers": [
+        "HOME_BED checks=26 disabledCapture=true lateEnable=true delayedBed=true matchReset=true PASS",
+        "MODULE_ACTIONS checks=106 cases=12 postWindow=empty PASS",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=306 PASS",
+        "COMBAT_FLOW checks=49 PASS",
+        "PASS scenario=full ticks=259 worldEvents=20",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "shutdown": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "legacy_runtime_warnings": [
+        "[11:48:45] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing",
+        "[11:48:50] [Client thread/ERROR]: Couldn't initialize twitch stream",
+        "[11:48:51] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[ALSOFT] (WW) 6 Buffers not deleted",
+        "[11:49:22] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "unexpected_fatal_signatures": []
+    },
+    {
+      "run_directory": "forge/run-smoke-optifine-mtaf_6l7",
+      "result_file": "forge/run-smoke-optifine-mtaf_6l7/result.json",
+      "passed": true,
+      "exit_code": 0,
+      "artifact_sha256": "e35956e712403968fe658b419449aec34954fd631e6370b059a9013ea7cb0165",
+      "assertion_markers": [
+        "HOME_BED checks=26 disabledCapture=true lateEnable=true delayedBed=true matchReset=true PASS",
+        "MODULE_ACTIONS checks=106 cases=12 postWindow=empty PASS",
+        "SCAFFOLD_TERRAIN checks=263 cases=72 referenceMatches=66 PASS",
+        "COMPATIBILITY_QOL checks=78 rawEvents=41 unbufferedEvents=38 PASS",
+        "ROTATIONS checks=306 PASS",
+        "COMBAT_FLOW checks=49 PASS",
+        "PASS scenario=full ticks=261 worldEvents=20",
+        "STOPPED subscriptions=0 queued=0 config=present"
+      ],
+      "shutdown": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "legacy_runtime_warnings": [
+        "[11:50:28] [main/ERROR] [FML]: FML appears to be missing any signature data. This is not a good thing",
+        "[11:50:34] [Client thread/ERROR]: Couldn't initialize twitch stream",
+        "[11:50:36] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com",
+        "[ALSOFT] (WW) 6 Buffers not deleted",
+        "[11:51:10] [Client thread/WARN]: Author: Paul Lamb, www.paulscode.com"
+      ],
+      "unexpected_fatal_signatures": []
+    }
+  ],
+  "failed_attempts": [
+    {
+      "run_directory": "forge/run-smoke-forge-q8xk_h_c",
+      "reason": "Fixture compilation referenced named Minecraft Packet directly against obfuscated package; corrected to reflection.",
+      "stage": "setup"
+    },
+    {
+      "run_directory": "forge/run-smoke-forge-qmcki6_p",
+      "reason": "Default-disabled listener baseline omitted three runtime-owned tracker observers. Corrected exact expected count.",
+      "stage": "assertion"
+    },
+    {
+      "run_directory": "forge/run-smoke-forge-oll3jrko",
+      "reason": "Test bed foot default direction mismatched head metadata; fixture corrected to explicit coherent metadata.",
+      "stage": "assertion"
+    },
+    {
+      "run_directory": "forge/run-smoke-forge-c52nanj9",
+      "reason": "All 26 home-bed assertions passed, then existing delayed FIFO assertion failed. Diagnostic output improved; no FIFO production change. Final same assertion passed in Forge and OptiFine. Initial root cause unresolved.",
+      "stage": "assertion",
+      "root_cause_resolved": false,
+      "shutdown_stdout_error": true
+    }
+  ],
+  "backup": {
+    "directory": ".backups/before-breaker-whitelist-20261013-113307",
+    "baseline_files_verified": 9,
+    "archives": {
+      "source.tar.gz": "0c03de7dddb9ab7440d3a056302854e325c44b773cdccb16df5ae40cddbd440b",
+      "extra-source.tar.gz": "c75bc9aeea5b0a9ea21b4816e5aa622d04350eb334759429b6d68ccfff727a63",
+      "diagnostic-source.tar.gz": "87ab109d9141ba7d1f8a19f3fd1c45f5f9cde8b3bec53ff5e9852417ffa65ea8"
+    },
+    "previous_jar_sha256": "f1a20ef91d18322f14cf8295c5a862d36127be1d535c2365993ca5e7777bed5d",
+    "changes_manifest": "changes.json"
+  },
+  "limits": [
+    "Spawn proximity is a heuristic, not an authoritative team identifier.",
+    "System English match phrase or world change must identify a new match.",
+    "No authenticated multiplayer or localized BedWars server test.",
+    "Earlier intermittent FIFO fixture failure remains recorded and unexplained."
+  ]
+}

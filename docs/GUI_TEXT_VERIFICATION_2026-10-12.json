@@ -1,0 +1,106 @@
+{
+  "build": "check assemble --offline",
+  "tests": {
+    "core": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 117,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "artifactSha256": "9a7bd533f671ad641ebb76b08542f7d132f2eb1d9f2983cc51fb0f75e8700c2e",
+  "date": "2026-10-12",
+  "scope": "GUI text role colors, selection backgrounds/alpha, true bold faces, independent bold sections and measured utility widths",
+  "nativeRuns": [
+    {
+      "variant": "forge",
+      "directory": "forge/run-smoke-forge-j2ds_ves",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "9a7bd533f671ad641ebb76b08542f7d132f2eb1d9f2983cc51fb0f75e8700c2e",
+      "uiThemeChecks": 245,
+      "guiChecks": 120,
+      "chatHudChecks": 88,
+      "productionHudChecks": 62,
+      "captures": [
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-bold-sans.png",
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-sections-sans.png",
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-bold-minecraft.png",
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-sections-minecraft.png",
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-bold-mono.png",
+        "docs/verification/gui-text-20261012/forge-ui-custom-text-sections-mono.png"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "IllegalStateException": 0,
+        "[PERIHELION_SMOKE] FAIL": 0
+      },
+      "expectedFixtureFailureCount": 1,
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=false\n",
+      "runtimeNote": "Shutdown checks passed."
+    },
+    {
+      "variant": "optifine",
+      "directory": "forge/run-smoke-optifine-q4gmf437",
+      "scenario": "ui",
+      "passed": true,
+      "exitCode": 0,
+      "artifactSha256": "9a7bd533f671ad641ebb76b08542f7d132f2eb1d9f2983cc51fb0f75e8700c2e",
+      "uiThemeChecks": 245,
+      "guiChecks": 120,
+      "chatHudChecks": 88,
+      "productionHudChecks": 62,
+      "captures": [
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-bold-sans.png",
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-sections-sans.png",
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-bold-minecraft.png",
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-sections-minecraft.png",
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-bold-mono.png",
+        "docs/verification/gui-text-20261012/optifine-ui-custom-text-sections-mono.png"
+      ],
+      "unexpectedErrorSignatures": {
+        "NullPointerException": 0,
+        "NoSuchMethodError": 0,
+        "IllegalStateException": 0,
+        "[PERIHELION_SMOKE] FAIL": 0
+      },
+      "expectedFixtureFailureCount": 1,
+      "shutdownReport": "[PERIHELION_SMOKE] REFERENCES phase=shutdown world=cleared player=cleared manager=cleared\n[PERIHELION_SMOKE] HOOK target=cleared\n[PERIHELION_SMOKE] STOPPED subscriptions=0 queued=0 config=present\n[PERIHELION_SMOKE] SHUTDOWN stdoutError=true\n",
+      "runtimeNote": "OptiFine recorded the existing shutdown stdout race; the independent report confirms cleared hooks and zero listeners/queued tasks."
+    }
+  ],
+  "sourceSha256": {
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/ClickGuiModule.java": "0d5631f69f2bf5efb7578458c83cdbcd32e5711eaf7205da1bc9a6131c201fde",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/GuiTheme.java": "7076d8e588aab130c67fa4aa1fc9c811360cf4acffbed5d2c54d15f134ec646d",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/font/GuiFonts.java": "afe0601471d3188290970adde03ed547a35112ea2738dd3bbf4a688729d8f617",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/UiCanvas.java": "4f99e9bd62ea5750e09498d62656de04ee7eb3aed02c81ab150077ca86e3a1c4",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/InlineTextFieldView.java": "bb3a00357be1ece019436127201207ff7fa1c33ba490d04ee791c5c6a47e0fe1",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/widget/SettingControl.java": "13ba984c971015383ee1f3ed5917aef657c6e3d80f7bb1dc390410fec8c3f309",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/PanelScreen.java": "994b56fe9a8801a6c5d1df31708f156a0aea0af37fcb63375616b5c965ae6719",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/ConfigPanel.java": "20e9d7d71e0365909d92eebc32a0818d2fbfb1fd8cdf4560fc4e682805e90f05",
+    "forge/src/main/java/perihelion/integration/minecraft189/gui/panel/UtilityLayout.java": "c073999b131fac894a9cc4fe3e5f6351f1c28bc958bf9ad31a5b02769f2cbd15",
+    "forge/src/main/java/perihelion/integration/minecraft189/hud/HudEditor.java": "efeeeac40273e81321b6a8e9bb945e945e173d730f66dee642c6e256f783149b",
+    "forge/src/test/java/perihelion/integration/minecraft189/gui/GuiAppearanceTest.java": "bb969c14f5675c7f2c528dfafcd274c4ca5a9800429adb529afd1e61113e1ebb",
+    "forge/src/smoke/java/perihelion/smoke/UiThemeProbe.java": "a1fa5f418e20fc4dcc6d29055001c0d088760353776cc8ca9d1f1b62a6acf4b7",
+    "docs/CLICKGUI.md": "0c386b59bfb4981af707c656ca5a5233e702350144ae3f9e69d66f3a108e1f64"
+  },
+  "backup": {
+    "directory": ".backups/before-gui-text-20261012-183737",
+    "archiveSha256": "8289a3723bf460a42c54e42bc2acf091c952b765172df23f32ffe031e85c1adf",
+    "files": 20,
+    "rollback": "scripts/restore-gui-text.py"
+  },
+  "artifact": {
+    "path": "forge/build/verified/gui-text-20261012/Perihelion-0.1.0.jar",
+    "sha256": "9a7bd533f671ad641ebb76b08542f7d132f2eb1d9f2983cc51fb0f75e8700c2e",
+    "bytes": 1870979
+  }
+}
