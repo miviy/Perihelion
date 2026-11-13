@@ -39,4 +39,5 @@ jobs:
             forge/build/reports/distribution.txt
             core/build/reports/tests/
             forge/build/reports/tests/
+            build/reports/dependency-verification/
           if-no-files-found: warn

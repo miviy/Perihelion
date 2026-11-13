@@ -35,6 +35,11 @@ Two narrowly scoped entries are handled separately:
 
 The wrapper checks the official Gradle 8.4 distribution SHA256. `checkWrapper` separately checks the wrapper JAR against the [official wrapper checksum](https://services.gradle.org/distributions/gradle-8.4-wrapper.jar.sha256), `0336f591bc0ec9aa0c9988929b93ecc916b3c1d52aed202c7381db144aa0ef15`.
 
+The verification metadata also covers Loom's LWJGL `2.9.4-nightly-20150209`
+selection on a clean hosted runner, including Linux, macOS and Windows natives.
+These hashes were checked against `libraries.minecraft.net`; published SHA1s and
+the existing launcher metadata were compared where available.
+
 When deliberately updating a dependency, inspect the version/source first, regenerate checksums with `./gradlew --write-verification-metadata sha256 check`, review the diff, and run normal `check` again without generation. Do not resolve a mismatch by disabling verification globally. Another operating system or an optional development task may require additional platform artifacts to be reviewed and added.
 
 ## Java and native libraries
