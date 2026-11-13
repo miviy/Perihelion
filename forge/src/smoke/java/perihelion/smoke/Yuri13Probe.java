@@ -575,8 +575,11 @@ public final class Yuri13Probe {
     for (int i = 0; i < 7; i++) HookBridge.gameControls().beforeInput();
     check(r.controls().hotbar().get().slot() == 0, "Breaker Auto Tool off keeps current slot");
     set(r, "breaker", "auto-tool", "true");
-    HookBridge.gameControls().beforeInput();
-    check(r.controls().hotbar().get().slot() == 1, "Breaker uses scored shears claim");
+    // Settings recreate the activation; allow its bounded scan interval again.
+    for (int i = 0; i < 7; i++) HookBridge.gameControls().beforeInput();
+    check(
+        r.controls().hotbar().get().slot() == 0,
+        "Breaker keeps the held slot when shears do not improve native bed hardness");
     check(selected.getInt(inv) == 0, "Breaker tool is server-only");
     screen.set(game, Class.forName("net.minecraft.client.gui.GuiChat").newInstance());
     HookBridge.gameControls().beforeInput();
