@@ -41,6 +41,8 @@ final class HudRenderer implements AutoCloseable {
   private static final float LOGO_SCALE = 1.3f;
   private static final int BRAND_HEIGHT = 24;
   private static final int THEME_ELEMENT_RANGE = Math.max(1, Element.values().length - 1);
+  private static final java.time.format.DateTimeFormatter CLOCK =
+      java.time.format.DateTimeFormatter.ofPattern("HH:mm");
   final HudModule hud;
   private final boolean targetOnly;
   final Minecraft mc = Minecraft.getMinecraft();
@@ -166,10 +168,7 @@ final class HudRenderer implements AutoCloseable {
       if (hud.watermarkVersion.get() && !hud.version.isEmpty())
         watermark += "  \u00a77v" + hud.version;
       if (hud.watermarkClock.get())
-        watermark +=
-            "  \u00a77"
-                + java.time.LocalTime.now()
-                    .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+        watermark += "  \u00a77" + java.time.LocalTime.now().format(CLOCK);
       if (hud.watermarkInfo.get())
         watermark +=
             "  \u00a77"
@@ -325,7 +324,7 @@ final class HudRenderer implements AutoCloseable {
         String username = info.getGameProfile().getName();
         if (id == null
             || username == null
-            || !username.matches("[A-Za-z0-9_]{1,16}")
+            || !PlayerReport.validUsername(username)
             || id.version() != 4 && id.version() != 3
             || info.getGameType() == net.minecraft.world.WorldSettings.GameType.SPECTATOR
             || !hud.overlay.includeSelf.get() && id.equals(mc.thePlayer.getUniqueID())) continue;
@@ -644,13 +643,22 @@ final class HudRenderer implements AutoCloseable {
     canvas.pixelScale = pixels;
     canvas.modern = modern;
     if (modern) ModernTheme.palette(canvas, GuiTheme.palette(hud.runtime));
+    // The dedicated Target HUD renderer draws only its card. With no target there is nothing
+    // to capture, blur or draw, so skip the GL state snapshots and the scene copy entirely.
+    if (targetOnly && !preview && !hasTarget) {
+      for (Box box : boxes.values()) box.visible = false;
+      blur.skip();
+      return;
+    }
     boolean needsBlur = false;
     for (Element e : Element.values())
       if (show(e) && hud.styles.get(e).blur.get()) needsBlur = true;
-    try (RenderState capture = state.open()) {
-      if (needsBlur) blur.capture(mc);
-      else blur.skip();
-    }
+    // A state snapshot costs dozens of driver queries; take one only for a real scene copy.
+    if (needsBlur) {
+      try (RenderState capture = state.open()) {
+        blur.capture(mc);
+      }
+    } else blur.skip();
     if (classic) {
       raven.render(width, height, preview, dragging, dragX, dragY);
       return;

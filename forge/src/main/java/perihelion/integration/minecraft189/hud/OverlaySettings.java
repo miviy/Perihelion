@@ -299,7 +299,31 @@ final class OverlaySettings {
     return setting;
   }
 
+  // options() runs every client tick and hidden() for every roster row. Settings hold immutable
+  // values, so the parsed forms stay valid until one of the source values is replaced.
+  private OverlayLookup.Options cachedOptions;
+  private Set<OverlayLookup.Provider> optionProviders;
+  private final Map<OverlayLookup.Provider, String> optionKeys =
+      new EnumMap<>(OverlayLookup.Provider.class);
+  private boolean optionSessions;
+  private String hiddenSource;
+  private Set<String> hiddenNames = Collections.emptySet();
+  private static final java.util.regex.Pattern NAME_SEPARATOR =
+      java.util.regex.Pattern.compile("[,\\s]+");
+
   OverlayLookup.Options options() {
+    Set<OverlayLookup.Provider> selected = providers.get();
+    boolean withSessions = sessions.get();
+    boolean current =
+        cachedOptions != null && selected == optionProviders && withSessions == optionSessions;
+    for (Map.Entry<OverlayLookup.Provider, Setting<String>> key : keys.entrySet()) {
+      String value = key.getValue().get();
+      // Identity is sufficient: an unchanged setting keeps returning the same String instance.
+      if (optionKeys.put(key.getKey(), value) != value) current = false;
+    }
+    if (current) return cachedOptions;
+    optionProviders = selected;
+    optionSessions = withSessions;
     Map<OverlayLookup.Provider, Path> paths = new EnumMap<>(OverlayLookup.Provider.class);
     for (Map.Entry<OverlayLookup.Provider, Setting<String>> key : keys.entrySet()) {
       try {
@@ -312,18 +336,24 @@ final class OverlaySettings {
         /* Transport reports unavailable credentials. */
       }
     }
-    return new OverlayLookup.Options(providers.get(), paths, sessions.get());
+    return cachedOptions = new OverlayLookup.Options(selected, paths, withSessions);
   }
 
   static Set<String> names(String value) {
     Set<String> result = new LinkedHashSet<>();
-    for (String name : value.split("[,\\s]+"))
-      if (name.matches("[A-Za-z0-9_]{1,16}")) result.add(name.toLowerCase(Locale.ROOT));
+    for (String name : NAME_SEPARATOR.split(value))
+      if (PlayerReport.validUsername(name)) result.add(name.toLowerCase(Locale.ROOT));
     return result;
   }
 
   boolean hidden(UUID id, String name) {
-    return removed.contains(id) || names(hidden.get()).contains(name.toLowerCase(Locale.ROOT));
+    if (removed.contains(id)) return true;
+    String source = hidden.get();
+    if (source != hiddenSource) {
+      hiddenNames = names(source);
+      hiddenSource = source;
+    }
+    return !hiddenNames.isEmpty() && hiddenNames.contains(name.toLowerCase(Locale.ROOT));
   }
 
   void hide(HudModule hud, String name) {
@@ -371,10 +401,12 @@ final class OverlaySettings {
     if (!bedwarsOnly.get()) return true;
     net.minecraft.scoreboard.ScoreObjective objective =
         mc.theWorld.getScoreboard().getObjectiveInDisplaySlot(1);
-    return objective != null
-        && OverlayProfile.clean(objective.getDisplayName())
+    if (objective == null
+        || !OverlayProfile.clean(objective.getDisplayName())
             .toUpperCase(Locale.ROOT)
-            .startsWith("BED WARS")
-        && (OverlayTracker.pregame(sidebar()) || OverlayTracker.game(sidebar()));
+            .startsWith("BED WARS")) return false;
+    // Building the sidebar sorts and formats every score line; do it once per check.
+    List<String> lines = sidebar();
+    return OverlayTracker.pregame(lines) || OverlayTracker.game(lines);
   }
 }
