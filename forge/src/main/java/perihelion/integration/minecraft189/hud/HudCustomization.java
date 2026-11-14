@@ -36,7 +36,6 @@ final class HudCustomization implements SettingControl.Actions {
   HudCustomization(HudModule hud, HudModule.Element element, UiCanvas canvas) {
     this.hud = hud;
     this.element = element;
-    hud.customizing = element;
     this.canvas = canvas;
     for (Setting<?> setting : hud.options(element))
       controls.add(SettingControl.create(hud.runtime.modules(), "hud", setting, this));
@@ -173,8 +172,7 @@ final class HudCustomization implements SettingControl.Actions {
     }
     if (hasAdvanced) {
       float fy = y + h - footer + 2;
-      float primaryWidth =
-          advanced[section] ? (w - INSET * 2 - 4) / 2 : w - INSET * 2;
+      float primaryWidth = advanced[section] ? (w - INSET * 2 - 4) / 2 : w - INSET * 2;
       GuiTheme.button(
           canvas,
           advanced[section] ? "Less options" : "Advanced",
@@ -212,8 +210,7 @@ final class HudCustomization implements SettingControl.Actions {
   void click(int mx, int my, int button) {
     tooltip.clear();
     float fy = y + h - footer + 2;
-    float primaryWidth =
-        advanced[section] ? (w - INSET * 2 - 4) / 2 : w - INSET * 2;
+    float primaryWidth = advanced[section] ? (w - INSET * 2 - 4) / 2 : w - INSET * 2;
     boolean primary = UiCanvas.inside(mx, my, x + INSET, fy, primaryWidth, 15);
     boolean reset =
         advanced[section]
@@ -358,7 +355,6 @@ final class HudCustomization implements SettingControl.Actions {
 
   void close() {
     tooltip.clear();
-    if (hud.customizing == element) hud.customizing = null;
     release();
     cancelEdit();
   }

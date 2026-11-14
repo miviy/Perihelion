@@ -33,9 +33,20 @@ public final class HudChatProbe {
     Object oldColumns = value(r, "player-columns"),
         oldPlayers = value(r, "players"),
         oldHide = value(r, "hide-screens"),
+        oldMoving = value(r, "allow-moving-in-chat"),
         oldLimit = value(r, "player-limit");
     try {
       set(r, "hud", "hide-screens", true);
+      check(
+          Boolean.TRUE.equals(
+              r.modules()
+                  .require("hud")
+                  .module()
+                  .settings()
+                  .get("allow-moving-in-chat")
+                  .defaultValue()),
+          "Moving HUD pieces in chat defaults to on");
+      set(r, "hud", "allow-moving-in-chat", true);
       set(r, "hud", "players", true);
       r.modules().setEnabled("hud", true);
       Object gui = chatType.newInstance();
@@ -70,6 +81,16 @@ public final class HudChatProbe {
       int x = field(watermark.getClass(), "x").getInt(watermark) + 3,
           y = field(watermark.getClass(), "y").getInt(watermark) + 3;
       double oldY = ((Number) value(r, "watermark-y")).doubleValue();
+      set(r, "hud", "allow-moving-in-chat", false);
+      check(!mouse(r, gui, x, y, 0, true, 0), "Disabled chat movement leaves clicks to chat");
+      draw(game, gui, x + 35, y + 50);
+      check(
+          !mouse(r, gui, x + 35, y + 50, 0, false, 0),
+          "Disabled chat movement does not capture release");
+      check(
+          ((Number) value(r, "watermark-y")).doubleValue() == oldY,
+          "Disabled chat movement cannot change the saved position");
+      set(r, "hud", "allow-moving-in-chat", true);
       check(mouse(r, gui, x, y, 0, true, 0), "HUD drag press consumes only its own pointer event");
       draw(game, gui, x + 35, y + 50);
       check(
@@ -80,6 +101,22 @@ public final class HudChatProbe {
           ((Number) value(r, "watermark-y")).doubleValue() != oldY,
           "chat release saves normalized HUD position");
       double moved = ((Number) value(r, "watermark-y")).doubleValue();
+      draw(game, gui, 0, 0);
+      int liveX = field(watermark.getClass(), "x").getInt(watermark) + 3,
+          liveY = field(watermark.getClass(), "y").getInt(watermark) + 3;
+      check(mouse(r, gui, liveX, liveY, 0, true, 0), "Enabled chat movement can start a new drag");
+      draw(game, gui, liveX + 10, liveY + 15);
+      set(r, "hud", "allow-moving-in-chat", false);
+      Object activeDrag = field(interaction.getClass(), "drag").get(interaction);
+      check(
+          field(activeDrag.getClass(), "element").get(activeDrag) == null,
+          "Turning chat movement off immediately cancels the current drag");
+      check(
+          !mouse(r, gui, liveX + 10, liveY + 15, 0, false, 0),
+          "Release cannot commit a cancelled chat drag");
+      check(
+          ((Number) value(r, "watermark-y")).doubleValue() == moved,
+          "Cancelled chat movement preserves the last saved position");
       check(
           !mouse(r, gui, x + 35, y + 50, 0, false, 0),
           "repeated release cannot reuse a finished drag");
@@ -112,6 +149,10 @@ public final class HudChatProbe {
           "columns use the GUI's typed HUD setting");
       draw(game, gui, 0, 0);
       check(mouse(r, gui, bx + 15, by + 25, 1, true, 0), "right-click second player opens actions");
+      check(
+          Boolean.FALSE.equals(value(r, "allow-moving-in-chat")),
+          "Player actions stay available while chat movement is disabled");
+      set(r, "hud", "allow-moving-in-chat", true);
       Object selected = field(interaction.getClass(), "selected").get(interaction);
       UUID selectedId = (UUID) field(selected.getClass(), "id").get(selected);
       List<?> rows = (List<?>) method(interaction.getClass(), "menuRows").invoke(interaction);
@@ -443,6 +484,7 @@ public final class HudChatProbe {
       set(r, "hud", "player-columns", oldColumns);
       set(r, "hud", "players", oldPlayers);
       set(r, "hud", "hide-screens", oldHide);
+      set(r, "hud", "allow-moving-in-chat", oldMoving);
       set(r, "hud", "player-limit", oldLimit);
       r.modules().setEnabled("hud", enabled);
       display.invoke(game, parent);

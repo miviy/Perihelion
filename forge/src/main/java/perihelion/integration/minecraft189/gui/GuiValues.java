@@ -74,6 +74,22 @@ public final class GuiValues {
     return result.toString();
   }
 
+  public static String moduleLabel(String raw) {
+    String value = readable(raw);
+    StringBuilder out = new StringBuilder(value.length());
+    boolean start = true;
+    for (int i = 0; i < value.length(); i++) {
+      char c = value.charAt(i);
+      out.append(start ? Character.toUpperCase(c) : c);
+      start = c == ' ';
+    }
+    return out.toString()
+        .replaceAll("\\bEsp\\b", "ESP")
+        .replaceAll("\\bHud\\b", "HUD")
+        .replaceAll("\\bFov\\b", "FOV")
+        .replaceAll("\\bGui\\b", "GUI");
+  }
+
   public static String searchable(ModuleEntry entry) {
     StringBuilder text =
         new StringBuilder(entry.info().id())

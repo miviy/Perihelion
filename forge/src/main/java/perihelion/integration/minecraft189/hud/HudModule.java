@@ -81,13 +81,13 @@ public final class HudModule extends ClientModule {
     WATERMARK("Logo", 0, 0, true),
     TAB_GUI("Tab GUI", 0, 0, true),
     MODULES("Array list", 1, 0, true),
-    INFO("Coordinates and speed", 0, 1, true),
+    INFO("Coordinates", 0, 1, true),
     TARGET("Target card", .5, .60, true),
     ARMOR("Armor", .5, .90, true),
     EFFECTS("Potion effects", 0, .22, true),
-    KEYS("Keystrokes and CPS", 0, .7, false),
+    KEYS("Keystrokes", 0, .7, false),
     PLAYERS("Nearby players", 0, 0, false),
-    NOTIFICATIONS("Toggle notifications", 1, .82, false);
+    NOTIFICATIONS("Notifications", 1, .82, false);
 
     final String label;
     final double x, y;
@@ -110,7 +110,6 @@ public final class HudModule extends ClientModule {
   final EnumMap<Element, Setting<Boolean>> shown = new EnumMap<>(Element.class);
   final EnumMap<Element, Setting<Double>> xs = new EnumMap<>(Element.class),
       ys = new EnumMap<>(Element.class);
-  Element customizing;
   final EnumMap<Element, HudElementStyle> styles = new EnumMap<>(Element.class);
   final Setting<HudAppearance.Border> moduleBorder;
   final Setting<HudAppearance.Suffix> moduleSuffix;
@@ -125,6 +124,7 @@ public final class HudModule extends ClientModule {
   final Setting<ColorValue> accent, secondary;
   final Setting<Double> opacity;
   final Setting<Boolean> shadow, hideDebug, hideScreens, suffixes, hideVisuals, watermarkInfo;
+  final Setting<Boolean> allowChatMove;
   final Setting<Integer> playerLimit, playerRange;
   final Setting<Set<PlayerColumn>> playerColumns;
   final Setting<String> hypixelKeyFile;
@@ -143,7 +143,7 @@ public final class HudModule extends ClientModule {
         new ModuleInfo(
             "hud",
             "HUD",
-            "Compact movable overlays. Use the HUD menu or .hud edit to arrange them.",
+            "Expand each HUD element to enable it and edit its content, appearance and position.",
             ModuleCategory.RENDER,
             true));
     this.runtime = runtime;
@@ -163,26 +163,24 @@ public final class HudModule extends ClientModule {
           element,
           setting(
               Setting.decimal(
-                      element.id() + "-x",
-                      element.label + " X",
-                      "Saved by the HUD editor.",
-                      element.x,
-                      0,
-                      1,
-                      guard)
-                  .visibleWhen(() -> false)));
+                  element.id() + "-x",
+                  "Horizontal",
+                  "Screen position: 0 is left, 1 is right. Includes this element's width.",
+                  element.x,
+                  0,
+                  1,
+                  guard)));
       ys.put(
           element,
           setting(
               Setting.decimal(
-                      element.id() + "-y",
-                      element.label + " Y",
-                      "Saved by the HUD editor.",
-                      element.y,
-                      0,
-                      1,
-                      guard)
-                  .visibleWhen(() -> false)));
+                  element.id() + "-y",
+                  "Vertical",
+                  "Screen position: 0 is top, 1 is bottom. Includes this element's height.",
+                  element.y,
+                  0,
+                  1,
+                  guard)));
     }
     moduleAlignment =
         setting(
@@ -252,7 +250,7 @@ public final class HudModule extends ClientModule {
         setting(
             Setting.bool(
                     "watermark-info",
-                    "Watermark details",
+                    "FPS and ping",
                     "Show FPS and ping with the client name.",
                     false,
                     guard)
@@ -274,14 +272,19 @@ public final class HudModule extends ClientModule {
                 "Hide in other game menus. Chat keeps the HUD visible and interactive.",
                 true,
                 guard));
+    allowChatMove =
+        setting(
+            Setting.bool(
+                "allow-moving-in-chat",
+                "Allow moving in chat",
+                "Drag HUD elements while chat is open. Player actions and chat input stay"
+                    + " available.",
+                true,
+                guard));
     suffixes =
         setting(
             Setting.bool(
-                "suffixes",
-                "Module modes",
-                "Show the module's primary mode in gray.",
-                true,
-                guard));
+                "suffixes", "Show modes", "Show the module's primary mode in gray.", true, guard));
     hideVisuals =
         setting(
             Setting.bool(
@@ -292,60 +295,56 @@ public final class HudModule extends ClientModule {
                 guard));
     playerLimit =
         setting(
-            Setting.integer("player-limit", "Player rows", "Maximum player rows.", 8, 1, 32, guard)
-                .visibleWhen(() -> shown.get(Element.PLAYERS).get()));
+            Setting.integer(
+                "player-limit", "Visible rows", "Maximum player rows.", 8, 1, 32, guard));
     playerRange =
         setting(
             Setting.integer(
-                    "player-range",
-                    "Player range",
-                    "Loaded players only, measured in blocks.",
-                    64,
-                    8,
-                    128,
-                    guard)
-                .visibleWhen(() -> shown.get(Element.PLAYERS).get()));
+                "player-range",
+                "Range (blocks)",
+                "Loaded players only, measured in blocks.",
+                64,
+                8,
+                128,
+                guard));
     playerColumns =
         setting(
-                Setting.multiSelect(
-                    "player-columns",
-                    "Player columns",
-                    "Choose the board columns here. Right-click a player in chat for actions;"
-                        + " scroll the table header for columns and rows for players.",
-                    EnumSet.of(
-                        PlayerColumn.DISTANCE,
-                        PlayerColumn.HEALTH,
-                        PlayerColumn.TEAM,
-                        PlayerColumn.KD,
-                        PlayerColumn.WS,
-                        PlayerColumn.FKD,
-                        PlayerColumn.WL,
-                        PlayerColumn.OBSERVED,
-                        PlayerColumn.SEEN),
-                    PlayerColumn.class,
-                    guard))
-            .visibleWhen(() -> shown.get(Element.PLAYERS).get());
+            Setting.multiSelect(
+                "player-columns",
+                "Columns",
+                "Choose the board columns here. Right-click a player in chat for actions;"
+                    + " scroll the table header for columns and rows for players.",
+                EnumSet.of(
+                    PlayerColumn.DISTANCE,
+                    PlayerColumn.HEALTH,
+                    PlayerColumn.TEAM,
+                    PlayerColumn.KD,
+                    PlayerColumn.WS,
+                    PlayerColumn.FKD,
+                    PlayerColumn.WL,
+                    PlayerColumn.OBSERVED,
+                    PlayerColumn.SEEN),
+                PlayerColumn.class,
+                guard));
     hypixelKeyFile =
         setting(
-                Setting.string(
-                    "hypixel-key-file",
-                    "Hypixel key file",
-                    "Path to a text file containing your API key, relative to the Minecraft folder."
-                        + " The key itself is never saved in presets.",
-                    "config/perihelion/hypixel-api-key.txt",
-                    1024,
-                    guard))
-            .visibleWhen(() -> shown.get(Element.PLAYERS).get());
+            Setting.string(
+                "hypixel-key-file",
+                "Hypixel key file",
+                "Path to a text file containing your API key, relative to the Minecraft folder."
+                    + " The key itself is never saved in presets.",
+                "config/perihelion/hypixel-api-key.txt",
+                1024,
+                guard));
     hypixelGame =
         setting(
-                Setting.enumeration(
-                    "hypixel-game",
-                    "Hypixel stats game",
-                    "Game used for cached K/D, FK/D, W/L and streak columns.",
-                    HypixelStats.Game.BEDWARS,
-                    HypixelStats.Game.class,
-                    guard))
-            .visibleWhen(() -> shown.get(Element.PLAYERS).get());
+            Setting.enumeration(
+                "hypixel-game",
+                "Stats game",
+                "Game used for cached K/D, FK/D, W/L and streak columns.",
+                HypixelStats.Game.BEDWARS,
+                HypixelStats.Game.class,
+                guard));
     for (Element element : Element.values())
       styles.put(element, new HudElementStyle(this, element, value -> setting(value)));
     moduleBorder =
@@ -387,7 +386,7 @@ public final class HudModule extends ClientModule {
         setting(
             Setting.integer(
                 "module-padding",
-                "Padding",
+                "Row padding",
                 "Space on each side of an Array list row.",
                 2,
                 1,
@@ -408,6 +407,7 @@ public final class HudModule extends ClientModule {
                     "watermark-clock", "Clock", "Append the local time to the logo.", false, guard)
                 .visibleWhen(() -> logoDesign.get() != LogoDesign.EMBLEM));
     overlay = new OverlaySettings(this, value -> setting(value));
+    moduleSuffix.visibleWhen(suffixes::get);
     for (Setting<?> appearance : new Setting<?>[] {accent, secondary, opacity, shadow})
       appearance.visibleWhen(
           () -> !perihelion.integration.minecraft189.gui.GuiTheme.modern(runtime));
@@ -531,6 +531,7 @@ public final class HudModule extends ClientModule {
       context.observe(appearance.visuals, (setting, before, after) -> chat.cancelDrag());
     }
     context.observe(playerColumns, (setting, before, after) -> chat.cancelDrag());
+    context.observe(allowChatMove, (setting, before, after) -> chat.cancelDrag());
     context.observe(logoDesign, (setting, before, after) -> chat.cancelDrag());
     context.observe(moduleSpacing, (setting, before, after) -> chat.cancelDrag());
     context.observe(moduleSort, (setting, before, after) -> chat.cancelDrag());
@@ -611,21 +612,41 @@ public final class HudModule extends ClientModule {
   }
 
   public boolean openEditor(GuiScreen parent) {
+    return openEditor(parent, false);
+  }
+
+  public boolean openArrangement(GuiScreen parent) {
+    return openEditor(parent, true);
+  }
+
+  private boolean openEditor(GuiScreen parent, boolean arrangeOnly) {
     runtime.tasks().checkThread();
     Minecraft mc = Minecraft.getMinecraft();
     if (!runtime.isRunning() || mc.theWorld == null || mc.thePlayer == null) return false;
     KeyBinding.unPressAllKeys();
     runtime.input().setAllowed(false, java.util.Collections.emptyList());
-    mc.displayGuiScreen(new HudEditor(this, parent));
+    mc.displayGuiScreen(new HudEditor(this, parent, arrangeOnly));
     return true;
   }
 
   public void resetLayout() {
     if (chat != null) chat.cancelDrag();
-    for (Element e : Element.values()) {
-      runtime.modules().setSetting("hud", xs.get(e), e.x);
-      runtime.modules().setSetting("hud", ys.get(e), e.y);
-    }
+    for (Element e : Element.values()) resetPosition(e);
+  }
+
+  void resetPosition(Element element) {
+    if (chat != null) chat.cancelDrag();
+    runtime.modules().setSetting("hud", xs.get(element), element.x);
+    runtime.modules().setSetting("hud", ys.get(element), element.y);
+  }
+
+  void resetAppearance(Element element) {
+    for (Setting<?> setting : styles.get(element).settings) resetSetting(setting);
+    if (element == Element.MODULES) resetSetting(moduleBorder);
+  }
+
+  private <T> void resetSetting(Setting<T> setting) {
+    runtime.modules().setSetting("hud", setting, setting.defaultValue());
   }
 
   void move(Element e, int x, int y, int width, int height, int w, int h) {

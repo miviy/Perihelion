@@ -157,6 +157,9 @@ public final class NewVisualsProbe {
           runtime.modules().require("clickgui").binding().equals(binding)
               && !(Boolean) method(capture.getClass(), "active").invoke(capture),
           "Escape cancels binding capture");
+      method(modern.getClass(), "openHud").invoke(modern);
+      draw(modern);
+      check(current.get(game) == modern, "HUD settings are available before joining a world");
       type(modern, '\0', Keyboard.KEY_ESCAPE);
       check(current.get(game) == settings, "Dropdown returns to Client Settings");
       key(settings, Keyboard.KEY_ESCAPE);
@@ -202,7 +205,16 @@ public final class NewVisualsProbe {
       Object hudTab = field(modern.getClass(), "hudTab").get(modern);
       click(modern, decimal(hudTab, "x") + 8, decimal(hudTab, "y") + 8, 0);
       method(modern.getClass(), "release").invoke(modern);
+      check(current.get(game) == modern, "HUD shortcut opens settings inside the module GUI");
+      HudDropdownProbe.run(runtime, game, modern);
+      method(modern.getClass(), "arrangeHud").invoke(modern);
       MoonGuiProbe.closed(modern);
+      HudArrangementProbe.run(runtime, game, current.get(game), modern);
+      method(
+              hud.getClass(),
+              new Class<?>[] {Class.forName("net.minecraft.client.gui.GuiScreen")},
+              "openEditor")
+          .invoke(hud, modern);
       Object editor = current.get(game);
       GL11.glClearColor(.045f, .05f, .06f, 1);
       GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);

@@ -56,25 +56,16 @@ public final class GuiRegressionProbe {
           draw(menu);
           check(Arrays.equals(before, toolbar(menu)), "Configs preserves every toolbar coordinate");
           clickTab(menu, "hudTab");
+          check(current.get(game) == menu, "HUD shortcut keeps settings in Modules");
+          method(menu.getClass(), "arrangeHud").invoke(menu);
           Object editor = current.get(game);
           check(editor.getClass().getName().endsWith("HudEditor"), "HUD tab opens editor");
           draw(editor);
-          // Open the Elements menu before escaping; it must not trap the editor.
-          for (Object button :
-              (List<?>) field(screenType, "buttonList", "field_146292_n").get(editor))
-            if (field(button.getClass(), "id", "field_146127_k").getInt(button) == 3)
-              method(
-                      editor.getClass(),
-                      new Class<?>[] {int.class, int.class, int.class},
-                      "mouseClicked",
-                      "func_73864_a")
-                  .invoke(
-                      editor,
-                      field(button.getClass(), "xPosition", "field_146128_h").getInt(button) + 3,
-                      field(button.getClass(), "yPosition", "field_146129_i").getInt(button) + 3,
-                      0);
+          check(
+              ((List<?>) field(screenType, "buttonList", "field_146292_n").get(editor)).isEmpty(),
+              "Arrange view has no editor controls");
           escape.invoke(editor, '\0', Keyboard.KEY_ESCAPE);
-          check(current.get(game) == menu, "one Escape returns from HUD with Elements open");
+          check(current.get(game) == menu, "one Escape returns from the clean arrange view");
           draw(menu);
           check(Arrays.equals(before, toolbar(menu)), "HUD preserves every toolbar coordinate");
         }

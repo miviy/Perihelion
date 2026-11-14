@@ -223,17 +223,19 @@ public final class RavenScreen extends ModulePanelScreen {
                 && my >= panel.y + headerHeight()
                 && UiCanvas.inside(mx, my, panel.x, row, panel.width, rowHeight());
         if (row + rowHeight() > panel.y + headerHeight() && row < panel.y + headerHeight() + h) {
-          if (hit) canvas.rect(panel.x + 1, row, panel.width - 2, rowHeight(), 0x5a000000);
-          int ink =
-              view.entry.state() == ModuleState.FAULTED
-                  ? 0xffff5050
-                  : view.entry.requestedEnabled() ? canvas.enabled : canvas.text;
-          canvas.center(
+          ModuleRowPainter.draw(
+              canvas,
               view.label,
-              panel.x + 3,
-              canvas.font.centeredY(row, rowHeight()),
-              panel.width - 6,
-              ink);
+              panel.x,
+              row,
+              panel.width,
+              rowHeight(),
+              view.entry.requestedEnabled() ? 1 : 0,
+              view.expanded ? 1 : 0,
+              hit ? 1 : 0,
+              view.entry.state() == ModuleState.FAULTED,
+              !view.entry.module().settings().isEmpty(),
+              1);
           if (hit)
             hint =
                 view.entry.state() == ModuleState.FAULTED
@@ -260,6 +262,11 @@ public final class RavenScreen extends ModulePanelScreen {
             float height = control.height();
             control.place(panel.x + 4, y, panel.width - 8);
             if (y + height > panel.y + headerHeight() && y < panel.y + headerHeight() + h) {
+              control.hovered(
+                  hovered
+                      && my >= panel.y + headerHeight()
+                      && my < panel.y + headerHeight() + h
+                      && UiCanvas.inside(mx, my, panel.x + 4, y, panel.width - 8, height));
               control.render(
                   canvas,
                   panel.x + 4,
@@ -350,7 +357,7 @@ public final class RavenScreen extends ModulePanelScreen {
     float x = Math.min(hudTab.x, viewWidth - 100),
         y = Math.min(hudTab.y + TAB_HEIGHT + TAB_GAP, viewHeight - 50);
     RavenTheme.frame(canvas, x, y, 100, 48, true);
-    String[] titles = {"Edit HUD", "Toggle HUD", "Reset HUD layout"};
+    String[] titles = {"HUD settings", "Toggle HUD", "Reset positions"};
     for (int i = 0; i < titles.length; i++)
       RavenTheme.button(
           canvas,

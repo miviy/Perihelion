@@ -121,7 +121,7 @@ public class PanelScreen extends ModulePanelScreen {
       float x = Math.min(hudTab.x, viewWidth - 100),
           y = Math.min(hudTab.y + TAB_HEIGHT + TAB_GAP, viewHeight - 50);
       canvas.rect(x, y, 100, 48, GuiTheme.overlay(canvas));
-      String[] names = {"Edit hud", "Toggle hud", "Reset hud layout"};
+      String[] names = {"HUD settings", "Toggle HUD", "Reset positions"};
       for (int i = 0; i < names.length; i++)
         GuiTheme.button(
             canvas,
@@ -159,32 +159,19 @@ public class PanelScreen extends ModulePanelScreen {
               hovered
                   && my >= panel.y + headerHeight()
                   && UiCanvas.inside(mx, my, panel.x, rowY, panel.width, rowHeight());
-          if (view.entry.requestedEnabled())
-            canvas.rect(panel.x, rowY, panel.width, rowHeight(), GuiTheme.enabledRow(canvas));
-          else if (view.expanded)
-            canvas.rect(panel.x, rowY, panel.width, rowHeight(), GuiTheme.alpha(.04, 0xffffff));
-          if (hit)
-            canvas.rect(panel.x, rowY, panel.width, rowHeight(), GuiTheme.alpha(.07, 0xffffff));
-          int color =
-              view.entry.state() == ModuleState.FAULTED
-                  ? 0xffdc8580
-                  : view.expanded
-                      ? canvas.selectedText
-                      : view.entry.requestedEnabled() ? canvas.enabled : canvas.text;
-          if (view.entry.state() == ModuleState.FAULTED)
-            canvas.rect(panel.x, rowY + 5, 1, 6, 0xffd86e65);
-          canvas.label(
+          ModuleRowPainter.draw(
+              canvas,
               view.label,
-              panel.x + (canvas.modern ? 6 : 3),
-              canvas.font.centeredY(rowY, rowHeight()),
-              panel.width - (canvas.modern ? 20 : 12),
-              color);
-          if (!view.entry.module().settings().isEmpty())
-            canvas.text(
-                view.expanded ? "-" : "+",
-                panel.x + panel.width - (canvas.modern ? 10 : 6),
-                canvas.font.centeredY(rowY, rowHeight()),
-                canvas.muted);
+              panel.x,
+              rowY,
+              panel.width,
+              rowHeight(),
+              view.entry.requestedEnabled() ? 1 : 0,
+              view.expanded ? 1 : 0,
+              hit ? 1 : 0,
+              view.entry.state() == ModuleState.FAULTED,
+              !view.entry.module().settings().isEmpty(),
+              1);
           if (hit)
             hover =
                 view.entry.state() == ModuleState.FAULTED
@@ -220,6 +207,11 @@ public class PanelScreen extends ModulePanelScreen {
               // Keep control geometry current even off-screen, but do not render it there.
               control.place(panel.x + 4, y, panel.width - 8);
               if (y + h > panel.y + headerHeight() && y < panel.y + headerHeight() + height) {
+                control.hovered(
+                    hovered
+                        && my >= panel.y + headerHeight()
+                        && my < panel.y + headerHeight() + height
+                        && UiCanvas.inside(mx, my, panel.x + 4, y, panel.width - 8, h));
                 control.render(
                     canvas,
                     panel.x + 4,

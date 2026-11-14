@@ -42,6 +42,10 @@ public final class UiThemeProbe {
       runtime.config().saveProfile(preset, false).get(5, TimeUnit.SECONDS);
       runtime.commands().execute("gui reset", line -> {});
       Object menu = current.get(game);
+      // The HUD settings shortcut now intentionally retains its expanded module on return.
+      // This checkpoint measures collapsed category defaults, independent of that prior screen.
+      for (Object group : ((Map<?, ?>) field(menu.getClass(), "views").get(menu)).values())
+        for (Object view : (List<?>) group) field(view.getClass(), "expanded").setBoolean(view, false);
       HudChatProbe.captureWorld(game, "ui-default-adjust.png");
       check(!preferences.customTextStyle.get(), "default appearance leaves custom styling off");
       check(

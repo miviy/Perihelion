@@ -19,6 +19,7 @@ import perihelion.integration.minecraft189.render.*;
 public final class HudEditor extends GuiScreen {
   private final HudModule hud;
   private final GuiScreen parent;
+  private final boolean arrangeOnly;
   private HudRenderer preview;
   private Element dragging;
   private int offsetX, offsetY, dragX, dragY;
@@ -40,8 +41,13 @@ public final class HudEditor extends GuiScreen {
   private static final int TOOLBAR_WIDTH = 122;
 
   HudEditor(HudModule hud, GuiScreen parent) {
+    this(hud, parent, false);
+  }
+
+  HudEditor(HudModule hud, GuiScreen parent, boolean arrangeOnly) {
     this.hud = hud;
     this.parent = parent;
+    this.arrangeOnly = arrangeOnly;
   }
 
   @Override
@@ -57,6 +63,7 @@ public final class HudEditor extends GuiScreen {
     if (preview == null) preview = new HudRenderer(hud);
     buttonList.clear();
     toolbarDragging = false;
+    if (arrangeOnly) return;
     ClickGuiModule preferences = GuiTheme.preferences(hud.runtime);
     if (preferences != null) utilities.load(preferences.toolsLayout().get());
     utilities.resizeEditor("hud-editor", width, height);
@@ -81,6 +88,7 @@ public final class HudEditor extends GuiScreen {
   }
 
   private void saveToolbar() {
+    if (arrangeOnly) return;
     ClickGuiModule preferences = GuiTheme.preferences(hud.runtime);
     if (preferences != null && hud.runtime.isRunning())
       hud.runtime.modules().setSetting("clickgui", preferences.toolsLayout(), utilities.encode());
@@ -99,7 +107,7 @@ public final class HudEditor extends GuiScreen {
   }
 
   private void toggleLabel() {
-    toggle.displayString = "Hud";
+    if (toggle != null) toggle.displayString = "Hud";
   }
 
   @Override
@@ -148,6 +156,7 @@ public final class HudEditor extends GuiScreen {
           }
         }
       }
+      if (arrangeOnly) return;
       if (toolbarDragging) {
         toolbar.x = mouseX - toolbarOffsetX;
         toolbar.y = mouseY - toolbarOffsetY;
@@ -244,7 +253,7 @@ public final class HudEditor extends GuiScreen {
       else closeCustomization();
       return;
     }
-    if (UiCanvas.inside(x, y, toolbar.x, toolbar.y, TOOLBAR_WIDTH, 14)) {
+    if (!arrangeOnly && UiCanvas.inside(x, y, toolbar.x, toolbar.y, TOOLBAR_WIDTH, 14)) {
       commit();
       if (button == 1) {
         toolbar.collapsed = !toolbar.collapsed;
@@ -291,7 +300,7 @@ public final class HudEditor extends GuiScreen {
       Element element = elements[i];
       HudRenderer.Box box = preview.boxes.get(element);
       if (!box.contains(x, y)) continue;
-      if (button == 1) openCustomization(element);
+      if (button == 1 && !arrangeOnly) openCustomization(element);
       else if (button == 0) {
         dragging = element;
         offsetX = x - box.anchorX;

@@ -97,7 +97,7 @@ final class HudElementStyle {
             register,
             Setting.enumeration(
                 id + "colors",
-                "Colors",
+                "Color mode",
                 "Follow the client, use a solid color, or color rows with a gradient or rainbow.",
                 Colors.CLIENT,
                 Colors.class,
@@ -118,7 +118,7 @@ final class HudElementStyle {
             register,
             Setting.color(
                     id + "secondary",
-                    "Second text color",
+                    "End text color",
                     "Last color in the text gradient.",
                     ColorValue.rgb(245, 211, 168),
                     guard)
@@ -140,7 +140,7 @@ final class HudElementStyle {
             register,
             Setting.color(
                     id + "background-color",
-                    "Color",
+                    "Background color",
                     "Background tint with native alpha support.",
                     ColorValue.rgb(10, 10, 12),
                     guard)
@@ -153,7 +153,7 @@ final class HudElementStyle {
             register,
             Setting.color(
                     id + "background-secondary",
-                    "Second background",
+                    "End color",
                     "Second background gradient color.",
                     ColorValue.rgb(47, 42, 37),
                     guard)
@@ -189,7 +189,7 @@ final class HudElementStyle {
             register,
             Setting.integer(
                     id + "padding",
-                    "Outer inset",
+                    "Extra padding",
                     "Optional extra inset beyond the normal text padding.",
                     element == HudModule.Element.WATERMARK ? 3 : 0,
                     0,
@@ -260,8 +260,7 @@ final class HudElementStyle {
                 1,
                 16,
                 guard));
-    for (Setting<?> setting : settings)
-      setting.visibleWhen(() -> hud.customizing == element && visible(setting, element));
+    for (Setting<?> setting : settings) setting.visibleWhen(() -> visible(setting, element));
   }
 
   private boolean visible(Setting<?> value, HudModule.Element element) {

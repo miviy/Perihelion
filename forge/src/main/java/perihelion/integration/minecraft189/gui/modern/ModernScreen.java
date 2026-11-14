@@ -35,6 +35,8 @@ public final class ModernScreen extends PanelScreen {
   private float opening, configX, configY, configScroll, configOpen = 1;
   private final ConfigActions configs;
   private boolean configCollapsed;
+  private PanelLayout.Panel focusedHud;
+  private float hudRestingY;
 
   private static final class RowMotion {
     float height, enabled, hover, arrow;
@@ -112,19 +114,7 @@ public final class ModernScreen extends PanelScreen {
 
   @Override
   protected String moduleLabel(ModuleEntry entry) {
-    String value = GuiValues.readable(entry.info().name());
-    StringBuilder out = new StringBuilder(value.length());
-    boolean start = true;
-    for (int i = 0; i < value.length(); i++) {
-      char c = value.charAt(i);
-      out.append(start ? Character.toUpperCase(c) : c);
-      start = c == ' ';
-    }
-    return out.toString()
-        .replaceAll("\\bEsp\\b", "ESP")
-        .replaceAll("\\bHud\\b", "HUD")
-        .replaceAll("\\bFov\\b", "FOV")
-        .replaceAll("\\bGui\\b", "GUI");
+    return GuiValues.moduleLabel(entry.info().name());
   }
 
   @Override
@@ -217,6 +207,10 @@ public final class ModernScreen extends PanelScreen {
     if (fontPixelsSeen != Math.max(.5f, pixels)) updatePanelWidths();
     // Loading/resetting a layout replaces every Panel; do not retain the discarded identities.
     List<PanelLayout.Panel> currentPanels = layout.panels();
+    if (focusedHud != null) {
+      if (currentPanels.contains(focusedHud)) focusedHud.y = top();
+      else focusedHud = null;
+    }
     if (!panels.isEmpty() && (currentPanels.isEmpty() || !panels.containsKey(currentPanels.get(0))))
       panels.clear();
     // A single fixed dock keeps the category row identical to the reference.
@@ -298,7 +292,8 @@ public final class ModernScreen extends PanelScreen {
 
   private float viewport(PanelLayout.Panel p) {
     float available = Math.max(0, viewHeight - p.y - HEADER - 34);
-    if (columns() < count() && p.limited()) available = Math.min(available, band() - HEADER - 8);
+    if (p != focusedHud && columns() < count() && p.limited())
+      available = Math.min(available, band() - HEADER - 8);
     return Math.min(content(p), available);
   }
 
@@ -522,16 +517,19 @@ public final class ModernScreen extends PanelScreen {
                   && my < bottom
                   && UiCanvas.inside(mx, my, p.x, y, WIDTH, ROW);
           if (y + ROW > p.y + HEADER && y < bottom) {
-            if (m.enabled > 0) ModernTheme.band(canvas, p.x, y, WIDTH, ROW, m.enabled * opening);
-            if (m.hover > 0) canvas.rect(p.x, y, WIDTH, ROW, ink(alpha(m.hover * .065, 0xffffff)));
-            canvas.label(
+            ModuleRowPainter.draw(
+                canvas,
                 v.label,
-                p.x + 4,
-                canvas.font.centeredY(y, ROW),
-                WIDTH - 17,
-                ink(v.entry.state() == ModuleState.FAULTED ? 0xffe89191 : canvas.text));
-            if (!v.controls.isEmpty())
-              ModernAssets.arrow(canvas, p.x + WIDTH - 7, y + ROW / 2, m.arrow, ink(canvas.text));
+                p.x,
+                y,
+                WIDTH,
+                ROW,
+                m.enabled,
+                m.arrow,
+                m.hover,
+                v.entry.state() == ModuleState.FAULTED,
+                !v.controls.isEmpty(),
+                opening);
             if (hit)
               hover =
                   v.entry.state() == ModuleState.FAULTED
@@ -563,6 +561,12 @@ public final class ModernScreen extends PanelScreen {
                 float h = control.height();
                 control.place(p.x + 4, y, WIDTH - 8);
                 if (y + h > p.y + HEADER && y < bottom && y < blockBottom) {
+                  control.hovered(
+                      v.expanded
+                          && hovered
+                          && my >= p.y + HEADER
+                          && my < Math.min(bottom, blockBottom)
+                          && UiCanvas.inside(mx, my, p.x + 4, y, WIDTH - 8, h));
                   control.render(
                       canvas,
                       p.x + 4,
@@ -680,6 +684,46 @@ public final class ModernScreen extends PanelScreen {
   }
 
   @Override
+  protected void openHud() {
+    clearSway();
+    super.openHud();
+    PanelLayout.Panel panel = layout.find(ModuleCategory.RENDER);
+    if (focusedHud != panel) {
+      focusedHud = panel;
+      hudRestingY = panel.y;
+    }
+    // Give HUD settings the available height without changing the user's saved panel position.
+    panel.y = top();
+    for (ModuleView view : views.get(ModuleCategory.RENDER))
+      if (view.entry.info().id().equals("hud")) motions.get(view).height = settingsHeight(view);
+    panelMotion(panel).open = 1;
+    panelMotion(panel).targetScroll = panel.scroll;
+  }
+
+  private void restoreHudPosition() {
+    if (focusedHud != null && layout.panels().contains(focusedHud)) {
+      focusedHud.y = hudRestingY;
+      focusedHud.recover(viewWidth, viewHeight, top());
+    }
+    focusedHud = null;
+  }
+
+  @Override
+  protected void persist() {
+    if (focusedHud == null || !layout.panels().contains(focusedHud)) {
+      super.persist();
+      return;
+    }
+    float visibleY = focusedHud.y;
+    try {
+      focusedHud.y = hudRestingY;
+      super.persist();
+    } finally {
+      focusedHud.y = visibleY;
+    }
+  }
+
+  @Override
   protected boolean utilityClick(float mx, float my, int button) {
     if (UiCanvas.inside(mx, my, hudTab.x, hudTab.y, hudTabWidth, 16)) {
       if (button == 0) openHud();
@@ -687,6 +731,7 @@ public final class ModernScreen extends PanelScreen {
     }
     if (UiCanvas.inside(mx, my, moduleTabX, searchY(), moduleTabWidth, 16)) {
       if (button == 0) {
+        restoreHudPosition();
         cancelEditor();
         hudMenu = false;
       }
@@ -766,6 +811,8 @@ public final class ModernScreen extends PanelScreen {
     PanelLayout.Panel p = panelAt(mx, my);
     if (p != null && p.collapsed && !searching() && my >= p.y + HEADER) return;
     super.click(mx, my, button);
+    // A deliberate drag becomes the new saved location, including while HUD is focused.
+    if (dragging != null && dragging == focusedHud) focusedHud = null;
     if (dragging != null && button == 0) {
       clearSway();
       swayPanel = dragging;
@@ -791,6 +838,7 @@ public final class ModernScreen extends PanelScreen {
   @Override
   public void resetLayout() {
     clearSway();
+    restoreHudPosition();
     super.resetLayout();
   }
 
@@ -930,6 +978,7 @@ public final class ModernScreen extends PanelScreen {
   @Override
   public void onGuiClosed() {
     clearSway();
+    restoreHudPosition();
     configs.close();
     try {
       super.onGuiClosed();

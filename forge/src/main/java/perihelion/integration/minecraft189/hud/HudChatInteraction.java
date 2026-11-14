@@ -150,7 +150,7 @@ final class HudChatInteraction implements AutoCloseable {
       Element element = elements[i];
       HudRenderer.Box box = renderer.boxes.get(element);
       if (!box.contains(event.x, event.y)) continue;
-      if (event.button == 0) {
+      if (event.button == 0 && hud.allowChatMove.get()) {
         drag.begin(
             element,
             event.x,
@@ -382,7 +382,7 @@ final class HudChatInteraction implements AutoCloseable {
   }
 
   private void commit() {
-    if (drag.element != null && validWorld())
+    if (drag.element != null && hud.allowChatMove.get() && validWorld())
       hud.move(
           drag.element, drag.x, drag.y, drag.width, drag.height, drag.boxWidth, drag.boxHeight);
     drag.cancel();

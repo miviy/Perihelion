@@ -100,6 +100,10 @@ public final class ModernControls implements SettingControl.Painter {
     ModernAssets.arrow(c, x, y, expanded ? 1 : 0, c.muted);
   }
 
+  public static void disclosure(UiCanvas c, float x, float y, float expanded, int color) {
+    ModernAssets.arrow(c, x, y, expanded, color);
+  }
+
   public static void checkbox(UiCanvas c, float x, float y, float logicalSize, boolean selected) {
     float pixels = Math.max(.01f, c.pixelScale);
     x = Math.round(x * pixels) / pixels;

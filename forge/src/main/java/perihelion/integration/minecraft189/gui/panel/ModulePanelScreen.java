@@ -174,6 +174,15 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
       this.entry = entry;
       search = GuiValues.searchable(entry);
       label = moduleLabel(entry);
+      if (entry.module() instanceof perihelion.integration.minecraft189.hud.HudModule) {
+        controls.addAll(
+            perihelion.integration.minecraft189.hud.HudSettingsControls.create(
+                (perihelion.integration.minecraft189.hud.HudModule) entry.module(),
+                ModulePanelScreen.this,
+                ModulePanelScreen.this::arrangeHud,
+                rowHeight()));
+        return;
+      }
       for (Setting<?> setting : entry.module().settings().values())
         controls.add(
             SettingControl.create(
@@ -470,7 +479,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
   protected boolean visible(ModuleView view, SettingControl control) {
     if (brokenVisibility.contains(control.setting)) return false;
     try {
-      return control.setting.isVisible();
+      return control.isVisible();
     } catch (Throwable failure) {
       Failures.rethrowFatal(failure);
       brokenVisibility.add(control.setting);
@@ -527,13 +536,37 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
 
   protected void openHud() {
     cancelEditor();
+    clearCapture();
+    binding.cancel();
+    hudMenu = false;
+    searchField.setText("");
+    searchField.setFocused(false);
+    setQuery("");
+    PanelLayout.Panel panel = layout.find(ModuleCategory.RENDER);
+    panel.collapsed = false;
+    panel.recover(viewWidth, viewHeight, top());
+    layout.front(panel);
+    float offset = 0;
+    for (ModuleView view : views.get(ModuleCategory.RENDER)) {
+      if (view.entry.info().id().equals("hud")) {
+        view.expanded = true;
+        panel.scroll = offset;
+        break;
+      }
+      offset += view.height();
+    }
+    persist();
+  }
+
+  protected void arrangeHud() {
+    cancelEditor();
     binding.cancel();
     hudMenu = false;
     persist();
     perihelion.integration.minecraft189.hud.HudModule hud =
         (perihelion.integration.minecraft189.hud.HudModule)
             runtime.modules().require("hud").module();
-    if (!hud.openEditor(this)) status = "Join a world to edit the HUD.";
+    if (!hud.openArrangement(this)) status = "Join a world to arrange the HUD.";
   }
 
   protected boolean utilityClick(float mx, float my, int button) {
@@ -757,7 +790,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
       dragging.y = my - dragY;
     } else if (captured != null) {
       try {
-        if (captured.setting.isVisible()) captured.drag(mx, my);
+        if (captured.isVisible()) captured.drag(mx, my);
         else clearCapture();
       } catch (Throwable failure) {
         Failures.rethrowFatal(failure);

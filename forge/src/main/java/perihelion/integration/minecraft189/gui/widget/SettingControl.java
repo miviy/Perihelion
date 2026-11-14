@@ -1,6 +1,7 @@
 package perihelion.integration.minecraft189.gui.widget;
 
 import java.util.*;
+import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import perihelion.core.module.ModuleManager;
 import perihelion.core.setting.*;
@@ -128,11 +129,13 @@ public abstract class SettingControl {
 
   public final Setting<?> setting;
   private final PaintView paintView = new PaintView(this);
-  protected final String label;
+  protected String label;
+  private BooleanSupplier visible = () -> true;
   protected final ModuleManager modules;
   protected final String module;
   protected final Actions actions;
   protected boolean expanded;
+  protected boolean hovered;
   protected float x, y, w;
   private float editingY = Float.NaN, editingX;
   public static final float ROW = 14;
@@ -175,6 +178,30 @@ public abstract class SettingControl {
 
   public float height() {
     return headerHeight;
+  }
+
+  public final void hovered(boolean hovered) {
+    this.hovered = hovered;
+  }
+
+  /** Screen-owned disclosure state must never change config setting visibility. */
+  public final SettingControl visibleWhen(BooleanSupplier visible) {
+    this.visible = visible;
+    return this;
+  }
+
+  public boolean isVisible() {
+    return visible.getAsBoolean() && setting.isVisible();
+  }
+
+  public final SettingControl named(String label) {
+    this.label = label;
+    measuredFace = null;
+    return this;
+  }
+
+  protected boolean useFrontendPainter() {
+    return true;
   }
 
   /** Lay out within the panel, before content height, scrolling and hit testing are computed. */
@@ -271,7 +298,7 @@ public abstract class SettingControl {
     editingY = rowY;
     editingX = textX;
     try {
-      if (canvas.settingPainter != null) {
+      if (canvas.settingPainter != null && useFrontendPainter()) {
         canvas.settingPainter.paint(canvas, paintView);
         return;
       }

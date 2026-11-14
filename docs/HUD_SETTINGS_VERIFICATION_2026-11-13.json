@@ -1,0 +1,73 @@
+{
+  "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/hud-arrange-chat-20261113/Perihelion-0.1.0.jar",
+  "artifactSha256": "8791c0861af64f3be5a49dac5f422065d9fb30490e14253a6a8f39d64b2cfeaa",
+  "backup": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/hud-arrange-chat-20261113-215339/sources.tar.gz",
+  "tests": {
+    "core": {
+      "tests": 164,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "forge": {
+      "tests": 452,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "packagedUi": {
+    "forge": {
+      "passed": true,
+      "hudDropdownChecks": 134,
+      "arrangementChecks": 15,
+      "chatChecks": 100,
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-v01mtvuz/launch.log",
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-v01mtvuz/result.json"
+    },
+    "optifine": {
+      "passed": true,
+      "hudDropdownChecks": 134,
+      "arrangementChecks": 15,
+      "chatChecks": 100,
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-31z7tl4n/launch.log",
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-31z7tl4n/result.json"
+    }
+  },
+  "manualLaunch": {
+    "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-hud-arrange-chat-da38g9wh",
+    "pid": 59597,
+    "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/hud-arrange-chat-20261113/Perihelion-0.1.0.jar",
+    "artifactSha256": "8791c0861af64f3be5a49dac5f422065d9fb30490e14253a6a8f39d64b2cfeaa",
+    "smokeProbeInstalled": false,
+    "offlineTestProfile": true,
+    "hudEnabled": true,
+    "previewWorld": "PerihelionSmoke",
+    "createdAt": "2026-11-14T03:07:13.662263+00:00"
+  },
+  "manualLiveness": {
+    "pidAlive": true,
+    "startupMarker": true,
+    "texturesLoaded": true,
+    "smokeProbeInstalled": false
+  },
+  "visualReview": [
+    "hud-arrange-clean.png",
+    "hud-dropdowns-overview.png",
+    "hud-dropdowns-array-text.png"
+  ],
+  "scope": "Local unit/config and packaged Forge/OptiFine UI, not authenticated provider or live multiplayer testing.",
+  "consistentModuleRows": {
+    "sharedPainter": "ModuleRowPainter",
+    "frontends": [
+      "New",
+      "Adjust",
+      "Raven"
+    ],
+    "leftClick": "toggle element",
+    "rightClick": "expand settings",
+    "independentBoxesAndStatusDots": false
+  },
+  "arrangeOnly": true,
+  "allowMovingInChatDefault": true
+}

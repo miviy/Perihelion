@@ -2,7 +2,6 @@ package perihelion.integration.minecraft189.hud;
 
 import java.nio.file.*;
 import java.util.*;
-import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import perihelion.core.setting.Setting;
@@ -38,7 +37,6 @@ final class OverlaySettings {
       new EnumMap<>(OverlayLookup.Provider.class);
   final List<Setting<?>> settings = new ArrayList<>();
   final Set<UUID> removed = new HashSet<>();
-  private final BooleanSupplier visible;
   final Setting<Boolean> partyDetector,
       removeFinals,
       nickAlerts,
@@ -52,7 +50,6 @@ final class OverlaySettings {
 
   OverlaySettings(HudModule hud, Consumer<Setting<?>> register) {
     Runnable guard = hud.runtime.tasks()::checkThread;
-    visible = () -> hud.shown.get(HudModule.Element.PLAYERS).get();
     automatic =
         add(
             Setting.bool(
@@ -290,10 +287,13 @@ final class OverlaySettings {
                 2048,
                 guard),
             register);
+    dodgeThreshold.visibleWhen(dodgeWarning::get);
+    for (Map.Entry<OverlayLookup.Provider, Setting<String>> key : keys.entrySet())
+      if (key.getKey() != OverlayLookup.Provider.HYPIXEL)
+        key.getValue().visibleWhen(() -> providers.get().contains(key.getKey()));
   }
 
   private <T> Setting<T> add(Setting<T> setting, Consumer<Setting<?>> register) {
-    setting.visibleWhen(visible);
     settings.add(setting);
     register.accept(setting);
     return setting;

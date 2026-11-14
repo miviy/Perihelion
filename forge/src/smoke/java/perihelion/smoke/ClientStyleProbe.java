@@ -174,8 +174,13 @@ public final class ClientStyleProbe {
 
         draw(menu);
         clickTab(menu, "hudTab");
+        check(current.get(game) == menu, "HUD settings stay in Modules for " + style);
+        method(menu.getClass(), "arrangeHud").invoke(menu);
         Object editor = current.get(game);
         check(editor.getClass().getName().endsWith("HudEditor"), "HUD editor opens for " + style);
+        check(
+            ((List<?>) field(screenType, "buttonList", "field_146292_n").get(editor)).isEmpty(),
+            "Arrange view has no editor controls for " + style);
         draw(editor);
         screenTheme(editor, style);
         Object preview = field(editor.getClass(), "preview").get(editor);

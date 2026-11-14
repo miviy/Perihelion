@@ -1,12 +1,42 @@
 # HUD
 
-Open **Right Shift → HUD** or type **`.hud edit`** in a world. Turn **HUD: ON** in the
-editor, or use **`.hud on`**. Like the other native modules, HUD starts disabled on
-new configurations. Its regular settings are under **Render → HUD**.
+Open **Right Shift → HUD** to focus the HUD module in the ClickGUI. You can also
+right-click **Visual/Render → HUD**. In New visuals, the HUD shortcut temporarily
+raises that category for more editing room; **Modules** or closing the GUI restores
+its saved position. Left-click the HUD module to turn the whole
+overlay on or off, or use **`.hud on`** / **`.hud off`**. HUD starts disabled on new
+configurations.
+
+Each HUD piece uses the same row style as a regular module: **left-click** toggles
+it and **right-click** opens its dropdown. The first setting is **Enabled**, followed
+by its content settings. **Text** contains fonts, size and text colors;
+**Background** contains panel colors, opacity, padding, corners, blur and shadows;
+**Position** contains horizontal/vertical placement and **Reset position**. Positions
+range from 0 (left/top) to 1 (right/bottom), accounting for the element's size.
+You can configure disabled pieces without displaying them. Collapsing a dropdown
+never changes an enabled state or a saved value.
+
+**General** contains **Allow moving in chat** (on by default), Hide with F3 and
+Hide in menus. Turning chat movement off stops HUD dragging immediately; player
+actions and normal chat input remain available. Old visuals also expose their
+shared colors here; New visuals use the client theme and each element's appearance.
+Array-list controls live only under Array list. Nearby players groups its extra
+controls into Statistics, Provider keys, Filters, and Highlights and alerts.
+Conditional controls appear when relevant: gradient colors, blur strength, shadow
+details, mode separators and optional provider key files. **Reset appearance** in
+an element's Background section resets its text/background without changing its
+content, visibility or position. Existing configs and presets retain the same IDs.
+
+**Arrange on screen** at the bottom opens a drag-only preview with no editor toolbar,
+buttons, Elements menu or right-click settings. Drag a HUD piece to place it; Escape
+saves the last drag and returns to the module GUI. The legacy editor remains
+available through **`.hud edit`** in a world. Every appearance and position setting is available in
+the module GUI; the editor is no longer required for customization. Both Old
+frontends and New visuals use these same grouped controls.
 
 Opening **T/chat** keeps the enabled HUD visible. Left-drag a visible HUD element
 while chat is open; its position saves on release, or when closing chat mid-drag.
-Right-click a **player row** for grouped Tags (Whitelist, Target and Pin), Analysis (Spectate, Violations and Player details), and Hypixel (Statistics and Report). The popup includes a player head, name, available ping and cached first-login date. Language remains unavailable. Configure **Player columns** under **Render → HUD** in the GUI.
+Right-click a **player row** for grouped Tags (Whitelist, Target and Pin), Analysis (Spectate, Violations and Player details), and Hypixel (Statistics and Report). The popup includes a player head, name, available ping and cached first-login date. Language remains unavailable. Configure **Columns** under **Render → HUD → Nearby players** in the GUI.
 The player table uses compact rows and a centered Players heading. The context card uses a larger portrait, a larger player name, regular section labels and a nearly opaque charcoal background so chat text does not compete with its actions. The separate Logo uses larger text than the Tab GUI and keeps matching drag bounds. GUI text colors and boldness remain optional under Misc → ClickGUI → Custom text style.
 Escape closes a HUD popup first. Clicks outside the HUD, chat typing and chat scroll
 retain their normal behavior. Right-clicking in chat does not hide an element.
@@ -46,7 +76,9 @@ long content. The vanilla hotbar, scoreboard and chat are preserved.
 
 ## Appearance and settings
 
-Right-click an element or its **Elements** entry to customize it. The panel has
+Use the module dropdowns above for normal customization. The optional drag editor
+also keeps its existing right-click controls: right-click an element or its
+**Elements** entry. That popup has
 **Text**, **Panel**, and (where relevant) **Content** tabs (**Layout** for the
 Array list). The essentials are shown first; **Advanced** reveals secondary
 controls. **Reset look** in Advanced restores that element's appearance defaults
@@ -60,7 +92,7 @@ mode switch. Existing positions, enabled states and preset loading are preserved
 - **Panel:** Auto/None/Solid/Gradient backgrounds, independent background colors
   and opacity, horizontal/vertical gradients, padding and corner radius. Panel
   shadows have independent opacity and spread controls under Advanced; they are
-  off by default. **Outer inset** adds space beyond the normal content padding.
+  off by default. **Extra padding** adds space beyond the normal content padding.
 - **Blur:** each element has its own toggle and strength (1–16), off by default.
   Blur is independent of opacity, so a translucent or text-only element can
   still blur its background. One shared scene texture is captured per HUD
@@ -106,19 +138,19 @@ consumes clicks before the HUD underneath. Resizing closes transient popup input
   menu, with alphabetized rows. Client preferences and the HUD's own toggle stay
   in the GUI. The Exploits tab is removed; no modules are re-registered.
 - **Watermark details:** off. Enable to append FPS and ping/Local.
-- **Array list borders:** optional in its Content tab; off by default.
+- **Array list borders:** optional in its Background dropdown (Layout in the editor); off by default.
 - **Panel opacity and text shadow:** independent per element in Text/Panel.
   The legacy global opacity still supplies the Auto background in Old visuals.
 - **Hide with F3 / Hide in menus:** on by default. Chat remains visible and
   interactive; Hide in menus applies to other menus. F1 is still respected.
-- **Module modes:** on. Uses a module's primary `mode` enum when present.
+- **Show modes:** on. Uses a module's primary `mode` enum when present.
 - **Hide visual modules:** off. The HUD and Client actions themselves never appear.
-- **Player rows:** 1–12, default 8. **Player range:** 8–128 blocks, default 64.
-- **Player columns:** health, team and the original statistics columns by default;
+- **Visible rows:** 1–32, default 8. **Range (blocks):** 8–128 blocks, default 64.
+- **Columns:** health, team and the original statistics columns by default;
   Ping, Observed time and Last seen are optional. Names always stay visible.
   Column choices use the existing HUD config and presets. Table headings, values and names use the selected font's measurements.
 
-Every element also has two hidden, normalized position settings. All settings use
+Each Position dropdown edits the same two normalized position settings used by dragging. All settings use
 the existing working config, change-based autosave and named preset system; there
 is no separate HUD file or disk writer. `.hud reset` resets positions; `.hud off`
 disables the renderer and releases its listeners, snapshots and font textures.

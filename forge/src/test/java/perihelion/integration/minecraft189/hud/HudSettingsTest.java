@@ -10,6 +10,9 @@ import perihelion.core.diagnostics.ClientLog;
 import perihelion.core.lifecycle.ClientRuntime;
 import perihelion.core.module.ModuleState;
 import perihelion.core.setting.ColorValue;
+import perihelion.core.setting.Setting;
+import perihelion.integration.minecraft189.gui.widget.SettingControl;
+import perihelion.integration.minecraft189.gui.widget.SettingSection;
 
 public class HudSettingsTest {
   @Rule public TemporaryFolder folder = new TemporaryFolder();
@@ -43,6 +46,8 @@ public class HudSettingsTest {
     columns.clear();
     r.modules().setSetting("hud", hud.hypixelKeyFile, "config/local-hypixel-key.txt");
     r.modules().setSetting("hud", hud.hypixelGame, HypixelStats.Game.SKYWARS);
+    assertTrue(hud.allowChatMove.get());
+    r.modules().setSetting("hud", hud.allowChatMove, false);
     r.modules().setEnabled("hud", true);
     r.stop();
     ClientRuntime reloaded = runtime();
@@ -60,6 +65,7 @@ public class HudSettingsTest {
           next.playerColumns.get());
       assertEquals("config/local-hypixel-key.txt", next.hypixelKeyFile.get());
       assertEquals(HypixelStats.Game.SKYWARS, next.hypixelGame.get());
+      assertFalse(next.allowChatMove.get());
       assertEquals(ModuleState.WAITING_FOR_WORLD, reloaded.modules().require("hud").state());
       assertEquals(0, reloaded.clientEvents().subscriptionCount());
     } finally {
@@ -115,7 +121,7 @@ public class HudSettingsTest {
       assertTrue(hud.options(element).contains(style.background));
       assertTrue(hud.options(element).contains(style.blur));
       assertFalse(style.blur.get());
-      assertFalse(style.font.isVisible());
+      assertTrue(style.font.isVisible());
     }
     assertFalse(hud.settings().containsKey("mode"));
     assertTrue(hud.moduleRows.get());
@@ -203,6 +209,103 @@ public class HudSettingsTest {
           HudElementStyle.Font.CLIENT, loaded.styles.get(HudModule.Element.TARGET).font.get());
     } finally {
       next.stop();
+    }
+  }
+
+  @Test
+  public void groupedMenuOwnsEverySettingOnceAndStartsEachElementWithItsToggle() {
+    ClientRuntime r = runtime();
+    try {
+      HudModule hud = (HudModule) r.modules().require("hud").module();
+      java.util.List<SettingControl> controls = HudSettingsControls.create(hud, null, () -> {});
+      java.util.Set<Setting<?>> visited =
+          java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+      for (SettingControl control : controls) {
+        if (hud.settings().containsValue(control.setting))
+          assertTrue("Duplicate setting: " + control.setting.id(), visited.add(control.setting));
+      }
+      assertEquals(new java.util.HashSet<>(hud.settings().values()), visited);
+      int found = 0;
+      for (int i = 0; i < controls.size() - 1; i++) {
+        SettingControl control = controls.get(i);
+        for (HudModule.Element element : HudModule.Element.values()) {
+          if (!(control instanceof SettingSection)
+              || !control.setting.displayName().equals(element.label)) continue;
+          found++;
+          SettingSection section = (SettingSection) control;
+          SettingControl toggle = controls.get(i + 1);
+          assertSame(hud.shown.get(element), toggle.setting);
+          assertFalse(toggle.isVisible());
+          section.press(0, 0, 1);
+          assertTrue(toggle.isVisible());
+          boolean before = hud.shown.get(element).get();
+          toggle.press(0, 0, 0);
+          assertEquals(!before, hud.shown.get(element).get());
+          section.press(0, 0, 1);
+          assertFalse(toggle.isVisible());
+          assertEquals(!before, hud.shown.get(element).get());
+        }
+      }
+      assertEquals(HudModule.Element.values().length, found);
+    } finally {
+      r.stop();
+    }
+  }
+
+  @Test
+  public void disclosureStateIsScreenOwnedAndDisabledElementsCanBeConfigured() {
+    ClientRuntime r = runtime();
+    try {
+      HudModule hud = (HudModule) r.modules().require("hud").module();
+      java.util.List<SettingControl> first = HudSettingsControls.create(hud, null, () -> {});
+      java.util.List<SettingControl> second = HudSettingsControls.create(hud, null, () -> {});
+      SettingSection players = null;
+      for (SettingControl control : first)
+        if (control instanceof SettingSection
+            && control.setting.displayName().equals("Nearby players"))
+          players = (SettingSection) control;
+      assertNotNull(players);
+      assertFalse(hud.shown.get(HudModule.Element.PLAYERS).get());
+      players.open(true);
+      SettingControl rows =
+          first.stream().filter(c -> c.setting == hud.playerLimit).findFirst().get();
+      assertTrue(rows.isVisible());
+      assertFalse(
+          second.stream().filter(c -> c.setting == hud.playerLimit).findFirst().get().isVisible());
+      assertTrue(hud.styles.get(HudModule.Element.KEYS).font.isVisible());
+      assertFalse(hud.moduleSuffix.isVisible() && !hud.suffixes.get());
+      r.modules().setSetting("hud", hud.suffixes, false);
+      assertFalse(hud.moduleSuffix.isVisible());
+      assertFalse(hud.overlay.dodgeThreshold.isVisible());
+      r.modules().setSetting("hud", hud.overlay.dodgeWarning, true);
+      assertTrue(hud.overlay.dodgeThreshold.isVisible());
+    } finally {
+      r.stop();
+    }
+  }
+
+  @Test
+  public void elementResetsPreserveOtherElementsContentAndPosition() {
+    ClientRuntime r = runtime();
+    try {
+      HudModule hud = (HudModule) r.modules().require("hud").module();
+      HudElementStyle logo = hud.styles.get(HudModule.Element.WATERMARK);
+      HudElementStyle target = hud.styles.get(HudModule.Element.TARGET);
+      r.modules().setSetting("hud", logo.scale, 1.5);
+      r.modules().setSetting("hud", target.scale, 1.25);
+      r.modules().setSetting("hud", hud.watermarkClock, true);
+      r.modules().setSetting("hud", hud.xs.get(HudModule.Element.WATERMARK), .4);
+      r.modules().setSetting("hud", hud.xs.get(HudModule.Element.TARGET), .7);
+      hud.resetAppearance(HudModule.Element.WATERMARK);
+      assertEquals(1, logo.scale.get(), 0);
+      assertEquals(1.25, target.scale.get(), 0);
+      assertTrue(hud.watermarkClock.get());
+      assertEquals(.4, hud.xs.get(HudModule.Element.WATERMARK).get(), 0);
+      hud.resetPosition(HudModule.Element.WATERMARK);
+      assertEquals(0, hud.xs.get(HudModule.Element.WATERMARK).get(), 0);
+      assertEquals(.7, hud.xs.get(HudModule.Element.TARGET).get(), 0);
+    } finally {
+      r.stop();
     }
   }
 

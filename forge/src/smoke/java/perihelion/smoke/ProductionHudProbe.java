@@ -665,6 +665,8 @@ public final class ProductionHudProbe {
               field(hudTab.getClass(), "y").getFloat(hudTab) + 4,
               0);
       method(menu.getClass(), new Class<?>[0], "release").invoke(menu);
+      check(screen.get(game) == menu, "GUI HUD button opens inline HUD settings");
+      method(menu.getClass(), "arrangeHud").invoke(menu);
       check(
           screen.get(game).getClass().getName().endsWith("HudEditor"),
           "GUI HUD button opens editor");
