@@ -114,7 +114,7 @@ public final class HudModule extends ClientModule {
   final EnumMap<Element, HudElementStyle> styles = new EnumMap<>(Element.class);
   final Setting<HudAppearance.Border> moduleBorder;
   final Setting<HudAppearance.Suffix> moduleSuffix;
-  final Setting<Boolean> moduleLowercase, moduleRows;
+  final Setting<Boolean> moduleLowercase;
   final Setting<Integer> modulePadding;
   final String version = clientVersion();
   final Setting<Boolean> watermarkVersion, watermarkClock;
@@ -374,15 +374,6 @@ public final class HudModule extends ClientModule {
                 "Use lowercase module names and modes.",
                 false,
                 guard));
-    moduleRows =
-        setting(
-            Setting.bool(
-                "module-row-backgrounds",
-                "Fit background to text",
-                "A connected stepped silhouette around module names; disable for one rectangular"
-                    + " panel.",
-                true,
-                guard));
     modulePadding =
         setting(
             Setting.integer(
@@ -564,7 +555,7 @@ public final class HudModule extends ClientModule {
       for (Setting<?> option : style.settings)
         context.observe(option, (changed, before, after) -> chat.cancelDrag());
     for (Setting<?> option :
-        new Setting<?>[] {moduleBorder, moduleSuffix, moduleLowercase, moduleRows, modulePadding})
+        new Setting<?>[] {moduleBorder, moduleSuffix, moduleLowercase, modulePadding})
       context.observe(option, (changed, before, after) -> chat.cancelDrag());
     for (Element element : Element.values())
       context.observe(
@@ -599,7 +590,6 @@ public final class HudModule extends ClientModule {
             moduleSort,
             moduleSpacing,
             modulePadding,
-            moduleRows,
             moduleBorder,
             suffixes,
             moduleSuffix,

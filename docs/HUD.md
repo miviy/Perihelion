@@ -101,15 +101,16 @@ mode switch. Existing positions, enabled states and preset loading are preserved
   with fractional edge coverage. Only enabled regions are shaded. Unsupported shader/framebuffer
   contexts use the configured background without blur.
 - **Array list content:** left/right alignment, width/alphabetical sorting,
-  0–12 pixels of row spacing, 1–12 pixels of horizontal padding, individual
-  text-fitted or full rectangular panel backgrounds, optional None/Left/Right/Top/Outline accent
+  0–12 pixels of row spacing, 1–12 pixels of horizontal padding, connected
+  text-fitted backgrounds, optional None/Left/Right/Top/Outline accent
   borders, lowercase, module-mode suffixes with Space/Brackets/Parentheses/
   Dash separators, and visual-module filtering. New visuals now honor row
   spacing. The default has zero extra row spacing, two units of text padding,
   subtle corner rounding and a 30% near-black background that fits
-  each line of text. It has no gaps or separate pills. Disable **Fit background
-  to text** for a full rectangular panel. Background, blur and shadow all
-  follow the selected shape, including convex and concave corners. Font, row
+  each line of text. It always forms one connected shape, with no gaps or
+  separate pills. Outline traces only the outside edge of the whole list.
+  Background, blur and shadow follow that same text-fitted shape, including
+  convex and concave corners. Font, row
   spacing and padding are the primary controls; sorting, alignment, suffix style
   and accent borders are under Advanced.
 - **Other content:** logo design, actual packaged version, optional local clock and FPS/ping details, and the existing player-table

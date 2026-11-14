@@ -44,7 +44,6 @@ final class HudCustomization implements SettingControl.Actions {
 
   private boolean inSection(Setting<?> setting) {
     HudElementStyle style = hud.styles.get(element);
-    if (setting == hud.moduleRows) return section == 1;
     boolean common = style.settings.contains(setting);
     return section == 0
         ? common && style.textOption(setting)
@@ -270,7 +269,6 @@ final class HudCustomization implements SettingControl.Actions {
           new Setting[] {
             hud.moduleSpacing,
             hud.modulePadding,
-            hud.moduleRows,
             hud.moduleAlignment,
             hud.moduleSort,
             hud.moduleBorder,

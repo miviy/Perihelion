@@ -681,6 +681,21 @@ public final class ProductionHudProbe {
       } finally {
         set(r, "clickgui", "font", savedFont);
       }
+      check(
+          !r.modules().require("hud").module().settings().containsKey("module-row-backgrounds"),
+          "Array list always fits text without an optional rectangle toggle");
+      setParsed(r, "module-border", "OUTLINE");
+      set(r, "hud", "module-spacing", 0);
+      for (String alignment : new String[] {"LEFT", "RIGHT"}) {
+        setParsed(r, "module-alignment", alignment);
+        for (String sort : new String[] {"WIDTH", "ALPHABETICAL"}) {
+          setParsed(r, "module-sort", sort);
+          method(preview.getClass(), "updateModules").invoke(preview);
+          cleanEditor(draw, editor);
+          capture("hud-arraylist-outline-" + alignment.toLowerCase(java.util.Locale.ROOT)
+              + "-" + sort.toLowerCase(java.util.Locale.ROOT) + ".png");
+        }
+      }
       r.commands().execute("hud reset", line -> {});
       check(((Number) value(r, "watermark-y")).doubleValue() == 0, "reset restores anchors");
       display.invoke(game, new Object[] {null});

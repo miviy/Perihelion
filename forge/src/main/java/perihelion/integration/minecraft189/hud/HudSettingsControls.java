@@ -82,7 +82,6 @@ public final class HudSettingsControls {
             hud.moduleSort,
             hud.moduleSpacing,
             hud.modulePadding,
-            hud.moduleRows,
             hud.suffixes,
             hud.moduleSuffix,
             hud.moduleLowercase,

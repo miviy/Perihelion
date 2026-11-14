@@ -904,7 +904,7 @@ final class HudRenderer implements AutoCloseable {
       canvas.pixelScale = pixels;
       canvas.cornerRadius = style.radius.get();
       if (style.background.get() != HudElementStyle.Background.AUTO
-          && !(element == Element.MODULES && hud.moduleRows.get()))
+          && element != Element.MODULES)
         customBackground(
             b.content.x - b.padding,
             b.content.y - b.padding,
@@ -931,7 +931,7 @@ final class HudRenderer implements AutoCloseable {
   void shadowBox(Element element, Box b) {
     HudElementStyle style = hud.styles.get(element);
     if (!style.panelShadow.get()) return;
-    if (element == Element.MODULES && hud.moduleRows.get())
+    if (element == Element.MODULES)
       arrayShape(b)
           .shadow(
               canvas,
@@ -969,7 +969,7 @@ final class HudRenderer implements AutoCloseable {
   void blurBox(Element element, Box b, int width, int height) {
     HudElementStyle style = hud.styles.get(element);
     if (!style.blur.get()) return;
-    if (element == Element.MODULES && hud.moduleRows.get())
+    if (element == Element.MODULES)
       blur.drawShape(
           b.anchorX,
           b.anchorY,
@@ -1003,7 +1003,7 @@ final class HudRenderer implements AutoCloseable {
   void customElementBackground(Element e, Box b) {
     prepareStyle(e, b);
     if (activeStyle.background.get() != HudElementStyle.Background.AUTO
-        && !(e == Element.MODULES && hud.moduleRows.get()))
+        && e != Element.MODULES)
       customBackground(0, 0, b.content.w + b.padding * 2, b.content.h + b.padding * 2);
   }
 
@@ -1073,7 +1073,7 @@ final class HudRenderer implements AutoCloseable {
   private void drawModules(Box b) {
     int rowHeight = moduleRowHeight(), padding = hud.modulePadding.get();
     boolean left = hud.moduleAlignment.get() == HudAppearance.Alignment.LEFT;
-    if (hud.moduleRows.get() && activeStyle.background.get() != HudElementStyle.Background.NONE) {
+    if (activeStyle.background.get() != HudElementStyle.Background.NONE) {
       long now = System.currentTimeMillis();
       int first =
           activeStyle.background.get() == HudElementStyle.Background.AUTO
@@ -1092,6 +1092,18 @@ final class HudRenderer implements AutoCloseable {
               second,
               activeStyle.direction.get() == HudElementStyle.Direction.HORIZONTAL);
     }
+    if (hud.moduleBorder.get() == HudAppearance.Border.OUTLINE) {
+      long now = System.currentTimeMillis();
+      arrayShape(activeScreenBox)
+          .outline(
+              canvas,
+              0,
+              0,
+              position ->
+                  activeStyle.color(
+                      hud, now, (float) position,
+                      modern ? canvas.accentAt((float) position) : primary));
+    }
     if (modules.isEmpty())
       rowLabel(
           "Array list", b.x + padding, b.y, b.w - padding * 2, rowHeight, modern ? TEXT : primary);
@@ -1108,9 +1120,6 @@ final class HudRenderer implements AutoCloseable {
               modern
                   ? HudAppearance.blend(canvas.accentAt(position), ModernTheme.TEXT, .32f)
                   : HudAppearance.blend(secondary, primary, position));
-      if (!hud.moduleRows.get()
-          && activeStyle.background.get() == HudElementStyle.Background.AUTO
-          && !modern) canvas.rect(b.x, top, b.w, rowHeight, background);
       int accent =
           activeStyle.color(
               hud,
@@ -1126,9 +1135,6 @@ final class HudRenderer implements AutoCloseable {
           break;
         case TOP:
           if (i == 0) canvas.hairline(x, top, w, accent);
-          break;
-        case OUTLINE:
-          canvas.outline(x, top, w, rowHeight, accent);
           break;
         default:
           break;

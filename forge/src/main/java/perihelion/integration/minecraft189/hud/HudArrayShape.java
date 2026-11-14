@@ -2,6 +2,7 @@ package perihelion.integration.minecraft189.hud;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoubleToIntFunction;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 import perihelion.integration.minecraft189.gui.widget.UiCanvas;
@@ -163,6 +164,32 @@ final class HudArrayShape {
       }
     } finally {
       GL11.glEnd();
+      GlStateManager.shadeModel(GL11.GL_FLAT);
+    }
+  }
+
+  /** Trace only the outside perimeter, including the joins between unequal row widths. */
+  void outline(UiCanvas canvas, float x, float y, DoubleToIntFunction colors) {
+    canvas.texture(false);
+    GlStateManager.disableTexture2D();
+    GlStateManager.shadeModel(GL11.GL_SMOOTH);
+    GL11.glPushAttrib(GL11.GL_LINE_BIT);
+    GL11.glLineWidth(1);
+    GL11.glDisable(GL11.GL_LINE_SMOOTH);
+    GL11.glBegin(GL11.GL_LINE_LOOP);
+    try {
+      for (Point point : outline) {
+        int color = colors.applyAsInt(point.y / Math.max(1, height));
+        GL11.glColor4f(
+            (color >> 16 & 255) / 255f,
+            (color >> 8 & 255) / 255f,
+            (color & 255) / 255f,
+            (color >>> 24) / 255f);
+        GL11.glVertex2f(x + point.x, y + point.y);
+      }
+    } finally {
+      GL11.glEnd();
+      GL11.glPopAttrib();
       GlStateManager.shadeModel(GL11.GL_FLAT);
     }
   }

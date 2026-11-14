@@ -124,7 +124,7 @@ public class HudSettingsTest {
       assertTrue(style.font.isVisible());
     }
     assertFalse(hud.settings().containsKey("mode"));
-    assertTrue(hud.moduleRows.get());
+    assertFalse(hud.settings().containsKey("module-row-backgrounds"));
     assertEquals(Integer.valueOf(1), hud.styles.get(HudModule.Element.MODULES).radius.get());
     assertTrue(hud.options(HudModule.Element.MODULES).contains(hud.moduleBorder));
     r.modules().setSetting("hud", hud.moduleAlignment, HudAppearance.Alignment.LEFT);

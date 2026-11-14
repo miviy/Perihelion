@@ -146,8 +146,8 @@ public final class HudStyleProbe {
       set(runtime, "modules-y", 0.0);
       frame(game, editor);
       check(
-          Boolean.TRUE.equals(value(runtime, "module-row-backgrounds")),
-          "Array list defaults to a connected text-fitted silhouette");
+          !runtime.modules().require("hud").module().settings().containsKey("module-row-backgrounds"),
+          "Array list always uses a connected text-fitted silhouette");
       parsed(runtime, "target-background", "SOLID");
       set(runtime, "target-opacity", .25);
       set(runtime, "target-y", .72);
