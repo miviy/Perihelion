@@ -226,6 +226,9 @@ public class HudSettingsTest {
       }
       java.util.Set<Setting<?>> childSettings = new java.util.HashSet<>(hud.settings().values());
       childSettings.removeAll(hud.shown.values());
+      childSettings.removeAll(hud.styles.get(HudModule.Element.TARGET).settings);
+      childSettings.remove(hud.xs.get(HudModule.Element.TARGET));
+      childSettings.remove(hud.ys.get(HudModule.Element.TARGET));
       assertEquals(childSettings, visited);
       int found = 0;
       for (int i = 0; i < controls.size() - 1; i++) {
@@ -250,7 +253,7 @@ public class HudSettingsTest {
           assertEquals(!before, hud.shown.get(element).get());
         }
       }
-      assertEquals(HudModule.Element.values().length, found);
+      assertEquals(HudModule.Element.values().length - 1, found);
     } finally {
       r.stop();
     }

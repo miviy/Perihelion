@@ -41,8 +41,8 @@ public final class HudDropdownProbe {
               entry.getAsJsonObject().get("y").getAsFloat() == restingY,
               "Temporary HUD focus preserves the saved category position");
       check(
-          controls.stream().filter(c -> c instanceof SettingSection && c.isVisible()).count() == 11,
-          "Ten collapsed elements and one General section replace the flat settings list");
+          controls.stream().filter(c -> c instanceof SettingSection && c.isVisible()).count() == 10,
+          "Nine collapsed elements and one General section replace the flat settings list");
       ProductionHudProbe.capture("hud-dropdowns-overview.png");
       for (String[] element :
           new String[][] {
@@ -50,7 +50,6 @@ public final class HudDropdownProbe {
             {"Tab GUI", "tab_gui"},
             {"Array list", "modules"},
             {"Coordinates", "info"},
-            {"Target card", "target"},
             {"Armor", "armor"},
             {"Potion effects", "effects"},
             {"Keystrokes", "keys"},
@@ -142,6 +141,46 @@ public final class HudDropdownProbe {
         check(
             panel.y + panel.headerHeight + body <= n(screen, "viewHeight") + 1,
             "Grouped settings clip within resized height");
+      }
+      Map<?, ?> views = (Map<?, ?>) field(screen.getClass(), "views").get(screen);
+      for (Object view : (List<?>) views.get(ModuleCategory.RENDER)) {
+        perihelion.core.module.ModuleEntry entry =
+            (perihelion.core.module.ModuleEntry) field(view.getClass(), "entry").get(view);
+        if (!entry.info().id().equals("targethud")) continue;
+        boolean expanded = field(view.getClass(), "expanded").getBoolean(view);
+        Setting<?> delay = entry.module().settings().get("hide-delay");
+        Object oldDelay = delay.get();
+        perihelion.integration.minecraft189.gui.ClickGuiModule preferences =
+            (perihelion.integration.minecraft189.gui.ClickGuiModule) runtime.modules().require("clickgui").module();
+        boolean oldSearch = preferences.search.get();
+        try {
+          runtime.modules().setSetting("clickgui", preferences.search, true);
+          field(view.getClass(), "expanded").setBoolean(view, true);
+          method(screen.getClass(), new Class<?>[] {String.class}, "setQuery")
+              .invoke(screen, "targethud");
+          panel(screen).scroll = 0;
+          draw(screen);
+          List<SettingControl> targetControls =
+              (List<SettingControl>) field(view.getClass(), "controls").get(view);
+          check(targetControls.stream().filter(SettingControl::isVisible).count() == 6,
+              "Target HUD starts with two settings, three collapsed appearance groups and Arrange");
+          SettingControl delayControl = control(targetControls, delay);
+          hit(screen, delayControl, 1);
+          Object delayEditor = field(screen.getClass(), "editor").get(screen);
+          method(delayEditor.getClass(), new Class<?>[] {String.class}, "setText", "func_146180_a")
+              .invoke(delayEditor, "1.7");
+          method(screen.getClass(), new Class<?>[] {char.class, int.class}, "type")
+              .invoke(screen, '\0', Keyboard.KEY_RETURN);
+          check(delay.get().equals(1.7), "Target HUD delay edits through the native module controls");
+          panel(screen).scroll = 0;
+          draw(screen);
+          ProductionHudProbe.capture("target-hud-module.png");
+        } finally {
+          runtime.modules().setSetting("clickgui", preferences.search, oldSearch);
+          runtime.modules().setSetting("targethud", (Setting) delay, oldDelay);
+          field(view.getClass(), "expanded").setBoolean(view, expanded);
+          method(screen.getClass(), new Class<?>[] {String.class}, "setQuery").invoke(screen, "");
+        }
       }
       check(GL11.glGetError() == GL11.GL_NO_ERROR, "Grouped settings preserve native GL state");
       System.out.println("[PERIHELION_SMOKE] HUD_DROPDOWNS PASS checks=" + checks);

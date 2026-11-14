@@ -22,6 +22,8 @@ public final class HudArrangementProbe {
     Object savedX = x.get(), savedY = y.get();
     int width = field(screen.getClass(), "width", "field_146294_l").getInt(screen),
         height = field(screen.getClass(), "height", "field_146295_m").getInt(screen);
+    boolean targetEnabled = runtime.modules().require("targethud").requestedEnabled();
+    runtime.modules().setEnabled("targethud", true);
     try {
       draw(screen, -1, -1);
       check(
@@ -93,6 +95,7 @@ public final class HudArrangementProbe {
       check(GL11.glGetError() == GL11.GL_NO_ERROR, "Arrangement and cleanup leave GL state clean");
       System.out.println("[PERIHELION_SMOKE] HUD_ARRANGEMENT PASS checks=" + checks);
     } finally {
+      runtime.modules().setEnabled("targethud", targetEnabled);
       runtime.modules().setSetting("hud", x, savedX);
       runtime.modules().setSetting("hud", y, savedY);
     }

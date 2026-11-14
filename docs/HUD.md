@@ -7,6 +7,14 @@ its saved position. Left-click the HUD module to turn the whole
 overlay on or off, or use **`.hud on`** / **`.hud off`**. HUD starts disabled on new
 configurations.
 
+**Render → Target HUD** is a separate module and works while the main HUD is off.
+It shows only entities you attack. **Hide delay (s)** keeps the card visible after
+the last attack (3 seconds by default; 0.1–10 seconds). Dead or unloaded targets
+clear immediately. **Design** currently offers Perihelion. Its Text, Background
+and Position groups reuse your saved target-card appearance and placement.
+Further designs, animations and theme options can be added here as they become
+available; client colors and custom colors already use the shared appearance controls.
+
 Each HUD piece uses the same row style as a regular module: **left-click** toggles
 it and **right-click** opens its dropdown. The first setting is **Enabled**, followed
 by its content settings. **Text** contains fonts, size and text colors;

@@ -620,7 +620,7 @@ public final class SmokeProbe {
 
   private void assertRuntime(boolean worldExpected) {
     check(runtime.isRunning(), "Runtime stopped unexpectedly: " + runtime.state());
-    check(runtime.modules().entries().size() == 96, "Expected 96 production modules");
+    check(runtime.modules().entries().size() == 97, "Expected 97 production modules");
     check(runtime.worldReady() == worldExpected, "Core world readiness disagrees with Minecraft");
     check(
         runtime.connection().kind()
@@ -702,7 +702,7 @@ public final class SmokeProbe {
       configStage = ConfigStage.RELOADING;
     } else {
       check(!runtime.config().isReloading(), "Completed reload retained its busy state");
-      check(runtime.modules().entries().size() == 96, "Reload changed production definitions");
+      check(runtime.modules().entries().size() == 97, "Reload changed production definitions");
       configStage = ConfigStage.COMPLETE;
       marker("CONFIG saved=true reloaded=true phase=" + stage + " nonblocking=true");
     }

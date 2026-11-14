@@ -75,7 +75,7 @@ public class BundledProfilesTest {
     try {
       assertEquals(fresh, runtime.config().snapshot());
       assertEquals(fresh, runtime.config().store().readProfile("default").get().json());
-      assertEquals(95, fresh.getAsJsonObject("modules").entrySet().size());
+      assertEquals(96, fresh.getAsJsonObject("modules").entrySet().size());
       for (ModuleEntry entry : runtime.modules().entries()) assertFalse(entry.requestedEnabled());
       JsonObject hypxile = runtime.config().store().readProfile("hypxile").get().json();
       load(runtime, "hypxile");

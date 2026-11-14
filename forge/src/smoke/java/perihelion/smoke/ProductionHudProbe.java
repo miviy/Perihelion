@@ -62,6 +62,9 @@ public final class ProductionHudProbe {
     Object scoreboard = method(world.getClass(), "getScoreboard", "func_96441_U").invoke(world);
     List<Object> teams = new ArrayList<>();
     String[] visuals = {"fullbright", "nofov", "nobob", "fastplace", "sprint"};
+    Object targetHud = r.modules().require("targethud").module();
+    Object originalDelay =
+        r.modules().require("targethud").module().settings().get("hide-delay").get();
     int baseline = r.clientEvents().subscriptionCount();
     Map<String, Object> originals = new HashMap<>();
     for (Setting<?> setting : r.modules().require("hud").module().settings().values())
@@ -71,6 +74,7 @@ public final class ProductionHudProbe {
       for (String id : new String[] {"keys", "players", "notifications"}) set(r, "hud", id, true);
       for (String id : visuals) r.modules().setEnabled(id, true);
       r.modules().setEnabled("hud", true);
+      r.modules().setEnabled("targethud", true);
       check(r.modules().require("hud").state() == ModuleState.ENABLED, "HUD activates");
       Class<?> headType =
           Class.forName("net.minecraft.network.play.server.S19PacketEntityHeadLook");
@@ -93,6 +97,7 @@ public final class ProductionHudProbe {
         headYaw.setFloat(player, savedHead);
       }
       Object renderer = field(hud.getClass(), "renderer").get(hud);
+      Object targetRenderer = field(targetHud.getClass(), "renderer").get(targetHud);
       Object font = field(renderer.getClass(), "text").get(renderer);
       Method fontWidth = method(font.getClass(), new Class<?>[] {String.class}, "width");
       check(
@@ -183,12 +188,12 @@ public final class ProductionHudProbe {
           Class.forName("net.minecraft.util.MovingObjectPosition")
               .getConstructor(entityType)
               .newInstance(first));
-      refresh(update, renderer);
+      refresh(update, targetRenderer);
       check(
-          !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          !field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
           "hovering a player does not show the target card");
       GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-      render.invoke(renderer, width, height, false, null, 0, 0);
+      render.invoke(targetRenderer, width, height, false, null, 0, 0);
       capture("hud-target-hover.png");
       Class<?> livingType = Class.forName("net.minecraft.entity.EntityLivingBase");
       Method attack =
@@ -205,33 +210,34 @@ public final class ProductionHudProbe {
                 event -> event.cancel());
         cancelledAttack.activate();
         attack.invoke(null, first);
-        refresh(update, renderer);
+        refresh(update, targetRenderer);
         check(
-            !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+            !field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
             "cancelled attacks do not show the target card");
       } finally {
         cancelledAttack.close();
       }
       attack.invoke(null, first);
-      refresh(update, renderer);
+      refresh(update, targetRenderer);
       check(
-          field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
           "attacking a player shows the target card");
       GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-      render.invoke(renderer, width, height, false, null, 0, 0);
+      render.invoke(targetRenderer, width, height, false, null, 0, 0);
       capture("hud-target-attack.png");
       mouseOver.set(game, null);
-      refresh(update, renderer);
+      refresh(update, targetRenderer);
       check(
-          field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
           "attack target remains briefly when looking away");
-      field(renderer.getClass(), "attackedAt")
-          .setLong(renderer, System.nanoTime() - 3_100_000_000L);
-      refresh(update, renderer);
+      set(r, "targethud", "hide-delay", .5);
+      field(targetHud.getClass(), "attackedAt")
+          .setLong(targetHud, System.nanoTime() - 600_000_000L);
+      refresh(update, targetRenderer);
       check(
-          !field(renderer.getClass(), "hasTarget").getBoolean(renderer)
-              && field(renderer.getClass(), "attackedTarget").get(renderer) == null,
-          "target card expires after combat stops");
+          !field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer)
+              && field(targetHud.getClass(), "attackedTarget").get(targetHud) == null,
+          "target card uses the configured hide delay");
       Object mob =
           Class.forName("net.minecraft.entity.passive.EntityPig")
               .getConstructor(Class.forName("net.minecraft.world.World"))
@@ -248,17 +254,19 @@ public final class ProductionHudProbe {
           Class.forName("net.minecraft.util.MovingObjectPosition")
               .getConstructor(entityType)
               .newInstance(mob));
-      refresh(update, renderer);
+      refresh(update, targetRenderer);
       check(
-          !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          !field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
           "hovering a mob does not show the target card");
       attack.invoke(null, mob);
-      refresh(update, renderer);
+      refresh(update, targetRenderer);
       check(
-          field(renderer.getClass(), "hasTarget").getBoolean(renderer)
-              && field(renderer.getClass(), "attackedTarget").get(renderer) == mob,
+          field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer)
+              && field(targetHud.getClass(), "attackedTarget").get(targetHud) == mob,
           "attacking a mob shows its target card");
       attack.invoke(null, first);
+      refresh(update, targetRenderer);
+      set(r, "targethud", "hide-delay", originalDelay);
       refresh(update, renderer);
       check(
           ((List<?>) field(renderer.getClass(), "players").get(renderer)).size() == 8,
@@ -704,6 +712,31 @@ public final class ProductionHudProbe {
           "editor releases snapshots on close");
       r.modules().setEnabled("hud", false);
       check(field(hud.getClass(), "renderer").get(hud) == null, "disable drops all HUD state");
+      attack.invoke(null, mob);
+      refresh(update, targetRenderer);
+      GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+      render.invoke(targetRenderer, width, height, false, null, 0, 0);
+      check(
+          field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer),
+          "Target HUD works with the main HUD disabled");
+      Map<?, ?> targetBoxes =
+          (Map<?, ?>) field(targetRenderer.getClass(), "boxes").get(targetRenderer);
+      for (Map.Entry<?, ?> targetBoxEntry : targetBoxes.entrySet())
+        if (field(targetBoxEntry.getValue().getClass(), "visible").getBoolean(targetBoxEntry.getValue()))
+          check(targetBoxEntry.getKey().toString().equals("TARGET"), "Target HUD renders only its own card");
+      capture("target-hud-standalone.png");
+      r.modules().setEnabled("targethud", false);
+      check(
+          field(targetHud.getClass(), "attackedTarget").get(targetHud) == null
+              && field(targetHud.getClass(), "renderer").get(targetHud) == null,
+          "Target HUD disable clears combat state and rendering resources");
+      r.modules().setEnabled("targethud", true);
+      Object freshTarget = field(targetHud.getClass(), "renderer").get(targetHud);
+      refresh(update, freshTarget);
+      check(
+          !field(freshTarget.getClass(), "hasTarget").getBoolean(freshTarget),
+          "Target HUD re-enable does not restore an old attack");
+      r.modules().setEnabled("targethud", false);
       Object brandOwner = field(renderer.getClass(), "brand").get(renderer);
       for (String artwork : new String[] {"emblem", "name"}) {
         Object asset = field(brandOwner.getClass(), artwork).get(brandOwner);
@@ -775,6 +808,8 @@ public final class ProductionHudProbe {
       OverlayHookProbe.run(r, game, hud);
       HudChatProbe.run(r, game, hud);
     } finally {
+      r.modules().setEnabled("targethud", false);
+      set(r, "targethud", "hide-delay", originalDelay);
       display.invoke(game, new Object[] {oldScreen});
       mouseOver.set(game, oldMouse);
       System.arraycopy(savedArmor, 0, armor, 0, armor.length);

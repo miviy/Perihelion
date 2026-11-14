@@ -20,7 +20,6 @@ import perihelion.core.module.*;
 import perihelion.core.setting.ColorValue;
 import perihelion.core.setting.Setting;
 import perihelion.integration.minecraft189.event.ChatHudEvent;
-import perihelion.integration.minecraft189.event.PlayerAttackEvent;
 
 /** Native settings/lifecycle owner. No HUD listeners or entity caches survive deactivation. */
 public final class HudModule extends ClientModule {
@@ -135,6 +134,7 @@ public final class HudModule extends ClientModule {
   final OverlaySettings overlay;
   final OverlayEncounters encounters = new OverlayEncounters();
   private HudRenderer renderer;
+  TargetHudModule targetHud;
   OverlayTracker tracker;
   private String encounterServer = "";
   private HudChatInteraction chat;
@@ -502,11 +502,6 @@ public final class HudModule extends ClientModule {
             renderer.update(false);
           }
         });
-    context.listen(
-        PlayerAttackEvent.class,
-        Integer.MIN_VALUE,
-        false,
-        event -> renderer.attacked(event.target()));
     context.listen(InputEvent.class, event -> renderer.input(event));
     context.listen(ChatHudEvent.class, event -> chat.handle(event));
     context.listen(
@@ -605,6 +600,17 @@ public final class HudModule extends ClientModule {
         break;
     }
     return result;
+  }
+
+  boolean elementEnabled(Element element) {
+    return element == Element.TARGET && targetHud != null
+        ? runtime.modules().require("targethud").requestedEnabled()
+        : shown.get(element).get();
+  }
+
+  void toggleElement(Element element) {
+    if (element == Element.TARGET && targetHud != null) runtime.modules().toggle("targethud");
+    else runtime.modules().setSetting("hud", shown.get(element), !shown.get(element).get());
   }
 
   public boolean openEditor(GuiScreen parent) {

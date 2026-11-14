@@ -30,7 +30,7 @@ public class BuiltinModulesTest {
   public void allModulesAreWorldScopedAndDisabledByDefault() {
     ClientRuntime runtime = runtime();
     try {
-      assertEquals(94, runtime.modules().entries().size());
+      assertEquals(95, runtime.modules().entries().size());
       for (ModuleEntry entry : runtime.modules().entries()) {
         assertTrue(entry.info().requiresWorld());
         assertFalse(entry.requestedEnabled());

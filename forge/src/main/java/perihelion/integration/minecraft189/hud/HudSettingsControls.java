@@ -15,10 +15,24 @@ public final class HudSettingsControls {
 
   private HudSettingsControls(
       HudModule hud, SettingControl.Actions actions, Runnable arrange, float rowHeight) {
+    this(hud, actions, arrange, rowHeight, false);
+  }
+
+  private HudSettingsControls(
+      HudModule hud,
+      SettingControl.Actions actions,
+      Runnable arrange,
+      float rowHeight,
+      boolean targetOnly) {
     this.hud = hud;
     this.actions = actions;
     this.rowHeight = rowHeight;
-    for (HudModule.Element element : HudModule.Element.values()) element(element);
+    if (targetOnly) {
+      appearance(HudModule.Element.TARGET, null);
+      return;
+    }
+    for (HudModule.Element element : HudModule.Element.values())
+      if (element != HudModule.Element.TARGET) element(element);
     SettingSection general = section("General", "Visibility rules for the whole HUD.", null, null);
     add(general, hud.allowChatMove, hud.hideDebug, hud.hideScreens);
     SettingSection legacy =
@@ -43,6 +57,11 @@ public final class HudSettingsControls {
   public static List<SettingControl> create(
       HudModule hud, SettingControl.Actions actions, Runnable arrange, float rowHeight) {
     return new HudSettingsControls(hud, actions, arrange, rowHeight).controls;
+  }
+
+  static List<SettingControl> target(
+      HudModule hud, SettingControl.Actions actions, float rowHeight) {
+    return new HudSettingsControls(hud, actions, null, rowHeight, true).controls;
   }
 
   private SettingSection section(
@@ -93,6 +112,10 @@ public final class HudSettingsControls {
       default:
         break;
     }
+    appearance(element, root);
+  }
+
+  private void appearance(HudModule.Element element, SettingSection root) {
     HudElementStyle style = hud.styles.get(element);
     SettingSection text = section("Text", "Font, size and text colors.", root, null);
     add(

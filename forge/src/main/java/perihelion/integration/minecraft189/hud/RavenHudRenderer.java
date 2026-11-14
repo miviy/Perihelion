@@ -49,7 +49,7 @@ final class RavenHudRenderer {
       for (Element element : Element.values()) {
         Box box = owner.boxes.get(element);
         box.visible = false;
-        if (!owner.show(element)) continue;
+        if (!owner.renders(element, preview)) continue;
         owner.configureElementFont(element);
         text = owner.text;
         style = hud.styles.get(element);

@@ -22,12 +22,17 @@ public final class GameplayModules {
     aura.buildingRoutine(breaker::blocksAura);
     MovementModules.Speed speed = new MovementModules.Speed(runtime, aura);
     speed.buildingRoutine(breaker::pauseSpeed);
+    perihelion.integration.minecraft189.hud.HudModule hud =
+        new perihelion.integration.minecraft189.hud.HudModule(runtime, aura::target);
+    perihelion.integration.minecraft189.hud.TargetHudModule targetHud =
+        new perihelion.integration.minecraft189.hud.TargetHudModule(hud);
     ClientModule[] modules = {
       antiBot,
       friends,
       aura,
       new DisplaceModule(runtime, aura),
-      new perihelion.integration.minecraft189.hud.HudModule(runtime, aura::target),
+      hud,
+      targetHud,
       new AimAssistModule(runtime),
       new GhostCombatModules.AutoClicker(runtime),
       new GhostCombatModules.Reach(runtime),

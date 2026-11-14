@@ -41,6 +41,7 @@ final class HudRenderer implements AutoCloseable {
   private static final int BRAND_HEIGHT = 24;
   private static final int THEME_ELEMENT_RANGE = Math.max(1, Element.values().length - 1);
   final HudModule hud;
+  private final boolean targetOnly;
   final Minecraft mc = Minecraft.getMinecraft();
   private final RenderState state = new RenderState();
   HudFont text = new HudFont();
@@ -93,8 +94,6 @@ final class HudRenderer implements AutoCloseable {
   float health, absorption, maximum;
   ResourceLocation skin;
   boolean hasTarget, hasArmor;
-  private EntityLivingBase attackedTarget;
-  private long attackedAt;
   private boolean notifying;
   private boolean classic;
   private boolean modern;
@@ -105,7 +104,12 @@ final class HudRenderer implements AutoCloseable {
   private int primary, secondary, background;
 
   HudRenderer(HudModule hud) {
+    this(hud, false);
+  }
+
+  HudRenderer(HudModule hud, boolean targetOnly) {
     this.hud = hud;
+    this.targetOnly = targetOnly;
     navigation = new HudNavigator(hud.runtime.modules());
     raven = new RavenHudRenderer(this);
     notifying = show(Element.NOTIFICATIONS);
@@ -133,10 +137,7 @@ final class HudRenderer implements AutoCloseable {
     if (event.key().code() == 1) right.add(System.nanoTime());
   }
 
-  void attacked(EntityLivingBase entity) {
-    if (entity == null || entity == mc.thePlayer || entity.worldObj != mc.theWorld) return;
-    attackedTarget = entity;
-    attackedAt = System.nanoTime();
+  void invalidate() {
     sampled = Long.MIN_VALUE;
   }
 
@@ -195,16 +196,7 @@ final class HudRenderer implements AutoCloseable {
     }
     if (preview || show(Element.MODULES) || show(Element.NOTIFICATIONS)) updateModules();
     if (preview || show(Element.TARGET)) {
-      EntityLivingBase entity = attackedTarget;
-      if (entity != null
-          && (sampled - attackedAt >= 3_000_000_000L
-              || entity.isDead
-              || entity.getHealth() <= 0
-              || entity.worldObj != mc.theWorld
-              || mc.theWorld.getEntityByID(entity.getEntityId()) != entity)) {
-        attackedTarget = null;
-        entity = null;
-      }
+      EntityLivingBase entity = hud.targetHud == null ? null : hud.targetHud.target();
       if (preview && entity == null) entity = mc.thePlayer;
       hasTarget =
           entity != null
@@ -592,7 +584,11 @@ final class HudRenderer implements AutoCloseable {
   }
 
   boolean show(Element e) {
-    return hud.shown.get(e).get();
+    return (!targetOnly || e == Element.TARGET) && hud.elementEnabled(e);
+  }
+
+  boolean renders(Element e, boolean preview) {
+    return show(e) && (preview || targetOnly == (e == Element.TARGET));
   }
 
   private String moduleLabelKey() {
@@ -658,7 +654,7 @@ final class HudRenderer implements AutoCloseable {
       for (Element e : Element.values()) {
         Box b = boxes.get(e);
         b.visible = false;
-        if (!show(e)) continue;
+        if (!renders(e, preview)) continue;
         configureElementFont(e);
         appearance(e, now);
         int w, h;
@@ -1808,7 +1804,6 @@ final class HudRenderer implements AutoCloseable {
     effects.clear();
     notices.clear();
     skin = null;
-    attackedTarget = null;
     hasTarget = false;
   }
 

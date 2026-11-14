@@ -183,6 +183,12 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
                 rowHeight()));
         return;
       }
+      if (entry.module() instanceof perihelion.integration.minecraft189.hud.TargetHudModule) {
+        controls.addAll(
+            ((perihelion.integration.minecraft189.hud.TargetHudModule) entry.module())
+                .controls(ModulePanelScreen.this, ModulePanelScreen.this::arrangeHud, rowHeight()));
+        return;
+      }
       for (Setting<?> setting : entry.module().settings().values())
         controls.add(
             SettingControl.create(

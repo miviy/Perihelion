@@ -35,7 +35,7 @@ public final class ClientStyleProbe {
       saved.put(id, values);
     }
     Map<String, Boolean> enabled = new LinkedHashMap<>();
-    for (String id : new String[] {"hud", "fullbright", "sprint"})
+    for (String id : new String[] {"hud", "targethud", "fullbright", "sprint"})
       enabled.put(id, runtime.modules().require(id).requestedEnabled());
     Class<?> screenType = Class.forName("net.minecraft.client.gui.GuiScreen");
     Method display =

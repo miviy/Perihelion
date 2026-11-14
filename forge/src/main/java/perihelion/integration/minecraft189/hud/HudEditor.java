@@ -206,7 +206,7 @@ public final class HudEditor extends GuiScreen {
       for (int i = 0; i < Element.values().length; i++) {
         Element element = Element.values()[i];
         float top = elementsY + GuiTheme.HEADER + i * GuiTheme.ROW;
-        boolean shown = hud.shown.get(element).get();
+        boolean shown = hud.elementEnabled(element);
         if (UiCanvas.inside(mx, my, elementsX, top, elementsWidth, GuiTheme.ROW))
           canvas.rect(elementsX + 1, top, elementsWidth - 2, GuiTheme.ROW, 0x5a000000);
         canvas.outline(
@@ -228,7 +228,7 @@ public final class HudEditor extends GuiScreen {
     for (int i = 0; i < Element.values().length; i++) {
       Element element = Element.values()[i];
       float y = elementsY + GuiTheme.HEADER + i * GuiTheme.ROW;
-      boolean shown = hud.shown.get(element).get();
+      boolean shown = hud.elementEnabled(element);
       if (shown) canvas.rect(elementsX, y, elementsWidth, GuiTheme.ROW, canvas.selection);
       if (UiCanvas.inside(mx, my, elementsX, y, elementsWidth, GuiTheme.ROW))
         canvas.rect(elementsX, y, elementsWidth, GuiTheme.ROW, canvas.hover);
@@ -288,10 +288,7 @@ public final class HudEditor extends GuiScreen {
         int index = (int) ((y - elementsY - GuiTheme.HEADER) / GuiTheme.ROW);
         Element element = Element.values()[index];
         if (button == 1) openCustomization(element);
-        else
-          hud.runtime
-              .modules()
-              .setSetting("hud", hud.shown.get(element), !hud.shown.get(element).get());
+        else hud.toggleElement(element);
       } else elementsMenu = false;
       return;
     }
