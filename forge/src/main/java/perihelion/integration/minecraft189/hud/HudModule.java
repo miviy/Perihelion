@@ -20,6 +20,7 @@ import perihelion.core.module.*;
 import perihelion.core.setting.ColorValue;
 import perihelion.core.setting.Setting;
 import perihelion.integration.minecraft189.event.ChatHudEvent;
+import perihelion.integration.minecraft189.event.PlayerAttackEvent;
 
 /** Native settings/lifecycle owner. No HUD listeners or entity caches survive deactivation. */
 public final class HudModule extends ClientModule {
@@ -510,6 +511,11 @@ public final class HudModule extends ClientModule {
             renderer.update(false);
           }
         });
+    context.listen(
+        PlayerAttackEvent.class,
+        Integer.MIN_VALUE,
+        false,
+        event -> renderer.attacked(event.target()));
     context.listen(InputEvent.class, event -> renderer.input(event));
     context.listen(ChatHudEvent.class, event -> chat.handle(event));
     context.listen(

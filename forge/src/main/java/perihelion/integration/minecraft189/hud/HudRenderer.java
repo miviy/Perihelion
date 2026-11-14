@@ -92,6 +92,8 @@ final class HudRenderer implements AutoCloseable {
   float health, absorption, maximum;
   ResourceLocation skin;
   boolean hasTarget, hasArmor;
+  private EntityLivingBase attackedTarget;
+  private long attackedAt;
   private boolean notifying;
   private boolean classic;
   private boolean modern;
@@ -128,6 +130,13 @@ final class HudRenderer implements AutoCloseable {
         || event.key().device() != Keybind.Device.MOUSE) return;
     if (event.key().code() == 0) left.add(System.nanoTime());
     if (event.key().code() == 1) right.add(System.nanoTime());
+  }
+
+  void attacked(EntityLivingBase entity) {
+    if (entity == null || entity == mc.thePlayer || entity.worldObj != mc.theWorld) return;
+    attackedTarget = entity;
+    attackedAt = System.nanoTime();
+    sampled = Long.MIN_VALUE;
   }
 
   void update(boolean preview) {
@@ -185,11 +194,16 @@ final class HudRenderer implements AutoCloseable {
     }
     if (preview || show(Element.MODULES) || show(Element.NOTIFICATIONS)) updateModules();
     if (preview || show(Element.TARGET)) {
-      EntityLivingBase entity = hud.target.get();
-      if (entity == null
-          && mc.objectMouseOver != null
-          && mc.objectMouseOver.entityHit instanceof EntityLivingBase)
-        entity = (EntityLivingBase) mc.objectMouseOver.entityHit;
+      EntityLivingBase entity = attackedTarget;
+      if (entity != null
+          && (sampled - attackedAt >= 3_000_000_000L
+              || entity.isDead
+              || entity.getHealth() <= 0
+              || entity.worldObj != mc.theWorld
+              || mc.theWorld.getEntityByID(entity.getEntityId()) != entity)) {
+        attackedTarget = null;
+        entity = null;
+      }
       if (preview && entity == null) entity = mc.thePlayer;
       hasTarget =
           entity != null
@@ -1840,6 +1854,8 @@ final class HudRenderer implements AutoCloseable {
     effects.clear();
     notices.clear();
     skin = null;
+    attackedTarget = null;
+    hasTarget = false;
   }
 
   private void key(String label, int x, int y, int w, boolean pressed, float palettePosition) {

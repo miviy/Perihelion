@@ -185,7 +185,81 @@ public final class ProductionHudProbe {
               .newInstance(first));
       refresh(update, renderer);
       check(
-          field(renderer.getClass(), "hasTarget").getBoolean(renderer), "crosshair target appears");
+          !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          "hovering a player does not show the target card");
+      GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+      render.invoke(renderer, width, height, false, null, 0, 0);
+      capture("hud-target-hover.png");
+      Class<?> livingType = Class.forName("net.minecraft.entity.EntityLivingBase");
+      Method attack =
+          method(
+              Class.forName("perihelion.integration.minecraft189.HookBridge"),
+              new Class<?>[] {livingType},
+              "attack");
+      EventOwner cancelledAttack = new EventOwner("hud-cancelled-attack", failure -> {});
+      try {
+        r.clientEvents()
+            .subscribe(
+                cancelledAttack,
+                perihelion.integration.minecraft189.event.PlayerAttackEvent.class,
+                event -> event.cancel());
+        cancelledAttack.activate();
+        attack.invoke(null, first);
+        refresh(update, renderer);
+        check(
+            !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+            "cancelled attacks do not show the target card");
+      } finally {
+        cancelledAttack.close();
+      }
+      attack.invoke(null, first);
+      refresh(update, renderer);
+      check(
+          field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          "attacking a player shows the target card");
+      GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+      render.invoke(renderer, width, height, false, null, 0, 0);
+      capture("hud-target-attack.png");
+      mouseOver.set(game, null);
+      refresh(update, renderer);
+      check(
+          field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          "attack target remains briefly when looking away");
+      field(renderer.getClass(), "attackedAt")
+          .setLong(renderer, System.nanoTime() - 3_100_000_000L);
+      refresh(update, renderer);
+      check(
+          !field(renderer.getClass(), "hasTarget").getBoolean(renderer)
+              && field(renderer.getClass(), "attackedTarget").get(renderer) == null,
+          "target card expires after combat stops");
+      Object mob =
+          Class.forName("net.minecraft.entity.passive.EntityPig")
+              .getConstructor(Class.forName("net.minecraft.world.World"))
+              .newInstance(world);
+      ids.add(-892000);
+      method(
+              world.getClass(),
+              new Class<?>[] {int.class, entityType},
+              "addEntityToWorld",
+              "func_73027_a")
+          .invoke(world, -892000, mob);
+      mouseOver.set(
+          game,
+          Class.forName("net.minecraft.util.MovingObjectPosition")
+              .getConstructor(entityType)
+              .newInstance(mob));
+      refresh(update, renderer);
+      check(
+          !field(renderer.getClass(), "hasTarget").getBoolean(renderer),
+          "hovering a mob does not show the target card");
+      attack.invoke(null, mob);
+      refresh(update, renderer);
+      check(
+          field(renderer.getClass(), "hasTarget").getBoolean(renderer)
+              && field(renderer.getClass(), "attackedTarget").get(renderer) == mob,
+          "attacking a mob shows its target card");
+      attack.invoke(null, first);
+      refresh(update, renderer);
       check(
           ((List<?>) field(renderer.getClass(), "players").get(renderer)).size() == 8,
           "nearby rows bounded to 8 among 15 players");
@@ -339,6 +413,7 @@ public final class ProductionHudProbe {
       captureWorld(game);
       set(r, "hud", "target", true);
       set(r, "hud", "players", false);
+      attack.invoke(null, first);
       field(first.getClass(), "isDead", "field_70128_L").setBoolean(first, true);
       refresh(update, renderer);
       check(!field(renderer.getClass(), "hasTarget").getBoolean(renderer), "dead target cleared");
