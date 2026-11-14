@@ -289,7 +289,9 @@ final class HudRenderer implements AutoCloseable {
         continue;
       if (was != null && was != on && show(Element.NOTIFICATIONS)) {
         if (notices.size() == 4) notices.removeFirst();
-        notices.addLast(new Notice(HudNavigator.label(entry), on, sampled));
+        // Not the snapshot time: this also runs before the first sample, while it is still
+        // Long.MIN_VALUE, and such a notice would never expire.
+        notices.addLast(new Notice(HudNavigator.label(entry), on, System.nanoTime()));
       }
       if (!on || (hideVisualsSeen && entry.info().category() == ModuleCategory.RENDER)) continue;
       String label = HudNavigator.label(entry);
