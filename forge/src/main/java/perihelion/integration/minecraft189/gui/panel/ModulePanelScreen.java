@@ -51,7 +51,9 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
   }
 
   protected GuiFonts.Face editorFont() {
-    return fonts.get(GuiTheme.font(preferences), GuiTheme.bold(preferences));
+    return GuiTheme.font(preferences) == ClickGuiModule.Font.MINECRAFT
+        ? fonts.minecraft(GuiTheme.bold(preferences), Math.max(.01f, pixels))
+        : fonts.get(GuiTheme.font(preferences), GuiTheme.bold(preferences));
   }
 
   protected abstract void configureCanvas();
@@ -137,6 +139,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
       hudAnchor = 150;
   protected float hudTabWidth = 24;
   protected ClickGuiModule.Font toolbarFont;
+  private float toolbarPixels;
   protected ClickGuiModule.ClientStyle styleSeen;
   protected ClickGuiModule.TextWeight toolbarWeight;
   protected final EnumMap<ModuleCategory, List<ModuleView>> views =
@@ -291,12 +294,14 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
         GuiTheme.bold(preferences)
             ? ClickGuiModule.TextWeight.BOLD
             : ClickGuiModule.TextWeight.REGULAR;
-    if (toolbarFont != GuiTheme.font(preferences) || toolbarWeight != effectiveWeight) {
+    if (toolbarFont != GuiTheme.font(preferences)
+        || toolbarWeight != effectiveWeight
+        || toolbarPixels != pixels) {
       toolbarFont = GuiTheme.font(preferences);
       toolbarWeight = effectiveWeight;
+      toolbarPixels = pixels;
       try (RenderState ignored = renderState.open()) {
-        GuiFonts.Face face =
-            fonts.get(toolbarFont, toolbarWeight == ClickGuiModule.TextWeight.BOLD);
+        GuiFonts.Face face = editorFont();
         float hudWidth = Math.max(24, (float) Math.ceil(face.width("Hud")) + 8);
         float configWidth = Math.max(34, (float) Math.ceil(face.width("Configs")) + 8);
         float moduleWidth = Math.max(44, (float) Math.ceil(face.width("Modules")) + 8);

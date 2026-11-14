@@ -20,16 +20,14 @@ public final class HudText {
     public void drawInScope(String text, float x, float y, int argb, boolean shadow) {
         RenderState.requireOpen();
         Objects.requireNonNull(text, "text");
-        int left = pixel(x), top = pixel(y);
+        if (!Float.isFinite(x) || !Float.isFinite(y))
+            throw new IllegalArgumentException("Text coordinates must be finite");
         FontRenderer font = font();
         if (text.isEmpty() || (argb >>> 24) == 0) return;
         RenderStyle.text();
-        font.drawString(text, left, top, fontColor(argb), shadow);
-    }
-
-    static int pixel(float coordinate) {
-        if (!Float.isFinite(coordinate)) throw new IllegalArgumentException("Text coordinates must be finite");
-        return Math.round(coordinate);
+        // Callers align to their framebuffer grid; rounding again in local GUI units
+        // would undo that alignment under menu and HUD transforms.
+        font.drawString(text, x, y, fontColor(argb), shadow);
     }
 
     static int fontColor(int argb) {

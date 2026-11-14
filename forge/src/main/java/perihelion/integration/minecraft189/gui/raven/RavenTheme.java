@@ -25,9 +25,8 @@ public final class RavenTheme {
     c.textShadow = true;
     c.settingPainter = RavenControls.INSTANCE;
     c.pixelScale = pixels;
-    c.font = fonts.get(ClickGuiModule.Font.MINECRAFT, bold);
-    c.sectionFont =
-        fonts.get(ClickGuiModule.Font.MINECRAFT, bold || custom && preferences.boldSections.get());
+    c.font = fonts.minecraft(bold, pixels);
+    c.sectionFont = fonts.minecraft(bold || custom && preferences.boldSections.get(), pixels);
     c.text = custom ? preferences.text.get().resolvedArgb(now) : DISABLED;
     c.enabled = custom ? preferences.enabled.get().resolvedArgb(now) : ENABLED;
     c.sectionText = custom ? preferences.sectionText.get().resolvedArgb(now) : 0xffdcdcdc;

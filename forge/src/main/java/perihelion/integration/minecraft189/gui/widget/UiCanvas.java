@@ -99,14 +99,13 @@ public final class UiCanvas {
   public void text(String label, float x, float y, int color) {
     texture(true);
     float pixels = Math.max(.01f, pixelScale);
-    if (textShadow && (color >>> 24) != 0)
-      font.draw(
-          label,
-          Math.round(x * pixels) / pixels + 1,
-          Math.round(y * pixels) / pixels + 1,
-          color & 0xff000000 | (color & 0xfcfcfc) >> 2,
-          clip);
-    font.draw(label, Math.round(x * pixels) / pixels, Math.round(y * pixels) / pixels, color, clip);
+    font.draw(
+        label,
+        Math.round(x * pixels) / pixels,
+        Math.round(y * pixels) / pixels,
+        color,
+        textShadow,
+        clip);
   }
 
   public String fit(String label, float width) {

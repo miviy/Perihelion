@@ -1,5 +1,39 @@
 # Donor references
 
+## Minecraft font rendering (2026-11-14)
+
+Inspected Perihelion's shared GUI/HUD font adapters, then read-only OpenB4 `u20`
+(`3d63944cc79be890c013cc79e5ed92d3533b48a5`), especially
+`CategoryComponent`, `ModuleComponent`, `SliderComponent`, `InfoHud` and
+`MixinFontRenderer`. Ordinary donor text uses Minecraft's current `FontRenderer`,
+its measured widths and its native optional shadow; there is no replacement
+Minecraft font atlas or font-smoothing algorithm in that path.
+
+Perihelion retains that native resource-pack/Unicode renderer. At menu/HUD scales
+of at least one physical pixel per bitmap texel, the Minecraft face rounds its
+effective texel size to whole screen pixels and applies the same correction to
+width, height, centering and drawing, choosing the smaller size at exact half steps
+to retain compact HUD rows. This prevents alternating stroke thickness
+under fractional scaling without changing saved menu/HUD scale or layout values.
+Subpixel layouts retain their compact text size; their bitmap texels cannot all
+occupy whole screen pixels. Other font families keep their existing rasterizers.
+
+GUI shadows now delegate to the native font's shadow pass for Minecraft text,
+including formatted colors/reset codes. Shared native drawing preserves caller
+framebuffer alignment instead of rounding a second time in local GUI units.
+No donor source, assets, managers or Mixins were copied. The packaged font probe
+compares rendered regular/bold, formatted, Unicode and shadowed pixels against
+vanilla at whole-pixel sizes across eight effective scales. Menu/HUD font paths
+use Minecraft's exact GUI scale rather than estimating it from rounded window
+dimensions, so tight labels retain their full measured width. Arbitrary replacement
+resource packs and other GPUs remain unverified.
+
+Validation: `check assemble --offline` passed 621 tests. Packaged Forge (854×480)
+and OptiFine M5 (1280×720) UI runs passed, including 64 native pixel/metric
+comparisons each, font/weight selection, layout/config persistence, controls,
+resize recovery, world reload and clean shutdown. Captures were visually inspected;
+the Minecraft Elements label fits its unchanged toolbar button.
+
 ## Inv Move GUI option (2026-10-22)
 
 Inspected Perihelion's module/shared controls first, then Yuri's unchanged read-only

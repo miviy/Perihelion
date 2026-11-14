@@ -56,6 +56,18 @@ public final class GuiFonts implements AutoCloseable {
       draw(text, x, y, color);
     }
 
+    default void draw(
+        String text,
+        float x,
+        float y,
+        int color,
+        boolean shadow,
+        UiCanvas.TextureMode textureMode) {
+      if (shadow && (color >>> 24) != 0)
+        draw(text, x + 1, y + 1, color & 0xff000000 | (color & 0xfcfcfc) >> 2, textureMode);
+      draw(text, x, y, color, textureMode);
+    }
+
     default void drawCentered(String text, float x, float y, float width, float height, int color) {
       draw(text, x + (width - width(text)) / 2, centeredY(y, height), color);
     }
@@ -68,6 +80,13 @@ public final class GuiFonts implements AutoCloseable {
       new EnumMap<>(ClickGuiModule.Font.class);
   private final Face minecraft = new NativeFace(false);
   private final Face minecraftBold = new NativeFace(true);
+  private final LinkedHashMap<Long, Face> nativeFaces =
+      new LinkedHashMap<Long, Face>(32, .75f, true) {
+        @Override
+        protected boolean removeEldestEntry(Map.Entry<Long, Face> eldest) {
+          return size() > 32;
+        }
+      };
   private Atlas menuFace;
   private final LinkedHashMap<PixelKey, PixelFace> pixelFaces = new LinkedHashMap<>(8, .75f, true);
   private final LinkedHashMap<String, List<FormattedFontRuns.Run>> formattedRuns =
@@ -110,39 +129,79 @@ public final class GuiFonts implements AutoCloseable {
 
   private final class NativeFace implements Face {
     private final boolean bold;
+    private final float scale, pixels;
 
     NativeFace(boolean bold) {
+      this(bold, 1);
+    }
+
+    NativeFace(boolean bold, float pixels) {
       this.bold = bold;
+      this.pixels = pixels;
+      scale = minecraftScale(pixels);
     }
 
     public float width(String text) {
-      return vanilla.width(bold ? forceBold(text) : text) * MINECRAFT_SCALE;
+      return vanilla.width(bold ? forceBold(text) : text) * scale;
     }
 
     public float height() {
-      return vanilla.height() * MINECRAFT_SCALE;
+      return vanilla.height() * scale;
     }
 
     public float inkHeight() {
-      return (vanilla.height() - 2) * MINECRAFT_SCALE;
+      return (vanilla.height() - 2) * scale;
     }
 
     public float centeredY(float top, float height) {
       // Vanilla's line height includes two empty rows below its visible glyphs.
-      return top + (height - (vanilla.height() - 2) * MINECRAFT_SCALE) / 2;
+      return top + (height - inkHeight()) / 2;
     }
 
     public void draw(String text, float x, float y, int color) {
-      RenderStyle.text();
+      draw(text, x, y, color, false, null);
+    }
+
+    @Override
+    public void draw(
+        String text,
+        float x,
+        float y,
+        int color,
+        boolean shadow,
+        UiCanvas.TextureMode textureMode) {
+      if (textureMode != null) textureMode.texture(true);
       GlStateManager.pushMatrix();
       try {
-        GlStateManager.translate(x, y, 0);
-        GlStateManager.scale(MINECRAFT_SCALE, MINECRAFT_SCALE, 1);
-        vanilla.drawInScope(bold ? forceBold(text) : text, 0, 0, color, false);
+        GlStateManager.translate(
+            Math.round(x * pixels) / pixels, Math.round(y * pixels) / pixels, 0);
+        GlStateManager.scale(scale, scale, 1);
+        vanilla.drawInScope(bold ? forceBold(text) : text, 0, 0, color, shadow);
       } finally {
         GlStateManager.popMatrix();
       }
     }
+  }
+
+  /** Keep each bitmap texel equally wide at fractional menu/HUD scales. */
+  public static float minecraftScale(float pixels) {
+    if (!Float.isFinite(pixels) || pixels <= 0)
+      throw new IllegalArgumentException("Minecraft pixel scale must be finite and positive");
+    // Below one screen pixel, retain compact layouts rather than enlarging text past its rows.
+    // Prefer the smaller size on exact half steps, keeping compact half-density HUD rows compact.
+    return pixels < 1 ? 1 : (float) Math.ceil(pixels - .5f) / pixels;
+  }
+
+  public Face minecraft(boolean bold, float pixels) {
+    float scale = minecraftScale(pixels);
+    if (scale == 1 && pixels == 1) return bold ? minecraftBold : minecraft;
+    long key = ((long) Float.floatToIntBits(pixels) << 1) | (bold ? 1 : 0);
+    Face face = nativeFaces.get(key);
+    if (face == null) {
+      face = new NativeFace(bold, pixels);
+      nativeFaces.put(key, face);
+    }
+    return face;
   }
 
   public Face get(ClickGuiModule.Font choice) {
@@ -167,7 +226,7 @@ public final class GuiFonts implements AutoCloseable {
    */
   public Face pixelFace(
       ClickGuiModule.Font choice, boolean bold, float logicalSizeFactor, float pixels) {
-    if (choice == ClickGuiModule.Font.MINECRAFT) return get(choice, bold);
+    if (choice == ClickGuiModule.Font.MINECRAFT) return minecraft(bold, pixels);
     int fontPixels = Math.min(PixelFontRaster.fontPixels(logicalSizeFactor, pixels), rasterLimit());
     PixelKey key = new PixelKey(choice, bold, false, fontPixels, pixels, logicalSizeFactor);
     return pixelFace(key);
@@ -992,6 +1051,7 @@ public final class GuiFonts implements AutoCloseable {
 
   @Override
   public void close() {
+    nativeFaces.clear();
     for (PixelAtlas atlas : pixelAtlases.values()) atlas.close();
     pixelAtlases.clear();
     pixelMetrics.clear();

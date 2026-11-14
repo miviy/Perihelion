@@ -296,7 +296,9 @@ public abstract class AccountUi extends GuiScreen {
       GlStateManager.scale(scale, scale, 1);
       GuiTheme.configure(
           canvas, fonts, preferences, new ScaledResolution(mc).getScaleFactor() * scale);
-      if (MenuTheme.active(this) && !preferences.modern()) {
+      if (MenuTheme.active(this)
+          && !preferences.modern()
+          && GuiTheme.font(preferences) != ClickGuiModule.Font.MINECRAFT) {
         if (menuBody == null || menuBody.source != canvas.font)
           menuBody = new MenuFontScale(canvas.font, 1.2f);
         if (menuSection == null || menuSection.source != canvas.sectionFont)

@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Keyboard;
 import perihelion.core.lifecycle.ClientRuntime;
 import perihelion.integration.minecraft189.gui.ClickGuiModule;
@@ -68,7 +69,7 @@ public final class ClientSettingsScreen extends GuiScreen {
     motion.update(mouseX, mouseY, width, height);
     try (RenderState ignored = state.open()) {
       RenderStyle.text();
-      canvas.pixelScale = mc.displayWidth / (float) width;
+      canvas.pixelScale = new ScaledResolution(mc).getScaleFactor();
       if (preferences.modern()) GuiTheme.configure(canvas, fonts, preferences, canvas.pixelScale);
       else {
         canvas.modern = false;

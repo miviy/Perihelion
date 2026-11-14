@@ -107,7 +107,10 @@ public final class AccountHookProbe {
               selected = scaled.source;
             }
             check(
-                selected == fonts.get(font, GuiTheme.bold(preferences)),
+                selected
+                    == (font == ClickGuiModule.Font.MINECRAFT
+                        ? fonts.minecraft(GuiTheme.bold(preferences), canvas.pixelScale)
+                        : fonts.get(font, GuiTheme.bold(preferences))),
                 "account screen uses selected font");
           }
           bounds(menu);

@@ -99,7 +99,7 @@ public final class MainMenuScreen extends GuiScreen {
     motion.update(mouseX, mouseY, width, height);
     try (RenderState ignored = state.open()) {
       RenderStyle.text();
-      canvas.pixelScale = mc.displayWidth / (float) width;
+      canvas.pixelScale = new ScaledResolution(mc).getScaleFactor();
       if (GuiTheme.modern(accounts.runtime))
         GuiTheme.configure(
             canvas, fonts, GuiTheme.preferences(accounts.runtime), canvas.pixelScale);

@@ -419,7 +419,9 @@ public final class ClientStyleProbe {
     try (RenderState ignored = new RenderState().open()) {
       check(
           field(canvas.getClass(), "font").get(canvas)
-              == fonts.get(raven ? ClickGuiModule.Font.MINECRAFT : ClickGuiModule.Font.MONO),
+              == (raven
+                  ? fonts.minecraft(false, field(canvas.getClass(), "pixelScale").getFloat(canvas))
+                  : fonts.get(ClickGuiModule.Font.MONO)),
           screen.getClass().getSimpleName() + " uses the effective " + style + " font");
     }
   }

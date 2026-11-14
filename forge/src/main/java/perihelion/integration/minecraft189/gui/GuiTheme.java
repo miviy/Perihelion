@@ -71,13 +71,17 @@ public final class GuiTheme {
     boolean custom = preferences != null && !c.modern && preferences.customTextStyle.get();
     boolean bold = bold(preferences);
     c.font =
-        c.modern
-            ? fonts.pixelFace(choice, bold, MODERN_BODY_SCALE, pixels)
-            : fonts.get(choice, bold);
+        choice == ClickGuiModule.Font.MINECRAFT
+            ? fonts.minecraft(bold, pixels)
+            : c.modern
+                ? fonts.pixelFace(choice, bold, MODERN_BODY_SCALE, pixels)
+                : fonts.get(choice, bold);
     c.sectionFont =
-        c.modern
-            ? fonts.pixelFace(choice, bold, MODERN_TITLE_SCALE, pixels)
-            : fonts.get(choice, bold || custom && preferences.boldSections.get());
+        choice == ClickGuiModule.Font.MINECRAFT
+            ? fonts.minecraft(bold || custom && preferences.boldSections.get(), pixels)
+            : c.modern
+                ? fonts.pixelFace(choice, bold, MODERN_TITLE_SCALE, pixels)
+                : fonts.get(choice, bold || custom && preferences.boldSections.get());
     c.pixelScale = pixels;
     c.text = !custom ? 0xffbfbfbf : preferences.text.get().resolvedArgb(now);
     c.enabled = !custom ? 0xffe5e5e5 : preferences.enabled.get().resolvedArgb(now);

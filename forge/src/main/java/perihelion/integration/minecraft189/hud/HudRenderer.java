@@ -145,7 +145,7 @@ final class HudRenderer implements AutoCloseable {
     if (mc.thePlayer == null || mc.theWorld == null) return;
     ScaledResolution resolution = new ScaledResolution(mc);
     density = GuiTheme.modern(hud.runtime) ? resolution.getScaledHeight() / 480f : 1;
-    if (configureFont(mc.displayWidth / (float) resolution.getScaledWidth())) updateModules();
+    if (configureFont(resolution.getScaleFactor())) updateModules();
     // 5 Hz snapshots independent of frame rate. Editor uses its own isolated preview renderer.
     if (sampled != Long.MIN_VALUE && ++ticks % 4 != 0) return;
     sampled = System.nanoTime();
@@ -622,7 +622,7 @@ final class HudRenderer implements AutoCloseable {
     draggingElement = dragging;
     classic = GuiTheme.style(hud.runtime) == ClickGuiModule.ClientStyle.RAVEN;
     modern = GuiTheme.modern(hud.runtime);
-    pixels = mc.displayWidth / (float) width;
+    pixels = new ScaledResolution(mc).getScaleFactor();
     density = modern ? height / 480f : 1;
     // Option changes apply to both the game HUD and the editor preview on this frame,
     // even between the slower world-data snapshots.

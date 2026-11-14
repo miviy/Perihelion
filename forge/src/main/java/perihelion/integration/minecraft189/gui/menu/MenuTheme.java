@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.GuiTextField;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Mouse;
 import perihelion.core.lifecycle.ClientRuntime;
@@ -111,7 +112,7 @@ public final class MenuTheme implements AutoCloseable {
   private void prepare() {
     RenderStyle.text();
     Minecraft game = Minecraft.getMinecraft();
-    canvas.pixelScale = game.displayWidth / (float) Math.max(1, game.currentScreen.width);
+    canvas.pixelScale = new ScaledResolution(game).getScaleFactor();
     if (GuiTheme.modern(runtime))
       GuiTheme.configure(canvas, fonts, GuiTheme.preferences(runtime), canvas.pixelScale);
     else {

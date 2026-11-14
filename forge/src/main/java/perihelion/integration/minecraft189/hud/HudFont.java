@@ -26,8 +26,6 @@ final class HudFont implements AutoCloseable {
     ownsFonts = false;
   }
 
-  private final perihelion.integration.minecraft189.render.HudText nativeText =
-      new perihelion.integration.minecraft189.render.HudText();
   private final RenderState creation = new RenderState();
   private GuiFonts.Face face, boldFace;
   private ClickGuiModule.Font choice = ClickGuiModule.Font.SANS;
@@ -47,7 +45,7 @@ final class HudFont implements AutoCloseable {
   boolean raster(float nextPixels, boolean nextModern) {
     if (!Float.isFinite(nextPixels) || nextPixels <= 0)
       throw new IllegalArgumentException("HUD pixel scale must be finite and positive");
-    boolean changed = modern != nextModern || nextModern && rasterPixels != nextPixels;
+    boolean changed = modern != nextModern || rasterPixels != nextPixels;
     modern = nextModern;
     rasterPixels = nextPixels;
     if (changed) face = boldFace = null;
@@ -67,9 +65,11 @@ final class HudFont implements AutoCloseable {
     if (face == null)
       try (RenderState ignored = creation.open()) {
         face =
-            modern && choice != ClickGuiModule.Font.MINECRAFT
-                ? fonts.pixelFace(choice, bold, 1.35f, rasterPixels)
-                : fonts.get(choice, bold);
+            choice == ClickGuiModule.Font.MINECRAFT
+                ? fonts.minecraft(bold, rasterPixels)
+                : modern
+                    ? fonts.pixelFace(choice, bold, 1.35f, rasterPixels)
+                    : fonts.get(choice, bold);
       }
     return face;
   }
@@ -85,8 +85,7 @@ final class HudFont implements AutoCloseable {
 
   int width(String text) {
     if (choice == ClickGuiModule.Font.MINECRAFT) {
-      face();
-      return (int) Math.ceil(nativeText.width(nativeLabel(text)) * GuiFonts.MINECRAFT_SCALE);
+      return (int) Math.ceil(face().width(text));
     }
     float width = 0;
     for (Run run : parts(text))
@@ -127,14 +126,7 @@ final class HudFont implements AutoCloseable {
     x = Math.round(x * pixels) / pixels;
     y = Math.round(y * pixels) / pixels;
     if (choice == ClickGuiModule.Font.MINECRAFT) {
-      GlStateManager.pushMatrix();
-      try {
-        GlStateManager.translate(x, y, 0);
-        GlStateManager.scale(GuiFonts.MINECRAFT_SCALE, GuiFonts.MINECRAFT_SCALE, 1);
-        nativeText.drawInScope(nativeLabel(text), 0, 0, color, shadow);
-      } finally {
-        GlStateManager.popMatrix();
-      }
+      face().draw(text, x, y, color, shadow, null);
       return;
     }
     GlStateManager.pushMatrix();
@@ -154,11 +146,6 @@ final class HudFont implements AutoCloseable {
     } finally {
       GlStateManager.popMatrix();
     }
-  }
-
-  private String nativeLabel(String text) {
-    String value = perihelion.integration.minecraft189.HookBridge.displayText(text);
-    return bold ? GuiFonts.forceBold(value) : value;
   }
 
   private List<Run> parts(String text) {

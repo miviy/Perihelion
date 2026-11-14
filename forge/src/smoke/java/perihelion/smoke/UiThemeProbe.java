@@ -103,10 +103,14 @@ public final class UiThemeProbe {
                   above.y + PanelLayout.HEADER + bodyHeight <= below.y + .01f,
                   "default wrapped rows do not cover lower category headers: " + suffix);
             }
+          Object moduleCanvas = field(menu.getClass(), "canvas").get(menu);
           check(
-              field(field(menu.getClass(), "canvas").get(menu).getClass(), "font")
-                      .get(field(menu.getClass(), "canvas").get(menu))
-                  == face,
+              field(moduleCanvas.getClass(), "font").get(moduleCanvas)
+                  == (font == ClickGuiModule.Font.MINECRAFT
+                      ? fonts.minecraft(
+                          false,
+                          field(moduleCanvas.getClass(), "pixelScale").getFloat(moduleCanvas))
+                      : face),
               "Modules uses selected shared font: " + suffix);
           vw = field(menu.getClass(), "viewWidth").getFloat(menu);
           method(menu.getClass(), new Class<?>[] {float.class, float.class, int.class}, "click")
@@ -329,22 +333,39 @@ public final class UiThemeProbe {
         float viewWidth = field(menu.getClass(), "viewWidth").getFloat(menu);
         method(menu.getClass(), new Class<?>[] {float.class, float.class, int.class}, "click")
             .invoke(menu, viewWidth - 70, 14f, 0);
+        Object canvas = field(menu.getClass(), "canvas").get(menu);
         GuiFonts.Face regular, bold;
         try (RenderState ignored = new RenderState().open()) {
-          regular = fonts.get(choice);
-          bold = fonts.get(choice, true);
+          float pixels = field(canvas.getClass(), "pixelScale").getFloat(canvas);
+          regular =
+              choice == ClickGuiModule.Font.MINECRAFT
+                  ? fonts.minecraft(false, pixels)
+                  : fonts.get(choice);
+          bold =
+              choice == ClickGuiModule.Font.MINECRAFT
+                  ? fonts.minecraft(true, pixels)
+                  : fonts.get(choice, true);
         }
         check(
-            bold != regular && bold == fonts.get(choice, true),
+            bold != regular
+                && bold
+                    == (choice == ClickGuiModule.Font.MINECRAFT
+                        ? fonts.minecraft(
+                            true, field(canvas.getClass(), "pixelScale").getFloat(canvas))
+                        : fonts.get(choice, true)),
             "weight variants are distinct and cached: " + choice);
         check(bold.height() <= 13, "bold body text fits existing module row: " + choice);
         check(
-            bold.width("Wi\u03a9\u0416")
-                == bold.width("W") + bold.width("i") + bold.width("\u03a9") + bold.width("\u0416"),
+            Math.abs(
+                    bold.width("Wi\u03a9\u0416")
+                        - (bold.width("W")
+                            + bold.width("i")
+                            + bold.width("\u03a9")
+                            + bold.width("\u0416")))
+                < .001f,
             "bold Unicode advances match glyph runs: " + choice);
         HudChatProbe.captureWorld(
             game, "ui-custom-text-bold-" + choice.name().toLowerCase(Locale.ROOT) + ".png");
-        Object canvas = field(menu.getClass(), "canvas").get(menu);
         check(
             bold.width("Configs") + 8 <= field(menu.getClass(), "configTabWidth").getFloat(menu),
             "Configs tab fits chosen bold font: " + choice);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -117,7 +118,7 @@ public final class HudEditor extends GuiScreen {
     ClickGuiModule.Font choice = GuiTheme.font(hud.runtime);
     boolean nextBold = GuiTheme.bold(preferences);
     boolean nextModern = GuiTheme.modern(hud.runtime);
-    float nextPixels = mc.displayWidth / (float) width;
+    float nextPixels = new ScaledResolution(mc).getScaleFactor();
     if (choice != fontSeen
         || nextBold != boldSeen
         || nextModern != modernSeen
@@ -132,7 +133,7 @@ public final class HudEditor extends GuiScreen {
     }
     try (RenderState ignored = state.open()) {
       RenderStyle.text();
-      GuiTheme.configure(canvas, fonts, preferences, mc.displayWidth / (float) width);
+      GuiTheme.configure(canvas, fonts, preferences, nextPixels);
       canvas.rect(
           0,
           0,
@@ -333,7 +334,7 @@ public final class HudEditor extends GuiScreen {
     if (fontSeen != GuiTheme.font(hud.runtime)
         || boldSeen != GuiTheme.bold(GuiTheme.preferences(hud.runtime))
         || modernSeen != GuiTheme.modern(hud.runtime)
-        || modernSeen && pixelsSeen != mc.displayWidth / (float) width) {
+        || modernSeen && pixelsSeen != new ScaledResolution(mc).getScaleFactor()) {
       dragging = null;
       return;
     }

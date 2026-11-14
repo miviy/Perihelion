@@ -8,7 +8,6 @@ import perihelion.core.module.*;
 import perihelion.core.setting.Setting;
 import perihelion.integration.minecraft189.gui.*;
 import perihelion.integration.minecraft189.gui.font.GuiFonts;
-import perihelion.integration.minecraft189.gui.menu.MenuFontScale;
 import perihelion.integration.minecraft189.gui.panel.PanelLayout;
 import perihelion.integration.minecraft189.gui.panel.PanelScreen;
 import perihelion.integration.minecraft189.gui.widget.*;
@@ -141,8 +140,8 @@ public final class ModernScreen extends PanelScreen {
       boldSeen = weight;
       fontPixelsSeen = effectivePixels;
       if (choice == ClickGuiModule.Font.MINECRAFT) {
-        bodyFace = new MenuFontScale(fonts.get(choice, weight), 1f);
-        titleFace = new MenuFontScale(fonts.get(choice, weight), 1f);
+        bodyFace = fonts.minecraft(weight, effectivePixels);
+        titleFace = bodyFace;
       } else {
         bodyFace = fonts.pixelFace(choice, weight, GuiTheme.MODERN_BODY_SCALE, effectivePixels);
         float titleFactor = GuiTheme.MODERN_TITLE_SCALE;

@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import perihelion.core.lifecycle.ClientRuntime;
 import perihelion.integration.minecraft189.gui.*;
 import perihelion.integration.minecraft189.gui.font.GuiFonts;
-import perihelion.integration.minecraft189.gui.menu.MenuFontScale;
 import perihelion.integration.minecraft189.gui.widget.SettingControl;
 import perihelion.integration.minecraft189.gui.widget.UiCanvas;
 
@@ -22,6 +21,7 @@ public final class GuiFontProbe {
     boolean bold = p.bold.get();
     GuiFonts fonts = (GuiFonts) field(modern.getClass(), "fonts").get(modern);
     try {
+      MinecraftFontProbe.run();
       resourceLifetime(modern);
       draw(modern);
       formattedLabels(modern, fonts);
@@ -34,11 +34,9 @@ public final class GuiFontProbe {
           GuiFonts.Face face = canvas.font, title = canvas.sectionFont;
           if (choice == ClickGuiModule.Font.MINECRAFT) {
             check(
-                ((MenuFontScale) face).source == fonts.get(choice, weight),
+                face == fonts.minecraft(weight, canvas.pixelScale),
                 "Minecraft keeps native glyphs and selected weight");
-            check(
-                ((MenuFontScale) title).source == fonts.get(choice, weight),
-                "Minecraft category title keeps native glyphs");
+            check(title == face, "Minecraft category title keeps native glyphs");
           } else {
             check(
                 face
@@ -155,11 +153,15 @@ public final class GuiFontProbe {
           check(
               face
                   == (choice == ClickGuiModule.Font.MINECRAFT
-                      ? fonts.get(choice, weight)
+                      ? fonts.minecraft(weight, number(text, "rasterPixels"))
                       : fonts.pixelFace(choice, weight, 1.35f, number(text, "rasterPixels"))),
               "HUD uses final-size selected family and Bold: " + choice);
           String label = "Wi§c colored§r reset";
           if (choice == ClickGuiModule.Font.MINECRAFT) {
+            UiCanvas editorCanvas = (UiCanvas) field(editor.getClass(), "canvas").get(editor);
+            check(
+                editorCanvas.font.width("Elements") + 8 <= 59,
+                "Minecraft Elements label fits its unchanged toolbar button");
             int measured =
                 (Integer)
                     method(text.getClass(), new Class<?>[] {String.class}, "width")
