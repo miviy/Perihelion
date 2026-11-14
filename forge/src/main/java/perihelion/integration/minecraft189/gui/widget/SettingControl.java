@@ -87,6 +87,14 @@ public abstract class SettingControl {
       return control.editingX;
     }
 
+    public void drawLabel(UiCanvas canvas) {
+      control.drawLabel(canvas);
+    }
+
+    public void drawTextLabel(UiCanvas canvas) {
+      ((Text) control).drawTextLabel(canvas);
+    }
+
     public String summary() {
       return ((Choices) control).summary();
     }
@@ -325,7 +333,58 @@ public abstract class SettingControl {
   }
 
   protected final void editingLabel(UiCanvas c, String name, float rowY) {
-    c.label(name, x + 3, c.font.centeredY(rowY, 12), Math.max(0, editingX - x - 6), c.text);
+    if (rowY == y) drawLabel(c);
+    else c.label(name, x + 3, c.font.centeredY(rowY, 12), Math.max(0, editingX - x - 6), c.text);
+  }
+
+  public static final class EditBounds {
+    public final float x, textY, width;
+    public final boolean rightAligned;
+
+    private EditBounds(float x, float textY, float width, boolean rightAligned) {
+      this.x = x;
+      this.textY = textY;
+      this.width = width;
+      this.rightAligned = rightAligned;
+    }
+  }
+
+  /** Match the painted value's baseline and alignment without changing its label layout. */
+  public final EditBounds editBounds(UiCanvas c, String name, float rowY) {
+    float left = x + Math.min(c.font.width(name) + 9, w - 64);
+    float top = c.font.centeredY(rowY, 12);
+    boolean number = this instanceof NumberSlider;
+    boolean slider = number || this instanceof Range && rowY != y;
+    if (this instanceof ColorPicker && rowY != y) {
+      ColorPicker picker = (ColorPicker) this;
+      slider = !picker.compact() && rowY < y + headerHeight + 160;
+      if (picker.compact()) {
+        left = x + 6;
+        top = c.font.centeredY(picker.compactTop() + 72, picker.compactHexHeight());
+      } else if (!slider) left = x + 3;
+    }
+    if (slider) {
+      float bandY = number ? y + headerHeight - ROW : rowY;
+      top = c.font.centeredY(bandY, c.classic ? 10 : c.modern && number ? 14 : 12);
+      left =
+          c.classic
+              ? x + 3 + (number && stackedValue ? 0 : c.font.width(name + ": "))
+              : number && stackedValue ? x + 3 : left;
+    } else if (this instanceof Text) {
+      Text text = (Text) this;
+      top = c.font.centeredY(y, height() - (((Text) this).lines.size() - 1) * lineHeight);
+      int remaining = label.length() + 2;
+      for (int i = 0; i < text.lines.size(); i++) {
+        String line = text.lines.get(i);
+        if (remaining < line.length() || i == text.lines.size() - 1) {
+          left = x + 3 + c.font.width(line.substring(0, Math.min(remaining, line.length())));
+          top += i * lineHeight;
+          break;
+        }
+        remaining -= line.length();
+      }
+    }
+    return new EditBounds(left, top, Math.max(2, x + w - left), slider && !c.classic);
   }
 
   protected abstract void draw(UiCanvas c);
@@ -359,7 +418,11 @@ public abstract class SettingControl {
   }
 
   protected void editAt(float rowY) {
-    actions.edit(label, String.valueOf(setting.get()), x, rowY, w, this::parse);
+    String initial =
+        setting.get() instanceof Number
+            ? GuiValues.number(((Number) setting.get()).doubleValue())
+            : String.valueOf(setting.get());
+    actions.edit(label, initial, x, rowY, w, this::parse);
   }
 
   protected double fraction(float mx) {
@@ -401,7 +464,14 @@ public abstract class SettingControl {
 
     protected void draw(UiCanvas c) {
       if (editing(y)) {
-        editingLabel(c, label, y);
+        if (stackedValue) drawLabel(c);
+        else
+          c.label(
+              label,
+              x + 3,
+              c.font.centeredY(y + headerHeight - ROW, 12),
+              w - c.font.width(GuiValues.number(((Number) setting.get()).doubleValue())) - 11,
+              c.text);
         return;
       }
       NumericConstraints n = setting.metadata().numeric().get();
@@ -563,7 +633,7 @@ public abstract class SettingControl {
         DoubleRange r = (DoubleRange) setting.get();
         NumericConstraints n = setting.metadata().numeric().get();
         double span = n.maximum() - n.minimum();
-        if (editing(contentY + 16)) editingLabel(c, label, contentY + 16);
+        if (editing(contentY + 16)) editingLabel(c, "Min", contentY + 16);
         else
           c.slider(
               "Min",
@@ -572,7 +642,7 @@ public abstract class SettingControl {
               contentY + 16,
               w,
               span == 0 ? 0 : (r.lower() - n.minimum()) / span);
-        if (editing(contentY + 32)) editingLabel(c, label, contentY + 32);
+        if (editing(contentY + 32)) editingLabel(c, "Max", contentY + 32);
         else
           c.slider(
               "Max",
@@ -586,8 +656,25 @@ public abstract class SettingControl {
 
     public boolean press(float mx, float my, int button) {
       if (button == 1) {
-        editAt(
-            my < y + headerHeight ? y : y + headerHeight + (my < y + headerHeight + 16 ? 0 : 16));
+        if (my < y + headerHeight) editAt(y);
+        else {
+          boolean lower = my < y + headerHeight + 16;
+          DoubleRange range = (DoubleRange) setting.get();
+          actions.edit(
+              lower ? "Min" : "Max",
+              GuiValues.number(lower ? range.lower() : range.upper()),
+              x,
+              y + headerHeight + (lower ? 0 : 16),
+              w,
+              text -> {
+                double value = Double.parseDouble(text);
+                DoubleRange current = (DoubleRange) setting.get();
+                value(
+                    lower
+                        ? new DoubleRange(value, current.upper())
+                        : new DoubleRange(current.lower(), value));
+              });
+        }
         return false;
       }
       if (button != 0) return false;
@@ -626,8 +713,19 @@ public abstract class SettingControl {
       return Math.max(ROW, (lines.size() - 1) * lineHeight + measuredFace.height() + 5);
     }
 
+    private void drawTextLabel(UiCanvas c) {
+      int remaining = label.length() + 2;
+      float top = c.font.centeredY(y, height() - (lines.size() - 1) * lineHeight);
+      for (int i = 0; i < lines.size() && remaining > 0; i++) {
+        String line = lines.get(i);
+        int end = Math.min(remaining, line.length());
+        c.text(line.substring(0, end), x + 3, top + i * lineHeight, c.text);
+        remaining -= end;
+      }
+    }
+
     protected void draw(UiCanvas c) {
-      if (editing(y)) editingLabel(c, label, y);
+      if (editing(y)) drawTextLabel(c);
       else
         drawLines(
             c,
@@ -756,8 +854,7 @@ public abstract class SettingControl {
             contentY + 158,
             w,
             (color().rainbowSpeed() - 0.1) / 9.9);
-      if (editing(contentY + 176)) editingLabel(c, "Hex:", contentY + 176);
-      else
+      if (!editing(contentY + 176))
         c.label(
             color().toString().toLowerCase(Locale.ROOT),
             x + 3,
@@ -794,8 +891,8 @@ public abstract class SettingControl {
       c.verticalHairline(left + hue * width, top + 59, 9, 0xffeeeeee);
       float hexTop = top + 72, hexHeight = compactHexHeight();
       c.rect(left, hexTop, width, hexHeight, 0xff121211);
-      if (editing(compactHexEditTop())) editingLabel(c, "Hex", compactHexEditTop());
-      else c.label(compactHex(), x + 6, c.font.centeredY(hexTop, hexHeight), w - 12, c.text);
+      if (!editing(compactHexEditTop()))
+        c.label(compactHex(), x + 6, c.font.centeredY(hexTop, hexHeight), w - 12, c.text);
     }
 
     private String compactHex() {

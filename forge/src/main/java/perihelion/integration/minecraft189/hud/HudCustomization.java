@@ -29,7 +29,7 @@ final class HudCustomization implements SettingControl.Actions {
   private SettingControl captured, pressed, editing;
   private GuiTextField field;
   private Consumer<String> submit;
-  private float x, y, w, h, scroll, editX, editY, editWidth, footer;
+  private float x, y, w, h, scroll, editX, editY, editTextY, editWidth, footer;
   private long caretEpoch;
   private String error = "";
 
@@ -153,9 +153,7 @@ final class HudCustomization implements SettingControl.Actions {
       }
       top += control.height();
     }
-    if (field != null)
-      inline.draw(
-          canvas, field, editX, canvas.font.centeredY(editY, 12) - 1, editWidth, caretEpoch);
+    if (field != null) inline.draw(canvas, field, editX, editTextY - 1, editWidth, caretEpoch);
     GL11.glDisable(GL11.GL_SCISSOR_TEST);
     canvas.label(error.isEmpty() ? "" : error, x + 4, y + h - 14, w - 8, canvas.muted);
     if (contentHeight() > available) {
@@ -235,7 +233,8 @@ final class HudCustomization implements SettingControl.Actions {
       return;
     }
     if (field != null) {
-      if (UiCanvas.inside(mx, my, editX, editY, editWidth, 16)) {
+      if (UiCanvas.inside(
+          mx, my, editX, editTextY, editWidth, Math.max(12, canvas.font.height()))) {
         inline.placeCursor(canvas, field, editX, editWidth, mx);
         caretEpoch = System.currentTimeMillis();
         return;
@@ -302,8 +301,10 @@ final class HudCustomization implements SettingControl.Actions {
     this.submit = submit;
     editing = pressed;
     editY = y;
-    editX = x + Math.min(canvas.font.width(label) + 9, width - 64);
-    editWidth = Math.max(12, width - (editX - x) - 2);
+    SettingControl.EditBounds bounds = editing.editBounds(canvas, label, y);
+    editX = bounds.x;
+    editTextY = bounds.textY;
+    editWidth = bounds.width;
     field = new GuiTextField(2, mc.fontRendererObj, (int) editX, (int) y + 2, (int) editWidth, 12);
     field.setEnableBackgroundDrawing(false);
     field.setMaxStringLength(Math.max(2048, initial.length()));
@@ -313,6 +314,7 @@ final class HudCustomization implements SettingControl.Actions {
     field.setSelectionPos(0);
     captured = null;
     inline.reset();
+    inline.rightAligned(bounds.rightAligned);
     caretEpoch = System.currentTimeMillis();
   }
 

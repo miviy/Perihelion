@@ -9,6 +9,11 @@ public final class InlineTextFieldView {
   private String lastText;
   private GuiFonts.Face lastFace;
   private float lastWidth;
+  private boolean rightAligned;
+
+  public void rightAligned(boolean aligned) {
+    rightAligned = aligned;
+  }
 
   public void reset() {
     first = 0;
@@ -75,6 +80,10 @@ public final class InlineTextFieldView {
     return Math.round(coordinate * pixelScale) / pixelScale;
   }
 
+  private float textLeft(GuiFonts.Face face, String text, int end, float x, float width) {
+    return rightAligned ? x + Math.max(0, width - 3 - face.width(text.substring(first, end))) : x;
+  }
+
   public void draw(
       UiCanvas canvas, GuiTextField field, float x, float y, float width, long blinkEpoch) {
     draw(canvas, field, x, y, width, blinkEpoch, true);
@@ -95,7 +104,8 @@ public final class InlineTextFieldView {
     int selection = boundary(text, Math.min(field.getSelectionEnd(), text.length()));
     window(face, text, selection, width);
     int end = end(face, text, width);
-    float left = snap(x, canvas.pixelScale), top = snap(y + 1, canvas.pixelScale);
+    float left = snap(textLeft(face, text, end, x, width), canvas.pixelScale),
+        top = snap(y + 1, canvas.pixelScale);
     if (selection != cursor) {
       int from = Math.max(first, Math.min(cursor, selection));
       int to = Math.min(end, Math.max(cursor, selection));
@@ -137,7 +147,7 @@ public final class InlineTextFieldView {
     String text = field.getText();
     window(face, text, boundary(text, field.getSelectionEnd()), width);
     int end = end(face, text, width);
-    float offset = mouseX - snap(x, canvas.pixelScale), used = 0;
+    float offset = mouseX - snap(textLeft(face, text, end, x, width), canvas.pixelScale), used = 0;
     int position = first;
     while (position < end) {
       float next = advance(face, text, position);

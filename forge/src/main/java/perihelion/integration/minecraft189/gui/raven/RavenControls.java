@@ -70,12 +70,14 @@ public final class RavenControls implements SettingControl.Painter {
 
   private static boolean edit(UiCanvas c, PaintView v, String label, float rowY) {
     if (!v.editing(rowY)) return false;
-    c.label(
-        label,
-        v.x() + 3,
-        c.font.centeredY(rowY, 12),
-        Math.max(0, v.editingX() - v.x() - 6),
-        c.text);
+    if (rowY == v.y()) v.drawLabel(c);
+    else if (!label.equals("Hex:"))
+      c.label(
+          label + ": ",
+          v.x() + 3,
+          c.font.centeredY(rowY, 10),
+          Math.max(0, v.editingX() - v.x() - 3),
+          0xffffffff);
     return true;
   }
 
@@ -93,7 +95,16 @@ public final class RavenControls implements SettingControl.Painter {
   }
 
   private static void number(UiCanvas c, PaintView v) {
-    if (edit(c, v, v.label(), v.y())) return;
+    if (v.editing(v.y())) {
+      if (v.stackedValue()) label(c, v, c.text);
+      else
+        c.text(
+            v.label() + ": ",
+            v.x() + 3,
+            c.font.centeredY(v.y() + v.headerHeight() - SettingControl.ROW, 10),
+            0xffffffff);
+      return;
+    }
     NumericConstraints n = v.setting().metadata().numeric().get();
     double value = ((Number) v.setting().get()).doubleValue();
     if (v.stackedValue()) label(c, v, c.text);
@@ -178,7 +189,10 @@ public final class RavenControls implements SettingControl.Painter {
   }
 
   private static void text(UiCanvas c, PaintView v) {
-    if (edit(c, v, v.label(), v.y())) return;
+    if (v.editing(v.y())) {
+      v.drawTextLabel(c);
+      return;
+    }
     float band = v.height() - (v.textLines().size() - 1) * v.lineHeight();
     lines(c, v, v.textLines(), v.x() + 3, c.font.centeredY(v.y(), band), c.text);
     c.hairline(v.x() + 3, v.y() + v.height() - 1, v.width() - 6, 0x70516395);

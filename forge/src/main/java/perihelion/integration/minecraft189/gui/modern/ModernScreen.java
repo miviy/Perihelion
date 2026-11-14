@@ -595,11 +595,11 @@ public final class ModernScreen extends PanelScreen {
           y = blockTop + m.height;
         }
       if (editor != null && editorPanel == p) {
-        float top = Math.max(editY, p.y + HEADER), end = Math.min(editY + 16, contentBottom);
+        float top = Math.max(editTextY, p.y + HEADER),
+            end = Math.min(editTextY + Math.max(12, canvas.font.height()), contentBottom);
         if (end > top) {
           clip(editX, top, editWidth, end - top);
-          inlineEditor.draw(
-              canvas, editor, editX, canvas.font.centeredY(editY, 12) - 1, editWidth, caretEpoch);
+          inlineEditor.draw(canvas, editor, editX, editTextY - 1, editWidth, caretEpoch);
         }
       }
       clip(p.x, p.y + HEADER, WIDTH, Math.max(0, contentBottom - p.y - HEADER));

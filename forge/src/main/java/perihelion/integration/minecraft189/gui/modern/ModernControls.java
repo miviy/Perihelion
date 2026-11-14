@@ -33,8 +33,14 @@ public final class ModernControls implements SettingControl.Painter {
         c.rect(x, barY, w, 14, 0xff1b1a19);
         c.rect(x, barY, w * Math.max(0, Math.min(1, f)), 14, c.selection);
         if (v.editing(y)) {
-          c.label(
-              v.label(), x + 3, c.font.centeredY(y, 12), Math.max(0, v.editingX() - x - 6), c.text);
+          if (v.stackedValue()) label(c, v);
+          else
+            c.label(
+                v.label(),
+                x + 3,
+                c.font.centeredY(barY, 14),
+                w - c.font.width(GuiValues.number(value)) - 9,
+                c.text);
         } else {
           if (v.stackedValue()) label(c, v);
           String number = GuiValues.number(value);

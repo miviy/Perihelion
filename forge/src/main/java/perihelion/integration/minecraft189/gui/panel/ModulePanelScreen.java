@@ -159,7 +159,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
   protected Consumer<String> submit;
   protected PanelLayout.Panel editorPanel, pressedPanel;
   protected SettingControl editorControl, pressedControl;
-  protected float editX, editY, editWidth;
+  protected float editX, editY, editTextY, editWidth;
   protected long caretEpoch;
   protected boolean replaceOnType;
   protected final KeybindEditor binding;
@@ -682,8 +682,12 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
     editorPanel = pressedPanel;
     editorControl = pressedControl;
     editY = y;
-    editX = x + Math.min(editorFont().width(label) + 9, width - 64);
-    editWidth = width - (editX - x) - 2;
+    canvas.font = editorFont();
+    SettingControl.EditBounds bounds =
+        editorControl == null ? null : editorControl.editBounds(canvas, label, y);
+    editX = bounds == null ? x + Math.min(editorFont().width(label) + 9, width - 64) : bounds.x;
+    editTextY = bounds == null ? canvas.font.centeredY(y, 12) : bounds.textY;
+    editWidth = bounds == null ? width - (editX - x) - 2 : bounds.width;
     editor =
         new GuiTextField(
             2, mc.fontRendererObj, (int) editX, (int) (y + 2), Math.max(12, (int) editWidth), 12);
@@ -695,6 +699,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
     editor.setSelectionPos(initial.length());
     replaceOnType = true;
     inlineEditor.reset();
+    inlineEditor.rightAligned(bounds != null && bounds.rightAligned);
     caretEpoch = System.currentTimeMillis();
     clearCapture();
     binding.cancel();
@@ -721,7 +726,8 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
       return;
     }
     if (editor != null) {
-      if (UiCanvas.inside(mx, my, editX, editY, editWidth, 16)) {
+      if (UiCanvas.inside(
+          mx, my, editX, editTextY, editWidth, Math.max(12, canvas.font.height()))) {
         if (button == 0) {
           canvas.font = editorFont();
           canvas.pixelScale = pixels;

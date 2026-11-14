@@ -229,12 +229,13 @@ public class PanelScreen extends ModulePanelScreen {
         }
       }
     if (editor != null && editorPanel == panel) {
-      float top = Math.max(editY, panel.y + headerHeight());
-      float bottom = Math.min(editY + 16, panel.y + headerHeight() + height);
+      float top = Math.max(editTextY, panel.y + headerHeight());
+      float bottom =
+          Math.min(
+              editTextY + Math.max(12, canvas.font.height()), panel.y + headerHeight() + height);
       if (bottom > top) {
         clip(editX, top, editWidth, bottom - top);
-        inlineEditor.draw(
-            canvas, editor, editX, canvas.font.centeredY(editY, 12) - 1, editWidth, caretEpoch);
+        inlineEditor.draw(canvas, editor, editX, editTextY - 1, editWidth, caretEpoch);
       }
     }
     GL11.glDisable(GL11.GL_SCISSOR_TEST);

@@ -405,6 +405,12 @@ public final class SmokeProbe {
       if (stage == Stage.TITLE && stableTicks >= 20) {
         assertRuntime(false);
         capture("title-screen.png");
+        if (Boolean.getBoolean("perihelion.smoke.inlineEditing")) {
+          Class.forName("perihelion.smoke.InlineEditingProbe")
+              .getMethod("run", ClientRuntime.class, Object.class).invoke(null, runtime, minecraft);
+          pass();
+          return;
+        }
         if (scenario.equals("invmove") || scenario.equals("b4") || scenario.equals("scaffold") || scenario.equals("beddefender") || scenario.equals("breaker")) {
           // Keep focused gameplay checks independent of unrelated visual fixtures.
           stage = Stage.CREATE;
