@@ -56,15 +56,10 @@ final class TabGuiView {
     int width = layout.paneWidth;
     int height = nav.settingsOpen ? settings.height : modules.height;
     paint.surface(x, y, width, height);
-    paint.label(
-        nav.settingsOpen ? HudNavigator.label(nav.module()) : HudNavigator.CATEGORIES[nav.category],
-        x + 3,
-        y,
-        width - 6,
-        row,
-        Tone.TEXT);
-    int top = y + row;
+    int top = y;
     if (nav.settingsOpen) {
+      paint.label(HudNavigator.label(nav.module()), x + 3, y, width - 6, row, Tone.TEXT);
+      top += row;
       if (settings.settings.isEmpty())
         paint.label("No settings", x + 3, top, width - 6, row, Tone.MUTED);
       for (int i = 0; i < settings.count; i++) {
@@ -118,7 +113,7 @@ final class TabGuiView {
       footer(
           paint,
           x,
-          y + row + modules.contentHeight,
+          y + modules.contentHeight,
           width,
           new String[] {"Enter toggle  Right settings", "Left back"},
           false);

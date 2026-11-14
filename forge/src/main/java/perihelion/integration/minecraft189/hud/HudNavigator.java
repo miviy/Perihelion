@@ -18,6 +18,7 @@ final class HudNavigator {
       TYPES.stream().map(ModuleCategory::displayName).toArray(String[]::new);
   static final int CATEGORY_WIDTH = 65, ROW_HEIGHT = 11;
   static final int PANE_CHROME = ROW_HEIGHT * 3;
+  static final int MODULE_CHROME = ROW_HEIGHT * 2;
   final List<List<ModuleEntry>> groups = new ArrayList<>();
   int category, selected, settingSelected, component;
   boolean expanded, settingsOpen, editing;
@@ -360,11 +361,11 @@ final class HudNavigator {
 
     ModuleRows(HudNavigator nav, int availableHeight) {
       modules = nav.rows();
-      int visible = Math.max(1, (availableHeight - PANE_CHROME) / ROW_HEIGHT);
+      int visible = Math.max(1, (availableHeight - MODULE_CHROME) / ROW_HEIGHT);
       first = Math.max(0, nav.selected - visible + 1);
       count = Math.min(visible, modules.size() - first);
       contentHeight = Math.max(1, count) * ROW_HEIGHT;
-      height = Math.min(availableHeight, PANE_CHROME + contentHeight);
+      height = Math.min(availableHeight, MODULE_CHROME + contentHeight);
     }
   }
 

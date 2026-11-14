@@ -407,7 +407,7 @@ public class HudNavigatorTest {
           HudNavigator.ModuleRows rows = nav.moduleRows(height);
           assertTrue(rows.first <= selected && rows.first + rows.count > selected);
           assertEquals(rows.count * HudNavigator.ROW_HEIGHT, rows.contentHeight);
-          assertEquals(HudNavigator.PANE_CHROME + rows.contentHeight, rows.height);
+          assertEquals(HudNavigator.MODULE_CHROME + rows.contentHeight, rows.height);
           assertTrue(rows.height <= height);
         }
       }
