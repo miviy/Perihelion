@@ -24,9 +24,10 @@
 
 - Run checks relevant to the change. Distinguish builds, local runtime checks and
   live-server results; report failures and unverified behavior honestly.
-- For visual changes, take and inspect screenshots of the affected screens in the
-  running client, fix visible issues and include useful screenshots in the handoff.
-  Check that the affected controls still work and saved layouts/settings survive.
+- For visual changes, capture and inspect screenshots when useful, fix visible
+  issues and include useful screenshots in the handoff. If capture is unavailable,
+  report the limitation and continue the checks you can. Check affected controls
+  and confirm saved layouts/settings survive.
 - After client changes, launch the updated Minecraft client, verify it stays running
   and leave it open for the user to test. Reuse a running instance if it is current.
 - Keep the final response brief: what changed, what was checked and any limitations.
@@ -37,6 +38,7 @@
 - Check the branch and working tree before Git operations. Stage only this task's
   changes; exclude credentials, local game data and unrelated work.
 - When the task is complete and relevant checks pass, automatically commit and push
-  its changes to the appropriate remote branch without asking again, unless the
-  user requested otherwise. Report the commit and push result; flag any CI failures.
+  its changes on the current branch without asking again, unless the task requires
+  a separate branch or the user requested otherwise. Report the commit and push
+  result; flag any CI failures.
 - Never force-push or rewrite shared history unless explicitly requested.
