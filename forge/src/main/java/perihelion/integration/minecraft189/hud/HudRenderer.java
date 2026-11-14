@@ -58,6 +58,7 @@ final class HudRenderer implements AutoCloseable {
   final HudNavigator navigation;
   HudNavigator.Layout navigationLayout;
   HudNavigator.SettingRows navigationSettings;
+  HudNavigator.ModuleRows navigationModules;
   float pixels = 1;
   private float density = 1;
   private final UiCanvas canvas = new UiCanvas();
@@ -829,11 +830,10 @@ final class HudRenderer implements AutoCloseable {
               navigation.settingRows(
                   navigationLayout.paneWidth, navigationLayout.availableHeight, text::width);
           paneHeight = navigationSettings.height;
-        } else
-          paneHeight =
-              Math.min(
-                  Math.max(1, navigation.rows().size()) * 11,
-                  navigationLayout.availableHeight / 11 * 11);
+        } else {
+          navigationModules = navigation.moduleRows(navigationLayout.availableHeight);
+          paneHeight = navigationModules.height;
+        }
         int left = Math.min(0, navigationLayout.paneX);
         int right =
             Math.max(
@@ -1679,109 +1679,57 @@ final class HudRenderer implements AutoCloseable {
         && ((NavigationInput) mc.currentScreen).owner == this;
   }
 
-  private void drawNavigation(Box b) {
-    HudNavigator.Layout layout = navigationLayout;
-    int x = layout.x, y = layout.y;
-    surface(x, y, HudNavigator.CATEGORY_WIDTH, HudNavigator.CATEGORIES.length * 11, background);
-    for (int i = 0; i < HudNavigator.CATEGORIES.length; i++) {
-      if (i == navigation.category)
-        canvas.rect(x, y + i * 11, HudNavigator.CATEGORY_WIDTH, 11, GuiTheme.alpha(.24, primary));
-      rowLabel(
-          HudNavigator.CATEGORIES[i],
-          x + 3,
-          y + i * 11,
-          59,
-          11,
-          i == navigation.category ? TEXT : MUTED);
-    }
-    if (!navigation.expanded || layout.paneWidth <= 0) return;
-    x = layout.paneX;
-    int paneWidth = layout.paneWidth;
-    if (navigation.settingsOpen) {
-      HudNavigator.SettingRows rows = navigationSettings;
-      surface(x, y, paneWidth, rows.height, background);
-      rowLabel(HudNavigator.label(navigation.module()), x + 3, y, paneWidth - 6, 11, TEXT);
-      if (rows.settings.isEmpty()) rowLabel("No settings", x + 3, y + 11, paneWidth - 6, 14, MUTED);
-      int top = y + 11;
-      for (int row = 0; row < rows.count; row++) {
-        int index = rows.first + row, rowHeight = rows.heights[index];
-        Setting<?> setting = rows.settings.get(index);
-        if (index == navigation.settingSelected)
+  private final TabGuiView.Painter navigationPainter =
+      new TabGuiView.Painter() {
+        public void surface(int x, int y, int width, int height) {
+          HudRenderer.this.surface(x, y, width, height, background);
+        }
+
+        public void highlight(
+            int x,
+            int y,
+            int width,
+            int height,
+            boolean selected,
+            boolean editing,
+            boolean enabled) {
           canvas.rect(
-              x,
-              top,
-              paneWidth,
-              rowHeight,
-              perihelion.integration.minecraft189.gui.GuiTheme.alpha(
-                  navigation.editing ? .28 : .16, primary));
-        boolean bool =
-            setting.metadata().kind() == perihelion.core.setting.SettingMetadata.Kind.BOOLEAN;
-        String value = rows.values.get(index);
-        int valueWidth = text.width(value);
-        boolean stacked = rows.stacked[index];
-        int band = stacked ? rowHeight / 2 : rowHeight;
-        rowLabel(
-            rows.labels.get(index),
-            x + 4,
-            top,
-            paneWidth - (bool ? 23 : stacked ? 8 : valueWidth + 12),
-            band,
-            TEXT);
-        if (bool) {
-          boolean on = Boolean.TRUE.equals(setting.get());
-          if (modern) {
-            ModernTheme.checkboxRow(canvas, x + paneWidth, top, rowHeight, on);
-          } else {
-            float toggleY = top + (rowHeight - 5) / 2f;
-            canvas.rect(x + paneWidth - 17, toggleY, 12, 5, on ? primary : 0xff424242);
-            canvas.rect(x + paneWidth - (on ? 9 : 16), toggleY + 1, 3, 3, TEXT);
-          }
-        } else {
-          if (index == navigation.settingSelected && navigation.textEditing())
-            value = HudNavigator.tail(value, paneWidth - 8, text::width);
+              x, y, width, height, GuiTheme.alpha(editing ? .28 : selected ? .24 : .16, primary));
+        }
+
+        public void label(String value, int x, int y, int width, int height, TabGuiView.Tone tone) {
           rowLabel(
               value,
-              stacked ? x + 4 : x + paneWidth - valueWidth - 4,
-              top + (stacked ? band : 0),
-              paneWidth - 8,
-              stacked ? rowHeight - band : rowHeight,
-              index == navigation.settingSelected && navigation.editing ? TEXT : MUTED);
+              x,
+              y,
+              width,
+              height,
+              tone == TabGuiView.Tone.ERROR
+                  ? 0xffffaaaa
+                  : tone == TabGuiView.Tone.MUTED ? MUTED : TEXT);
         }
-        top += rowHeight;
-      }
-      String[] hint = navigation.hint();
-      int footer = y + 11 + rows.contentHeight;
-      rowLabel(
-          hint[0],
-          x + 3,
-          footer,
-          paneWidth - 6,
-          11,
-          navigation.error.isEmpty() ? MUTED : 0xffffaaaa);
-      rowLabel(hint[1], x + 3, footer + 11, paneWidth - 6, 11, MUTED);
-      return;
-    }
-    List<ModuleEntry> entries = navigation.rows();
-    int visible = Math.max(1, layout.availableHeight / 11);
-    int first = Math.max(0, navigation.selected - visible + 1);
-    int count = Math.min(visible, entries.size() - first);
-    surface(x, y, paneWidth, Math.max(1, count) * 11, modern ? ModernTheme.PANEL : 0xf2101215);
-    for (int row = 0; row < count; row++) {
-      int index = first + row;
-      ModuleEntry entry = entries.get(index);
-      boolean on = entry.state() == ModuleState.ENABLED;
-      if (on || index == navigation.selected)
-        canvas.rect(
-            x,
-            y + row * 11,
-            paneWidth,
-            11,
-            perihelion.integration.minecraft189.gui.GuiTheme.alpha(
-                index == navigation.selected ? .25 : .16, primary));
-      rowLabel(
-          HudNavigator.label(entry), x + 3, y + row * 11, paneWidth - 14, 11, on ? TEXT : MUTED);
-      if (index == navigation.selected) rowLabel(">", x + paneWidth - 9, y + row * 11, 6, 11, TEXT);
-    }
+
+        public void checkbox(int x, int y, int width, int height, boolean on) {
+          if (modern) ModernTheme.checkboxRow(canvas, x + width, y, height, on);
+          else {
+            float top = y + (height - 5) / 2f;
+            canvas.rect(x + width - 17, top, 12, 5, on ? primary : 0xff424242);
+            canvas.rect(x + width - (on ? 9 : 16), top + 1, 3, 3, TEXT);
+          }
+        }
+
+        public int checkboxWidth() {
+          return 23;
+        }
+
+        public int textWidth(String value) {
+          return text.width(value);
+        }
+      };
+
+  private void drawNavigation(Box b) {
+    TabGuiView.draw(
+        navigation, navigationLayout, navigationModules, navigationSettings, navigationPainter);
   }
 
   /** A transparent focus owner for settings; the existing HUD draws its keyboard view. */

@@ -1,0 +1,64 @@
+{
+  "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/tab-gui-sync-20261113/Perihelion-0.1.0.jar",
+  "artifactSha256": "6ea41d72915db5a19afa9b7b4bc8b935f9d43d748494ac4c7646addd66ebe8b1",
+  "backup": "/Users/wmcul/dev/perihelion_workspace/Perihelion/.backups/tab-gui-sync-20261113-224232/sources.tar.gz",
+  "unitTests": {
+    "core": 164,
+    "forge": 455,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "packagedUi": {
+    "forge": {
+      "passed": true,
+      "tabGuiChecks": 119,
+      "styles": [
+        "New",
+        "Adjust",
+        "Raven"
+      ],
+      "matchingBackgroundPixels": true,
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/launch.log",
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/result.json"
+    },
+    "optifine": {
+      "passed": true,
+      "tabGuiChecks": 119,
+      "styles": [
+        "New",
+        "Adjust",
+        "Raven"
+      ],
+      "matchingBackgroundPixels": true,
+      "log": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-zbqodynv/launch.log",
+      "result": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-optifine-zbqodynv/result.json"
+    }
+  },
+  "manualLaunch": {
+    "runDirectory": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-manual-tab-gui-sync-a4zty2y4",
+    "pid": 22188,
+    "artifact": "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/build/verified/tab-gui-sync-20261113/Perihelion-0.1.0.jar",
+    "artifactSha256": "6ea41d72915db5a19afa9b7b4bc8b935f9d43d748494ac4c7646addd66ebe8b1",
+    "smokeProbeInstalled": false,
+    "offlineTestProfile": true,
+    "hudEnabled": true,
+    "previewWorld": "PerihelionSmoke",
+    "createdAt": "2026-11-14T07:11:48.550609+00:00"
+  },
+  "manualLiveness": {
+    "pidAlive": true,
+    "startupMarker": true,
+    "texturesLoaded": true,
+    "smokeProbeInstalled": false
+  },
+  "visualReview": [
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-new-modules.png",
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-new-settings.png",
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-adjust-modules.png",
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-adjust-settings.png",
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-raven-modules.png",
+    "/Users/wmcul/dev/perihelion_workspace/Perihelion/forge/run-smoke-forge-o3qg127t/tab-gui-raven-settings.png"
+  ],
+  "scope": "Local unit, settings, native UI and shutdown checks; no authenticated provider or live multiplayer claim."
+}

@@ -17,6 +17,7 @@ final class HudNavigator {
   static final String[] CATEGORIES =
       TYPES.stream().map(ModuleCategory::displayName).toArray(String[]::new);
   static final int CATEGORY_WIDTH = 65, ROW_HEIGHT = 11;
+  static final int PANE_CHROME = ROW_HEIGHT * 3;
   final List<List<ModuleEntry>> groups = new ArrayList<>();
   int category, selected, settingSelected, component;
   boolean expanded, settingsOpen, editing;
@@ -124,7 +125,8 @@ final class HudNavigator {
           error = "Module faulted; see log";
         }
       }
-    settingSelected = Math.max(0, Math.min(settingSelected, visible.size() - 1));
+    if (editing && visible.contains(editTarget)) settingSelected = visible.indexOf(editTarget);
+    else settingSelected = Math.max(0, Math.min(settingSelected, visible.size() - 1));
     // A dependent setting can disappear after a value change; never keep a hidden editor alive.
     if (editing && !visible.contains(editTarget)) finish();
     return visible;
@@ -319,7 +321,13 @@ final class HudNavigator {
 
   String[] hint() {
     if (!error.isEmpty()) return new String[] {error, "Esc cancel"};
-    if (!editing) return new String[] {"Enter edit", "Left back"};
+    if (!editing) {
+      List<Setting<?>> visible = settings();
+      boolean toggle =
+          !visible.isEmpty()
+              && visible.get(settingSelected).metadata().kind() == SettingMetadata.Kind.BOOLEAN;
+      return new String[] {toggle ? "Enter toggle" : "Enter edit", "Left back"};
+    }
     if (textEditing()) return new String[] {"Type  Enter save", "Esc cancel"};
     boolean components =
         editTarget.metadata().kind() == SettingMetadata.Kind.RANGE
@@ -340,6 +348,24 @@ final class HudNavigator {
 
   SettingRows settingRows(int paneWidth, int availableHeight, ToIntFunction<String> measure) {
     return new SettingRows(this, paneWidth, availableHeight, measure);
+  }
+
+  ModuleRows moduleRows(int availableHeight) {
+    return new ModuleRows(this, availableHeight);
+  }
+
+  static final class ModuleRows {
+    final List<ModuleEntry> modules;
+    final int first, count, contentHeight, height;
+
+    ModuleRows(HudNavigator nav, int availableHeight) {
+      modules = nav.rows();
+      int visible = Math.max(1, (availableHeight - PANE_CHROME) / ROW_HEIGHT);
+      first = Math.max(0, nav.selected - visible + 1);
+      count = Math.min(visible, modules.size() - first);
+      contentHeight = Math.max(1, count) * ROW_HEIGHT;
+      height = Math.min(availableHeight, PANE_CHROME + contentHeight);
+    }
   }
 
   /** One measured geometry shared by scroll, bounds and drawing. */
@@ -363,10 +389,10 @@ final class HudNavigator {
         stacked[i] =
             setting.metadata().kind() != SettingMetadata.Kind.BOOLEAN
                 && measure.applyAsInt(label) + measure.applyAsInt(value) + 16 > width;
-        heights[i] = stacked[i] ? 24 : 14;
+        heights[i] = stacked[i] ? ROW_HEIGHT * 2 : ROW_HEIGHT;
         if (i <= nav.settingSelected) throughSelected += heights[i];
       }
-      int viewport = Math.max(14, availableHeight - 33), start = 0;
+      int viewport = Math.max(ROW_HEIGHT, availableHeight - PANE_CHROME), start = 0;
       while (start < nav.settingSelected && throughSelected > viewport)
         throughSelected -= heights[start++];
       first = start;
@@ -378,8 +404,8 @@ final class HudNavigator {
         rows++;
       }
       count = rows;
-      contentHeight = Math.max(14, content);
-      height = Math.min(availableHeight, 33 + contentHeight);
+      contentHeight = Math.max(ROW_HEIGHT, content);
+      height = Math.min(availableHeight, PANE_CHROME + contentHeight);
     }
   }
 

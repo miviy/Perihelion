@@ -41,7 +41,20 @@ public final class TabGuiProbe {
     Object oldScreen = screen.get(game);
     boolean oldInput = runtime.input().isAllowed();
     Map<Setting<?>, Object> originals = new LinkedHashMap<>();
-    String[] ids = {"tab_gui", "tab_gui-x", "tab_gui-y"};
+    String[] ids = {
+      "tab_gui",
+      "tab_gui-x",
+      "tab_gui-y",
+      "watermark",
+      "modules",
+      "info",
+      "target",
+      "armor",
+      "effects",
+      "keys",
+      "players",
+      "notifications"
+    };
     for (String id : ids) {
       Setting<?> setting = runtime.modules().require("hud").module().settings().get(id);
       originals.put(setting, setting.get());
@@ -50,6 +63,10 @@ public final class TabGuiProbe {
     Object oldSprint = sprint.get();
     Setting<?> names = runtime.modules().require("friends").module().settings().get("names");
     Object oldNames = names.get();
+    Setting<?> visuals = runtime.modules().require("clickgui").module().settings().get("visuals");
+    Setting<?> clientStyle =
+        runtime.modules().require("clickgui").module().settings().get("client-style");
+    Object oldVisuals = visuals.get(), oldStyle = clientStyle.get();
     try {
       display.invoke(game, new Object[] {null});
       put(
@@ -96,8 +113,16 @@ public final class TabGuiProbe {
       render.invoke(renderer, 427, 240, true, null, 0, 0);
       Object compactRows = field(rendererType, "navigationSettings").get(renderer);
       check(
-          ((int[]) field(compactRows.getClass(), "heights").get(compactRows))[0] == 14,
-          "Boolean settings use compact single-line rows in native rendering");
+          ((int[]) field(compactRows.getClass(), "heights").get(compactRows))[0] == 11,
+          "Boolean settings share the module-list row height");
+      put(runtime, "sprint", sprint, oldSprint);
+      render.invoke(renderer, 427, 240, true, null, 0, 0);
+      compactRows = field(rendererType, "navigationSettings").get(renderer);
+      check(
+          ((List<?>) field(compactRows.getClass(), "values").get(compactRows))
+              .get(0)
+              .equals(Boolean.TRUE.equals(oldSprint) ? "+" : "-"),
+          "Tab GUI refreshes a setting changed through the shared module manager");
       key.invoke(nav, Keyboard.KEY_LEFT);
       key.invoke(nav, Keyboard.KEY_LEFT);
       select(nav, "friends");
@@ -136,13 +161,58 @@ public final class TabGuiProbe {
           "hud",
           runtime.modules().require("hud").module().settings().get("tab_gui-y"),
           0.0);
-      GL11.glClearColor(.07f, .075f, .09f, 1);
-      GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-      render.invoke(renderer, 427, 240, true, null, 0, 0);
-      ProductionHudProbe.capture("tab-gui-settings.png");
+      // Isolate this control in the captures so other preview cards do not show through its tint.
+      for (String id :
+          new String[] {
+            "modules", "info", "target", "armor", "effects", "keys", "players", "notifications"
+          })
+        put(runtime, "hud", runtime.modules().require("hud").module().settings().get(id), false);
+      for (String variant : new String[] {"new", "adjust", "raven"}) {
+        put(runtime, "clickgui", visuals, visuals.parse(variant.equals("new") ? "NEW" : "OLD"));
+        put(
+            runtime,
+            "clickgui",
+            clientStyle,
+            clientStyle.parse(variant.equals("raven") ? "RAVEN" : "ADJUST"));
+        select(nav, "antibot");
+        field(nav.getClass(), "expanded").setBoolean(nav, true);
+        field(nav.getClass(), "settingsOpen").setBoolean(nav, false);
+        GL11.glClearColor(.07f, .075f, .09f, 1);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        int clearBackground = pixel(0, 0);
+        render.invoke(renderer, 427, 240, true, null, 0, 0);
+        Object pane = field(rendererType, "navigationLayout").get(renderer);
+        Object box = ((Map<?, ?>) field(rendererType, "boxes").get(renderer)).get(tab);
+        int paneX = field(pane.getClass(), "paneX").getInt(pane);
+        int paneWidth = field(pane.getClass(), "paneWidth").getInt(pane);
+        int moduleBackground = backgroundPixel(game, box, paneX, paneWidth);
+        check(
+            moduleBackground != clearBackground,
+            "Background sample is inside the rendered pane: " + variant);
+        ProductionHudProbe.capture("tab-gui-" + variant + "-modules.png");
+        if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-modules.png");
+        key.invoke(nav, Keyboard.KEY_RIGHT);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        render.invoke(renderer, 427, 240, true, null, 0, 0);
+        Object settingsPane = field(rendererType, "navigationLayout").get(renderer);
+        check(
+            field(settingsPane.getClass(), "paneX").getInt(settingsPane) == paneX
+                && field(settingsPane.getClass(), "paneWidth").getInt(settingsPane) == paneWidth,
+            "Module and settings panes share their position and width: " + variant);
+        check(
+            backgroundPixel(game, box, paneX, paneWidth) == moduleBackground,
+            "Module and settings panes use identical background pixels: " + variant);
+        Object settingRows = field(rendererType, "navigationSettings").get(renderer);
+        for (int height : (int[]) field(settingRows.getClass(), "heights").get(settingRows))
+          check(height == 11 || height == 22, "Settings follow the common row grid: " + variant);
+        ProductionHudProbe.capture("tab-gui-" + variant + "-settings.png");
+        if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-settings.png");
+      }
       check(GL11.glGetError() == GL11.GL_NO_ERROR, "Tab GUI setting panes leave GL clean");
     } finally {
       ((AutoCloseable) renderer).close();
+      put(runtime, "clickgui", visuals, oldVisuals);
+      put(runtime, "clickgui", clientStyle, oldStyle);
       put(runtime, "sprint", sprint, oldSprint);
       put(runtime, "friends", names, oldNames);
       for (Map.Entry<Setting<?>, Object> original : originals.entrySet())
@@ -151,6 +221,24 @@ public final class TabGuiProbe {
       runtime.input().setAllowed(oldInput, Collections.emptyList());
     }
     System.out.println("[PERIHELION_SMOKE] TAB_GUI PASS checks=" + checks);
+  }
+
+  private static int backgroundPixel(Object game, Object box, int paneX, int paneWidth)
+      throws Exception {
+    float scale = field(box.getClass(), "scale").getFloat(box);
+    int x = field(box.getClass(), "anchorX").getInt(box),
+        y = field(box.getClass(), "anchorY").getInt(box);
+    int displayWidth = field(game.getClass(), "displayWidth", "field_71443_c").getInt(game);
+    int displayHeight = field(game.getClass(), "displayHeight", "field_71440_d").getInt(game);
+    int px = Math.round((x + (paneX + paneWidth - 4) * scale) * displayWidth / 427f);
+    int py = displayHeight - 1 - Math.round((y + 5 * scale) * displayHeight / 240f);
+    return pixel(px, py);
+  }
+
+  private static int pixel(int x, int y) {
+    java.nio.ByteBuffer pixel = org.lwjgl.BufferUtils.createByteBuffer(4);
+    GL11.glReadPixels(x, y, 1, 1, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, pixel);
+    return (pixel.get(0) & 255) << 16 | (pixel.get(1) & 255) << 8 | pixel.get(2) & 255;
   }
 
   private static void anchor(Object box, int x, int y, int width) throws Exception {

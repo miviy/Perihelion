@@ -352,10 +352,11 @@ public class HudNavigatorTest {
       HudNavigator nav = settings(runtime);
       runtime.modules().setSetting("fixture", fixture.text, "long");
       HudNavigator.SettingRows roomy = nav.settingRows(176, 240, value -> value.length() * 4);
-      assertEquals(14, roomy.heights[roomy.settings.indexOf(fixture.toggle)]);
-      assertEquals(14, roomy.heights[roomy.settings.indexOf(fixture.integer)]);
+      assertEquals(HudNavigator.ROW_HEIGHT, roomy.heights[roomy.settings.indexOf(fixture.toggle)]);
+      assertEquals(HudNavigator.ROW_HEIGHT, roomy.heights[roomy.settings.indexOf(fixture.integer)]);
       HudNavigator.SettingRows narrow = nav.settingRows(68, 240, value -> value.length() * 4);
-      assertEquals(24, narrow.heights[narrow.settings.indexOf(fixture.multiple)]);
+      assertEquals(
+          HudNavigator.ROW_HEIGHT * 2, narrow.heights[narrow.settings.indexOf(fixture.multiple)]);
       choose(nav, fixture.text);
       HudNavigator.SettingRows scrolled = nav.settingRows(68, 80, value -> value.length() * 4);
       assertTrue(scrolled.first <= nav.settingSelected);
@@ -366,6 +367,90 @@ public class HudNavigatorTest {
       assertEquals(content, scrolled.contentHeight);
       assertEquals(33 + content, scrolled.height);
       assertTrue(scrolled.height <= 80);
+    } finally {
+      runtime.stop();
+    }
+  }
+
+  @Test
+  public void clickGuiControlsAndTabGuiReadAndWriteTheSameLiveSetting() {
+    Fixture fixture = new Fixture();
+    ClientRuntime runtime = runtime(fixture);
+    try {
+      HudNavigator nav = settings(runtime);
+      perihelion.integration.minecraft189.gui.widget.SettingControl control =
+          perihelion.integration.minecraft189.gui.widget.SettingControl.create(
+              runtime.modules(), "fixture", fixture.toggle, null);
+      control.press(0, 0, 0);
+      assertTrue(fixture.toggle.get());
+      assertEquals("+", nav.value(fixture.toggle));
+      choose(nav, fixture.toggle);
+      assertEquals("Enter toggle", nav.hint()[0]);
+      nav.key(Keyboard.KEY_RETURN);
+      assertFalse(control.setting.get().equals(Boolean.TRUE));
+      runtime.modules().setSetting("fixture", fixture.integer, 5);
+      assertEquals("5", nav.value(fixture.integer));
+    } finally {
+      runtime.stop();
+    }
+  }
+
+  @Test
+  public void moduleAndSettingPanesShareRowSpacingAndKeepSelectionVisible() {
+    ClientRuntime runtime = runtime();
+    try {
+      HudNavigator nav = new HudNavigator(runtime.modules());
+      nav.category = 2;
+      for (int selected = 0; selected < nav.rows().size(); selected++) {
+        nav.selected = selected;
+        for (int height : new int[] {44, 55, 66, 80, 240}) {
+          HudNavigator.ModuleRows rows = nav.moduleRows(height);
+          assertTrue(rows.first <= selected && rows.first + rows.count > selected);
+          assertEquals(rows.count * HudNavigator.ROW_HEIGHT, rows.contentHeight);
+          assertEquals(HudNavigator.PANE_CHROME + rows.contentHeight, rows.height);
+          assertTrue(rows.height <= height);
+        }
+      }
+    } finally {
+      runtime.stop();
+    }
+  }
+
+  @Test
+  public void changingConditionalVisibilityKeepsTheActiveEditorOnItsOwnSetting() {
+    Setting<Boolean> gate = Setting.bool("gate", "Gate", "", true, () -> {});
+    Setting<Boolean> conditional =
+        Setting.bool("conditional", "Conditional", "", true, () -> {}).visibleWhen(gate::get);
+    Setting<String> text = Setting.string("text", "Text", "", "draft", 32, () -> {});
+    ClientRuntime runtime =
+        new ClientRuntime(
+            folder.getRoot().toPath().resolve("conditional.json"),
+            ClientLog.NONE,
+            client ->
+                client
+                    .modules()
+                    .register(
+                        new ClientModule(
+                            new ModuleInfo(
+                                "conditional", "Conditional", "", ModuleCategory.COMBAT, false)) {
+                          {
+                            setting(gate);
+                            setting(conditional);
+                            setting(text);
+                          }
+                        }));
+    runtime.start();
+    try {
+      HudNavigator nav = settings(runtime);
+      choose(nav, text);
+      nav.key(Keyboard.KEY_RETURN);
+      runtime.modules().setSetting("conditional", gate, false);
+      assertTrue(nav.editing);
+      assertEquals(text, nav.settings().get(nav.settingSelected));
+      nav.key(Keyboard.KEY_A, 'x');
+      nav.key(Keyboard.KEY_RETURN);
+      assertEquals("draftx", text.get());
+      assertTrue(conditional.get());
     } finally {
       runtime.stop();
     }

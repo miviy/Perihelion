@@ -6,10 +6,6 @@ import net.minecraft.client.settings.KeyBinding;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import perihelion.core.module.ModuleEntry;
-import perihelion.core.module.ModuleState;
-import perihelion.core.setting.Setting;
-import perihelion.core.setting.SettingMetadata;
 import perihelion.integration.minecraft189.gui.GuiTheme;
 import perihelion.integration.minecraft189.gui.widget.UiCanvas;
 import perihelion.integration.minecraft189.hud.HudModule.Element;
@@ -68,6 +64,7 @@ final class RavenHudRenderer {
         owner.configureElementFont(Element.TAB_GUI);
         text = owner.text;
         style = hud.styles.get(Element.TAB_GUI);
+        background = GuiTheme.alpha(hud.opacity.get() * .62 * style.opacity.get() / .6, 0);
         drawBox(Element.TAB_GUI, tab, preview, width, height);
       }
     }
@@ -499,89 +496,61 @@ final class RavenHudRenderer {
     }
   }
 
-  private void navigation() {
-    HudNavigator nav = owner.navigation;
-    HudNavigator.Layout layout = owner.navigationLayout;
-    int x = layout.x, y = layout.y;
-    canvas.rect(x, y, HudNavigator.CATEGORY_WIDTH, HudNavigator.CATEGORIES.length * 11, background);
-    for (int i = 0; i < HudNavigator.CATEGORIES.length; i++) {
-      if (i == nav.category) selectRow(x, y + i * 11, HudNavigator.CATEGORY_WIDTH, 11);
-      label(
-          HudNavigator.CATEGORIES[i], x + 4, y + i * 11, 57, 11, i == nav.category ? WHITE : GRAY);
-    }
-    if (!nav.expanded || layout.paneWidth <= 0) return;
-    x = layout.paneX;
-    int width = layout.paneWidth;
-    if (nav.settingsOpen) {
-      settings(x, y, width);
-      return;
-    }
-    List<ModuleEntry> modules = nav.rows();
-    int visible = Math.max(1, layout.availableHeight / 11),
-        first = Math.max(0, nav.selected - visible + 1);
-    int count = Math.min(visible, modules.size() - first);
-    canvas.rect(
-        x, y, width, Math.max(1, count) * 11, GuiTheme.alpha(Math.max(.7, hud.opacity.get()), 0));
-    for (int row = 0; row < count; row++) {
-      int index = first + row;
-      ModuleEntry module = modules.get(index);
-      boolean on = module.state() == ModuleState.ENABLED;
-      if (index == nav.selected) selectRow(x, y + row * 11, width, 11);
-      label(
-          HudNavigator.label(module), x + 4, y + row * 11, width - 15, 11, on ? secondary : WHITE);
-      if (on) label("+", x + width - 10, y + row * 11, 7, 11, secondary);
-    }
-  }
+  private final TabGuiView.Painter navigationPainter =
+      new TabGuiView.Painter() {
+        public void surface(int x, int y, int width, int height) {
+          if (style.background.get() == HudElementStyle.Background.AUTO)
+            canvas.rect(x, y, width, height, background);
+        }
 
-  private void settings(int x, int y, int width) {
-    HudNavigator nav = owner.navigation;
-    HudNavigator.SettingRows rows = owner.navigationSettings;
-    canvas.rect(x, y, width, rows.height, GuiTheme.alpha(Math.max(.7, hud.opacity.get()), 0));
-    canvas.rect(x, y, width, 11, 0xc0181818);
-    label(HudNavigator.label(nav.module()), x + 4, y, width - 8, 11, accent);
-    if (rows.settings.isEmpty()) label("No settings", x + 4, y + 11, width - 8, 14, GRAY);
-    int top = y + 11;
-    for (int row = 0; row < rows.count; row++) {
-      int index = rows.first + row, height = rows.heights[index];
-      Setting<?> setting = rows.settings.get(index);
-      boolean selected = index == nav.settingSelected;
-      if (selected) selectRow(x, top, width, height);
-      boolean bool = setting.metadata().kind() == SettingMetadata.Kind.BOOLEAN;
-      String value = rows.values.get(index);
-      int valueWidth = text.width(value);
-      boolean stacked = rows.stacked[index];
-      int band = stacked ? height / 2 : height;
-      label(
-          rows.labels.get(index),
-          x + 4,
-          top,
-          width - (bool ? 27 : stacked ? 8 : valueWidth + 12),
-          band,
-          WHITE);
-      if (bool)
-        label(
-            Boolean.TRUE.equals(setting.get()) ? "[x]" : "[ ]",
-            x + width - 23,
-            top,
-            21,
-            height,
-            Boolean.TRUE.equals(setting.get()) ? secondary : GRAY);
-      else {
-        if (selected && nav.textEditing()) value = HudNavigator.tail(value, width - 8, text::width);
-        label(
-            value,
-            stacked ? x + 4 : x + width - valueWidth - 4,
-            top + (stacked ? band : 0),
-            width - 8,
-            stacked ? height - band : height,
-            selected && nav.editing ? GOLD : GRAY);
-      }
-      top += height;
-    }
-    String[] hint = nav.hint();
-    int footer = y + 11 + rows.contentHeight;
-    label(hint[0], x + 3, footer, width - 6, 11, nav.error.isEmpty() ? GRAY : 0xffff7777);
-    label(hint[1], x + 3, footer + 11, width - 6, 11, GRAY);
+        public void highlight(
+            int x,
+            int y,
+            int width,
+            int height,
+            boolean selected,
+            boolean editing,
+            boolean enabled) {
+          if (selected) selectRow(x, y, width, height);
+        }
+
+        public void label(String value, int x, int y, int width, int height, TabGuiView.Tone tone) {
+          RavenHudRenderer.this.label(
+              value,
+              x,
+              y,
+              width,
+              height,
+              tone == TabGuiView.Tone.ERROR
+                  ? 0xffff7777
+                  : tone == TabGuiView.Tone.MUTED
+                      ? GRAY
+                      : tone == TabGuiView.Tone.ENABLED
+                          ? secondary
+                          : tone == TabGuiView.Tone.EDITING ? GOLD : WHITE);
+        }
+
+        public void checkbox(int x, int y, int width, int height, boolean on) {
+          RavenHudRenderer.this.label(
+              on ? "[x]" : "[ ]", x + width - 23, y, 21, height, on ? secondary : GRAY);
+        }
+
+        public int checkboxWidth() {
+          return 27;
+        }
+
+        public int textWidth(String value) {
+          return text.width(value);
+        }
+      };
+
+  private void navigation() {
+    TabGuiView.draw(
+        owner.navigation,
+        owner.navigationLayout,
+        owner.navigationModules,
+        owner.navigationSettings,
+        navigationPainter);
   }
 
   private void selectRow(int x, int y, int width, int height) {
