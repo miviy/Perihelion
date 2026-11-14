@@ -65,15 +65,16 @@ public final class HudDropdownProbe {
             "Left-click toggles without expanding, like other modules");
         hit(screen, section, 0);
         hit(screen, section, 1);
-        SettingControl enabled = control(controls, settings.get(element[1]));
-        check(enabled.isVisible(), "Expanded element starts with Enabled: " + element[0]);
-        boolean before = (Boolean) enabled.setting.get();
-        hit(screen, enabled, 0);
-        check(enabled.setting.get().equals(!before), "Enabled uses native settings: " + element[0]);
-        hit(screen, enabled, 0);
+        check(section.isOpen(), "Right-click opens element settings: " + element[0]);
+        check(
+            controls.stream().noneMatch(c -> c.setting == settings.get(element[1])),
+            "Element settings contain no duplicate enable control: " + element[0]);
+        check(
+            settings.get(element[1]).get().equals(originalEnabled),
+            "Opening settings preserves the enabled state: " + element[0]);
         hit(screen, section, 1);
         check(
-            !enabled.isVisible() && enabled.setting.get().equals(before),
+            !section.isOpen() && settings.get(element[1]).get().equals(originalEnabled),
             "Collapse preserves values");
       }
       SettingSection array = section(controls, "Array list");

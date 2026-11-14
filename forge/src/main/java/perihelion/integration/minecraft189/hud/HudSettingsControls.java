@@ -71,8 +71,6 @@ public final class HudSettingsControls {
                 + " settings.",
             null,
             enabled);
-    add(root, enabled);
-    controls.get(controls.size() - 1).named("Enabled");
     switch (element) {
       case WATERMARK:
         add(root, hud.logoDesign, hud.watermarkVersion, hud.watermarkClock, hud.watermarkInfo);

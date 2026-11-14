@@ -213,7 +213,7 @@ public class HudSettingsTest {
   }
 
   @Test
-  public void groupedMenuOwnsEverySettingOnceAndStartsEachElementWithItsToggle() {
+  public void groupedMenuOwnsEverySettingOnceWithElementTogglesOnlyInHeaders() {
     ClientRuntime r = runtime();
     try {
       HudModule hud = (HudModule) r.modules().require("hud").module();
@@ -224,7 +224,9 @@ public class HudSettingsTest {
         if (hud.settings().containsValue(control.setting))
           assertTrue("Duplicate setting: " + control.setting.id(), visited.add(control.setting));
       }
-      assertEquals(new java.util.HashSet<>(hud.settings().values()), visited);
+      java.util.Set<Setting<?>> childSettings = new java.util.HashSet<>(hud.settings().values());
+      childSettings.removeAll(hud.shown.values());
+      assertEquals(childSettings, visited);
       int found = 0;
       for (int i = 0; i < controls.size() - 1; i++) {
         SettingControl control = controls.get(i);
@@ -233,16 +235,18 @@ public class HudSettingsTest {
               || !control.setting.displayName().equals(element.label)) continue;
           found++;
           SettingSection section = (SettingSection) control;
-          SettingControl toggle = controls.get(i + 1);
-          assertSame(hud.shown.get(element), toggle.setting);
-          assertFalse(toggle.isVisible());
-          section.press(0, 0, 1);
-          assertTrue(toggle.isVisible());
+          SettingControl firstChild = controls.get(i + 1);
+          assertFalse(visited.contains(hud.shown.get(element)));
+          assertFalse(firstChild.isVisible());
           boolean before = hud.shown.get(element).get();
-          toggle.press(0, 0, 0);
+          section.press(0, 0, 0);
+          assertEquals(!before, hud.shown.get(element).get());
+          assertFalse(section.isOpen());
+          section.press(0, 0, 1);
+          assertTrue(firstChild.isVisible());
           assertEquals(!before, hud.shown.get(element).get());
           section.press(0, 0, 1);
-          assertFalse(toggle.isVisible());
+          assertFalse(firstChild.isVisible());
           assertEquals(!before, hud.shown.get(element).get());
         }
       }
