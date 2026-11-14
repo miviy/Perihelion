@@ -92,7 +92,6 @@ final class TabGuiView {
         }
         top += heightOfRow;
       }
-      footer(paint, x, y + row + settings.contentHeight, width, nav.hint(), !nav.error.isEmpty());
     } else {
       if (modules.modules.isEmpty())
         paint.label("No modules", x + 3, top, width - 6, row, Tone.MUTED);
@@ -110,19 +109,8 @@ final class TabGuiView {
             module.state() == ModuleState.FAULTED ? Tone.ERROR : on ? Tone.ENABLED : Tone.TEXT);
         top += row;
       }
-      footer(
-          paint,
-          x,
-          y + modules.contentHeight,
-          width,
-          new String[] {"Enter toggle  Right settings", "Left back"},
-          false);
     }
-  }
-
-  private static void footer(Painter paint, int x, int y, int width, String[] hint, boolean error) {
-    int row = HudNavigator.ROW_HEIGHT;
-    paint.label(hint[0], x + 3, y, width - 6, row, error ? Tone.ERROR : Tone.MUTED);
-    paint.label(hint[1], x + 3, y + row, width - 6, row, Tone.MUTED);
+    if (!nav.error.isEmpty())
+      paint.label(nav.error, x + 3, y + height - row, width - 6, row, Tone.ERROR);
   }
 }

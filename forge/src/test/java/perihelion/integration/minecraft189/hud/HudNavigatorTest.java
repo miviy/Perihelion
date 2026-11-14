@@ -365,7 +365,7 @@ public class HudNavigatorTest {
       for (int i = scrolled.first; i < scrolled.first + scrolled.count; i++)
         content += scrolled.heights[i];
       assertEquals(content, scrolled.contentHeight);
-      assertEquals(33 + content, scrolled.height);
+      assertEquals(HudNavigator.ROW_HEIGHT + content, scrolled.height);
       assertTrue(scrolled.height <= 80);
     } finally {
       runtime.stop();
@@ -385,7 +385,6 @@ public class HudNavigatorTest {
       assertTrue(fixture.toggle.get());
       assertEquals("+", nav.value(fixture.toggle));
       choose(nav, fixture.toggle);
-      assertEquals("Enter toggle", nav.hint()[0]);
       nav.key(Keyboard.KEY_RETURN);
       assertFalse(control.setting.get().equals(Boolean.TRUE));
       runtime.modules().setSetting("fixture", fixture.integer, 5);
@@ -407,7 +406,7 @@ public class HudNavigatorTest {
           HudNavigator.ModuleRows rows = nav.moduleRows(height);
           assertTrue(rows.first <= selected && rows.first + rows.count > selected);
           assertEquals(rows.count * HudNavigator.ROW_HEIGHT, rows.contentHeight);
-          assertEquals(HudNavigator.MODULE_CHROME + rows.contentHeight, rows.height);
+          assertEquals(rows.contentHeight, rows.height);
           assertTrue(rows.height <= height);
         }
       }

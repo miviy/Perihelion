@@ -17,8 +17,7 @@ final class HudNavigator {
   static final String[] CATEGORIES =
       TYPES.stream().map(ModuleCategory::displayName).toArray(String[]::new);
   static final int CATEGORY_WIDTH = 65, ROW_HEIGHT = 11;
-  static final int PANE_CHROME = ROW_HEIGHT * 3;
-  static final int MODULE_CHROME = ROW_HEIGHT * 2;
+  static final int PANE_CHROME = ROW_HEIGHT;
   final List<List<ModuleEntry>> groups = new ArrayList<>();
   int category, selected, settingSelected, component;
   boolean expanded, settingsOpen, editing;
@@ -320,25 +319,6 @@ final class HudNavigator {
     return value.isEmpty() ? "Empty" : value;
   }
 
-  String[] hint() {
-    if (!error.isEmpty()) return new String[] {error, "Esc cancel"};
-    if (!editing) {
-      List<Setting<?>> visible = settings();
-      boolean toggle =
-          !visible.isEmpty()
-              && visible.get(settingSelected).metadata().kind() == SettingMetadata.Kind.BOOLEAN;
-      return new String[] {toggle ? "Enter toggle" : "Enter edit", "Left back"};
-    }
-    if (textEditing()) return new String[] {"Type  Enter save", "Esc cancel"};
-    boolean components =
-        editTarget.metadata().kind() == SettingMetadata.Kind.RANGE
-            || editTarget.metadata().kind() == SettingMetadata.Kind.COLOR
-            || editTarget.metadata().kind() == SettingMetadata.Kind.MULTI_SELECT;
-    return new String[] {
-      components ? "Up/Down part  Left/Right edit" : "Left/Right change", "Enter done  Esc cancel"
-    };
-  }
-
   private static String clean(String value) {
     return value.replace('\n', ' ').replace('\r', ' ').replace('\t', ' ');
   }
@@ -361,11 +341,12 @@ final class HudNavigator {
 
     ModuleRows(HudNavigator nav, int availableHeight) {
       modules = nav.rows();
-      int visible = Math.max(1, (availableHeight - MODULE_CHROME) / ROW_HEIGHT);
+      int errorHeight = nav.error.isEmpty() ? 0 : ROW_HEIGHT;
+      int visible = Math.max(1, (availableHeight - errorHeight) / ROW_HEIGHT);
       first = Math.max(0, nav.selected - visible + 1);
       count = Math.min(visible, modules.size() - first);
       contentHeight = Math.max(1, count) * ROW_HEIGHT;
-      height = Math.min(availableHeight, MODULE_CHROME + contentHeight);
+      height = Math.min(availableHeight, errorHeight + contentHeight);
     }
   }
 
@@ -393,7 +374,8 @@ final class HudNavigator {
         heights[i] = stacked[i] ? ROW_HEIGHT * 2 : ROW_HEIGHT;
         if (i <= nav.settingSelected) throughSelected += heights[i];
       }
-      int viewport = Math.max(ROW_HEIGHT, availableHeight - PANE_CHROME), start = 0;
+      int chrome = PANE_CHROME + (nav.error.isEmpty() ? 0 : ROW_HEIGHT);
+      int viewport = Math.max(ROW_HEIGHT, availableHeight - chrome), start = 0;
       while (start < nav.settingSelected && throughSelected > viewport)
         throughSelected -= heights[start++];
       first = start;
@@ -406,7 +388,7 @@ final class HudNavigator {
       }
       count = rows;
       contentHeight = Math.max(ROW_HEIGHT, content);
-      height = Math.min(availableHeight, PANE_CHROME + contentHeight);
+      height = Math.min(availableHeight, chrome + contentHeight);
     }
   }
 

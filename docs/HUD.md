@@ -147,7 +147,8 @@ consumes clicks before the HUD underneath. Resizing closes transient popup input
   menu, with alphabetized rows. Client preferences and the HUD's own toggle stay
   in the GUI. The Exploits tab is removed; no modules are re-registered.
   Module lists and setting panes share the same background, row grid, text insets,
-  selection highlighting and help area. The selected module uses a highlight without
+  and selection highlighting. Module lists show only module names, with no keyboard
+  instruction footer. The selected module uses a highlight without
   a `>` marker. Changes use the same live settings as ClickGUI in both directions;
   opening or closing a pane does not move the saved category anchor.
 - **Watermark details:** off. Enable to append FPS and ping/Local.
