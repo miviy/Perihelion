@@ -13,6 +13,7 @@ public final class SettingSection extends SettingControl {
   private final String modernLabel;
   private float enabledMotion, hoverMotion, arrowMotion;
   private long previousFrame;
+  private SettingSection parent;
 
   public SettingSection(
       ModuleManager modules,
@@ -30,6 +31,16 @@ public final class SettingSection extends SettingControl {
 
   public boolean isOpen() {
     return isVisible() && expanded;
+  }
+
+  public void parent(SettingSection parent) {
+    this.parent = parent;
+    visibleWhen(parent::isOpen);
+  }
+
+  @Override
+  public String expansionKey() {
+    return (parent == null ? "" : parent.expansionKey() + "/") + "section:" + setting.displayName();
   }
 
   public void open(boolean open) {

@@ -141,6 +141,33 @@ public class GuiLogicTest {
   }
 
   @Test
+  public void disclosuresRoundtripIndependentlyFromValuesAndResetWithLayout() {
+    PanelLayout layout = new PanelLayout();
+    layout.reset(854, 480, 27);
+    PanelLayout.Panel panel = layout.find(ModuleCategory.RENDER);
+    panel.expandedRows.add("hud");
+    panel.expandedRows.add("hud/section:Array list");
+    panel.expandedRows.add("hud/section:Array list/section:Text");
+    panel.expandedRows.add("hud/modules-font");
+    PanelLayout restored = new PanelLayout();
+    restored.load(layout.encode(), 854, 480, 27);
+    assertEquals(panel.expandedRows, restored.find(ModuleCategory.RENDER).expandedRows);
+    assertTrue(restored.find(ModuleCategory.COMBAT).expandedRows.isEmpty());
+    restored.reset(854, 480, 27);
+    assertTrue(restored.find(ModuleCategory.RENDER).expandedRows.isEmpty());
+    restored.load(
+        "[{\"category\":\"RENDER\",\"x\":20,\"y\":35,\"collapsed\":false,"
+            + "\"expanded-rows\":[null,{},7,\"hud\"]}]",
+        854,
+        480,
+        27);
+    assertEquals(
+        java.util.Collections.singleton("hud"), restored.find(ModuleCategory.RENDER).expandedRows);
+    restored.load("[]", 854, 480, 27);
+    assertTrue(restored.find(ModuleCategory.RENDER).expandedRows.isEmpty());
+  }
+
+  @Test
   public void corruptAndOffscreenLayoutsRecoverAndResetRestoresPanels() {
     PanelLayout layout = new PanelLayout();
     layout.load("broken", 320, 240, 27);

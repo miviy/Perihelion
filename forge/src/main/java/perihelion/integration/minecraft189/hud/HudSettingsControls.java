@@ -49,7 +49,7 @@ public final class HudSettingsControls {
       String title, String description, SettingSection parent, Setting<Boolean> enabled) {
     SettingSection section =
         new SettingSection(hud.runtime.modules(), "hud", title, description, rowHeight, enabled);
-    if (parent != null) section.visibleWhen(parent::isOpen);
+    if (parent != null) section.parent(parent);
     controls.add(section);
     return section;
   }

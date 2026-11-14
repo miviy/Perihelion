@@ -4,7 +4,7 @@ import com.google.gson.*;
 import java.util.*;
 import perihelion.core.module.ModuleCategory;
 
-/** Only this frontend's persistent geometry; does not own module or setting values. */
+/** This frontend's persistent geometry and disclosures; never module or setting values. */
 public final class PanelLayout {
   public static final float WIDTH = 132, HEADER = 13;
 
@@ -13,6 +13,7 @@ public final class PanelLayout {
     public float x, y, scroll, width = WIDTH;
     public float headerHeight = HEADER;
     public boolean collapsed;
+    public final Set<String> expandedRows = new LinkedHashSet<>();
     private float bodyFraction, anchorX, anchorY;
 
     Panel(ModuleCategory category) {
@@ -110,6 +111,10 @@ public final class PanelLayout {
               panel.limitBody(height * fraction, height);
           }
           front(panel);
+          if (object.has("expanded-rows") && object.get("expanded-rows").isJsonArray())
+            for (JsonElement row : object.getAsJsonArray("expanded-rows"))
+              if (row.isJsonPrimitive() && row.getAsJsonPrimitive().isString())
+                panel.expandedRows.add(row.getAsString());
         } catch (RuntimeException ignored) {
           /* Unknown/new categories and malformed entries use defaults. */
         }
@@ -127,6 +132,11 @@ public final class PanelLayout {
       object.addProperty("x", panel.x);
       object.addProperty("y", panel.y);
       object.addProperty("collapsed", panel.collapsed);
+      if (!panel.expandedRows.isEmpty()) {
+        JsonArray rows = new JsonArray();
+        for (String row : panel.expandedRows) rows.add(new JsonPrimitive(row));
+        object.add("expanded-rows", rows);
+      }
       if (panel.limited()) object.addProperty("body-fraction", panel.bodyFraction);
       array.add(object);
     }

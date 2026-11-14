@@ -238,6 +238,7 @@ public final class GuiHookProbe {
     production.modules().setSetting("clickgui", productionGui.customTextStyle, savedCustomText);
     readableControls(production, main, productionGui);
     stablePanelBounds(production, main, productionGui);
+    GuiExpansionProbe.run(production, game);
     display.invoke(game, original);
     final ClickGuiService[] gui = {null};
     final Fixture[] fixture = {null};

@@ -331,6 +331,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
   protected void loadLayout() {
     layoutSeen = layoutSetting().get();
     layout.load(layoutSeen, viewWidth, viewHeight, top());
+    restoreExpansions();
     updatePanelWidths();
     if ("[]".equals(layoutSeen.trim())) placeDefaults();
   }
@@ -426,11 +427,30 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
   }
 
   protected void persist() {
+    for (PanelLayout.Panel panel : layout.panels()) {
+      panel.expandedRows.clear();
+      for (ModuleView view : views.get(panel.category)) {
+        String id = view.entry.info().id();
+        if (view.expanded) panel.expandedRows.add(id);
+        for (SettingControl control : view.controls)
+          if (control.expanded()) panel.expandedRows.add(id + "/" + control.expansionKey());
+      }
+    }
     String encoded = layout.encode();
     layoutSeen = encoded;
     runtime.modules().setSetting("clickgui", layoutSetting(), encoded);
     utilitySeen = utilities.encode();
     runtime.modules().setSetting("clickgui", utilitySetting(), utilitySeen);
+  }
+
+  private void restoreExpansions() {
+    for (PanelLayout.Panel panel : layout.panels())
+      for (ModuleView view : views.get(panel.category)) {
+        String id = view.entry.info().id();
+        view.expanded = panel.expandedRows.contains(id);
+        for (SettingControl control : view.controls)
+          control.expanded(panel.expandedRows.contains(id + "/" + control.expansionKey()));
+      }
   }
 
   public PanelLayout model() {
@@ -444,6 +464,7 @@ public abstract class ModulePanelScreen extends GuiScreen implements SettingCont
     runtime.modules().setSetting("clickgui", utilitySetting(), "{}");
     geometry(false);
     layout.reset(viewWidth, viewHeight, top());
+    restoreExpansions();
     placeDefaults();
     clearCapture();
     dragging = null;

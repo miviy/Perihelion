@@ -8,7 +8,7 @@ import perihelion.core.setting.*;
 import perihelion.integration.minecraft189.gui.GuiValues;
 import perihelion.integration.minecraft189.gui.font.GuiFonts;
 
-/** Metadata-selected reusable editors. Only transient expansion/drag geometry is local. */
+/** Metadata-selected reusable editors with screen-owned disclosure and drag state. */
 public abstract class SettingControl {
   /** A frontend paints the measured editor without replacing its input or setting ownership. */
   public interface Painter {
@@ -178,6 +178,18 @@ public abstract class SettingControl {
 
   public float height() {
     return headerHeight;
+  }
+
+  public String expansionKey() {
+    return setting.id();
+  }
+
+  public final boolean expanded() {
+    return expanded;
+  }
+
+  public final void expanded(boolean expanded) {
+    this.expanded = expanded;
   }
 
   public final void hovered(boolean hovered) {
