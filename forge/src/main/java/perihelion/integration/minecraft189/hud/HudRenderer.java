@@ -8,6 +8,7 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
@@ -44,6 +45,7 @@ final class HudRenderer implements AutoCloseable {
   private final boolean targetOnly;
   final Minecraft mc = Minecraft.getMinecraft();
   private final RenderState state = new RenderState();
+  private final RenderState portraitState = new RenderState();
   HudFont text = new HudFont();
   private final HudFont baseFont = text;
   private final EnumMap<Element, HudFont> elementFonts = new EnumMap<>(Element.class);
@@ -93,6 +95,7 @@ final class HudRenderer implements AutoCloseable {
       cps = "0 / 0 CPS";
   float health, absorption, maximum;
   ResourceLocation skin;
+  private EntityLivingBase targetEntity;
   boolean hasTarget, hasArmor;
   private boolean notifying;
   private boolean classic;
@@ -205,6 +208,7 @@ final class HudRenderer implements AutoCloseable {
               && entity.worldObj == mc.theWorld
               && (preview || mc.theWorld.getEntityByID(entity.getEntityId()) == entity);
       skin = null;
+      targetEntity = hasTarget ? entity : null;
       if (hasTarget) {
         health = Math.max(0, entity.getHealth());
         maximum = Math.max(1, entity.getMaxHealth());
@@ -1284,7 +1288,7 @@ final class HudRenderer implements AutoCloseable {
         drawModules(b);
         break;
       case TARGET:
-        if (skin != null) face(skin, x + 4, y + 4, 24);
+        targetPortrait(x + 4, y + 4, 24);
         rowLabel(hasTarget ? targetName : "Target", x + 32, y + 4, b.w - 36, 12, TEXT);
         rowLabel(hasTarget ? targetInfo : "20.0 HP | 3.0m", x + 32, y + 16, b.w - 36, 12, MUTED);
         canvas.rect(x + 4, y + 32, b.w - 8, 2, modern ? ModernTheme.BORDER : 0xff303030);
@@ -1361,6 +1365,53 @@ final class HudRenderer implements AutoCloseable {
     if (rows.isEmpty()) rowLabel(empty, b.x + 3, b.y + 13, b.w - 6, 11, MUTED);
     for (int i = 0; i < rows.size() && 13 + i * 11 + 9 <= b.h; i++)
       rowLabel(rows.get(i), b.x + 3, b.y + 13 + i * 11, b.w - 6, 11, TEXT);
+  }
+
+  private void targetPortrait(int x, int y, int size) {
+    if (skin != null) {
+      face(skin, x, y, size);
+      return;
+    }
+    EntityLivingBase entity = targetEntity;
+    if (entity == null || entity.isDead || entity.worldObj != mc.theWorld) return;
+    float yaw = entity.rotationYaw, pitch = entity.rotationPitch;
+    float body = entity.renderYawOffset, head = entity.rotationYawHead;
+    float previousHead = entity.prevRotationYawHead;
+    float view = mc.getRenderManager().playerViewY;
+    boolean shadow = mc.getRenderManager().isRenderShadow();
+    double clearDepth = GL11.glGetDouble(GL11.GL_DEPTH_CLEAR_VALUE);
+    try (RenderState ignored = portraitState.open()) {
+      RenderStyle.text();
+      // The card is already translated/scaled; clip just its portrait in framebuffer pixels.
+      float scale = activeScreenBox.scale;
+      float rootPixels = pixels / scale;
+      int left = (int) Math.floor((activeScreenBox.anchorX + x * scale) * rootPixels);
+      int bottom =
+          (int)
+              Math.floor(
+                  mc.displayHeight - (activeScreenBox.anchorY + (y + size) * scale) * rootPixels);
+      int extent = (int) Math.ceil(size * pixels);
+      GL11.glEnable(GL11.GL_SCISSOR_TEST);
+      GL11.glScissor(left, bottom, extent, extent);
+      GlStateManager.enableDepth();
+      GlStateManager.depthMask(true);
+      GlStateManager.depthFunc(GL11.GL_LEQUAL);
+      GL11.glClearDepth(1);
+      GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+      GlStateManager.color(1, 1, 1, 1);
+      float bounds = Math.max(entity.height * 1.1f, entity.width * 1.45f);
+      int modelScale = Math.max(1, (int) ((size - 2) / Math.max(.1f, bounds)));
+      GuiInventory.drawEntityOnScreen(x + size / 2, y + size - 1, modelScale, 0, 0, entity);
+    } finally {
+      entity.rotationYaw = yaw;
+      entity.rotationPitch = pitch;
+      entity.renderYawOffset = body;
+      entity.rotationYawHead = head;
+      entity.prevRotationYawHead = previousHead;
+      mc.getRenderManager().playerViewY = view;
+      mc.getRenderManager().setRenderShadow(shadow);
+      GL11.glClearDepth(clearDepth);
+    }
   }
 
   void face(ResourceLocation skin, int x, int y, int size) {
@@ -1804,6 +1855,7 @@ final class HudRenderer implements AutoCloseable {
     effects.clear();
     notices.clear();
     skin = null;
+    targetEntity = null;
     hasTarget = false;
   }
 

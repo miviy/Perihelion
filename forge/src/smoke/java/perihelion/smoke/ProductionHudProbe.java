@@ -264,6 +264,137 @@ public final class ProductionHudProbe {
           field(targetRenderer.getClass(), "hasTarget").getBoolean(targetRenderer)
               && field(targetHud.getClass(), "attackedTarget").get(targetHud) == mob,
           "attacking a mob shows its target card");
+      Object portraitVisuals =
+          r.modules().require("clickgui").module().settings().get("visuals").get();
+      Object portraitManager =
+          method(game.getClass(), "getRenderManager", "func_175598_ae").invoke(game);
+      Field portraitView = field(portraitManager.getClass(), "playerViewY", "field_78735_i");
+      Method portraitShadow =
+          method(
+              portraitManager.getClass(),
+              new Class<?>[] {boolean.class},
+              "setRenderShadow",
+              "func_178633_a");
+      float oldPortraitView = portraitView.getFloat(portraitManager);
+      boolean oldPortraitShadow =
+          (Boolean)
+              method(portraitManager.getClass(), "isRenderShadow", "func_178627_a")
+                  .invoke(portraitManager);
+      Method portraitState = method(RenderHookProbe.class, "readState");
+      try {
+        String[] mobs = {
+          "passive.EntityPig", "passive.EntityHorse", "monster.EntityZombie", "monster.EntitySlime"
+        };
+        for (int i = 0; i < mobs.length; i++) {
+          Object portraitMob =
+              Class.forName("net.minecraft.entity." + mobs[i])
+                  .getConstructor(Class.forName("net.minecraft.world.World"))
+                  .newInstance(world);
+          if (i == 3)
+            method(
+                    portraitMob.getClass(),
+                    new Class<?>[] {int.class},
+                    "setSlimeSize",
+                    "func_70799_a")
+                .invoke(portraitMob, 8);
+          int portraitId = -893000 - i;
+          ids.add(portraitId);
+          method(
+                  world.getClass(),
+                  new Class<?>[] {int.class, entityType},
+                  "addEntityToWorld",
+                  "func_73027_a")
+              .invoke(world, portraitId, portraitMob);
+          String[][] poseFields = {
+            {"rotationYaw", "field_70177_z"},
+            {"rotationPitch", "field_70125_A"},
+            {"renderYawOffset", "field_70761_aq"},
+            {"rotationYawHead", "field_70759_as"},
+            {"prevRotationYawHead", "field_70758_at"}
+          };
+          for (int j = 0; j < poseFields.length; j++)
+            field(portraitMob.getClass(), poseFields[j]).setFloat(portraitMob, 13f * (j + 1));
+          for (String visual : new String[] {"OLD", "NEW"}) {
+            set(r, "clickgui", "visuals", Enum.valueOf((Class) portraitVisuals.getClass(), visual));
+            attack.invoke(null, portraitMob);
+            refresh(update, targetRenderer);
+            check(
+                field(targetRenderer.getClass(), "targetEntity").get(targetRenderer) == portraitMob,
+                "mob portrait uses the attacked entity: " + mobs[i]);
+            portraitView.setFloat(portraitManager, 37);
+            portraitShadow.invoke(portraitManager, false);
+            Field portraitEntity = field(targetRenderer.getClass(), "targetEntity");
+            portraitEntity.set(targetRenderer, null);
+            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+            render.invoke(targetRenderer, width, height, false, null, 0, 0);
+            capture("target-mob-blank.png");
+            portraitEntity.set(targetRenderer, portraitMob);
+            GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+            Object beforePortrait = portraitState.invoke(null);
+            render.invoke(targetRenderer, width, height, false, null, 0, 0);
+            check(
+                beforePortrait.equals(portraitState.invoke(null)),
+                "mob portrait restores GL state: " + mobs[i]);
+            check(
+                portraitView.getFloat(portraitManager) == 37
+                    && !(Boolean)
+                        method(portraitManager.getClass(), "isRenderShadow", "func_178627_a")
+                            .invoke(portraitManager),
+                "mob portrait preserves render-manager camera and shadow state");
+            for (int j = 0; j < poseFields.length; j++)
+              check(
+                  field(portraitMob.getClass(), poseFields[j]).getFloat(portraitMob)
+                      == 13f * (j + 1),
+                  "mob portrait preserves the live entity pose");
+            check(GL11.glGetError() == GL11.GL_NO_ERROR, "mob portrait renders without GL errors");
+            capture("target-mob-" + i + "-" + visual.toLowerCase(java.util.Locale.ROOT) + ".png");
+            java.io.File output = new java.io.File(System.getProperty("perihelion.smoke.output"));
+            java.awt.image.BufferedImage blank =
+                javax.imageio.ImageIO.read(new java.io.File(output, "target-mob-blank.png"));
+            java.awt.image.BufferedImage painted =
+                javax.imageio.ImageIO.read(
+                    new java.io.File(
+                        output,
+                        "target-mob-"
+                            + i
+                            + "-"
+                            + visual.toLowerCase(java.util.Locale.ROOT)
+                            + ".png"));
+            Object portraitBox =
+                ((Map<?, ?>) field(targetRenderer.getClass(), "boxes").get(targetRenderer))
+                    .get(Enum.valueOf((Class) elementType, "TARGET"));
+            float portraitScale = field(portraitBox.getClass(), "scale").getFloat(portraitBox);
+            float portraitPixels = painted.getWidth() / (float) width;
+            int portraitPadding = field(portraitBox.getClass(), "padding").getInt(portraitBox);
+            int px =
+                (int)
+                    ((field(portraitBox.getClass(), "anchorX").getInt(portraitBox)
+                            + (portraitPadding + 4) * portraitScale)
+                        * portraitPixels);
+            int py =
+                (int)
+                    ((field(portraitBox.getClass(), "anchorY").getInt(portraitBox)
+                            + (portraitPadding + 4) * portraitScale)
+                        * portraitPixels);
+            int portraitSize = (int) (24 * portraitScale * portraitPixels), changed = 0;
+            for (int yy = py; yy < py + portraitSize; yy++)
+              for (int xx = px; xx < px + portraitSize; xx++)
+                if (blank.getRGB(xx, yy) != painted.getRGB(xx, yy)) changed++;
+            check(
+                changed > 10,
+                "mob model paints visible portrait pixels: "
+                    + mobs[i]
+                    + " "
+                    + visual
+                    + " pixels="
+                    + changed);
+          }
+        }
+      } finally {
+        set(r, "clickgui", "visuals", portraitVisuals);
+        portraitView.setFloat(portraitManager, oldPortraitView);
+        portraitShadow.invoke(portraitManager, oldPortraitShadow);
+      }
       attack.invoke(null, first);
       refresh(update, targetRenderer);
       set(r, "targethud", "hide-delay", originalDelay);
