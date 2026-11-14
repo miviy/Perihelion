@@ -21,6 +21,8 @@ public abstract class ModelRenderMixin {
             cancellable = true)
     private void perihelion$name(
             EntityLivingBase entity, double x, double y, double z, CallbackInfo callback) {
+        // Runs for every living entity each frame; build the event only for a listener.
+        if (!HookBridge.wantsClientEvent(NameRenderEvent.class)) return;
         NameRenderEvent event = new NameRenderEvent(entity);
         HookBridge.clientEvent(event);
         if (event.isCancelled()) callback.cancel();
@@ -54,6 +56,10 @@ public abstract class ModelRenderMixin {
             float yaw,
             float pitch,
             float scale) {
+        if (!HookBridge.wantsClientEvent(ModelRenderEvent.class)) {
+            renderModel(entity, limb, amount, age, yaw, pitch, scale);
+            return;
+        }
         ModelRenderEvent event = new ModelRenderEvent(entity);
         HookBridge.clientEvent(event);
         if (!event.isCancelled()) {

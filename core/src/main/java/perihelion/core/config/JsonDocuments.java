@@ -20,6 +20,9 @@ import java.util.Set;
 final class JsonDocuments {
     static final int MAX_BYTES = 4 * 1024 * 1024;
     static final int MAX_DEPTH = 64;
+    // Checked once per number token; a configuration holds thousands of them.
+    private static final java.util.regex.Pattern NUMBER =
+            java.util.regex.Pattern.compile("-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?");
     private JsonDocuments() { }
 
     static JsonObject read(Reader source) throws IOException {
@@ -72,7 +75,7 @@ final class JsonDocuments {
                 }
                 String token = text.subSequence(start, i + 1).toString();
                 if (!"true".equals(token) && !"false".equals(token) && !"null".equals(token)
-                        && !token.matches("-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?")) {
+                        && !NUMBER.matcher(token).matches()) {
                     throw new IOException("Invalid JSON token");
                 }
             }

@@ -108,7 +108,7 @@ final class OverlayLookup implements AutoCloseable {
   }
 
   void request(UUID id, String name, Options options) {
-    if (closed || id == null || name == null || !name.matches("[A-Za-z0-9_]{1,16}")) return;
+    if (closed || id == null || !PlayerReport.validUsername(name)) return;
     long now = clock.getAsLong();
     Entry entry = cache.get(id);
     if (entry != null && entry.expires > now || pending.containsKey(id) || pending.size() >= 64)

@@ -31,6 +31,11 @@ public abstract class TileRenderMixin {
             double z,
             float partial,
             int stage) {
+        // Runs for every rendered tile entity each frame; build the event only for a listener.
+        if (!HookBridge.wantsClientEvent(TileRenderEvent.class)) {
+            renderer.renderTileEntityAt(tile, x, y, z, partial, stage);
+            return;
+        }
         TileRenderEvent event = new TileRenderEvent(tile);
         HookBridge.clientEvent(event);
         if (!event.isCancelled()) {
