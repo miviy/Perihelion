@@ -1,0 +1,10 @@
+#!/bin/sh
+# Install in the shared Git hooks directory; applies to linked worktrees too.
+while read -r local_ref local_sha remote_ref remote_sha; do
+    if [ "$remote_ref" = "refs/heads/main" ]; then
+        printf '%s\n' \
+            'Direct pushes to main are disabled for Perihelion.' \
+            'Push a task branch and open a pull request targeting main.' >&2
+        exit 1
+    fi
+done
