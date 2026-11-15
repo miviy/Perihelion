@@ -1,6 +1,6 @@
 # GitHub development
 
-Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion). Keep its visibility **Private**.
+Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion). Keep its visibility **Public**.
 
 Use a task branch, run relevant checks, and open a pull request into `main`.
 Agents automatically commit, push and open or update PRs for requested work;
@@ -51,7 +51,7 @@ live-server results; one does not establish the others.
 git diff --check
 git add path/to/changed-file
 git diff --cached
-git commit -m "Describe the change"
+git -c user.name=miviy -c user.email=267354159+miviy@users.noreply.github.com commit -m "Describe the change"
 git push -u origin HEAD
 ```
 
@@ -89,10 +89,11 @@ review conversations, and block force pushes and branch deletion on `main`.
 For a solo maintainer, do not require another person's approval: authors cannot
 approve their own PRs.
 
-GitHub currently rejects branch protection for this private repository because
-its plan requires an upgrade to GitHub Pro. Until that changes, PR review and
-passing CI are workflow requirements rather than server-enforced merge gates.
-Keep the repository private.
+The public repository supports server-side rulesets. `Protect-main` limits updates
+to repository admins through pull requests and blocks force pushes and deletion.
+Require the GitHub Actions `build` check against an up-to-date branch before
+merging, including for repository admins. Keep build checks running on every PR
+so this requirement can be satisfied.
 
 The versioned `.githooks/pre-push` guard rejects direct pushes and deletion of
 `main` from this local repository, including linked worktrees. It does not restrict
@@ -107,8 +108,7 @@ cp .githooks/pre-push "$(git rev-parse --git-path hooks)/pre-push"
 chmod +x "$(git rev-parse --git-path hooks)/pre-push"
 ```
 
-Do not bypass the guard with `--no-verify`. If GitHub Pro becomes available,
-enable server-side protection as well.
+Do not bypass the guard with `--no-verify`. Keep server-side protection active.
 
 ## Builds and downloads
 
@@ -118,7 +118,8 @@ duplicate push and PR builds. CI always runs the build, including documentation
 PRs, so a required check is never omitted by a path filter.
 
 Successful runs verify the distribution and upload the client JAR and test reports
-as private artifacts retained for 14 days. Use `Perihelion-…jar` in a Minecraft
+as public-repository artifacts retained for 14 days. Treat logs, reports and
+artifacts as publicly accessible; never include credentials or personal data. Use `Perihelion-…jar` in a Minecraft
 1.8.9 Forge 11.15.1.2318 profile. Desktop smoke checks remain separate from CI.
 
 ## Local files and access
@@ -128,9 +129,23 @@ files, build outputs, caches, local tools, worktrees and backups. Review staged
 changes before every commit. Keep credentials in macOS Keychain or GitHub Actions
 secrets.
 
-Invite collaborators only when you intend to give them access. Keep GitHub Pages
-disabled and the repository private. A private repository still permits authorized
-collaborators to read and clone its contents.
+The repository is public: anyone can read and clone it or propose a change through
+a fork. Grant collaborator access only when write access is actually needed. Keep
+GitHub Pages disabled unless publishing a site is explicitly requested.
+
+Use the maintainer pseudonym `miviy` and the GitHub noreply commit email shown
+above. Keep email privacy and email-exposure blocking enabled in GitHub account
+settings. Use relative paths in documentation, not computer usernames or home
+folders. Review screenshots, reports and commit metadata before publishing them.
+Removing private information from a current file does not remove it from older
+commits; shared-history rewrites require explicit authorization.
+
+Secret scanning, push protection and private vulnerability reporting are enabled.
+Use GitHub's private vulnerability reporting flow for security issues instead of
+posting credentials or exploit details publicly. CodeQL scans Java, Python and
+GitHub Actions. Dependabot proposes updates; updates still require review and CI.
+Preserve third-party license notices. Public visibility does not assign a license
+to the project's own sources.
 
 AGENTS.md authorizes routine task-branch commits, pushes and PR creation, but cannot
 override Codex or T3 permission controls. If the host blocks an action, report the
