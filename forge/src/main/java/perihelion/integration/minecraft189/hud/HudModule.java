@@ -507,9 +507,9 @@ public final class HudModule extends ClientModule {
     context.listen(
         perihelion.integration.minecraft189.event.ClientPacketEvent.class,
         event -> {
-          if (!overlay.active()
-              || !(event.packet() instanceof net.minecraft.network.play.server.S02PacketChat))
-            return;
+          // This runs for every inbound packet: test the type before reading the scoreboard.
+          if (!(event.packet() instanceof net.minecraft.network.play.server.S02PacketChat)
+              || !overlay.active()) return;
           net.minecraft.network.play.server.S02PacketChat packet =
               (net.minecraft.network.play.server.S02PacketChat) event.packet();
           if (packet.getType() != 2)

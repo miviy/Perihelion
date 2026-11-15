@@ -23,7 +23,7 @@ public abstract class ModelPoseMixin {
             float scale,
             Entity entity,
             CallbackInfo callback) {
-        if (entity instanceof EntityPlayer)
+        if (entity instanceof EntityPlayer && HookBridge.wantsClientEvent(ModelPoseEvent.class))
             HookBridge.clientEvent(
                     new ModelPoseEvent((EntityPlayer) entity, (ModelPlayer) (Object) this));
     }

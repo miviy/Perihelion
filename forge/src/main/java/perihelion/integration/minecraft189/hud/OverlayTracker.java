@@ -16,6 +16,12 @@ final class OverlayTracker {
           Pattern.CASE_INSENSITIVE);
   private static final Pattern BED =
       Pattern.compile("^BED DESTRUCTION > .+ Bed .+ by ([A-Za-z0-9_]{1,16})!*$");
+  private static final Pattern FORMATTING = Pattern.compile("\\u00a7.");
+  private static final Pattern RANK = Pattern.compile("\\[[^]]*]");
+  private static final Pattern BULLET = Pattern.compile("[●•]");
+  private static final Pattern SPACES = Pattern.compile("\\s+");
+  private static final Pattern TEAM_LINE =
+      Pattern.compile("[RGBYWPAS] (?:Red|Blue|Green|Yellow|White|Pink|Aqua|Gray):.*");
   final Set<String> party = new LinkedHashSet<>(),
       finalKilled = new LinkedHashSet<>(),
       who = new LinkedHashSet<>(),
@@ -29,7 +35,7 @@ final class OverlayTracker {
 
   void message(String raw, long now) {
     if (raw == null || raw.length() > 4096) return;
-    String text = raw.replaceAll("\\u00a7.", "").trim();
+    String text = FORMATTING.matcher(raw).replaceAll("").trim();
     if (text.startsWith("ONLINE:")) {
       who.clear();
       who.addAll(OverlaySettings.names(text.substring(7)));
@@ -47,10 +53,10 @@ final class OverlayTracker {
         && (text.startsWith("Party Leader:")
             || text.startsWith("Party Members:")
             || text.startsWith("Party Moderators:"))) {
-      String members =
-          text.substring(text.indexOf(':') + 1).replaceAll("\\[[^]]*]", "").replaceAll("[●•]", " ");
-      for (String member : members.split("\\s+"))
-        if (party.size() < 64 && member.matches("[A-Za-z0-9_]{1,16}"))
+      String members = RANK.matcher(text.substring(text.indexOf(':') + 1)).replaceAll("");
+      members = BULLET.matcher(members).replaceAll(" ");
+      for (String member : SPACES.split(members))
+        if (party.size() < 64 && PlayerReport.validUsername(member))
           party.add(member.toLowerCase(Locale.ROOT));
     }
     Matcher join = JOIN.matcher(text), alt = ALT_JOIN.matcher(text);
@@ -77,7 +83,7 @@ final class OverlayTracker {
     }
     if (playing && text.endsWith("FINAL KILL!")) {
       String victim = text.substring(0, text.indexOf(' '));
-      if (victim.matches("[A-Za-z0-9_]{1,16}") && finalKilled.size() < 256)
+      if (PlayerReport.validUsername(victim) && finalKilled.size() < 256)
         finalKilled.add(victim.toLowerCase(Locale.ROOT));
     }
     if (!playing || text.contains(":")) return;
@@ -104,7 +110,7 @@ final class OverlayTracker {
 
   static boolean game(Collection<String> sidebar) {
     for (String line : sidebar)
-      if (line.matches("[RGBYWPAS] (?:Red|Blue|Green|Yellow|White|Pink|Aqua|Gray):.*")) return true;
+      if (TEAM_LINE.matcher(line).matches()) return true;
     return false;
   }
 }

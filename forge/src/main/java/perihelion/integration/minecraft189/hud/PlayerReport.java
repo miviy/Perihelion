@@ -1,9 +1,18 @@
 package perihelion.integration.minecraft189.hud;
 
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 /** Opens Hypixel's report selection GUI. It does not select a reason or submit a report. */
 final class PlayerReport {
+  // Roster snapshots validate every tab-list name several times a second; compile once.
+  private static final Pattern USERNAME = Pattern.compile("[A-Za-z0-9_]{1,16}");
+
+  /** A syntactically valid Minecraft username; null is invalid. */
+  static boolean validUsername(String username) {
+    return username != null && USERNAME.matcher(username).matches();
+  }
+
   static boolean hypixel(String address) {
     if (address == null) return false;
     String host = address.toLowerCase(Locale.ROOT).trim();
@@ -13,8 +22,6 @@ final class PlayerReport {
   }
 
   static String command(boolean onHypixel, String username) {
-    return onHypixel && username != null && username.matches("[A-Za-z0-9_]{1,16}")
-        ? "/report " + username
-        : null;
+    return onHypixel && validUsername(username) ? "/report " + username : null;
   }
 }
