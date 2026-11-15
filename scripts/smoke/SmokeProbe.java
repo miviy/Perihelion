@@ -411,7 +411,7 @@ public final class SmokeProbe {
           pass();
           return;
         }
-        if (scenario.equals("invmove") || scenario.equals("b4") || scenario.equals("scaffold") || scenario.equals("beddefender") || scenario.equals("breaker")) {
+        if (scenario.equals("targethud") || scenario.equals("invmove") || scenario.equals("b4") || scenario.equals("scaffold") || scenario.equals("beddefender") || scenario.equals("breaker")) {
           // Keep focused gameplay checks independent of unrelated visual fixtures.
           stage = Stage.CREATE;
           return;
@@ -455,6 +455,11 @@ public final class SmokeProbe {
         capture(stage == Stage.FIRST_WORLD ? "first-world-screen.png" : "second-world-screen.png");
         if (stage == Stage.FIRST_WORLD) {
           hudProbe.close(); // Real overlay assertions finish before synthetic gameplay/GUI draws.
+          if (scenario.equals("targethud")) {
+            perihelion.smoke.TargetHudDesignProbe.run(runtime, minecraft);
+            pass();
+            return;
+          }
           if (scenario.equals("breaker")) {
             perihelion.smoke.BreakerLayerProbe.run(runtime);
             pass();

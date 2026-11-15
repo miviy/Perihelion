@@ -38,8 +38,9 @@ public class TargetHudSettingsTest {
       assertEquals(6, controls.stream().filter(c -> c.isVisible()).count());
       for (Setting<?> setting : hud.styles.get(HudModule.Element.TARGET).settings)
         assertEquals(1, controls.stream().filter(c -> c.setting == setting).count());
-      assertTrue(HudSettingsControls.create(hud, null, () -> {}).stream()
-          .noneMatch(c -> c.setting.id().startsWith("target-")));
+      assertTrue(
+          HudSettingsControls.create(hud, null, () -> {}).stream()
+              .noneMatch(c -> c.setting.id().startsWith("target-")));
     } finally {
       runtime.stop();
     }
@@ -52,10 +53,16 @@ public class TargetHudSettingsTest {
     HudModule hud = (HudModule) runtime.modules().require("hud").module();
     TargetHudModule target = (TargetHudModule) runtime.modules().require("targethud").module();
     Setting<Double> delay = (Setting<Double>) target.settings().get("hide-delay");
-    assertEquals(2, target.settings().size());
-    assertEquals(1, TargetHudModule.Design.values().length);
+    assertEquals(6, target.settings().size());
+    assertEquals(33, TargetHudModule.Design.values().length);
     assertEquals(3, delay.get(), 0);
     runtime.modules().setSetting("targethud", delay, 1.7);
+    Setting<TargetHudModule.Design> design =
+        (Setting<TargetHudModule.Design>) target.settings().get("design");
+    Setting<TargetHudModule.Theme> theme =
+        (Setting<TargetHudModule.Theme>) target.settings().get("theme");
+    runtime.modules().setSetting("targethud", design, TargetHudModule.Design.MYAU_TENACITY);
+    runtime.modules().setSetting("targethud", theme, TargetHudModule.Theme.CUSTOM);
     hud.move(HudModule.Element.TARGET, 81, 117, 427, 240, 184, 51);
     double x = hud.xs.get(HudModule.Element.TARGET).get();
     double y = hud.ys.get(HudModule.Element.TARGET).get();
@@ -68,6 +75,10 @@ public class TargetHudSettingsTest {
     ClientRuntime reloaded = runtime();
     try {
       HudModule next = (HudModule) reloaded.modules().require("hud").module();
+      TargetHudModule loadedTarget =
+          (TargetHudModule) reloaded.modules().require("targethud").module();
+      assertEquals(TargetHudModule.Design.MYAU_TENACITY, loadedTarget.design());
+      assertEquals(TargetHudModule.Theme.CUSTOM, loadedTarget.theme());
       assertEquals(
           1.7,
           (Double)

@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -95,12 +96,13 @@ final class HudRenderer implements AutoCloseable {
       cps = "0 / 0 CPS";
   float health, absorption, maximum;
   ResourceLocation skin;
-  private EntityLivingBase targetEntity;
+  EntityLivingBase targetEntity;
   boolean hasTarget, hasArmor;
   private boolean notifying;
   private boolean classic;
   private boolean modern;
   final RavenHudRenderer raven;
+  final TargetHudDesigns targetDesigns;
   private int adjustDraws;
   private boolean hideVisualsSeen, suffixesSeen;
   private HudAppearance.Sort moduleSortSeen;
@@ -113,6 +115,7 @@ final class HudRenderer implements AutoCloseable {
   HudRenderer(HudModule hud, boolean targetOnly) {
     this.hud = hud;
     this.targetOnly = targetOnly;
+    targetDesigns = new TargetHudDesigns(this, baseFont);
     navigation = new HudNavigator(hud.runtime.modules());
     raven = new RavenHudRenderer(this);
     notifying = show(Element.NOTIFICATIONS);
@@ -209,6 +212,7 @@ final class HudRenderer implements AutoCloseable {
               && (preview || mc.theWorld.getEntityByID(entity.getEntityId()) == entity);
       skin = null;
       targetEntity = hasTarget ? entity : null;
+      if (!hasTarget) targetDesigns.reset();
       if (hasTarget) {
         health = Math.max(0, entity.getHealth());
         maximum = Math.max(1, entity.getMaxHealth());
@@ -644,7 +648,10 @@ final class HudRenderer implements AutoCloseable {
     if (modern) ModernTheme.palette(canvas, GuiTheme.palette(hud.runtime));
     boolean needsBlur = false;
     for (Element e : Element.values())
-      if (show(e) && hud.styles.get(e).blur.get()) needsBlur = true;
+      if (show(e)
+          && (e != Element.TARGET || preview || hasTarget)
+          && (hud.styles.get(e).blur.get() || e == Element.TARGET && targetDesigns.glass()))
+        needsBlur = true;
     try (RenderState capture = state.open()) {
       if (needsBlur) blur.capture(mc);
       else blur.skip();
@@ -706,8 +713,8 @@ final class HudRenderer implements AutoCloseable {
             break;
           case TARGET:
             if (!preview && !hasTarget) continue;
-            w = 146;
-            h = 38;
+            w = targetDesigns.active() ? targetDesigns.width() : 146;
+            h = targetDesigns.active() ? targetDesigns.height() : 38;
             break;
           case ARMOR:
             if (!preview && !hasArmor) continue;
@@ -930,7 +937,8 @@ final class HudRenderer implements AutoCloseable {
 
   void shadowBox(Element element, Box b) {
     HudElementStyle style = hud.styles.get(element);
-    if (!style.panelShadow.get()) return;
+    boolean nativeTarget = element == Element.TARGET && targetDesigns.glass();
+    if (!style.panelShadow.get() && !nativeTarget) return;
     if (element == Element.MODULES)
       arrayShape(b)
           .shadow(
@@ -947,9 +955,9 @@ final class HudRenderer implements AutoCloseable {
           b.y,
           b.w,
           b.h,
-          style.radius.get() * b.scale,
-          style.shadowSpread.get() * b.scale,
-          style.shadowOpacity.get().floatValue());
+          (nativeTarget ? targetDesigns.radius() : style.radius.get()) * b.scale,
+          (nativeTarget ? 4 : style.shadowSpread.get()) * b.scale,
+          nativeTarget ? .3f : style.shadowOpacity.get().floatValue());
   }
 
   private HudArrayShape arrayShape(Box b) {
@@ -968,7 +976,8 @@ final class HudRenderer implements AutoCloseable {
 
   void blurBox(Element element, Box b, int width, int height) {
     HudElementStyle style = hud.styles.get(element);
-    if (!style.blur.get()) return;
+    boolean nativeTarget = element == Element.TARGET && targetDesigns.glass();
+    if (!style.blur.get() && !nativeTarget) return;
     if (element == Element.MODULES)
       blur.drawShape(
           b.anchorX,
@@ -985,7 +994,7 @@ final class HudRenderer implements AutoCloseable {
           b.y,
           b.w,
           b.h,
-          style.radius.get() * b.scale,
+          (nativeTarget ? targetDesigns.radius() : style.radius.get()) * b.scale,
           style.blurStrength.get() * b.scale,
           width,
           height,
@@ -1236,6 +1245,7 @@ final class HudRenderer implements AutoCloseable {
     adjustDraws++;
     int x = b.x, y = b.y;
     if (element != Element.MODULES
+        && !(element == Element.TARGET && targetDesigns.active())
         && (element == Element.TARGET
             || element == Element.EFFECTS && !modern
             || element == Element.PLAYERS)) {
@@ -1288,6 +1298,10 @@ final class HudRenderer implements AutoCloseable {
         drawModules(b);
         break;
       case TARGET:
+        if (targetDesigns.active()) {
+          targetDesigns.draw(b);
+          break;
+        }
         targetPortrait(x + 4, y + 4, 24);
         rowLabel(hasTarget ? targetName : "Target", x + 32, y + 4, b.w - 36, 12, TEXT);
         rowLabel(hasTarget ? targetInfo : "20.0 HP | 3.0m", x + 32, y + 16, b.w - 36, 12, MUTED);
@@ -1367,11 +1381,32 @@ final class HudRenderer implements AutoCloseable {
       rowLabel(rows.get(i), b.x + 3, b.y + 13 + i * 11, b.w - 6, 11, TEXT);
   }
 
-  private void targetPortrait(int x, int y, int size) {
+  void targetPortrait(int x, int y, int size) {
     if (skin != null) {
       face(skin, x, y, size);
       return;
     }
+    targetModel(x, y, size, size);
+  }
+
+  boolean beginTargetClip(
+      perihelion.integration.minecraft189.gui.modern.RoundedClip clip,
+      float x,
+      float y,
+      float width,
+      float height,
+      float radius) {
+    return clip.begin(
+        x + activeScreenBox.anchorX / activeScreenBox.scale,
+        y + activeScreenBox.anchorY / activeScreenBox.scale,
+        width,
+        height,
+        radius,
+        pixels,
+        mc.displayHeight);
+  }
+
+  void targetModel(int x, int y, int width, int height) {
     EntityLivingBase entity = targetEntity;
     if (entity == null || entity.isDead || entity.worldObj != mc.theWorld) return;
     float yaw = entity.rotationYaw, pitch = entity.rotationPitch;
@@ -1379,6 +1414,7 @@ final class HudRenderer implements AutoCloseable {
     float previousHead = entity.prevRotationYawHead;
     float view = mc.getRenderManager().playerViewY;
     boolean shadow = mc.getRenderManager().isRenderShadow();
+    Entity previousViewEntity = mc.getRenderManager().livingPlayer;
     double clearDepth = GL11.glGetDouble(GL11.GL_DEPTH_CLEAR_VALUE);
     try (RenderState ignored = portraitState.open()) {
       RenderStyle.text();
@@ -1389,19 +1425,26 @@ final class HudRenderer implements AutoCloseable {
       int bottom =
           (int)
               Math.floor(
-                  mc.displayHeight - (activeScreenBox.anchorY + (y + size) * scale) * rootPixels);
-      int extent = (int) Math.ceil(size * pixels);
+                  mc.displayHeight - (activeScreenBox.anchorY + (y + height) * scale) * rootPixels);
       GL11.glEnable(GL11.GL_SCISSOR_TEST);
-      GL11.glScissor(left, bottom, extent, extent);
+      GL11.glScissor(
+          left, bottom, (int) Math.ceil(width * pixels), (int) Math.ceil(height * pixels));
       GlStateManager.enableDepth();
       GlStateManager.depthMask(true);
       GlStateManager.depthFunc(GL11.GL_LEQUAL);
       GL11.glClearDepth(1);
       GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
       GlStateManager.color(1, 1, 1, 1);
-      float bounds = Math.max(entity.height * 1.1f, entity.width * 1.45f);
-      int modelScale = Math.max(1, (int) ((size - 2) / Math.max(.1f, bounds)));
-      GuiInventory.drawEntityOnScreen(x + size / 2, y + size - 1, modelScale, 0, 0, entity);
+      int modelScale =
+          Math.max(
+              1,
+              (int)
+                  Math.min(
+                      (height - 2) / Math.max(.1f, entity.height * 1.1f),
+                      (width - 2) / Math.max(.1f, entity.width * 1.45f)));
+      // Inventory portraits must not paint the target's world nameplate above its head.
+      mc.getRenderManager().livingPlayer = entity;
+      GuiInventory.drawEntityOnScreen(x + width / 2, y + height - 1, modelScale, 0, 0, entity);
     } finally {
       entity.rotationYaw = yaw;
       entity.rotationPitch = pitch;
@@ -1410,6 +1453,7 @@ final class HudRenderer implements AutoCloseable {
       entity.prevRotationYawHead = previousHead;
       mc.getRenderManager().playerViewY = view;
       mc.getRenderManager().setRenderShadow(shadow);
+      mc.getRenderManager().livingPlayer = previousViewEntity;
       GL11.glClearDepth(clearDepth);
     }
   }
@@ -1840,6 +1884,7 @@ final class HudRenderer implements AutoCloseable {
   public void close() {
     if (navigationFocused()) mc.displayGuiScreen(null);
     navigation.cancel();
+    targetDesigns.close();
     for (HudFont font : elementFonts.values()) if (font != baseFont) font.close();
     baseFont.close();
     blur.close();

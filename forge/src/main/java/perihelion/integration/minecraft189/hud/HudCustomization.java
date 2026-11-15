@@ -77,6 +77,7 @@ final class HudCustomization implements SettingControl.Actions {
 
   private boolean visible(SettingControl control) {
     return control.setting.isVisible()
+        && HudSettingsControls.targetOptionVisible(hud, control.setting)
         && inSection(control.setting)
         && (!extra(control.setting) || advanced[section]);
   }

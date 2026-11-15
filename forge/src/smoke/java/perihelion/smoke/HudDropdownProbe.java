@@ -142,6 +142,8 @@ public final class HudDropdownProbe {
             panel.y + panel.headerHeight + body <= n(screen, "viewHeight") + 1,
             "Grouped settings clip within resized height");
       }
+      // Restore the real screen projection before capturing and clicking the design selector.
+      resize(screen, game, width, height);
       Map<?, ?> views = (Map<?, ?>) field(screen.getClass(), "views").get(screen);
       for (Object view : (List<?>) views.get(ModuleCategory.RENDER)) {
         perihelion.core.module.ModuleEntry entry =
@@ -150,8 +152,13 @@ public final class HudDropdownProbe {
         boolean expanded = field(view.getClass(), "expanded").getBoolean(view);
         Setting<?> delay = entry.module().settings().get("hide-delay");
         Object oldDelay = delay.get();
+        Setting<?> design = entry.module().settings().get("design");
+        Object oldDesign = design.get();
+        Setting<?> theme = entry.module().settings().get("theme");
+        Object oldTheme = theme.get();
         perihelion.integration.minecraft189.gui.ClickGuiModule preferences =
-            (perihelion.integration.minecraft189.gui.ClickGuiModule) runtime.modules().require("clickgui").module();
+            (perihelion.integration.minecraft189.gui.ClickGuiModule)
+                runtime.modules().require("clickgui").module();
         boolean oldSearch = preferences.search.get();
         try {
           runtime.modules().setSetting("clickgui", preferences.search, true);
@@ -162,7 +169,8 @@ public final class HudDropdownProbe {
           draw(screen);
           List<SettingControl> targetControls =
               (List<SettingControl>) field(view.getClass(), "controls").get(view);
-          check(targetControls.stream().filter(SettingControl::isVisible).count() == 6,
+          check(
+              targetControls.stream().filter(SettingControl::isVisible).count() == 6,
               "Target HUD starts with two settings, three collapsed appearance groups and Arrange");
           SettingControl delayControl = control(targetControls, delay);
           hit(screen, delayControl, 1);
@@ -171,13 +179,55 @@ public final class HudDropdownProbe {
               .invoke(delayEditor, "1.7");
           method(screen.getClass(), new Class<?>[] {char.class, int.class}, "type")
               .invoke(screen, '\0', Keyboard.KEY_RETURN);
-          check(delay.get().equals(1.7), "Target HUD delay edits through the native module controls");
+          check(
+              delay.get().equals(1.7), "Target HUD delay edits through the native module controls");
           panel(screen).scroll = 0;
           draw(screen);
           ProductionHudProbe.capture("target-hud-module.png");
+          SettingControl designControl = control(targetControls, design);
+          hit(screen, designControl, 0);
+          check(design.metadata().options().size() == 33, "All Target HUD designs are selectable");
+          float last = lastOptionY(designControl);
+          PanelLayout.Panel targetPanel = panel(screen);
+          float top = targetPanel.y + targetPanel.headerHeight;
+          float body =
+              (Float)
+                  method(screen.getClass(), new Class<?>[] {PanelLayout.Panel.class}, "body")
+                      .invoke(screen, targetPanel);
+          method(
+                  screen.getClass(),
+                  new Class<?>[] {float.class, float.class, float.class},
+                  "scroll")
+              .invoke(screen, targetPanel.x + 20, top + 5, last - (top + body - 12));
+          draw(screen);
+          last = lastOptionY(designControl);
+          check(
+              last > top && last < top + body, "Last design scrolls within the panel's hit bounds");
+          ProductionHudProbe.capture("target-hud-design-selector.png");
+          method(screen.getClass(), new Class<?>[] {float.class, float.class, int.class}, "click")
+              .invoke(screen, n(designControl, "x") + 20, last, 0);
+          method(screen.getClass(), "release").invoke(screen);
+          check(
+              design.get().toString().equals("MYAU_TENACITY"),
+              "Last design selects through native mouse input");
+          field(designControl.getClass(), "expanded").setBoolean(designControl, false);
+          runtime.modules().setSetting("targethud", (Setting) theme,
+              perihelion.integration.minecraft189.hud.TargetHudModule.Theme.CUSTOM);
+          panel(screen).scroll = 0;
+          draw(screen);
+          SettingControl accent = control(targetControls, entry.module().settings().get("primary"));
+          hit(screen, accent, 0);
+          check((Boolean) method(accent.getClass(), "compact").invoke(accent),
+              "Custom Target HUD uses the client theme's compact color picker");
+          check(accent.height() - n(accent, "headerHeight") < 115,
+              "Target color picker uses the same compact geometry as client themes");
+          ProductionHudProbe.capture("target-hud-custom-colors.png");
+          field(accent.getClass(), "expanded").setBoolean(accent, false);
         } finally {
           runtime.modules().setSetting("clickgui", preferences.search, oldSearch);
           runtime.modules().setSetting("targethud", (Setting) delay, oldDelay);
+          runtime.modules().setSetting("targethud", (Setting) design, oldDesign);
+          runtime.modules().setSetting("targethud", (Setting) theme, oldTheme);
           field(view.getClass(), "expanded").setBoolean(view, expanded);
           method(screen.getClass(), new Class<?>[] {String.class}, "setQuery").invoke(screen, "");
         }
@@ -193,6 +243,19 @@ public final class HudDropdownProbe {
       method(screen.getClass(), "openHud").invoke(screen);
       draw(screen);
     }
+  }
+
+  private static float lastOptionY(SettingControl control) throws Exception {
+    float y = n(control, "y") + n(control, "headerHeight");
+    int count = control.setting.metadata().options().size();
+    for (int i = 0; i < count; i++) {
+      float height =
+          (Float)
+              method(control.getClass(), new Class<?>[] {int.class}, "optionHeight")
+                  .invoke(control, i);
+      y += i == count - 1 ? height / 2 : height;
+    }
+    return y;
   }
 
   private static List<SettingControl> controls(Object screen) throws Exception {
