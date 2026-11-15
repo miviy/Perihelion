@@ -1406,6 +1406,16 @@ final class HudRenderer implements AutoCloseable {
         mc.displayHeight);
   }
 
+  float snapTargetText(float coordinate, boolean horizontal) {
+    float origin = (horizontal ? activeScreenBox.anchorX : activeScreenBox.anchorY)
+        / activeScreenBox.scale;
+    return Math.round((origin + coordinate) * pixels) / pixels - origin;
+  }
+
+  float targetMeasurePixels() {
+    return pixels * density * hud.styles.get(Element.TARGET).scale.get().floatValue();
+  }
+
   void targetModel(int x, int y, int width, int height) {
     EntityLivingBase entity = targetEntity;
     if (entity == null || entity.isDead || entity.worldObj != mc.theWorld) return;

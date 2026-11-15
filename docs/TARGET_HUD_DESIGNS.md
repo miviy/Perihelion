@@ -43,6 +43,11 @@ Pulsive uses a single clipped silhouette with a square internal header seam, and
 rounded outlines retain antialiased coverage at fractional scales. Custom accent
 and target background pickers reuse the client theme picker in New visuals.
 
+Text faces are sized at the final framebuffer scale, including HUD density and
+per-design text transforms. The same metrics measure and paint each label;
+native Minecraft texels retain whole-pixel sizing and text origins snap to the
+framebuffer grid. B4 cards reserve their health/status suffix when trimming names.
+
 Source geometry that under-reported its painted bounds is normalized (Pulsive,
 Novo, Old Novo and Exhibition). Neverlose reserves space for its right health
 ring. Long names are measured and clipped; widths are bounded and pass through

@@ -30,6 +30,9 @@ final class TargetHudDesigns implements AutoCloseable {
   private long lastFrame, damageAt;
   private float displayed, trail, lastHealth, flash, ox, oy, w, h;
   private int first, second;
+  private float regularLine, boldLine;
+  private float textPixels;
+  private boolean bitmap;
 
   TargetHudDesigns(HudRenderer owner, HudFont shared) {
     this.owner = owner;
@@ -113,6 +116,11 @@ final class TargetHudDesigns implements AutoCloseable {
   }
 
   private void configure() {
+    configure(owner.pixels);
+  }
+
+  private void configure(float effectivePixels) {
+    textPixels = effectivePixels;
     design = module().design();
     ClickGuiModule.Font font =
         module().theme() == TargetHudModule.Theme.ORIGINAL
@@ -125,8 +133,11 @@ final class TargetHudDesigns implements AutoCloseable {
         module().theme() == TargetHudModule.Theme.CUSTOM
             && owner.hud.styles.get(HudModule.Element.TARGET).bold.get());
     bold.choice(font, true);
-    regular.raster(owner.pixels, font != ClickGuiModule.Font.MINECRAFT);
-    bold.raster(owner.pixels, font != ClickGuiModule.Font.MINECRAFT);
+    bitmap = font == ClickGuiModule.Font.MINECRAFT;
+    regular.raster(1, !bitmap);
+    bold.raster(1, !bitmap);
+    regularLine = bitmap ? 9 : regular.height();
+    boldLine = bitmap ? 9 : bold.height();
     first = accent(false);
     second = accent(true);
     canvas.pixelScale = owner.pixels;
@@ -147,7 +158,7 @@ final class TargetHudDesigns implements AutoCloseable {
   }
 
   int width() {
-    configure();
+    configure(owner.targetMeasurePixels());
     float name = width(name(), 9, false), result = design.width;
     switch (design) {
       case B4_MODERN:
@@ -274,13 +285,16 @@ final class TargetHudDesigns implements AutoCloseable {
   }
 
   private String b4Title() {
+    return b4Title(Float.MAX_VALUE);
+  }
+
+  private String b4Title(float available) {
     String color = ratio() < .3 ? "§c" : ratio() < .5 ? "§6" : ratio() < .7 ? "§e" : "§a";
-    return name()
-        + " "
-        + color
-        + HudRenderer.decimal(hp())
-        + " "
-        + (ownHp() >= hp() ? "§aW" : "§cL");
+    String suffix =
+        " " + color + HudRenderer.decimal(hp()) + " " + (ownHp() >= hp() ? "§aW" : "§cL");
+    float room = Math.max(0, available - width(suffix, 9, false));
+    float scale = textScale(9, false);
+    return regular.trim(name(), (int) Math.min(Integer.MAX_VALUE, room / scale)) + suffix;
   }
 
   private void animate() {
@@ -542,7 +556,7 @@ final class TargetHudDesigns implements AutoCloseable {
     boolean myau = design == MYAU_RAVEN_MODERN || design == MYAU_RAVEN_LEGACY;
     if (legacy) outline(0, 0, w, h, 10, 1, first, myau ? 0x6e000000 : 0x64000000);
     else round(0, 0, w, h, myau ? 8 : 5, myau ? 0xd2000000 : 0x64000000);
-    centered(b4Title(), 8, 8, w - 16, 9, false, 0xffdcdcdc);
+    centered(b4Title(w - 16), 8, 8, w - 16, 9, false, 0xffdcdcdc);
     bar(6, 24, w - 12, 5, 2, alpha(first, 210), alpha(second, 210), !legacy);
   }
 
@@ -858,19 +872,29 @@ final class TargetHudDesigns implements AutoCloseable {
 
   private float width(String value, float size, boolean heavy) {
     HudFont font = heavy ? bold : regular;
-    return font.width(value) * size / font.height();
+    float scale = textScale(size, heavy);
+    return font.width(value) * scale;
+  }
+
+  private float textScale(float size, boolean heavy) {
+    float scale = size / (heavy ? boldLine : regularLine);
+    // Measure and rasterize after every enclosing transform, including the design's text size.
+    // Native bitmap faces then quantize texels once; vector faces upload at final framebuffer size.
+    (heavy ? bold : regular).raster(textPixels * scale, !bitmap);
+    return scale;
   }
 
   private void text(
       String value, float x, float y, float size, boolean heavy, int color, float available) {
     if (available <= 0) return;
     HudFont font = heavy ? bold : regular;
-    float scale = size / font.height();
+    float scale = textScale(size, heavy);
     String trimmed = font.trim(value, (int) (available / scale));
     RenderStyle.text();
     GlStateManager.pushMatrix();
     try {
-      GlStateManager.translate(ox + x, oy + y, 0);
+      GlStateManager.translate(
+          owner.snapTargetText(ox + x, true), owner.snapTargetText(oy + y, false), 0);
       GlStateManager.scale(scale, scale, 1);
       boolean shadow =
           module().theme() != TargetHudModule.Theme.CUSTOM

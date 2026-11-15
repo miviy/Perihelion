@@ -211,6 +211,21 @@ public final class TargetHudDesignProbe {
             refresh(update, renderer);
             render.invoke(renderer, 320, 240, false, null, 0, 0);
             bounds(boxes.get(targetElement), 320, 240);
+            if (design == TargetHudModule.Design.MYAU_NEVERLOSE
+                || design == TargetHudModule.Design.ARSENIC_SIMPLE
+                || design == TargetHudModule.Design.YURI_EXHIBITION
+                || design == TargetHudModule.Design.B4_MODERN) {
+              background();
+              render.invoke(renderer, width, height, false, null, 0, 0);
+              ProductionHudProbe.capture(
+                  "target-text-"
+                      + design.name().toLowerCase(Locale.ROOT)
+                      + "-"
+                      + visual.toLowerCase(Locale.ROOT)
+                      + "-"
+                      + scale
+                      + ".png");
+            }
           }
           set(runtime, "hud", "target-scale", 1.0);
           for (String theme : new String[] {"CLIENT", "CUSTOM"}) {
