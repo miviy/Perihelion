@@ -60,6 +60,28 @@ public final class TargetHudModule extends ClientModule {
       this.width = width;
       this.height = height;
     }
+
+    public String displayName() {
+      switch (this) {
+        case MYAU_3D:
+          return "3D";
+        case MYAU_BLUEDEV:
+          return "BlueDev";
+        case YURI_RAVEN_B4:
+          return "Raven B4";
+        case YURI_OLD_RAVEN_B4:
+          return "Old Raven B4";
+        case MYAU_RAVEN_MODERN:
+          return "RavenBS modern";
+        case MYAU_RAVEN_LEGACY:
+          return "RavenBS legacy";
+        default:
+          String label = name();
+          int separator = label.indexOf('_');
+          return perihelion.integration.minecraft189.gui.GuiValues.readable(
+              separator < 0 ? label : label.substring(separator + 1));
+      }
+    }
   }
 
   public enum Theme {
@@ -106,7 +128,7 @@ public final class TargetHudModule extends ClientModule {
                     "theme",
                     "Theme",
                     "Original keeps the donor's colors and layout; Client follows your client;"
-                        + " Custom uses the appearance controls.",
+                        + " Custom uses your accent colors.",
                     Theme.ORIGINAL,
                     Theme.class,
                     guard)
@@ -119,11 +141,7 @@ public final class TargetHudModule extends ClientModule {
                     "Use this design's original blur and shadow.",
                     true,
                     guard)
-                .visibleWhen(
-                    () ->
-                        design.get() == Design.B4_MODERN
-                            || design.get() == Design.MYAU_RAVEN_MODERN
-                            || design.get() == Design.MYAU_BLUEDEV));
+                .visibleWhen(() -> false));
     primary =
         setting(
             Setting.color(
@@ -235,12 +253,7 @@ public final class TargetHudModule extends ClientModule {
 
   public List<SettingControl> controls(
       SettingControl.Actions actions, Runnable arrange, float rowHeight) {
-    List<SettingControl> controls = new ArrayList<>();
-    controls.add(SettingControl.create(hud.runtime.modules(), info().id(), design, actions));
-    controls.add(SettingControl.create(hud.runtime.modules(), info().id(), hideDelay, actions));
-    for (Setting<?> option : new Setting<?>[] {theme, primary, secondary, nativeEffects})
-      controls.add(SettingControl.create(hud.runtime.modules(), info().id(), option, actions));
-    controls.addAll(HudSettingsControls.target(hud, actions, rowHeight));
+    List<SettingControl> controls = simpleControls(actions);
     controls.add(
         SettingSection.action(
             hud.runtime.modules(),
@@ -249,6 +262,18 @@ public final class TargetHudModule extends ClientModule {
             "Drag the target card to place it.",
             rowHeight,
             arrange));
+    return controls;
+  }
+
+  List<SettingControl> simpleControls(SettingControl.Actions actions) {
+    List<SettingControl> controls = new ArrayList<>();
+    controls.add(SettingControl.create(hud.runtime.modules(), info().id(), design, actions));
+    controls.add(
+        SettingControl.create(
+            hud.runtime.modules(), "hud", hud.styles.get(HudModule.Element.TARGET).scale, actions));
+    controls.add(SettingControl.create(hud.runtime.modules(), info().id(), hideDelay, actions));
+    for (Setting<?> option : new Setting<?>[] {theme, primary, secondary})
+      controls.add(SettingControl.create(hud.runtime.modules(), info().id(), option, actions));
     return controls;
   }
 }

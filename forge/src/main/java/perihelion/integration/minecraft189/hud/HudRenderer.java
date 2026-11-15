@@ -1481,8 +1481,16 @@ final class HudRenderer implements AutoCloseable {
   void face(ResourceLocation skin, int x, int y, int size) {
     RenderStyle.text();
     mc.getTextureManager().bindTexture(skin);
-    Gui.drawScaledCustomSizeModalRect(x, y, 8, 8, 8, 8, size, size, 64, 64);
-    Gui.drawScaledCustomSizeModalRect(x, y, 40, 8, 8, 8, size, size, 64, 64);
+    net.minecraft.client.renderer.texture.ITextureObject texture = mc.getTextureManager().getTexture(skin);
+    // Skin faces are bitmap art. Linear filtering can sample the adjacent neck/shirt row.
+    texture.setBlurMipmap(false, false);
+    try {
+      // Keep the final sample inside the head's UV tile at fractional HUD scales.
+      Gui.drawScaledCustomSizeModalRect(x, y, 7.999f, 7.999f, 8, 8, size, size, 64, 64);
+      Gui.drawScaledCustomSizeModalRect(x, y, 39.999f, 7.999f, 8, 8, size, size, 64, 64);
+    } finally {
+      texture.restoreLastBlurMipmap();
+    }
   }
 
   private int playerNameWidth() {

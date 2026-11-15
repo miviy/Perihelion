@@ -12,8 +12,8 @@ It shows only entities you attack. **Hide delay (s)** keeps the card visible aft
 the last attack (3 seconds by default; 0.1–10 seconds). Dead or unloaded targets
 clear immediately. **Design** offers Perihelion and 32 designs from Yuri, B4,
 Arsenic, Coolware and Myau. Donor designs offer **Original**, **Client** and
-**Custom** themes; Custom exposes accent colors and font controls. Background
-and Position reuse your saved appearance and placement. See the
+**Custom** themes; Custom exposes accent colors. **Scale** adjusts the card directly; **Arrange on
+screen** preserves the saved placement. See the
 [design inventory and intentional differences](TARGET_HUD_DESIGNS.md).
 
 Each HUD piece uses the same row style as a regular module: **left-click** toggles

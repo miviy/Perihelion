@@ -15,22 +15,9 @@ public final class HudSettingsControls {
 
   private HudSettingsControls(
       HudModule hud, SettingControl.Actions actions, Runnable arrange, float rowHeight) {
-    this(hud, actions, arrange, rowHeight, false);
-  }
-
-  private HudSettingsControls(
-      HudModule hud,
-      SettingControl.Actions actions,
-      Runnable arrange,
-      float rowHeight,
-      boolean targetOnly) {
     this.hud = hud;
     this.actions = actions;
     this.rowHeight = rowHeight;
-    if (targetOnly) {
-      appearance(HudModule.Element.TARGET, null);
-      return;
-    }
     for (HudModule.Element element : HudModule.Element.values())
       if (element != HudModule.Element.TARGET) element(element);
     SettingSection general = section("General", "Visibility rules for the whole HUD.", null, null);
@@ -59,11 +46,6 @@ public final class HudSettingsControls {
     return new HudSettingsControls(hud, actions, arrange, rowHeight).controls;
   }
 
-  static List<SettingControl> target(
-      HudModule hud, SettingControl.Actions actions, float rowHeight) {
-    return new HudSettingsControls(hud, actions, null, rowHeight, true).controls;
-  }
-
   private SettingSection section(
       String title, String description, SettingSection parent, Setting<Boolean> enabled) {
     SettingSection section =
@@ -77,19 +59,7 @@ public final class HudSettingsControls {
     for (Setting<?> setting : settings)
       controls.add(
           SettingControl.create(hud.runtime.modules(), "hud", setting, actions)
-              .visibleWhen(() -> section.isOpen() && targetOptionVisible(hud, setting)));
-  }
-
-  static boolean targetOptionVisible(HudModule hud, Setting<?> setting) {
-    if (hud.targetHud == null || !hud.targetHud.donorDesign()) return true;
-    HudElementStyle target = hud.styles.get(HudModule.Element.TARGET);
-    if ((setting == target.opacity || setting == target.radius)
-        && target.background.get() == HudElementStyle.Background.AUTO) return false;
-    if (setting == target.colors || setting == target.color || setting == target.secondary)
-      return false;
-    if (setting == target.font || setting == target.bold || setting == target.shadow)
-      return hud.targetHud.theme() == TargetHudModule.Theme.CUSTOM;
-    return true;
+              .visibleWhen(section::isOpen));
   }
 
   private void element(HudModule.Element element) {

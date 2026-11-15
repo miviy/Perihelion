@@ -170,8 +170,8 @@ public final class HudDropdownProbe {
           List<SettingControl> targetControls =
               (List<SettingControl>) field(view.getClass(), "controls").get(view);
           check(
-              targetControls.stream().filter(SettingControl::isVisible).count() == 6,
-              "Target HUD starts with two settings, three collapsed appearance groups and Arrange");
+              targetControls.stream().filter(SettingControl::isVisible).count() == 4,
+              "Target HUD starts with design, scale, hide delay and Arrange");
           SettingControl delayControl = control(targetControls, delay);
           hit(screen, delayControl, 1);
           Object delayEditor = field(screen.getClass(), "editor").get(screen);
@@ -181,6 +181,15 @@ public final class HudDropdownProbe {
               .invoke(screen, '\0', Keyboard.KEY_RETURN);
           check(
               delay.get().equals(1.7), "Target HUD delay edits through the native module controls");
+          SettingControl scaleControl = control(targetControls, settings.get("target-scale"));
+          hit(screen, scaleControl, 1);
+          Object scaleEditor = field(screen.getClass(), "editor").get(screen);
+          method(scaleEditor.getClass(), new Class<?>[] {String.class}, "setText", "func_146180_a")
+              .invoke(scaleEditor, "1.25");
+          method(screen.getClass(), new Class<?>[] {char.class, int.class}, "type")
+              .invoke(screen, '\0', Keyboard.KEY_RETURN);
+          check(settings.get("target-scale").get().equals(1.25),
+              "Direct scale control edits the existing saved HUD scale");
           panel(screen).scroll = 0;
           draw(screen);
           ProductionHudProbe.capture("target-hud-module.png");
@@ -211,15 +220,21 @@ public final class HudDropdownProbe {
               design.get().toString().equals("MYAU_TENACITY"),
               "Last design selects through native mouse input");
           field(designControl.getClass(), "expanded").setBoolean(designControl, false);
-          runtime.modules().setSetting("targethud", (Setting) theme,
-              perihelion.integration.minecraft189.hud.TargetHudModule.Theme.CUSTOM);
+          runtime
+              .modules()
+              .setSetting(
+                  "targethud",
+                  (Setting) theme,
+                  perihelion.integration.minecraft189.hud.TargetHudModule.Theme.CUSTOM);
           panel(screen).scroll = 0;
           draw(screen);
           SettingControl accent = control(targetControls, entry.module().settings().get("primary"));
           hit(screen, accent, 0);
-          check((Boolean) method(accent.getClass(), "compact").invoke(accent),
+          check(
+              (Boolean) method(accent.getClass(), "compact").invoke(accent),
               "Custom Target HUD uses the client theme's compact color picker");
-          check(accent.height() - n(accent, "headerHeight") < 115,
+          check(
+              accent.height() - n(accent, "headerHeight") < 115,
               "Target color picker uses the same compact geometry as client themes");
           ProductionHudProbe.capture("target-hud-custom-colors.png");
           field(accent.getClass(), "expanded").setBoolean(accent, false);

@@ -37,6 +37,8 @@ public final class GuiValues {
         setting.metadata().kind() == perihelion.core.setting.SettingMetadata.Kind.ENUM
             ? setting.parse(option)
             : option;
+    if (value instanceof perihelion.integration.minecraft189.hud.TargetHudModule.Design)
+      return ((perihelion.integration.minecraft189.hud.TargetHudModule.Design) value).displayName();
     return readable(String.valueOf(value));
   }
 
