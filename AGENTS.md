@@ -38,7 +38,7 @@
 
 ## GitHub
 
-- Keep the repository private. See `docs/GITHUB.md` for setup and commands.
+- See `docs/GITHUB.md` for setup and commands.
 - Check the branch and working tree before Git operations. Stage only this task's
   changes; exclude credentials, local game data and unrelated work.
 - When the task is complete and relevant checks pass, automatically commit and push

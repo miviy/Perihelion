@@ -1,6 +1,6 @@
 # GitHub development
 
-Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion). Keep its visibility **Private**.
+Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
 
 Run Git commands from the Perihelion project directory, which contains `core/`,
 `forge/`, and `gradlew`. Donor checkouts are outside this repository.
@@ -49,7 +49,7 @@ editing locally if you made changes through GitHub's web editor.
 
 The **Build and tests** workflow runs on pushes and pull requests. It can also be
 started from the repository's **Actions** tab. A successful run verifies the
-distribution and uploads the client JAR and test reports as a private repository
+distribution and uploads the client JAR and test reports as a repository
 artifact, retained for 14 days. Use `Perihelion-…jar` from the download in a
 Minecraft 1.8.9 Forge 11.15.1.2318 profile.
 
@@ -62,6 +62,4 @@ locally when changing rendering, input, Mixins, or gameplay behavior.
 files, build outputs, caches, local tools, and backups. Review `git diff --cached`
 before every commit. Keep credentials in macOS Keychain or GitHub Actions secrets.
 
-Invite collaborators only when you intend to give them access. Keep GitHub Pages
-disabled and avoid changing repository visibility to Public. A private repository
-still permits authorized collaborators to read and clone its contents.
+Invite collaborators only when you intend to give them access.
