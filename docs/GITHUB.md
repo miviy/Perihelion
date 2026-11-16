@@ -47,13 +47,21 @@ Use JDK 17 for Gradle and JDK 8 for the compiler and game. See [BUILD.md](BUILD.
 for toolchain details. Distinguish local tests, packaged runtime checks and
 live-server results; one does not establish the others.
 
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:f0552cbc907fd7fbac79c4d6f772b8d58fc9c3d051736159da3e83b37235b74d -->
+
 ```sh
 git diff --check
 git add path/to/changed-file
 git diff --cached
+git -c user.name=miviy -c user.email=267354159+miviy@users.noreply.github.com var GIT_AUTHOR_IDENT
+git -c user.name=miviy -c user.email=267354159+miviy@users.noreply.github.com var GIT_COMMITTER_IDENT
 git -c user.name=miviy -c user.email=267354159+miviy@users.noreply.github.com commit -m "Describe the change"
 git push -u origin HEAD
 ```
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 Open a PR targeting `main` using the connected GitHub tools, the GitHub website,
 or `gh pr create --base main` if GitHub CLI is installed. Pushing a branch alone
@@ -64,7 +72,74 @@ Use a draft if verification is incomplete or known failures remain. Report the
 PR link and actual CI result; do not describe queued or running checks as passed.
 Fix failures introduced by the task, and identify unrelated failures separately.
 
+<!-- coderabbit-ai-generated:v1 -->
+
+<!-- coderabbit-ai-generated-section:v1:5699903d21171d72b8683f03044bb120bbbb8b19a91e00c4b6655aaa5a9120f1 -->
+
+## Gradle Dependabot updates
+
+For each Gradle Dependabot PR, check out its branch in a clean checkout (replace
+`PR_NUMBER` with the PR number) and inspect the proposed versions and sources.
+If the PR changes the wrapper, complete the **Wrapper upgrades** review below
+before executing it. Then regenerate SHA-256 dependency verification metadata
+using the build:
+
+```sh
+gh pr checkout PR_NUMBER
+# Review wrapper changes as described below before running Gradle.
+./gradlew --no-daemon --write-verification-metadata sha256 check assemble
+git diff -- gradle/verification-metadata.xml
+```
+
+Review every added or changed checksum in `gradle/verification-metadata.xml`
+against the intended dependency/version and trusted upstream artifacts or published
+checksums. Generated hashes alone do not establish trust. Investigate unexpected
+changes, removals or new verification exemptions; do not disable verification to
+make an update pass. See [BUILD.md](BUILD.md#checksums) and
+[Gradle dependency verification](https://docs.gradle.org/8.4/userguide/dependency_verification.html).
+
+### Wrapper upgrades
+
+For every wrapper upgrade, including one proposed by the Gradle Dependabot
+configuration, review `gradle/wrapper/gradle-wrapper.properties`, the wrapper scripts
+and `gradle/wrapper/gradle-wrapper.jar`. Follow the
+[Gradle wrapper upgrade procedure](https://docs.gradle.org/8.4/userguide/gradle_wrapper.html#sec:upgrading_wrapper),
+including a second wrapper task invocation when needed to refresh the JAR and scripts.
+Before running a changed wrapper JAR, compare its SHA-256
+(`sha256sum gradle/wrapper/gradle-wrapper.jar`, or
+`shasum -a 256 gradle/wrapper/gradle-wrapper.jar` on macOS) with the checksum
+published by Gradle at
+`https://services.gradle.org/distributions/gradle-VERSION-wrapper.jar.sha256`,
+substituting the reviewed target version. Verify `distributionSha256Sum` separately
+against Gradle's checksum for the selected distribution ZIP.
+
+Only after the JAR matches the official checksum, update the literal `expected`
+SHA-256 in `build.gradle`'s `checkWrapper` task and the version in its failure
+message. Keep the expected checksum pinned and reviewed in the PR; do not derive
+it from the local JAR at build time or automatically accept a generated value.
+Update the pinned wrapper version and checksum notes in [BUILD.md](BUILD.md#checksums).
+Run `./gradlew --no-daemon checkWrapper` to verify the updated pin.
+
+### Validate and push reviewed checksums
+
+Run the normal build without metadata writing, then stage only reviewed changes:
+
+```sh
+./gradlew --no-daemon check assemble
+git diff --check
+git add gradle/verification-metadata.xml
+# For wrapper upgrades, also stage the reviewed wrapper, build.gradle and documentation changes.
+git diff --cached
+```
+
+Use the identity checks and commit command in **Verify and publish** above, then
+`git push` the reviewed commit to the checked-out Dependabot PR branch. Confirm
+the checksum changes appear in that PR and its build passes before merging.
+Keep the `gradle` entry in `.github/dependabot.yml` unchanged for this procedure.
+
 ## Review and merge
+
+<!-- /coderabbit-ai-generated:v1 -->
 
 Review the PR diff and wait for **Build and tests / build** to pass before merging.
 Resolve review conversations. Use a squash merge for one commit per task; GitHub
