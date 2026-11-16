@@ -37,12 +37,18 @@ final class HudCustomization implements SettingControl.Actions {
     this.hud = hud;
     this.element = element;
     this.canvas = canvas;
+    if (element == HudModule.Element.TARGET && hud.targetHud != null) {
+      controls.addAll(hud.targetHud.simpleControls(this));
+      sections = 1;
+      return;
+    }
     for (Setting<?> setting : hud.options(element))
       controls.add(SettingControl.create(hud.runtime.modules(), "hud", setting, this));
     sections = controls.size() > hud.styles.get(element).settings.size() ? 3 : 2;
   }
 
   private boolean inSection(Setting<?> setting) {
+    if (element == HudModule.Element.TARGET) return true;
     HudElementStyle style = hud.styles.get(element);
     boolean common = style.settings.contains(setting);
     return section == 0
@@ -51,6 +57,7 @@ final class HudCustomization implements SettingControl.Actions {
   }
 
   private boolean extra(Setting<?> setting) {
+    if (element == HudModule.Element.TARGET) return false;
     HudElementStyle style = hud.styles.get(element);
     if (section == 0) return setting == style.bold || setting == style.shadow;
     if (section == 1)
@@ -112,7 +119,12 @@ final class HudCustomization implements SettingControl.Actions {
         x + w - 11,
         canvas.modern ? canvas.font.centeredY(y, GuiTheme.HEADER) : y + 1,
         canvas.text);
-    String[] tabs = {"Text", "Panel", element == HudModule.Element.MODULES ? "Layout" : "Content"};
+    String[] tabs =
+        element == HudModule.Element.TARGET
+            ? new String[] {"Settings"}
+            : new String[] {
+              "Text", "Panel", element == HudModule.Element.MODULES ? "Layout" : "Content"
+            };
     for (int i = 0; i < sections; i++)
       GuiTheme.button(
           canvas,

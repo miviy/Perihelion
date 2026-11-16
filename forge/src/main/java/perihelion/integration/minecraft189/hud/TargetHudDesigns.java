@@ -123,15 +123,10 @@ final class TargetHudDesigns implements AutoCloseable {
     textPixels = effectivePixels;
     design = module().design();
     ClickGuiModule.Font font =
-        module().theme() == TargetHudModule.Theme.ORIGINAL
-            ? pixelFont(design) ? ClickGuiModule.Font.MINECRAFT : ClickGuiModule.Font.INTER
-            : module().theme() == TargetHudModule.Theme.CLIENT
-                ? GuiTheme.font(owner.hud.runtime)
-                : owner.hud.styles.get(HudModule.Element.TARGET).font(owner.hud);
-    regular.choice(
-        font,
-        module().theme() == TargetHudModule.Theme.CUSTOM
-            && owner.hud.styles.get(HudModule.Element.TARGET).bold.get());
+        module().theme() == TargetHudModule.Theme.CLIENT
+            ? GuiTheme.font(owner.hud.runtime)
+            : pixelFont(design) ? ClickGuiModule.Font.MINECRAFT : ClickGuiModule.Font.INTER;
+    regular.choice(font, false);
     bold.choice(font, true);
     bitmap = font == ClickGuiModule.Font.MINECRAFT;
     regular.raster(1, !bitmap);
@@ -896,10 +891,7 @@ final class TargetHudDesigns implements AutoCloseable {
       GlStateManager.translate(
           owner.snapTargetText(ox + x, true), owner.snapTargetText(oy + y, false), 0);
       GlStateManager.scale(scale, scale, 1);
-      boolean shadow =
-          module().theme() != TargetHudModule.Theme.CUSTOM
-              || owner.hud.styles.get(HudModule.Element.TARGET).shadow.get();
-      font.draw(trimmed, 0, 0, color, shadow, owner.pixels * scale);
+      font.draw(trimmed, 0, 0, color, true, owner.pixels * scale);
     } finally {
       GlStateManager.popMatrix();
     }

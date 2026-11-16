@@ -42,6 +42,8 @@ final class HudRenderer implements AutoCloseable {
   private static final float LOGO_SCALE = 1.3f;
   private static final int BRAND_HEIGHT = 24;
   private static final int THEME_ELEMENT_RANGE = Math.max(1, Element.values().length - 1);
+  private static final java.time.format.DateTimeFormatter CLOCK =
+      java.time.format.DateTimeFormatter.ofPattern("HH:mm");
   final HudModule hud;
   private final boolean targetOnly;
   final Minecraft mc = Minecraft.getMinecraft();
@@ -169,10 +171,7 @@ final class HudRenderer implements AutoCloseable {
       if (hud.watermarkVersion.get() && !hud.version.isEmpty())
         watermark += "  \u00a77v" + hud.version;
       if (hud.watermarkClock.get())
-        watermark +=
-            "  \u00a77"
-                + java.time.LocalTime.now()
-                    .format(java.time.format.DateTimeFormatter.ofPattern("HH:mm"));
+        watermark += "  \u00a77" + java.time.LocalTime.now().format(CLOCK);
       if (hud.watermarkInfo.get())
         watermark +=
             "  \u00a77"
@@ -293,7 +292,9 @@ final class HudRenderer implements AutoCloseable {
         continue;
       if (was != null && was != on && show(Element.NOTIFICATIONS)) {
         if (notices.size() == 4) notices.removeFirst();
-        notices.addLast(new Notice(HudNavigator.label(entry), on, sampled));
+        // Not the snapshot time: this also runs before the first sample, while it is still
+        // Long.MIN_VALUE, and such a notice would never expire.
+        notices.addLast(new Notice(HudNavigator.label(entry), on, System.nanoTime()));
       }
       if (!on || (hideVisualsSeen && entry.info().category() == ModuleCategory.RENDER)) continue;
       String label = HudNavigator.label(entry);
@@ -327,7 +328,7 @@ final class HudRenderer implements AutoCloseable {
         String username = info.getGameProfile().getName();
         if (id == null
             || username == null
-            || !username.matches("[A-Za-z0-9_]{1,16}")
+            || !PlayerReport.validUsername(username)
             || id.version() != 4 && id.version() != 3
             || info.getGameType() == net.minecraft.world.WorldSettings.GameType.SPECTATOR
             || !hud.overlay.includeSelf.get() && id.equals(mc.thePlayer.getUniqueID())) continue;
@@ -646,16 +647,25 @@ final class HudRenderer implements AutoCloseable {
     canvas.pixelScale = pixels;
     canvas.modern = modern;
     if (modern) ModernTheme.palette(canvas, GuiTheme.palette(hud.runtime));
+    // The dedicated Target HUD renderer draws only its card. With no target there is nothing
+    // to capture, blur or draw, so skip the GL state snapshots and the scene copy entirely.
+    if (targetOnly && !preview && !hasTarget) {
+      for (Box box : boxes.values()) box.visible = false;
+      blur.skip();
+      return;
+    }
     boolean needsBlur = false;
     for (Element e : Element.values())
       if (show(e)
           && (e != Element.TARGET || preview || hasTarget)
           && (hud.styles.get(e).blur.get() || e == Element.TARGET && targetDesigns.glass()))
         needsBlur = true;
-    try (RenderState capture = state.open()) {
-      if (needsBlur) blur.capture(mc);
-      else blur.skip();
-    }
+    // A state snapshot costs dozens of driver queries; take one only for a real scene copy.
+    if (needsBlur) {
+      try (RenderState capture = state.open()) {
+        blur.capture(mc);
+      }
+    } else blur.skip();
     if (classic) {
       raven.render(width, height, preview, dragging, dragX, dragY);
       return;
@@ -1471,8 +1481,16 @@ final class HudRenderer implements AutoCloseable {
   void face(ResourceLocation skin, int x, int y, int size) {
     RenderStyle.text();
     mc.getTextureManager().bindTexture(skin);
-    Gui.drawScaledCustomSizeModalRect(x, y, 8, 8, 8, 8, size, size, 64, 64);
-    Gui.drawScaledCustomSizeModalRect(x, y, 40, 8, 8, 8, size, size, 64, 64);
+    net.minecraft.client.renderer.texture.ITextureObject texture = mc.getTextureManager().getTexture(skin);
+    // Skin faces are bitmap art. Linear filtering can sample the adjacent neck/shirt row.
+    texture.setBlurMipmap(false, false);
+    try {
+      // Keep the final sample inside the head's UV tile at fractional HUD scales.
+      Gui.drawScaledCustomSizeModalRect(x, y, 7.999f, 7.999f, 8, 8, size, size, 64, 64);
+      Gui.drawScaledCustomSizeModalRect(x, y, 39.999f, 7.999f, 8, 8, size, size, 64, 64);
+    } finally {
+      texture.restoreLastBlurMipmap();
+    }
   }
 
   private int playerNameWidth() {

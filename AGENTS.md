@@ -32,17 +32,30 @@
   issues and include useful screenshots in the handoff. If capture is unavailable,
   report the limitation and continue the checks you can. Check affected controls
   and confirm saved layouts/settings survive.
-- After client changes, launch the updated Minecraft client, verify it stays running
-  and leave it open for the user to test. Reuse a running instance if it is current.
+- For rendering, input, Mixins or gameplay changes, run the packaged client and
+  verify the affected behavior. When launching for user testing, verify it stays
+  running and leave it open. Reuse a running instance if it is current.
+- Documentation-only changes need a diff and link review, not a build or game
+  launch. See `docs/GITHUB.md` for code and workflow checks.
 - Keep the final response brief: what changed, what was checked and any limitations.
 
 ## GitHub
 
 - See `docs/GITHUB.md` for setup and commands.
-- Check the branch and working tree before Git operations. Stage only this task's
-  changes; exclude credentials, local game data and unrelated work.
-- When the task is complete and relevant checks pass, automatically commit and push
-  its changes on the current branch without asking again, unless the task requires
-  a separate branch or the user requested otherwise. Report the commit and push
-  result; flag any CI failures.
+- Before editing, check the branch and working tree. Start each independent task
+  on a descriptive `feature/`, `fix/` or `chore/` branch from current `origin/main`.
+  Continue the existing task branch for follow-up work. Never work directly on
+  `main`. If unrelated edits or another task are present, use an isolated worktree
+  under `.tools/worktrees/`; do not stash, move or commit another task's work.
+- Stage only this task's changes; exclude credentials, local game data and
+  unrelated work. When relevant local checks pass, automatically commit, push the
+  task branch and open or update a pull request targeting `main`. These actions
+  are authorized for requested implementation work; do not ask again unless the
+  user requested otherwise or the host permission system requires approval.
+- Include the problem, resulting behavior, validation and material limitations
+  in the PR. Use a draft when checks are incomplete or known failures remain.
+  Report the PR link and actual CI state; fix failures caused by this task.
+- Leave merging for the user unless explicitly asked to merge. Never push directly
+  to `main`. After a merge, update local `main` only when its working tree is clean.
+- Respect the installed main-branch push guard; never bypass it with `--no-verify`.
 - Never force-push or rewrite shared history unless explicitly requested.

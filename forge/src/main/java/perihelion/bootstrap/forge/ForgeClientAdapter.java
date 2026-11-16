@@ -99,13 +99,19 @@ final class ForgeClientAdapter implements HookBridge.Target {
   }
 
   @Override
+  public boolean hasClientListeners(Class<?> type) {
+    return runtime.clientEvents().hasListeners(type);
+  }
+
+  @Override
   public String displayText(String text) {
-    if (!runtime.tasks().isClientThread()
-        || !runtime.worldReady()
-        || !runtime
+    // Every string drawn or measured by the game passes through here. Test for a listener
+    // first: it is the cheapest check and almost always the one that ends the call.
+    if (!runtime
             .clientEvents()
-            .hasListeners(perihelion.integration.minecraft189.event.TextRenderEvent.class))
-      return text;
+            .hasListeners(perihelion.integration.minecraft189.event.TextRenderEvent.class)
+        || !runtime.tasks().isClientThread()
+        || !runtime.worldReady()) return text;
     perihelion.integration.minecraft189.event.TextRenderEvent event =
         new perihelion.integration.minecraft189.event.TextRenderEvent(text);
     runtime.clientEvents().post(event);

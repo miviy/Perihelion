@@ -6,13 +6,17 @@ hide delay, saved position/scale, editor, configuration and lifecycle. Looking a
 an entity alone does not acquire it. Text-only source designs stay text-only;
 portrait designs support players and living mobs.
 
-**Theme** offers Original brand colors, Client colors/font, or Custom accents/font.
-Original uses Minecraft where the source does, and the bundled licensed Inter
-where donors used SF, Product Sans, DM Sans or Tahoma. Those donor fonts/assets
-are not redistributed, so these are native adaptations rather than pixel-identical
-copies. Background and Position retain the shared controls. Auto background keeps
-the source panel; select Solid, Gradient or None to override it. Original effects
-can disable the native blur/shadow on the three designs that use them.
+**Design** uses the source style's short name (for example Adjust or Pulsive),
+while saved configuration tokens stay unchanged. **Scale** directly adjusts the
+card from 0.65 to 1.75; **Hide delay** controls how long it stays after an attack.
+**Theme** offers Original brand colors, Client colors/font, or Custom accents.
+Custom keeps the design's typography. **Arrange on screen** moves the card.
+The editor uses this same short setting list, without Text, Background or Position
+groups. Existing placement and scale values are preserved.
+
+Original uses Minecraft where the source does, and bundled licensed Inter where
+donors used SF, Product Sans, DM Sans or Tahoma. Donor fonts/assets are not
+redistributed, so these are native adaptations rather than pixel-identical copies.
 
 ## Source inventory
 
@@ -40,8 +44,7 @@ expiry and disposal. No donor event bus, managers, packet code, config system,
 custom font loader, permanent target list or external dependency is imported.
 
 Pulsive uses a single clipped silhouette with a square internal header seam, and
-rounded outlines retain antialiased coverage at fractional scales. Custom accent
-and target background pickers reuse the client theme picker in New visuals.
+rounded outlines retain antialiased coverage at fractional scales. Custom accent pickers reuse the client theme picker in New visuals.
 
 Text faces are sized at the final framebuffer scale, including HUD density and
 per-design text transforms. The same metrics measure and paint each label;

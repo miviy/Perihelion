@@ -44,6 +44,14 @@ public final class HookBridge {
     /** Client-thread events; implementations must dispatch through owned listeners. */
     default void clientEvent(Object event) {}
 
+    /**
+     * False only when {@link #clientEvent} would deliver this event type to nobody. Must be safe
+     * on any thread; the conservative default keeps every event flowing.
+     */
+    default boolean hasClientListeners(Class<?> type) {
+      return true;
+    }
+
     /** Render-only text filtering; the default path needs no event allocation. */
     default String displayText(String text) {
       return text;
@@ -274,7 +282,25 @@ public final class HookBridge {
     }
   }
 
+  /**
+   * Allocation-free pre-check for hooks that run per entity, per block or several times a frame.
+   * False means an event of this type has no listener, so the caller keeps vanilla behavior
+   * without building the event. Only skip events whose untouched defaults equal vanilla.
+   */
+  public static boolean wantsClientEvent(Class<?> type) {
+    Target current = target;
+    if (current == null) return false;
+    try {
+      return current.isRunning() && current.hasClientListeners(type);
+    } catch (Throwable failure) {
+      Failures.rethrowFatal(failure);
+      reportFailure("client listener check", failure);
+      return false;
+    }
+  }
+
   public static boolean suppressEffect(VisualEffectEvent.Kind kind) {
+    if (!wantsClientEvent(VisualEffectEvent.class)) return false;
     VisualEffectEvent event = new VisualEffectEvent(kind);
     clientEvent(event);
     return event.isCancelled();

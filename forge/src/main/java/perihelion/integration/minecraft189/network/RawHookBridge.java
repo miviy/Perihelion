@@ -65,8 +65,9 @@ public final class RawHookBridge {
       HookBridge.reportFailure(outbound ? "before-send" : "before-receive", failure);
       return false;
     } finally {
-      SOURCE.remove();
-      // Retain only a bootstrap Boolean; avoid allocating a ThreadLocal entry per packet.
+      // Clear the reference but keep both map entries: remove() would discard the entry and
+      // make the next packet on this thread allocate a new one.
+      if (source != null) SOURCE.set(null);
       DISPATCHING.set(Boolean.FALSE);
     }
   }

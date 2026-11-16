@@ -28,16 +28,44 @@ public class TargetHudSettingsTest {
   }
 
   @Test
-  public void targetMenuKeepsAppearanceControlsInOnePlace() {
+  public void targetMenuKeepsOnlyUsefulControls() {
     ClientRuntime runtime = runtime();
     try {
       HudModule hud = (HudModule) runtime.modules().require("hud").module();
       TargetHudModule target = (TargetHudModule) runtime.modules().require("targethud").module();
       java.util.List<perihelion.integration.minecraft189.gui.widget.SettingControl> controls =
           target.controls(null, () -> {}, 17);
-      assertEquals(6, controls.stream().filter(c -> c.isVisible()).count());
-      for (Setting<?> setting : hud.styles.get(HudModule.Element.TARGET).settings)
-        assertEquals(1, controls.stream().filter(c -> c.setting == setting).count());
+      assertEquals(4, controls.stream().filter(c -> c.isVisible()).count());
+      HudElementStyle style = hud.styles.get(HudModule.Element.TARGET);
+      assertEquals(1, controls.stream().filter(c -> c.setting == style.scale).count());
+      assertEquals("Scale", style.scale.displayName());
+      assertTrue(
+          controls.stream()
+              .noneMatch(
+                  c ->
+                      c instanceof perihelion.integration.minecraft189.gui.widget.SettingSection
+                          && !c.setting.displayName().equals("Arrange on screen")));
+      assertTrue(
+          controls.stream()
+              .noneMatch(c -> c.setting == style.background || c.setting == style.font));
+      assertEquals(
+          "Adjust",
+          perihelion.integration.minecraft189.gui.GuiValues.optionLabel(
+              target.settings().get("design"), "YURI_ADJUST"));
+      java.util.Set<String> labels = new java.util.HashSet<>();
+      for (TargetHudModule.Design design : TargetHudModule.Design.values()) {
+        String label =
+            perihelion.integration.minecraft189.gui.GuiValues.optionLabel(
+                target.settings().get("design"), design.name());
+        assertTrue("Duplicate design label: " + label, labels.add(label));
+      }
+      assertTrue(labels.contains("Face (Arsenic)"));
+      assertTrue(labels.contains("Face (Myau)"));
+      assertTrue(labels.contains("Simple (Arsenic)"));
+      assertTrue(labels.contains("Simple (Myau)"));
+      assertTrue(labels.contains("Exhibition (Yuri)"));
+      assertTrue(labels.contains("Exhibition (Myau)"));
+      assertEquals("YURI_ADJUST", TargetHudModule.Design.YURI_ADJUST.toString());
       assertTrue(
           HudSettingsControls.create(hud, null, () -> {}).stream()
               .noneMatch(c -> c.setting.id().startsWith("target-")));

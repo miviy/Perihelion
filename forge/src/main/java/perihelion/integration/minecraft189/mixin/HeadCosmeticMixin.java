@@ -23,7 +23,8 @@ public abstract class HeadCosmeticMixin {
       float pitch,
       float scale,
       CallbackInfo ci) {
-    if (entity instanceof AbstractClientPlayer)
+    if (entity instanceof AbstractClientPlayer
+        && HookBridge.wantsClientEvent(PlayerHeadRenderEvent.class))
       HookBridge.clientEvent(
           new PlayerHeadRenderEvent(
               (AbstractClientPlayer) entity,

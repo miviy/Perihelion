@@ -37,7 +37,9 @@ public abstract class BlockCollisionMixin {
         if (entity == null
                 || entity != Minecraft.getMinecraft().thePlayer
                 || !world.isRemote
-                || !HookBridge.isRunning()) return;
+                // Called for every block the player's movement sweeps. Without a listener the
+                // box would be computed here and again by vanilla for no effect.
+                || !HookBridge.wantsClientEvent(BlockCollisionEvent.class)) return;
         AxisAlignedBB original = getCollisionBoundingBox(world, pos, state);
         BlockCollisionEvent event = new BlockCollisionEvent((Block) (Object) this, pos, original);
         HookBridge.clientEvent(event);

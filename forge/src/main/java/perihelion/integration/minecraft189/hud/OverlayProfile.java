@@ -325,9 +325,15 @@ final class OverlayProfile {
     return id.toString().replace("-", "").equalsIgnoreCase(returned.replace("-", ""));
   }
 
+  // clean() runs for every sidebar line and provider field; Pattern is safe across the workers.
+  private static final java.util.regex.Pattern FORMATTING =
+          java.util.regex.Pattern.compile("\\u00a7."),
+      CONTROL = java.util.regex.Pattern.compile("[\\p{Cntrl}]");
+
   static String clean(String value) {
     if (value == null) return "";
-    String clean = value.replaceAll("\\u00a7.", "").replaceAll("[\\p{Cntrl}]", " ").trim();
+    String clean =
+        CONTROL.matcher(FORMATTING.matcher(value).replaceAll("")).replaceAll(" ").trim();
     return clean.substring(0, Math.min(160, clean.length()));
   }
 }
