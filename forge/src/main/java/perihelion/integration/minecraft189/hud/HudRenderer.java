@@ -656,7 +656,7 @@ final class HudRenderer implements AutoCloseable {
     }
     boolean needsBlur = false;
     for (Element e : Element.values())
-      if (show(e)
+      if (renders(e, preview)
           && (e != Element.TARGET || preview || hasTarget)
           && (hud.styles.get(e).blur.get() || e == Element.TARGET && targetDesigns.glass()))
         needsBlur = true;

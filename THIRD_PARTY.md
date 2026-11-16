@@ -23,6 +23,14 @@ Exact revisions, paths and intentional differences appear in
 [the Target HUD inventory](docs/TARGET_HUD_DESIGNS.md).
 
 
+## Local reference only: OpenAdjust
+
+[OpenAdjust](https://github.com/yxzeroo/openadjust) is a separate read-only source
+reference at `../donor_clients/OpenAdjust/`; its pinned revision and source map are
+recorded in [DONORS.md](docs/DONORS.md). This onboarding does not bundle its source,
+assets, binaries or dependencies in Perihelion. Check the recorded licensing
+limitations before any future source or asset reuse.
+
 ## GUI fonts
 
 The GUI bundles unmodified static Regular and Bold font files in

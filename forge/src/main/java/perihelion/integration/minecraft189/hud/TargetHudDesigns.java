@@ -49,11 +49,7 @@ final class TargetHudDesigns implements AutoCloseable {
   }
 
   boolean glass() {
-    if (!active() || !module().nativeEffects()) return false;
-    if (owner.hud.styles.get(HudModule.Element.TARGET).background.get()
-        != HudElementStyle.Background.AUTO) return false;
-    TargetHudModule.Design d = module().design();
-    return d == B4_MODERN || d == MYAU_RAVEN_MODERN || d == MYAU_BLUEDEV;
+    return module() != null && module().nativeGlass();
   }
 
   float radius() {
