@@ -1,5 +1,47 @@
 # Donor references
 
+## OpenAdjust reference onboarding (2026-11-15)
+
+Added [yxzeroo/openadjust](https://github.com/yxzeroo/openadjust) at
+`../donor_clients/OpenAdjust/` relative to Perihelion, alongside the other read-only
+clients. Origin is `https://github.com/yxzeroo/openadjust.git`; the checkout is
+detached at [`a633f3b2b0b8c5a9964c67209843f0ddb415c6ae`](https://github.com/yxzeroo/openadjust/commit/a633f3b2b0b8c5a9964c67209843f0ddb415c6ae),
+the verified upstream `main` HEAD at onboarding (initial release, 2026-11-15).
+Keep this pin unchanged during comparisons; record any future authorized refresh.
+
+Upstream describes an AI-restored Minecraft 1.8.9 Adjust client based on the
+October 16th build, changelog version 96. Its registries contain 100 module and
+29 command registrations; these counts do not establish working runtime behavior
+or fidelity to the original Adjust client. This is a newly available source
+reference, separate from Perihelion's existing screenshot-based Adjust style.
+
+Source map, relative to the donor checkout:
+
+| Reference | Path |
+| --- | --- |
+| Bootstrap and registry | `src/main/java/com/adjustclient/Adjust.java`, `property/ModuleManager.java`, `property/CommandManager.java` under the same package |
+| Gameplay modules | `src/main/java/com/adjustclient/module/impl/` (`combat`, `exploit`, `movement`, `player`, `render`) |
+| GUI, HUD and fonts | `src/main/java/com/adjustclient/ui/` (`clickgui`, `hud`, `tabgui`, `config`, `font`) and `render/` under the client package |
+| Rotation, simulation, placement and packet helpers | `src/main/java/com/adjustclient/rotation/`, `util/`, and `event/` under the client package |
+| Modified Minecraft and compatibility hooks | `src/mc/java/` — inspect these alongside modules when tracing behavior |
+| Assets and build metadata | `src/main/resources/`, `src/mc/resources/`, `build.gradle`, `README.md` |
+
+Inspect Perihelion first, then the donor module and supporting hooks. Future ports
+must use native lifecycle, typed settings, events, shared controls and cleanup;
+do not import OpenAdjust's managers, event bus, config, authentication/backend,
+script loader or global client architecture. No behavior has been ported by this
+onboarding, and no donor code, assets, binaries or dependencies were bundled.
+
+No license/notice file was found in the pinned tree; restoration and public
+availability do not establish permission to redistribute source or assets.
+The build selects Java 21, LWJGL 3.3.3 and Windows natives, unlike Perihelion's
+Java 8 Forge/LWJGL 2 runtime. Bundled binaries include the Gradle wrapper,
+`src/main/resources/adjust/script/api.jar` and
+`src/main/resources/assets/adjust/natives/opus.dll`; they were not executed or
+security-audited. No donor build, client or script was run, and no dependency,
+malware or live-server verification is claimed. Git integrity (`git fsck --full`),
+the exact upstream pin and clean checkout status were verified.
+
 ## Minecraft font rendering (2026-11-14)
 
 Inspected Perihelion's shared GUI/HUD font adapters, then read-only OpenB4 `u20`
