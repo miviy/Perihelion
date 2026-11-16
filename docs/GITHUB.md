@@ -78,14 +78,23 @@ Fix failures introduced by the task, and identify unrelated failures separately.
 
 ## Gradle Dependabot updates
 
-For each Gradle Dependabot PR, check out its branch in a clean checkout (replace
-`PR_NUMBER` with the PR number) and inspect the proposed versions and sources.
-If the PR changes the wrapper, complete the **Wrapper upgrades** review below
-before executing it. Then regenerate SHA-256 dependency verification metadata
-using the build:
+For each Gradle Dependabot PR, inspect the proposed versions and sources before
+running Gradle. Generate SHA-256 dependency verification metadata in a disposable
+VM or container with no credentials, tokens, sensitive files, host home-directory
+mounts or Docker socket access. A clean checkout alone is not isolation: metadata
+generation downloads and executes dependency and plugin code before its new
+checksums can be reviewed.
+
+Inside that environment, check out the exact PR commit (replace `PR_NUMBER` with
+the PR number). If it changes the wrapper, complete the **Wrapper upgrades**
+review below before executing it. Use no authenticated GitHub CLI session or
+credentials; this public repository can be cloned anonymously. Then run:
 
 ```sh
-gh pr checkout PR_NUMBER
+git clone https://github.com/miviy/Perihelion.git
+cd Perihelion
+git fetch origin pull/PR_NUMBER/head
+git checkout --detach FETCH_HEAD
 # Review wrapper changes as described below before running Gradle.
 ./gradlew --no-daemon --write-verification-metadata sha256 check assemble
 git diff -- gradle/verification-metadata.xml
@@ -95,7 +104,10 @@ Review every added or changed checksum in `gradle/verification-metadata.xml`
 against the intended dependency/version and trusted upstream artifacts or published
 checksums. Generated hashes alone do not establish trust. Investigate unexpected
 changes, removals or new verification exemptions; do not disable verification to
-make an update pass. See [BUILD.md](BUILD.md#checksums) and
+make an update pass. After reviewing the diff and upstream checksums, transfer
+only the reviewed metadata file to a clean local checkout of the same PR commit;
+do not copy the environment's caches, binaries or other generated files. Destroy
+the disposable environment afterward. See [BUILD.md](BUILD.md#checksums) and
 [Gradle dependency verification](https://docs.gradle.org/8.4/userguide/dependency_verification.html).
 
 ### Wrapper upgrades
@@ -122,7 +134,8 @@ Run `./gradlew --no-daemon checkWrapper` to verify the updated pin.
 
 ### Validate and push reviewed checksums
 
-Run the normal build without metadata writing, then stage only reviewed changes:
+In the local PR checkout, inspect the transferred metadata diff again and run the
+normal build without metadata writing, then stage only reviewed changes:
 
 ```sh
 ./gradlew --no-daemon check assemble
