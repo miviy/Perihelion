@@ -105,8 +105,12 @@ against the intended dependency/version and trusted upstream artifacts or publis
 checksums. Generated hashes alone do not establish trust. Investigate unexpected
 changes, removals or new verification exemptions; do not disable verification to
 make an update pass. After reviewing the diff and upstream checksums, transfer
-only the reviewed metadata file to a clean local checkout of the same PR commit;
-do not copy the environment's caches, binaries or other generated files. Destroy
+only the reviewed metadata file to a clean local checkout of the same PR commit.
+For a wrapper upgrade, also reapply the reviewed `checkWrapper` checksum pin and
+failure-message version in `build.gradle`, plus the reviewed wrapper version and
+checksum notes in `docs/BUILD.md`, before running the local build. Verify the
+local PR wrapper against the official checksum as described below. Do not copy
+the environment's caches, binaries or other generated files. Destroy
 the disposable environment afterward. See [BUILD.md](BUILD.md#checksums) and
 [Gradle dependency verification](https://docs.gradle.org/8.4/userguide/dependency_verification.html).
 
