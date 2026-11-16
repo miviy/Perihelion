@@ -65,8 +65,9 @@ public final class HudSettingsControls {
   static boolean targetOptionVisible(HudModule hud, Setting<?> setting) {
     if (hud.targetHud == null || !hud.targetHud.donorDesign()) return true;
     HudElementStyle target = hud.styles.get(HudModule.Element.TARGET);
-    if ((setting == target.opacity || setting == target.radius)
+    if (setting == target.opacity
         && target.background.get() == HudElementStyle.Background.AUTO) return false;
+    if (setting == target.radius && hud.targetHud.nativeGlass()) return false;
     if (setting == target.colors || setting == target.color || setting == target.secondary)
       return false;
     if (setting == target.font || setting == target.bold || setting == target.shadow)
