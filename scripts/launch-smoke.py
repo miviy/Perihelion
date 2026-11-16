@@ -304,7 +304,7 @@ def main():
     parser.add_argument("--natives", type=Path, help="Extracted LWJGL 2/JInput natives matching the Java 8 architecture")
     parser.add_argument("--optifine", type=Path, help="Explicit local OptiFine M5 JAR; copied only into the isolated run")
     parser.add_argument("--extra-mod", type=Path, action="append", default=[], help="Explicit local compatibility mod JAR (repeatable); no settings or accounts copied")
-    parser.add_argument("--scenario", choices=["title", "world", "packets", "ui", "invmove", "yuri-update", "scaffold", "beddefender", "breaker", "b4", "full"], default="full")
+    parser.add_argument("--scenario", choices=["title", "world", "packets", "ui", "targethud", "invmove", "yuri-update", "scaffold", "beddefender", "breaker", "b4", "full"], default="full")
     parser.add_argument("--width", type=int, default=854)
     parser.add_argument("--height", type=int, default=480)
     parser.add_argument("--gui-scale", type=int, choices=[0, 1, 2, 3], default=0,
