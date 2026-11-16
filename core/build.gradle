@@ -1,5 +1,5 @@
 dependencies {
-    api 'com.google.code.gson:gson:2.2.4'
+    api 'com.google.code.gson:gson:2.15.0'
 }
 
 // An explicit developer measurement, never included in check or any shipped JAR.
