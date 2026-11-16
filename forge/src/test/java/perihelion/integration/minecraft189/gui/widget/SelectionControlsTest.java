@@ -129,7 +129,7 @@ public class SelectionControlsTest {
   }
 
   @Test
-  public void compactPickerHasBoundedCaptureAndReleaseAndProducesOpaqueStaticColors() {
+  public void compactPickerHasBoundedCaptureAndReleaseAndPreservesColorState() {
     Fixture fixture = new Fixture("themes");
     try (ModuleManager manager = manager(fixture)) {
       manager.setSetting(
@@ -142,10 +142,11 @@ public class SelectionControlsTest {
       assertEquals(128, fixture.color.get().red(), 1);
       assertEquals(64, fixture.color.get().green(), 1);
       assertEquals(64, fixture.color.get().blue(), 1);
-      assertEquals(255, fixture.color.get().alpha());
-      assertFalse(fixture.color.get().rainbow());
+      assertEquals(77, fixture.color.get().alpha());
+      assertTrue(fixture.color.get().rainbow());
+      assertEquals(2, fixture.color.get().rainbowSpeed(), 0);
       picker.drag(left + width * 2, top - 20);
-      assertEquals(ColorValue.rgb(255, 0, 0), fixture.color.get());
+      assertEquals(ColorValue.rgba(255, 0, 0, 77).withRainbow(true, 2), fixture.color.get());
       picker.release();
       ColorValue saved = fixture.color.get();
       picker.drag(left, top + 100);

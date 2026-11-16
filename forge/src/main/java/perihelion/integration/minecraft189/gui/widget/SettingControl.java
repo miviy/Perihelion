@@ -1025,7 +1025,10 @@ public abstract class SettingControl {
           hsv[2] = Math.max(0, Math.min(1, 1 - (my - compactTop() - 3) / 52));
         } else hue = f;
         int rgb = java.awt.Color.HSBtoRGB(hue, hsv[1], hsv[2]);
-        value(ColorValue.fromArgb(rgb | 0xff000000));
+        ColorValue c = color();
+        value(
+            ColorValue.fromArgb((c.alpha() << 24) | (rgb & 0xffffff))
+                .withRainbow(c.rainbow(), c.rainbowSpeed()));
         compactRgbSeen = rgb & 0xffffff;
         return;
       }
