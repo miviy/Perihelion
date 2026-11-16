@@ -181,11 +181,13 @@ review conversations, and block force pushes and branch deletion on `main`.
 For a solo maintainer, do not require another person's approval: authors cannot
 approve their own PRs.
 
-The public repository supports server-side rulesets. `Protect-main` limits updates
-to repository admins through pull requests and blocks force pushes and deletion.
-Require the GitHub Actions `build` check against an up-to-date branch before
-merging, including for repository admins. Keep build checks running on every PR
-so this requirement can be satisfied.
+The public repository uses two active server-side rulesets. `Protect-main`
+limits updates to repository admins through pull requests and blocks force pushes
+and deletion. `PR merge checks` requires resolved review conversations, squash
+merges and the GitHub Actions `build` check against an up-to-date branch, with no
+admin bypass. It requires no separate approving reviewer, so a solo maintainer
+can merge after checks and review findings are cleared. Keep build checks running
+on every PR so this requirement can be satisfied.
 
 The versioned `.githooks/pre-push` guard rejects direct pushes and deletion of
 `main` from this local repository, including linked worktrees. It does not restrict
