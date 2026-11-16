@@ -6,6 +6,14 @@ requests, and build downloads.
 
 A Minecraft **1.8.9** client foundation, loaded as a client-only Forge mod. The core is plain Java 8 and can be tested without launching Minecraft. Seventy-eight native gameplay modules and a configurable HUD are included, covering Yuri's 65 non-presentation module definitions plus independent visual controls. See the [port coverage and differences](docs/YURI_PORT.md), including Aura, Blink, Scaffold, movement, inventory and gameplay visuals. All start disabled and use the shared lifecycle, settings, configuration and controls. See [module usage](docs/MODULES.md). The default [ClickGUI](docs/CLICKGUI.md) opens with **Right Shift** in a world or `.gui`. Its Client panel controls appearance; a different frontend can replace it without changing gameplay modules.
 
+## Donor references
+
+Read-only clients for behavior comparisons live in the workspace's
+`../donor_clients/`: Yuri, Arsenic, OpenMyau-Plus, Project-Coolware, OpenB4 and
+[OpenAdjust](https://github.com/yxzeroo/openadjust). See
+[donor provenance and source maps](docs/DONORS.md) before borrowing behavior.
+Keep donor checkouts unchanged and use Perihelion's native architecture for ports.
+
 ## Build
 
 Install **JDK 17** for Gradle and **JDK 8** for compilation, tests and Minecraft. Run from this directory with `JAVA_HOME` pointing to JDK 17:

@@ -129,7 +129,7 @@ public class SelectionControlsTest {
   }
 
   @Test
-  public void compactPickerHasBoundedCaptureAndReleaseAndProducesOpaqueStaticColors() {
+  public void compactPickerHasBoundedCaptureAndReleaseAndPreservesColorState() {
     Fixture fixture = new Fixture("themes");
     try (ModuleManager manager = manager(fixture)) {
       manager.setSetting(
@@ -142,10 +142,11 @@ public class SelectionControlsTest {
       assertEquals(128, fixture.color.get().red(), 1);
       assertEquals(64, fixture.color.get().green(), 1);
       assertEquals(64, fixture.color.get().blue(), 1);
-      assertEquals(255, fixture.color.get().alpha());
-      assertFalse(fixture.color.get().rainbow());
+      assertEquals(77, fixture.color.get().alpha());
+      assertTrue(fixture.color.get().rainbow());
+      assertEquals(2, fixture.color.get().rainbowSpeed(), 0);
       picker.drag(left + width * 2, top - 20);
-      assertEquals(ColorValue.rgb(255, 0, 0), fixture.color.get());
+      assertEquals(ColorValue.rgba(255, 0, 0, 77).withRainbow(true, 2), fixture.color.get());
       picker.release();
       ColorValue saved = fixture.color.get();
       picker.drag(left, top + 100);
@@ -223,6 +224,31 @@ public class SelectionControlsTest {
       assertTrue("Editing the hex field keeps the picker open", picker.expanded);
       picker.press(10, 21, 1);
       assertFalse(picker.expanded);
+    }
+  }
+
+  @Test
+  public void compactTargetHexEditsPreserveTransparencyAndRainbowState() {
+    Fixture fixture = new Fixture("targethud");
+    try (ModuleManager manager = manager(fixture)) {
+      manager.setSetting(
+          "targethud", fixture.color, ColorValue.rgba(255, 0, 0, 77).withRainbow(true, 2));
+      final Consumer<String>[] submit = new Consumer[1];
+      SettingControl picker =
+          control(
+              manager,
+              fixture,
+              fixture.color,
+              true,
+              (label, value, x, y, width, accept) -> submit[0] = accept);
+      picker.press(10, 21, 1);
+      picker.press(10, picker.y + picker.headerHeight + 75, 0);
+      assertNotNull(submit[0]);
+      submit[0].accept("#1a2b3c");
+      assertEquals(ColorValue.rgba(26, 43, 60, 77).withRainbow(true, 2), fixture.color.get());
+      ColorValue saved = fixture.color.get();
+      assertThrows(IllegalArgumentException.class, () -> submit[0].accept("#11223380"));
+      assertEquals(saved, fixture.color.get());
     }
   }
 

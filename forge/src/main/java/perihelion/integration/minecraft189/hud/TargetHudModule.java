@@ -247,6 +247,16 @@ public final class TargetHudModule extends ClientModule {
     return nativeEffects.get();
   }
 
+  boolean nativeGlass() {
+    if (!donorDesign() || !nativeEffects()) return false;
+    if (hud.styles.get(HudModule.Element.TARGET).background.get()
+        != HudElementStyle.Background.AUTO) return false;
+    Design current = design();
+    return current == Design.B4_MODERN
+        || current == Design.MYAU_RAVEN_MODERN
+        || current == Design.MYAU_BLUEDEV;
+  }
+
   int customColor(boolean end, long now) {
     return (end ? secondary : primary).get().resolvedArgb(now);
   }
