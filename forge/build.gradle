@@ -51,6 +51,17 @@ tasks.register('generateVersion') {
 tasks.named('compileJava') { dependsOn tasks.named('generateVersion') }
 
 tasks.named('processResources') {
+    from(rootProject.file('LICENSE')) {
+        into 'META-INF/licenses'
+        rename { 'Perihelion-AGPL-3.0.txt' }
+    }
+    from(rootProject.file('NOTICE')) {
+        into 'META-INF'
+        rename { 'Perihelion-NOTICE.txt' }
+    }
+    from(rootProject.file('THIRD_PARTY.md')) {
+        into 'META-INF'
+    }
     inputs.property 'version', project.version
     filesMatching('mcmod.info') { expand version: project.version }
 }
