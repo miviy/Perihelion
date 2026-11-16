@@ -1,0 +1,22 @@
+Perihelion
+Copyright (C) 2026 miviy and contributors
+
+SPDX-License-Identifier: AGPL-3.0-only
+
+Perihelion is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License, version 3 only, as
+published by the Free Software Foundation.
+
+Perihelion is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License
+for more details.
+
+A copy of the license is provided in LICENSE in the source repository and
+META-INF/licenses/Perihelion-AGPL-3.0.txt in the distribution.
+Source repository: https://github.com/miviy/Perihelion
+
+Third-party code, datasets, libraries and fonts retain their original
+copyright notices and license terms. This notice does not replace them or
+claim ownership of upstream work. See THIRD_PARTY.md and the notices in
+META-INF/licenses/.

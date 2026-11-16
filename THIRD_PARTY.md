@@ -8,7 +8,10 @@ The native gameplay modules reimplement behavior studied in Yuri (MIT, Copyright
 
 The Yuri 1.3.1 update also adapts source algorithms and implementations from revision `1cb86ad94ce1f01aa9b715577163c8ecc47b7def`, published under GNU AGPL version 3. Adapted files carry their source attribution and SPDX identifier; the license is included as `META-INF/licenses/Yuri-AGPL-3.0.txt`. The earlier MIT-era notice remains for the older sources and datasets. Native lifecycle, settings, events, configuration and control ownership remain Perihelion implementations.
 
-The project owner's choice of license for Perihelion's own sources remains open; this notice does not assign one.
+Perihelion's original code is licensed under the GNU Affero General Public License,
+version 3 only (`AGPL-3.0-only`); see [LICENSE](LICENSE) and [NOTICE](NOTICE).
+Third-party components, datasets and fonts retain their existing license terms
+and copyright notices. The project's license does not replace those notices.
 
 The native Target HUD presentation adapters study Yuri's AGPL-3.0 designs,
 Arsenic's MIT designs (Copyright (c) 2022 Arsenic Client Development), and
