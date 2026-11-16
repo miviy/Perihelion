@@ -76,6 +76,51 @@ public class TargetHudSettingsTest {
 
   @Test
   @SuppressWarnings("unchecked")
+  public void radiusControlRemainsVisibleUnlessNativeGlassOwnsTheRadius() {
+    ClientRuntime runtime = runtime();
+    try {
+      HudModule hud = (HudModule) runtime.modules().require("hud").module();
+      TargetHudModule target = (TargetHudModule) runtime.modules().require("targethud").module();
+      HudElementStyle style = hud.styles.get(HudModule.Element.TARGET);
+      Setting<TargetHudModule.Design> design =
+          (Setting<TargetHudModule.Design>) target.settings().get("design");
+      Setting<Boolean> effects = (Setting<Boolean>) target.settings().get("native-effects");
+      runtime.modules().setSetting("hud", style.blur, true);
+      runtime.modules().setSetting("hud", style.panelShadow, true);
+      java.util.Set<TargetHudModule.Design> glassDesigns =
+          java.util.EnumSet.of(
+              TargetHudModule.Design.B4_MODERN,
+              TargetHudModule.Design.MYAU_RAVEN_MODERN,
+              TargetHudModule.Design.MYAU_BLUEDEV);
+      for (TargetHudModule.Design current : TargetHudModule.Design.values()) {
+        runtime.modules().setSetting("targethud", design, current);
+        runtime.modules().setSetting("targethud", effects, true);
+        runtime.modules().setSetting("hud", style.background, HudElementStyle.Background.AUTO);
+        assertEquals(current.name(), glassDesigns.contains(current), target.nativeGlass());
+        assertEquals(
+            current.name(),
+            !glassDesigns.contains(current),
+            HudSettingsControls.targetOptionVisible(hud, style.radius));
+        assertEquals(
+            current.name(),
+            current == TargetHudModule.Design.PERIHELION,
+            HudSettingsControls.targetOptionVisible(hud, style.opacity));
+        runtime.modules().setSetting("targethud", effects, false);
+        assertFalse(target.nativeGlass());
+        assertTrue(HudSettingsControls.targetOptionVisible(hud, style.radius));
+        runtime.modules().setSetting("targethud", effects, true);
+        runtime.modules().setSetting("hud", style.background, HudElementStyle.Background.SOLID);
+        assertFalse(target.nativeGlass());
+        assertTrue(HudSettingsControls.targetOptionVisible(hud, style.radius));
+        assertTrue(HudSettingsControls.targetOptionVisible(hud, style.opacity));
+      }
+    } finally {
+      runtime.stop();
+    }
+  }
+
+  @Test
+  @SuppressWarnings("unchecked")
   public void delayAndTogglePersistIndependentlyWithoutMovingTheSavedCard() {
     ClientRuntime runtime = runtime();
     HudModule hud = (HudModule) runtime.modules().require("hud").module();
