@@ -927,7 +927,11 @@ public abstract class SettingControl {
               if (!hex.startsWith("#")) hex = "#" + hex;
               if (!hex.matches("#[0-9a-fA-F]{6}"))
                 throw new IllegalArgumentException("Use #RRGGBB");
-              value(ColorValue.parse(hex));
+              ColorValue parsed = ColorValue.parse(hex);
+              ColorValue current = color();
+              value(
+                  ColorValue.fromArgb((current.alpha() << 24) | (parsed.argb() & 0xffffff))
+                      .withRainbow(current.rainbow(), current.rainbowSpeed()));
             });
         return false;
       }
