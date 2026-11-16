@@ -52,6 +52,19 @@ public class TargetHudSettingsTest {
           "Adjust",
           perihelion.integration.minecraft189.gui.GuiValues.optionLabel(
               target.settings().get("design"), "YURI_ADJUST"));
+      java.util.Set<String> labels = new java.util.HashSet<>();
+      for (TargetHudModule.Design design : TargetHudModule.Design.values()) {
+        String label =
+            perihelion.integration.minecraft189.gui.GuiValues.optionLabel(
+                target.settings().get("design"), design.name());
+        assertTrue("Duplicate design label: " + label, labels.add(label));
+      }
+      assertTrue(labels.contains("Face (Arsenic)"));
+      assertTrue(labels.contains("Face (Myau)"));
+      assertTrue(labels.contains("Simple (Arsenic)"));
+      assertTrue(labels.contains("Simple (Myau)"));
+      assertTrue(labels.contains("Exhibition (Yuri)"));
+      assertTrue(labels.contains("Exhibition (Myau)"));
       assertEquals("YURI_ADJUST", TargetHudModule.Design.YURI_ADJUST.toString());
       assertTrue(
           HudSettingsControls.create(hud, null, () -> {}).stream()

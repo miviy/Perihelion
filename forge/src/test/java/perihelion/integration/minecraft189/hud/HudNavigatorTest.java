@@ -243,7 +243,7 @@ public class HudNavigatorTest {
             design == TargetHudModule.Design.YURI_ASTOLFO ? "Yuri astolfo" : "Myau astolfo",
             nav.value(setting));
         assertEquals(
-            "Astolfo",
+            design == TargetHudModule.Design.YURI_ASTOLFO ? "Astolfo (Yuri)" : "Astolfo (Myau)",
             perihelion.integration.minecraft189.gui.GuiValues.optionLabel(setting, design.name()));
       }
     } finally {
