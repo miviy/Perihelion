@@ -296,7 +296,7 @@ was installed, and no dynamic malware execution or resolved dependency/CVE
 scan was performed. The build uses a dynamic Loom version selector, so later
 build downloads are not covered by this source pin. Donor source stays unchanged.
 
-The completed [security report](/Users/wmcul/.codex/state/plugins/codex-security/scans/OpenB4/3d63944cc79be890c013cc79e5ed92d3533b48a5_20261017T133534Z_pn1sjg5r/report.md)
+The completed local security report (not included in this repository)
 records two medium-severity findings and partial dependency assurance. All 220
 Java sources were reviewed. The workbench warns that its initial snapshot changed:
 scan registration occurred before materializing the pinned checkout. The source

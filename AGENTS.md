@@ -41,7 +41,10 @@
 
 ## GitHub
 
-- See `docs/GITHUB.md` for setup and commands.
+- Keep the repository public. See `docs/GITHUB.md` for setup and commands.
+- Preserve the maintainer's pseudonym. Do not publish personal names, email
+  addresses, home-directory paths, credentials or local game/account data.
+  Use `miviy` and `267354159+miviy@users.noreply.github.com` for task commits.
 - Before editing, check the branch and working tree. Start each independent task
   on a descriptive `feature/`, `fix/` or `chore/` branch from current `origin/main`.
   Continue the existing task branch for follow-up work. Never work directly on

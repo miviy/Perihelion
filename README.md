@@ -1,6 +1,6 @@
 # Perihelion
 
-GitHub repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
+Public GitHub repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
 See [GitHub development](docs/GITHUB.md) for pushing updates, branches, pull
 requests, and build downloads.
 
@@ -142,3 +142,13 @@ screens. Native control instances, slider callbacks, editing, scrolling, list ma
 and navigation remain intact. The presentation is scoped to the main-menu flow
 and turns off in a world.
 See [menu presentation and verification](docs/MAIN_MENU_POLISH_2026-10-19.md).
+
+## License
+
+Perihelion's original code is licensed under **GNU AGPL version 3 only**
+(`AGPL-3.0-only`). See [LICENSE](LICENSE), [NOTICE](NOTICE), and
+[third-party notices](THIRD_PARTY.md). Existing upstream notices remain in place.
+
+Covered modified versions must meet the AGPL's corresponding-source requirements
+when distributed or offered for remote network interaction. Use the license text
+for the exact terms; this summary does not replace it.
