@@ -38,6 +38,10 @@ tasks.register('verifyJar') {
                 'perihelion/integration/minecraft189/mixin/CameraEffectsMixin.class',
                 'perihelion/integration/minecraft189/mixin/PlayerFovMixin.class',
                 'META-INF/licenses/Yuri.txt',
+                'META-INF/licenses/Yuri-AGPL-3.0.txt',
+                'META-INF/licenses/Perihelion-AGPL-3.0.txt',
+                'META-INF/Perihelion-NOTICE.txt',
+                'META-INF/THIRD_PARTY.md',
                 'assets/perihelion/rotationpresets/legit.csv',
                 'assets/perihelion/rotationpresets/ai.csv',
                 'perihelion/integration/minecraft189/module/gameplay/GameplayModules.class',
@@ -46,6 +50,16 @@ tasks.register('verifyJar') {
                 'org/spongepowered/asm/lib/ClassReader.class',
                 'mixins.perihelion.json', 'mixins.perihelion.refmap.json', 'mcmod.info', 'LICENSE.txt'
             ].each { require(names.contains(it), "Missing runtime entry: ${it}") }
+            [
+                'META-INF/licenses/Perihelion-AGPL-3.0.txt': 'LICENSE',
+                'META-INF/Perihelion-NOTICE.txt': 'NOTICE',
+                'META-INF/THIRD_PARTY.md': 'THIRD_PARTY.md'
+            ].each { entry, source ->
+                def bundled = jar.getInputStream(jar.getJarEntry(entry)).withCloseable {
+                    new String(it.bytes, 'UTF-8')
+                }
+                require(bundled == rootProject.file(source).getText('UTF-8'), "Stale license or notice in distribution: ${entry}")
+            }
             def forbidden = ['net/minecraft/', 'net/minecraftforge/', 'io/netty/', 'org/lwjgl/',
                              'com/google/', 'org/objectweb/asm/', 'org/junit/', 'perihelion/smoke/',
                              'perihelion/benchmark/']
