@@ -6,6 +6,7 @@ import java.util.Locale;
 import perihelion.core.module.ModuleEntry;
 import perihelion.core.setting.NumericConstraints;
 import perihelion.core.setting.Setting;
+import perihelion.integration.minecraft189.hud.TargetHudModule.Design;
 
 /** View-independent editor math and presentation. No Minecraft/GL state. */
 public final class GuiValues {
@@ -37,7 +38,22 @@ public final class GuiValues {
         setting.metadata().kind() == perihelion.core.setting.SettingMetadata.Kind.ENUM
             ? setting.parse(option)
             : option;
+    if (value instanceof Design) {
+      Design design = (Design) value;
+      String label = design.displayName();
+      String donor = designDonor(design);
+      for (Design other : Design.values())
+        if (!donor.equals(designDonor(other)) && label.equalsIgnoreCase(other.displayName()))
+          return label + " (" + readable(donor) + ")";
+      return label;
+    }
     return readable(String.valueOf(value));
+  }
+
+  private static String designDonor(Design design) {
+    String name = design.name();
+    int separator = name.indexOf('_');
+    return separator < 0 ? name : name.substring(0, separator);
   }
 
   /** Sentence-like labels for enum names and client module titles; stored values stay unchanged. */

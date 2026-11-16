@@ -80,7 +80,7 @@ final class HudElementStyle {
             register,
             Setting.decimal(
                 id + "scale",
-                "Size",
+                element == HudModule.Element.TARGET ? "Scale" : "Size",
                 "Scale this element and its drag bounds together.",
                 1,
                 .65,

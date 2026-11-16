@@ -114,6 +114,11 @@ final class RavenHudRenderer {
         return true;
       case TARGET:
         if (!preview && !owner.hasTarget) return false;
+        if (owner.targetDesigns.active()) {
+          box.w = owner.targetDesigns.width();
+          box.h = owner.targetDesigns.height();
+          return true;
+        }
         box.w = Math.max(122, Math.min(230, text.width(targetTitle()) + 18));
         box.h = 36;
         return true;
@@ -200,7 +205,8 @@ final class RavenHudRenderer {
         label(owner.speed, box.x + 1, box.y + 11, box.w - 2, 11, GRAY);
         break;
       case TARGET:
-        target(box);
+        if (owner.targetDesigns.active()) owner.targetDesigns.draw(box);
+        else target(box);
         break;
       case ARMOR:
         armor(box);
