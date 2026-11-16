@@ -306,7 +306,7 @@ final class HudNavigator {
       }
     }
     Object current = target.get();
-    if (current instanceof Enum) return GuiValues.optionLabel(target, ((Enum<?>) current).name());
+    if (current instanceof Enum) return GuiValues.readable(((Enum<?>) current).name());
     if (current instanceof Number) return GuiValues.number(((Number) current).doubleValue());
     if (current instanceof DoubleRange) {
       DoubleRange range = (DoubleRange) current;

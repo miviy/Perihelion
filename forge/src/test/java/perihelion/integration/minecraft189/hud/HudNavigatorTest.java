@@ -228,6 +228,30 @@ public class HudNavigatorTest {
   }
 
   @Test
+  public void ungroupedDesignLabelsRetainDonorIdentity() {
+    ClientRuntime runtime = runtime();
+    try {
+      HudNavigator nav = new HudNavigator(runtime.modules());
+      for (TargetHudModule.Design design :
+          new TargetHudModule.Design[] {
+            TargetHudModule.Design.YURI_ASTOLFO, TargetHudModule.Design.MYAU_ASTOLFO
+          }) {
+        Setting<TargetHudModule.Design> setting =
+            Setting.enumeration(
+                "design", "Design", "", design, TargetHudModule.Design.class, () -> {});
+        assertEquals(
+            design == TargetHudModule.Design.YURI_ASTOLFO ? "Yuri astolfo" : "Myau astolfo",
+            nav.value(setting));
+        assertEquals(
+            "Astolfo",
+            perihelion.integration.minecraft189.gui.GuiValues.optionLabel(setting, design.name()));
+      }
+    } finally {
+      runtime.stop();
+    }
+  }
+
+  @Test
   public void rangesNeverCrossAndColorChannelsRetainTheirAnimation() {
     Fixture fixture = new Fixture();
     ClientRuntime runtime = runtime(fixture);

@@ -161,6 +161,12 @@ public final class HudDropdownProbe {
                 runtime.modules().require("clickgui").module();
         boolean oldSearch = preferences.search.get();
         try {
+          runtime
+              .modules()
+              .setSetting(
+                  "targethud",
+                  (Setting) design,
+                  perihelion.integration.minecraft189.hud.TargetHudModule.Design.PERIHELION);
           runtime.modules().setSetting("clickgui", preferences.search, true);
           field(view.getClass(), "expanded").setBoolean(view, true);
           method(screen.getClass(), new Class<?>[] {String.class}, "setQuery")
