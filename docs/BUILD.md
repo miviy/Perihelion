@@ -52,6 +52,12 @@ The checked-in `:forge:runClient` is the conventional Loom development task. For
 
 ## Operational issues
 
+- Dependabot skips Gradle 9+ wrapper proposals until the legacy Loom/Shadow build
+  plugins can be migrated together. It also skips Gson version proposals: Minecraft
+  supplies Gson 2.2.4, so changing the compile dependency alone neither updates nor
+  verifies the game's runtime library. Any Gson migration must address runtime
+  ownership and compatibility explicitly. Other Gradle dependencies and GitHub
+  Actions updates remain enabled; repository security alerts are unchanged.
 - A dependency resolution error is separate from a source error. Check the first missing coordinate and repository response; do not change pinned APIs blindly. Plugin repositories include Essential, Architectury, Fabric and Forge for the actual Loom dependency graph.
 - Required Mixin transformations fail startup visibly. An absent refmap, wrong descriptor or wrong bytecode target must not be treated as a successful foundation launch.
 - A client that runs only in development may still have remapping problems. Install/test the plain remapped `Perihelion-…jar` before claiming packaged compatibility.

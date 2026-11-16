@@ -10,14 +10,18 @@
 
 ## Donor references
 
-- `../donor_clients/` contains Yuri, Arsenic, OpenMyau-Plus, Project-Coolware and
-  OpenB4. UniversalAccountManager is in `../alt mannges/UniversalAccountManager/`.
+- `../donor_clients/` contains Yuri, Arsenic, OpenMyau-Plus, Project-Coolware,
+  OpenB4 and OpenAdjust. UniversalAccountManager is in
+  `../alt mannges/UniversalAccountManager/`.
   Keep these checkouts read-only; do not run donor builds, clients or scripts.
 - Inspect Perihelion first, then donor modules and supporting hooks. Match their
   behavior through Perihelion's lifecycle, settings, events, shared controls and
   cleanup; do not import donor managers, event buses or config architecture.
 - Consult `docs/DONORS.md` for provenance and known issues, especially OpenB4's
   script loader and AutoRequeue. Record substantial ports and intentional differences.
+- OpenAdjust is a separate restored-source reference, not Perihelion's existing
+  Adjust style. See its pinned revision and source map in `docs/DONORS.md` before
+  borrowing behavior; its Java 21/LWJGL 3 setup is not Perihelion's toolchain.
 - Account features use Perihelion's UI, client-thread session updates and private vault.
 
 ## Verification

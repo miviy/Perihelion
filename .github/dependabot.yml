@@ -12,5 +12,11 @@ updates:
     schedule:
       interval: monthly
     open-pull-requests-limit: 5
+    ignore:
+      # Gradle 9 requires a coordinated migration of the legacy Forge build plugins.
+      - dependency-name: gradle-wrapper
+        versions: [">= 9"]
+      # Minecraft 1.8.9 supplies Gson 2.2.4; compile against that runtime API.
+      - dependency-name: com.google.code.gson:gson
     commit-message:
       prefix: chore
