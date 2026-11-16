@@ -10,10 +10,11 @@ configurations.
 **Render → Target HUD** is a separate module and works while the main HUD is off.
 It shows only entities you attack. **Hide delay (s)** keeps the card visible after
 the last attack (3 seconds by default; 0.1–10 seconds). Dead or unloaded targets
-clear immediately. **Design** currently offers Perihelion. Its Text, Background
-and Position groups reuse your saved target-card appearance and placement.
-Further designs, animations and theme options can be added here as they become
-available; client colors and custom colors already use the shared appearance controls.
+clear immediately. **Design** offers Perihelion and 32 designs from Yuri, B4,
+Arsenic, Coolware and Myau. Donor designs offer **Original**, **Client** and
+**Custom** themes; Custom exposes accent colors. **Scale** adjusts the card directly; **Arrange on
+screen** preserves the saved placement. See the
+[design inventory and intentional differences](TARGET_HUD_DESIGNS.md).
 
 Each HUD piece uses the same row style as a regular module: **left-click** toggles
 it and **right-click** opens its dropdown. The first setting is **Enabled**, followed

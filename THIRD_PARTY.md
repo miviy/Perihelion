@@ -10,6 +10,15 @@ The Yuri 1.3.1 update also adapts source algorithms and implementations from rev
 
 The project owner's choice of license for Perihelion's own sources remains open; this notice does not assign one.
 
+The native Target HUD presentation adapters study Yuri's AGPL-3.0 designs,
+Arsenic's MIT designs (Copyright (c) 2022 Arsenic Client Development), and
+OpenMyau-Plus's GPL-3.0 designs. Notices are retained as
+`META-INF/licenses/Yuri-AGPL-3.0.txt`, `Arsenic.txt` and
+`OpenMyau-Plus-GPL-3.0.txt`. B4 and Coolware layouts are expressed using existing
+Perihelion drawing primitives; no donor framework, font files or assets are bundled.
+Exact revisions, paths and intentional differences appear in
+[the Target HUD inventory](docs/TARGET_HUD_DESIGNS.md).
+
 
 ## GUI fonts
 

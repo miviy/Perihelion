@@ -1218,3 +1218,14 @@ failure, and four actual integrated-server Telly runs accepted 28–30 blocks ea
 See [Yuri mapping and regression evidence](TELLY_YURI_2026-11-11.md) and
 [verification](verification/telly-yuri-20261111.json). Live Grim is unverified.
 
+## Target HUD design adapters (2026-11-14)
+
+The native Target HUD includes all 32 working presentation branches found in the
+five installed gameplay donors. Exact revisions, source paths, excluded broken
+Myau alias, font substitutions and geometry fixes are recorded in
+[TARGET_HUD_DESIGNS.md](TARGET_HUD_DESIGNS.md). All donor checkouts remain read-only.
+Only presentation is adapted: Perihelion retains target acquisition, attack-only
+visibility, hide delay, lifecycle, shared controls, configuration and rendering
+resource ownership. The focused packaged-client `targethud` smoke captures every
+design with both players and mobs; original donor runtimes are not executed.
+

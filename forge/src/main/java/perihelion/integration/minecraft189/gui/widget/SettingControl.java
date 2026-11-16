@@ -761,7 +761,9 @@ public abstract class SettingControl {
     }
 
     private boolean compact() {
-      return modern() && module.equals("themes");
+      return modern()
+          && (module.equals("themes") || module.equals("targethud")
+              || module.equals("hud") && setting.id().startsWith("target-"));
     }
 
     private float compactHexHeight() {

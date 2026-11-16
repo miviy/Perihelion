@@ -15,22 +15,9 @@ public final class HudSettingsControls {
 
   private HudSettingsControls(
       HudModule hud, SettingControl.Actions actions, Runnable arrange, float rowHeight) {
-    this(hud, actions, arrange, rowHeight, false);
-  }
-
-  private HudSettingsControls(
-      HudModule hud,
-      SettingControl.Actions actions,
-      Runnable arrange,
-      float rowHeight,
-      boolean targetOnly) {
     this.hud = hud;
     this.actions = actions;
     this.rowHeight = rowHeight;
-    if (targetOnly) {
-      appearance(HudModule.Element.TARGET, null);
-      return;
-    }
     for (HudModule.Element element : HudModule.Element.values())
       if (element != HudModule.Element.TARGET) element(element);
     SettingSection general = section("General", "Visibility rules for the whole HUD.", null, null);
@@ -57,11 +44,6 @@ public final class HudSettingsControls {
   public static List<SettingControl> create(
       HudModule hud, SettingControl.Actions actions, Runnable arrange, float rowHeight) {
     return new HudSettingsControls(hud, actions, arrange, rowHeight).controls;
-  }
-
-  static List<SettingControl> target(
-      HudModule hud, SettingControl.Actions actions, float rowHeight) {
-    return new HudSettingsControls(hud, actions, null, rowHeight, true).controls;
   }
 
   private SettingSection section(
