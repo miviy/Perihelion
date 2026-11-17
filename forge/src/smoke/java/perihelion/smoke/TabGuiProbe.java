@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import perihelion.core.lifecycle.ClientRuntime;
 import perihelion.core.module.ModuleEntry;
 import perihelion.core.setting.Setting;
+import perihelion.integration.minecraft189.render.RenderState;
 
 /** Native keyboard focus, setting writes and saved-anchor regressions for the Tab GUI. */
 public final class TabGuiProbe {
@@ -167,46 +168,55 @@ public final class TabGuiProbe {
             "modules", "info", "target", "armor", "effects", "keys", "players", "notifications"
           })
         put(runtime, "hud", runtime.modules().require("hud").module().settings().get(id), false);
-      for (String variant : new String[] {"new", "adjust", "raven"}) {
-        put(runtime, "clickgui", visuals, visuals.parse(variant.equals("new") ? "NEW" : "OLD"));
-        put(
-            runtime,
-            "clickgui",
-            clientStyle,
-            clientStyle.parse(variant.equals("raven") ? "RAVEN" : "ADJUST"));
-        select(nav, "antibot");
-        field(nav.getClass(), "expanded").setBoolean(nav, true);
-        field(nav.getClass(), "settingsOpen").setBoolean(nav, false);
-        GL11.glClearColor(.07f, .075f, .09f, 1);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        int clearBackground = pixel(0, 0);
-        render.invoke(renderer, 427, 240, true, null, 0, 0);
-        Object pane = field(rendererType, "navigationLayout").get(renderer);
-        Object box = ((Map<?, ?>) field(rendererType, "boxes").get(renderer)).get(tab);
-        int paneX = field(pane.getClass(), "paneX").getInt(pane);
-        int paneWidth = field(pane.getClass(), "paneWidth").getInt(pane);
-        int moduleBackground = backgroundPixel(game, box, paneX, paneWidth);
-        check(
-            moduleBackground != clearBackground,
-            "Background sample is inside the rendered pane: " + variant);
-        ProductionHudProbe.capture("tab-gui-" + variant + "-modules.png");
-        if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-modules.png");
-        key.invoke(nav, Keyboard.KEY_RIGHT);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        render.invoke(renderer, 427, 240, true, null, 0, 0);
-        Object settingsPane = field(rendererType, "navigationLayout").get(renderer);
-        check(
-            field(settingsPane.getClass(), "paneX").getInt(settingsPane) == paneX
-                && field(settingsPane.getClass(), "paneWidth").getInt(settingsPane) == paneWidth,
-            "Module and settings panes share their position and width: " + variant);
-        check(
-            backgroundPixel(game, box, paneX, paneWidth) == moduleBackground,
-            "Module and settings panes use identical background pixels: " + variant);
-        Object settingRows = field(rendererType, "navigationSettings").get(renderer);
-        for (int height : (int[]) field(settingRows.getClass(), "heights").get(settingRows))
-          check(height == 11 || height == 22, "Settings follow the common row grid: " + variant);
-        ProductionHudProbe.capture("tab-gui-" + variant + "-settings.png");
-        if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-settings.png");
+      // Match the synthetic render dimensions to the active projection so
+      // scissor bounds and pixel samples agree at every framebuffer size.
+      try (RenderState ignored = new RenderState().open()) {
+        GL11.glMatrixMode(GL11.GL_PROJECTION);
+        GL11.glLoadIdentity();
+        GL11.glOrtho(0, 427, 240, 0, -1000, 1000);
+        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+        GL11.glLoadIdentity();
+        for (String variant : new String[] {"new", "adjust", "raven"}) {
+          put(runtime, "clickgui", visuals, visuals.parse(variant.equals("new") ? "NEW" : "OLD"));
+          put(
+              runtime,
+              "clickgui",
+              clientStyle,
+              clientStyle.parse(variant.equals("raven") ? "RAVEN" : "ADJUST"));
+          select(nav, "antibot");
+          field(nav.getClass(), "expanded").setBoolean(nav, true);
+          field(nav.getClass(), "settingsOpen").setBoolean(nav, false);
+          GL11.glClearColor(.07f, .075f, .09f, 1);
+          GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+          int clearBackground = pixel(0, 0);
+          render.invoke(renderer, 427, 240, true, null, 0, 0);
+          Object pane = field(rendererType, "navigationLayout").get(renderer);
+          Object box = ((Map<?, ?>) field(rendererType, "boxes").get(renderer)).get(tab);
+          int paneX = field(pane.getClass(), "paneX").getInt(pane);
+          int paneWidth = field(pane.getClass(), "paneWidth").getInt(pane);
+          int moduleBackground = backgroundPixel(game, box, paneX, paneWidth);
+          check(
+              moduleBackground != clearBackground,
+              "Background sample is inside the rendered pane: " + variant);
+          ProductionHudProbe.capture("tab-gui-" + variant + "-modules.png");
+          if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-modules.png");
+          key.invoke(nav, Keyboard.KEY_RIGHT);
+          GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+          render.invoke(renderer, 427, 240, true, null, 0, 0);
+          Object settingsPane = field(rendererType, "navigationLayout").get(renderer);
+          check(
+              field(settingsPane.getClass(), "paneX").getInt(settingsPane) == paneX
+                  && field(settingsPane.getClass(), "paneWidth").getInt(settingsPane) == paneWidth,
+              "Module and settings panes share their position and width: " + variant);
+          check(
+              backgroundPixel(game, box, paneX, paneWidth) == moduleBackground,
+              "Module and settings panes use identical background pixels: " + variant);
+          Object settingRows = field(rendererType, "navigationSettings").get(renderer);
+          for (int height : (int[]) field(settingRows.getClass(), "heights").get(settingRows))
+            check(height == 11 || height == 22, "Settings follow the common row grid: " + variant);
+          ProductionHudProbe.capture("tab-gui-" + variant + "-settings.png");
+          if (variant.equals("new")) ProductionHudProbe.capture("tab-gui-settings.png");
+        }
       }
       check(GL11.glGetError() == GL11.GL_NO_ERROR, "Tab GUI setting panes leave GL clean");
     } finally {

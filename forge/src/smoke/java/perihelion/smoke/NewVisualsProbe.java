@@ -152,11 +152,29 @@ public final class NewVisualsProbe {
       check(
           (Boolean) method(capture.getClass(), "active").invoke(capture),
           "Bind row starts exclusive key capture");
+      draw(modern);
+      ProductionHudProbe.capture("new-visuals-bind.png");
+      resize(modern, game, 320, 240);
+      draw(modern);
+      check(
+          runtime.modules().require("clickgui").binding().equals(binding),
+          "Resizing the viewport preserves the module binding");
+      if (!(Boolean) method(capture.getClass(), "active").invoke(capture)) {
+        panel = model.find(ModuleCategory.MISC);
+        click(modern, panel.x + 10, panel.y + panel.headerHeight + 17 + 8 - panel.scroll, 0);
+      }
+      check(
+          (Boolean) method(capture.getClass(), "active").invoke(capture),
+          "Binding capture is available in the small viewport");
+      draw(modern);
+      ProductionHudProbe.capture("new-visuals-bind-small.png");
       type(modern, '\0', Keyboard.KEY_ESCAPE);
       check(
           runtime.modules().require("clickgui").binding().equals(binding)
               && !(Boolean) method(capture.getClass(), "active").invoke(capture),
           "Escape cancels binding capture");
+      resize(modern, game, width, height);
+      draw(modern);
       method(modern.getClass(), "openHud").invoke(modern);
       draw(modern);
       check(current.get(game) == modern, "HUD settings are available before joining a world");

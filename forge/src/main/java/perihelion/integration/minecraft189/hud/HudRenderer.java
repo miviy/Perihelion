@@ -920,8 +920,7 @@ final class HudRenderer implements AutoCloseable {
       pixels *= b.scale;
       canvas.pixelScale = pixels;
       canvas.cornerRadius = style.radius.get();
-      if (style.background.get() != HudElementStyle.Background.AUTO
-          && element != Element.MODULES)
+      if (style.background.get() != HudElementStyle.Background.AUTO && element != Element.MODULES)
         customBackground(
             b.content.x - b.padding,
             b.content.y - b.padding,
@@ -1021,8 +1020,7 @@ final class HudRenderer implements AutoCloseable {
 
   void customElementBackground(Element e, Box b) {
     prepareStyle(e, b);
-    if (activeStyle.background.get() != HudElementStyle.Background.AUTO
-        && e != Element.MODULES)
+    if (activeStyle.background.get() != HudElementStyle.Background.AUTO && e != Element.MODULES)
       customBackground(0, 0, b.content.w + b.padding * 2, b.content.h + b.padding * 2);
   }
 
@@ -1120,7 +1118,9 @@ final class HudRenderer implements AutoCloseable {
               0,
               position ->
                   activeStyle.color(
-                      hud, now, (float) position,
+                      hud,
+                      now,
+                      (float) position,
                       modern ? canvas.accentAt((float) position) : primary));
     }
     if (modules.isEmpty())
@@ -1268,9 +1268,15 @@ final class HudRenderer implements AutoCloseable {
           break;
         }
         if (modern) {
-          rowLabel("\u00a7l" + watermark, x + 1, y, b.w - 2, b.h,
+          rowLabel(
+              "\u00a7l" + watermark,
+              x + 1,
+              y,
+              b.w - 2,
+              b.h,
               activeStyle.colors.get() == HudElementStyle.Colors.CLIENT
-                  ? HudAppearance.blend(primary, ModernTheme.TEXT, .32f) : primary);
+                  ? HudAppearance.blend(primary, ModernTheme.TEXT, .32f)
+                  : primary);
           break;
         }
         GlStateManager.pushMatrix();

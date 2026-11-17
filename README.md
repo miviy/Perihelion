@@ -1,6 +1,6 @@
 # Perihelion
 
-Public GitHub repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
+Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
 See [GitHub development](docs/GITHUB.md) for pushing updates, branches, pull
 requests, and build downloads.
 
