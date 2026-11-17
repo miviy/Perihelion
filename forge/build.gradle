@@ -93,6 +93,10 @@ tasks.named('remapJar') {
     inputFile = tasks.named('shadowJar').flatMap { it.archiveFile }
     archiveBaseName = 'Perihelion'
     archiveClassifier = ''
+    // Loom 1.3.12 also inherits Jar's copy action. On newer Gradle it overwrites
+    // the remapped output with a manifest-only JAR; run only Loom's own action.
+    actions.clear()
+    doLast { task -> task.run() }
 }
 tasks.named('assemble') { dependsOn tasks.named('remapJar') }
 
