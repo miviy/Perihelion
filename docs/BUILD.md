@@ -45,6 +45,12 @@ Forge runtime and MCP mapping repositories remain unchanged.
 
 The wrapper checks the official Gradle 8.14.7 distribution SHA256. `checkWrapper` separately checks the wrapper JAR against the [official wrapper checksum](https://services.gradle.org/distributions/gradle-8.14.7-wrapper.jar.sha256), `ad16bca46cb71bb5887c546860d93992aeee35c1fdaf4a242b0a612375d937e0`.
 
+Loom 1.3.12's `remapJar` inherits a second action from Gradle's `Jar` task that
+overwrites the remapped output with a manifest-only archive on Gradle 8.14.7.
+The task runs only Loom's remapping action, retaining its declared inputs,
+outputs and dependencies. Recheck this compatibility adjustment when upgrading
+Loom; `verifyJar` must still pass on the final remapped distribution.
+
 The verification metadata also covers Loom's LWJGL `2.9.4-nightly-20150209`
 selection on a clean hosted runner, including Linux, macOS and Windows natives.
 These hashes were checked against `libraries.minecraft.net`; published SHA1s and
