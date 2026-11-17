@@ -1,5 +1,21 @@
 pluginManagement {
     repositories {
+        // Byte-identical legacy tools mirrored by the NeoForged project. Keep the
+        // game, Forge runtime and mappings on their existing repositories.
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = 'legacyForgeBuildTools'
+                    url = 'https://maven.neoforged.net/releases'
+                }
+            }
+            filter {
+                includeVersion 'net.minecraftforge', 'installertools', '1.2.0'
+                includeVersion 'net.minecraftforge', 'DiffPatch', '2.0.7'
+                includeVersion 'net.minecraftforge', 'srgutils', '0.4.1'
+                includeVersion 'de.oceanlabs.mcp', 'mcinjector', '3.8.0'
+            }
+        }
         gradlePluginPortal()
         maven { url = 'https://repo.essential.gg/repository/maven-public' }
         maven { url = 'https://maven.architectury.dev' }
