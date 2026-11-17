@@ -33,6 +33,16 @@ Two narrowly scoped entries are handled separately:
 - Gradle 8.4 fails to generate metadata for the timestamped legacy Mixin snapshot with a duplicate component key. That exact coordinate is exempted from Gradle's metadata mechanism, and `:forge:verifyMixinRuntime` verifies its JAR SHA256 **before compilation and bundling**: `da3d6e47b9c12b5a312d89b67bc27e2429d823c09cde8a90299e9fdcc4eefc20`. The downloaded bytes also matched Sponge's published SHA1 `7a670207bdb97db418118ad1e9bb42424ff3776d`. [Related Gradle 8.4 issue](https://github.com/gradle/gradle/issues/26803).
 - Loom's exact locally generated merged Minecraft coordinate is trusted as a build output. Its input Forge artifacts and MCP maps retain checksum checks; generated output hashes must not be tied to one workstation.
 
+The plugin classpath resolves four legacy Forge build-tool coordinates from
+[NeoForged's official Maven repository](https://maven.neoforged.net/releases):
+`installertools:1.2.0`, `DiffPatch:2.0.7` and `srgutils:0.4.1` under
+`net.minecraftforge`, and `de.oceanlabs.mcp:mcinjector:3.8.0`. Their eight JAR and
+metadata files were downloaded and matched the existing SHA-256 entries in
+`gradle/verification-metadata.xml`. Exclusive repository filtering applies only
+to these exact versions, avoiding unavailable Forge Maven responses during plugin
+resolution. No versions, checksums or verification exceptions changed. The game,
+Forge runtime and MCP mapping repositories remain unchanged.
+
 The wrapper checks the official Gradle 8.4 distribution SHA256. `checkWrapper` separately checks the wrapper JAR against the [official wrapper checksum](https://services.gradle.org/distributions/gradle-8.4-wrapper.jar.sha256), `0336f591bc0ec9aa0c9988929b93ecc916b3c1d52aed202c7381db144aa0ef15`.
 
 The verification metadata also covers Loom's LWJGL `2.9.4-nightly-20150209`
