@@ -41,7 +41,7 @@
 
 ## GitHub
 
-- Keep the repository public. See `docs/GITHUB.md` for setup and commands.
+- See `docs/GITHUB.md` for setup and commands.
 - Preserve the maintainer's pseudonym. Do not publish personal names, email
   addresses, home-directory paths, credentials or local game/account data.
   Use `miviy` and `267354159+miviy@users.noreply.github.com` for task commits.

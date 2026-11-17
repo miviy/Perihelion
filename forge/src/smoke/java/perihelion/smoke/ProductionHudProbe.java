@@ -831,8 +831,12 @@ public final class ProductionHudProbe {
           setParsed(r, "module-sort", sort);
           method(preview.getClass(), "updateModules").invoke(preview);
           cleanEditor(draw, editor);
-          capture("hud-arraylist-outline-" + alignment.toLowerCase(java.util.Locale.ROOT)
-              + "-" + sort.toLowerCase(java.util.Locale.ROOT) + ".png");
+          capture(
+              "hud-arraylist-outline-"
+                  + alignment.toLowerCase(java.util.Locale.ROOT)
+                  + "-"
+                  + sort.toLowerCase(java.util.Locale.ROOT)
+                  + ".png");
         }
       }
       r.commands().execute("hud reset", line -> {});
@@ -853,8 +857,11 @@ public final class ProductionHudProbe {
       Map<?, ?> targetBoxes =
           (Map<?, ?>) field(targetRenderer.getClass(), "boxes").get(targetRenderer);
       for (Map.Entry<?, ?> targetBoxEntry : targetBoxes.entrySet())
-        if (field(targetBoxEntry.getValue().getClass(), "visible").getBoolean(targetBoxEntry.getValue()))
-          check(targetBoxEntry.getKey().toString().equals("TARGET"), "Target HUD renders only its own card");
+        if (field(targetBoxEntry.getValue().getClass(), "visible")
+            .getBoolean(targetBoxEntry.getValue()))
+          check(
+              targetBoxEntry.getKey().toString().equals("TARGET"),
+              "Target HUD renders only its own card");
       capture("target-hud-standalone.png");
       r.modules().setEnabled("targethud", false);
       check(

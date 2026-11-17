@@ -1,6 +1,6 @@
 # GitHub development
 
-Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion). Keep its visibility **Public**.
+Repository: [miviy/Perihelion](https://github.com/miviy/Perihelion).
 
 Use a task branch, run relevant checks, and open a pull request into `main`.
 Agents automatically commit, push and open or update PRs for requested work;
@@ -88,7 +88,7 @@ checksums can be reviewed.
 Inside that environment, check out the exact PR commit (replace `PR_NUMBER` with
 the PR number). If it changes the wrapper, complete the **Wrapper upgrades**
 review below before executing it. Use no authenticated GitHub CLI session or
-credentials; this public repository can be cloned anonymously. Then run:
+credentials. Use an anonymous checkout in that environment. Then run:
 
 ```sh
 git clone https://github.com/miviy/Perihelion.git
@@ -185,7 +185,7 @@ review conversations, and block force pushes and branch deletion on `main`.
 For a solo maintainer, do not require another person's approval: authors cannot
 approve their own PRs.
 
-The public repository uses two active server-side rulesets. `Protect-main`
+The repository uses two active server-side rulesets. `Protect-main`
 limits updates to repository admins through pull requests and blocks force pushes
 and deletion. `PR merge checks` requires resolved review conversations, squash
 merges and the GitHub Actions `build` check against an up-to-date branch, with no
@@ -216,8 +216,8 @@ duplicate push and PR builds. CI always runs the build, including documentation
 PRs, so a required check is never omitted by a path filter.
 
 Successful runs verify the distribution and upload the client JAR and test reports
-as public-repository artifacts retained for 14 days. Treat logs, reports and
-artifacts as publicly accessible; never include credentials or personal data. Use `Perihelion-…jar` in a Minecraft
+as artifacts retained for 14 days. Never include credentials or personal data
+in logs, reports or artifacts. Use `Perihelion-…jar` in a Minecraft
 1.8.9 Forge 11.15.1.2318 profile. Desktop smoke checks remain separate from CI.
 
 ## Local files and access
@@ -227,8 +227,7 @@ files, build outputs, caches, local tools, worktrees and backups. Review staged
 changes before every commit. Keep credentials in macOS Keychain or GitHub Actions
 secrets.
 
-The repository is public: anyone can read and clone it or propose a change through
-a fork. Grant collaborator access only when write access is actually needed. Keep
+Grant collaborator access only when write access is actually needed. Keep
 GitHub Pages disabled unless publishing a site is explicitly requested.
 
 Use the maintainer pseudonym `miviy` and the GitHub noreply commit email shown
@@ -242,8 +241,8 @@ Secret scanning, push protection and private vulnerability reporting are enabled
 Use GitHub's private vulnerability reporting flow for security issues instead of
 posting credentials or exploit details publicly. CodeQL scans Java, Python and
 GitHub Actions. Dependabot proposes updates; updates still require review and CI.
-Preserve third-party license notices. Public visibility does not assign a license
-to the project's own sources.
+Preserve third-party license notices. The project's own sources are covered by
+the repository's [LICENSE](../LICENSE).
 
 AGENTS.md authorizes routine task-branch commits, pushes and PR creation, but cannot
 override Codex or T3 permission controls. If the host blocks an action, report the

@@ -7,6 +7,7 @@ import perihelion.core.lifecycle.ClientRuntime;
 import perihelion.core.module.*;
 import perihelion.integration.minecraft189.gui.*;
 import perihelion.integration.minecraft189.gui.font.GuiFonts;
+import perihelion.integration.minecraft189.gui.modern.ModernTheme;
 import perihelion.integration.minecraft189.gui.widget.*;
 import perihelion.integration.minecraft189.render.*;
 
@@ -252,13 +253,50 @@ public class PanelScreen extends ModulePanelScreen {
 
   protected void drawModal() {
     canvas.rect(0, 0, viewWidth, viewHeight, 0x88000000);
-    float x = Math.max(4, (viewWidth - 244) / 2),
-        y = viewHeight / 2 - 23,
-        w = Math.min(244, viewWidth - 8);
-    canvas.rect(x, y, w, 72, 0xfa191e25);
-    canvas.rect(x, y, w, 1, canvas.accent);
-    canvas.label(binding.title(), x + 8, y + 5, w - 16, canvas.text);
-    canvas.text("Press a key or mouse button", x + 8, y + 25, canvas.text);
-    canvas.text("Delete: clear   Esc: cancel", x + 8, y + 45, 0xff9ca9b7);
+    GuiFonts.Face titleFont = canvas.sectionFont == null ? canvas.font : canvas.sectionFont;
+    String prompt = "Press a key or mouse button", hints = "Delete: clear   Esc: cancel";
+    float padding = 12;
+    float w =
+        Math.min(
+            Math.max(
+                220,
+                Math.max(
+                        titleFont.width(binding.title()),
+                        Math.max(canvas.font.width(prompt), canvas.font.width(hints)))
+                    + padding * 2),
+            viewWidth - 16);
+    float contentWidth = w - padding * 2;
+    List<String> titles = UiCanvas.wrap(titleFont, binding.title(), contentWidth);
+    List<String> prompts = UiCanvas.wrap(canvas.font, prompt, contentWidth);
+    List<String> footers = UiCanvas.wrap(canvas.font, hints, contentWidth);
+    float titleLine = titleFont.height() + 3, line = canvas.font.height() + 3;
+    float titleHeight = titles.size() * titleLine, promptHeight = prompts.size() * line;
+    float footerHeight = footers.size() * line;
+    float h = padding * 2 + titleHeight + 8 + promptHeight + 12 + footerHeight;
+    float x = (viewWidth - w) / 2, y = Math.max(8, (viewHeight - h) / 2);
+    if (canvas.modern) ModernTheme.surface(canvas, x, y, w, h, GuiTheme.overlay(canvas));
+    else canvas.rect(x, y, w, h, GuiTheme.overlay(canvas));
+    float textY = y + padding;
+    GuiFonts.Face bodyFont = canvas.font;
+    try {
+      canvas.font = titleFont;
+      for (String title : titles) {
+        canvas.text(title, x + padding, titleFont.centeredY(textY, titleLine), canvas.sectionText);
+        textY += titleLine;
+      }
+    } finally {
+      canvas.font = bodyFont;
+    }
+    textY += 8;
+    for (String text : prompts) {
+      canvas.text(text, x + padding, bodyFont.centeredY(textY, line), canvas.text);
+      textY += line;
+    }
+    canvas.hairline(x + padding, textY + 5, contentWidth, GuiTheme.alpha(.08, canvas.text));
+    textY += 12;
+    for (String text : footers) {
+      canvas.text(text, x + padding, bodyFont.centeredY(textY, line), canvas.muted);
+      textY += line;
+    }
   }
 }
