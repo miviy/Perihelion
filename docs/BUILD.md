@@ -8,7 +8,7 @@
 | Forge | `1.8.9-11.15.1.2318-1.8.9` |
 | MCP mappings | `stable_22` for 1.8.9 |
 | Production/test runtime | Java 8 |
-| Gradle runtime / wrapper | Java 17 / 8.4 |
+| Gradle runtime / wrapper | Java 17 / 8.14.7 |
 | Essential Loom | 1.3.12 |
 | Shadow | 8.1.1 |
 | Pack200 adapter | 0.1.3 |
@@ -43,7 +43,7 @@ to these exact versions, avoiding unavailable Forge Maven responses during plugi
 resolution. No versions, checksums or verification exceptions changed. The game,
 Forge runtime and MCP mapping repositories remain unchanged.
 
-The wrapper checks the official Gradle 8.4 distribution SHA256. `checkWrapper` separately checks the wrapper JAR against the [official wrapper checksum](https://services.gradle.org/distributions/gradle-8.4-wrapper.jar.sha256), `0336f591bc0ec9aa0c9988929b93ecc916b3c1d52aed202c7381db144aa0ef15`.
+The wrapper checks the official Gradle 8.14.7 distribution SHA256. `checkWrapper` separately checks the wrapper JAR against the [official wrapper checksum](https://services.gradle.org/distributions/gradle-8.14.7-wrapper.jar.sha256), `ad16bca46cb71bb5887c546860d93992aeee35c1fdaf4a242b0a612375d937e0`.
 
 The verification metadata also covers Loom's LWJGL `2.9.4-nightly-20150209`
 selection on a clean hosted runner, including Linux, macOS and Windows natives.

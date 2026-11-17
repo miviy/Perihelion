@@ -58,10 +58,10 @@ tasks.named('assemble') { dependsOn ':forge:remapJar' }
 tasks.register('checkWrapper') {
     group = 'verification'
     doLast {
-        def expected = '0336f591bc0ec9aa0c9988929b93ecc916b3c1d52aed202c7381db144aa0ef15'
+        def expected = 'ad16bca46cb71bb5887c546860d93992aeee35c1fdaf4a242b0a612375d937e0'
         def actual = java.security.MessageDigest.getInstance('SHA-256')
                 .digest(file('gradle/wrapper/gradle-wrapper.jar').bytes).encodeHex().toString()
-        if (actual != expected) throw new GradleException('Gradle wrapper JAR checksum differs from the official 8.4 wrapper')
+        if (actual != expected) throw new GradleException('Gradle wrapper JAR checksum differs from the official 8.14.7 wrapper')
     }
 }
 tasks.named('check') { dependsOn 'checkWrapper' }
