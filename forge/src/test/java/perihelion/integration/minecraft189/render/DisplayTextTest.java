@@ -47,8 +47,8 @@ public class DisplayTextTest {
 
   @Test
   public void unicodeLookalikesAreNotMatchedSoTrimmingStaysConsistent() {
-    // Dotless U+0131 folds to 'i' under String.regionMatches(true, ...) but is a word boundary
-    // for trimming; it is a different name, not the protected one.
+    // Dotless U+0131 folds to 'i' under String.regionMatches(true, ...); it is a different name,
+    // not the protected one, and trims like any unprotected text.
     String lookalike = "Notchlıng";
     assertSame(lookalike, DisplayText.replaceWord(lookalike, NAME, "You"));
     assertEquals("Not", DisplayText.trim(lookalike, 3, false, WIDTH, DISPLAY));
@@ -63,6 +63,44 @@ public class DisplayTextTest {
     String kept = DisplayText.trim(line, 10, false, WIDTH, DISPLAY);
     assertEquals("Notchling killed", kept);
     assertTrue(line.startsWith(kept));
+  }
+
+  @Test
+  public void unprotectedWordsTrimByCharacterForCursorPlacement() {
+    // Text fields map a click to a cursor with the trimmed length, so ordinary words beside a
+    // protected name must still cut at any character.
+    String line = "Notchling killed Steve";
+    assertEquals("Notchling ", DisplayText.trim(line, 4, false, WIDTH, DISPLAY));
+    assertEquals("Notchling k", DisplayText.trim(line, 5, false, WIDTH, DISPLAY));
+    assertEquals("Notchling kil", DisplayText.trim(line, 7, false, WIDTH, DISPLAY));
+    assertEquals("eve", DisplayText.trim(line, 3, true, WIDTH, DISPLAY));
+  }
+
+  @Test
+  public void aFormattingOnlyPrefixIsNeverTheWholeResult() {
+    // Chat wrapping restores the formatting prefix on the remainder; returning only "§a" at the
+    // start of a line would hand it the same input forever.
+    assertEquals("§aabcd", DisplayText.trim("§aabcdefgh Notchling", 4, false, WIDTH, DISPLAY));
+    StringBuilder wide = new StringBuilder("§a");
+    for (int i = 0; i < 100; i++) wide.append('W');
+    assertEquals(
+        "§aWWWWWWWWWW", DisplayText.trim(wide + " Notchling", 10, false, WIDTH, DISPLAY));
+  }
+
+  @Test
+  public void longUnbrokenTextRewritesOnlyLogarithmicallyManyCandidates() {
+    StringBuilder line = new StringBuilder();
+    for (int i = 0; i < 10_000; i++) line.append('W');
+    line.append(" Notchling");
+    int[] rewrites = {0};
+    UnaryOperator<String> counting =
+        text -> {
+          rewrites[0]++;
+          return DISPLAY.apply(text);
+        };
+    String kept = DisplayText.trim(line.toString(), 300, false, WIDTH, counting);
+    assertEquals(300, kept.length());
+    assertTrue("rewrites=" + rewrites[0], rewrites[0] <= 64);
   }
 
   @Test
@@ -81,7 +119,7 @@ public class DisplayTextTest {
   }
 
   @Test
-  public void fallbackTrimmingNeverShowsANameFragment() {
+  public void trimmingNeverShowsANameFragment() {
     // Narrower than "You": nothing fits without splitting the name, so the caller wraps it whole.
     assertEquals("", DisplayText.trim("Notchling", 2, false, WIDTH, DISPLAY));
     assertEquals("", DisplayText.trim("Notchling", 2, true, WIDTH, DISPLAY));

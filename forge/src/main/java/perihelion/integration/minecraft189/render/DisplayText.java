@@ -22,9 +22,8 @@ public final class DisplayText {
   }
 
   /**
-   * Usernames are ASCII, so only ASCII letters fold. Unicode folding would also accept lookalikes
-   * such as dotless U+0131 for 'i', which {@link #wordChar} treats as a boundary; trimming could
-   * then cut inside an accepted match.
+   * Usernames are ASCII, so only ASCII letters fold. Unicode folding would also accept
+   * lookalikes, such as dotless U+0131 for 'i' or the Kelvin sign for 'k', that are not the name.
    */
   private static boolean asciiMatches(String text, int offset, String word) {
     for (int i = 0; i < word.length(); i++) {
@@ -59,11 +58,12 @@ public final class DisplayText {
 
   /**
    * Trims the original text so its rewritten width fits. Callers such as chat wrapping and text
-   * fields index the original string with the returned length, so the result must be a prefix
-   * (or, reversed, a suffix) of the original. A rewritten span is kept whole or not at all:
-   * cuts fall between words, or, when even the first word does not fit, only where the kept
-   * text rewrites to a prefix (suffix) of the whole rewritten text. The result may then be
-   * empty, and the caller wraps the span to its next line instead of showing a fragment.
+   * fields index the original string with the returned length (a text field maps a click to a
+   * cursor this way), so the result must be a prefix (or, reversed, a suffix) of the original,
+   * cut at character precision like vanilla. The one exception: a cut never falls inside a
+   * rewritten span. A cut is allowed only where the kept text rewrites to a prefix (suffix) of
+   * the whole rewritten text, so a protected name is kept whole or not at all, and the caller
+   * wraps it instead of showing a fragment.
    */
   public static String trim(
       String text,
@@ -72,46 +72,36 @@ public final class DisplayText {
       ToIntFunction<String> measure,
       UnaryOperator<String> display) {
     int n = text.length();
-    int cut = search(text, width, reverse, measure, null);
-    if (reverse ? cut == n && n > 0 : cut == 0 && n > 0)
-      cut = search(text, width, reverse, measure, display);
-    return reverse ? text.substring(cut) : text.substring(0, cut);
-  }
-
-  /**
-   * Width is monotonic in the kept length, so binary search the allowed cuts for the most text.
-   * Without {@code display} cuts fall between words; with it, at any character whose kept text
-   * leaves every rewritten span intact.
-   */
-  private static int search(
-      String text,
-      int width,
-      boolean reverse,
-      ToIntFunction<String> measure,
-      UnaryOperator<String> display) {
-    int n = text.length();
-    String shown = display == null ? null : display.apply(text);
-    int[] keeps = new int[n + 1];
-    int count = 0;
-    for (int keep = 0; keep <= n; keep++) {
-      int index = reverse ? n - keep : keep;
-      if (index > 0 && index < n && text.charAt(index - 1) == '\u00a7') continue;
-      if (display == null) {
-        if (joined(text, index)) continue;
-      } else if (keep > 0 && keep < n) {
-        String kept = display.apply(reverse ? text.substring(index) : text.substring(0, index));
-        if (reverse ? !shown.endsWith(kept) : !shown.startsWith(kept)) continue;
-      }
-      keeps[count++] = keep;
-    }
-    int low = 0, high = count - 1, best = 0;
+    String shown = display.apply(text);
+    // Width is monotonic over allowed cuts. Binary search the kept length, stepping down to the
+    // nearest allowed cut, so the rewrite runs only O(log n) times; text fields trim per frame.
+    int low = 0, high = n, best = 0;
     while (low <= high) {
-      int mid = (low + high) >>> 1, keep = keeps[mid];
-      if (measure.applyAsInt(reverse ? text.substring(n - keep) : text.substring(0, keep)) <= width) {
+      int mid = (low + high) >>> 1, keep = mid;
+      while (keep >= low && !allowed(text, shown, keep, reverse, display)) keep--;
+      if (keep < low) {
+        low = mid + 1;
+        continue;
+      }
+      if (measure.applyAsInt(kept(text, keep, reverse)) <= width) {
         best = keep;
         low = mid + 1;
-      } else high = mid - 1;
+      } else high = keep - 1;
     }
-    return reverse ? n - best : best;
+    return kept(text, best, reverse);
+  }
+
+  private static String kept(String text, int keep, boolean reverse) {
+    return reverse ? text.substring(text.length() - keep) : text.substring(0, keep);
+  }
+
+  private static boolean allowed(
+      String text, String shown, int keep, boolean reverse, UnaryOperator<String> display) {
+    int n = text.length();
+    if (keep == 0 || keep == n) return true;
+    int index = reverse ? n - keep : keep;
+    if (text.charAt(index - 1) == '\u00a7') return false; // Never split a formatting code.
+    String rewritten = display.apply(kept(text, keep, reverse));
+    return reverse ? shown.endsWith(rewritten) : shown.startsWith(rewritten);
   }
 }

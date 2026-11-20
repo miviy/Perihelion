@@ -762,14 +762,11 @@ public final class CompatibilityQolProbe {
         "vanilla trimming returns original text sized by its protected width");
     String line = original + " " + original + " end";
     String kept = (String) trim.invoke(font, line, maskedWidth * 2 + 5, false);
+    int cut = kept.length(), name = original.length();
     check(
-        java.util.Arrays.asList(
-                original,
-                original + " ",
-                original + " " + original,
-                original + " " + original + " ",
-                line)
-            .contains(kept),
+        line.startsWith(kept)
+            && !(cut > 0 && cut < name)
+            && !(cut > name + 1 && cut < name * 2 + 1),
         "trimmed chat text stays indexable against the original without a partial name");
     Method wrap =
         method(
