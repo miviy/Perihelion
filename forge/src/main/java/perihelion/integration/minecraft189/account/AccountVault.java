@@ -4,6 +4,7 @@ import com.google.gson.*;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.PosixFilePermissions;
@@ -119,38 +120,53 @@ public final class AccountVault {
       Files.createLink(target, temporary);
     } catch (UnsupportedOperationException | FileSystemException noLinks) {
       if (noLinks instanceof FileAlreadyExistsException) throw (FileAlreadyExistsException) noLinks;
-      // File systems without hard links: a move without REPLACE_EXISTING still refuses an
-      // existing target.
+      // File systems without hard links. The JDK checks for the target and then renames, which
+      // is not atomic on its own; createKey's directory lock makes it exclusive.
       Files.move(temporary, target);
     }
   }
 
   private byte[] keyBytes() throws Exception {
-    boolean data = Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
-    // An empty key from an interrupted write by an older build never encrypted anything.
-    if (!data && Files.isRegularFile(key) && Files.size(key) == 0) Files.delete(key);
-    if (!Files.exists(key)) {
-      if (data)
-        throw new IOException(
-            "Account key is missing. Restore accounts.key; no data was overwritten.");
-      byte[] bytes = new byte[16];
-      random.nextBytes(bytes);
-      // Written in full before it appears under its final name, so a failure leaves no key.
-      // Publishing never replaces a key: another client instance may have created one and
-      // already encrypted accounts with it. If one wins the race, its key is used below.
-      Path temporary = writeTemporary(bytes);
-      try {
-        publishExclusively(temporary, key);
-      } catch (FileAlreadyExistsException concurrent) {
-        /* Another instance published first. */
-      } finally {
-        Files.deleteIfExists(temporary);
-      }
-    }
+    if (!Files.exists(key) || Files.size(key) == 0) createKey();
     restrict(key, false);
     byte[] bytes = readBounded(key);
     if (bytes.length != 16) throw new IOException("Invalid account key.");
     return bytes;
+  }
+
+  /**
+   * Runs under a lock on the account directory, so client instances starting together agree on
+   * one key: a key another instance already used to encrypt accounts is never replaced.
+   */
+  private void createKey() throws Exception {
+    // FileLock is held per process; this also serializes vaults within one JVM.
+    synchronized (AccountVault.class) {
+      Path lockFile = directory.resolve("accounts.lock");
+      try (FileChannel channel =
+              FileChannel.open(lockFile, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+          FileLock ignored = channel.lock()) {
+        restrict(lockFile, false);
+        boolean data =
+            Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
+        // An empty key from an interrupted write by an older build never encrypted anything.
+        if (!data && Files.isRegularFile(key) && Files.size(key) == 0) Files.delete(key);
+        if (Files.exists(key)) return; // Created by another instance, or kept beside data.
+        if (data)
+          throw new IOException(
+              "Account key is missing. Restore accounts.key; no data was overwritten.");
+        byte[] bytes = new byte[16];
+        random.nextBytes(bytes);
+        // Written in full before it appears under its final name, so a failure leaves no key.
+        Path temporary = writeTemporary(bytes);
+        try {
+          publishExclusively(temporary, key);
+        } catch (FileAlreadyExistsException concurrent) {
+          /* A process that does not take the lock published first; use its key. */
+        } finally {
+          Files.deleteIfExists(temporary);
+        }
+      }
+    }
   }
 
   private static void restrict(Path path, boolean directory) throws IOException {

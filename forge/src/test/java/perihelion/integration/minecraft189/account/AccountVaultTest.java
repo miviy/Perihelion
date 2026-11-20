@@ -108,6 +108,36 @@ public class AccountVaultTest {
   }
 
   @Test
+  public void concurrentInitializersAgreeOnOneKey() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    int count = 8;
+    java.util.concurrent.CountDownLatch start = new java.util.concurrent.CountDownLatch(1);
+    java.util.concurrent.ExecutorService pool =
+        java.util.concurrent.Executors.newFixedThreadPool(count);
+    List<java.util.concurrent.Future<AccountVault>> vaults = new ArrayList<>();
+    try {
+      for (int i = 0; i < count; i++)
+        vaults.add(
+            pool.submit(
+                () -> {
+                  start.await();
+                  AccountVault vault = new AccountVault(dir);
+                  vault.load();
+                  return vault;
+                }));
+      start.countDown();
+      // Every instance must decrypt what any other saved: they all hold the published key.
+      vaults.get(0).get().save(data("shared"));
+      for (java.util.concurrent.Future<AccountVault> vault : vaults) vault.get();
+      assertEquals("shared", new AccountVault(dir).load().get("secret").getAsString());
+      vaults.get(count - 1).get().save(data("from-last"));
+      assertEquals("from-last", new AccountVault(dir).load().get("secret").getAsString());
+    } finally {
+      pool.shutdownNow();
+    }
+  }
+
+  @Test
   public void emptyKeyBesideExistingDataFailsClosed() throws Exception {
     Path dir = folder.newFolder().toPath();
     AccountVault vault = new AccountVault(dir);
