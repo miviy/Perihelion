@@ -96,6 +96,14 @@ public final class ControlHookProbe {
                 case "beforeSend":
                 case "beforeReceive":
                   return false;
+                // Primitive and text results must not be null: transformed collision and font
+                // hooks call these while the fixture is installed.
+                case "hasClientListeners":
+                  return runtime.clientEvents().hasListeners((Class<?>) arguments[0]);
+                case "displayText":
+                  return arguments[0];
+                case "completeCommand":
+                  return java.util.Collections.emptyList();
                 case "stop":
                   runtime.stop();
                   return null;

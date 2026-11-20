@@ -77,4 +77,32 @@ public class AccountVaultTest {
     Files.delete(dir.resolve("accounts.vault"));
     assertThrows(Exception.class, () -> new AccountVault(dir).load());
   }
+
+  @Test
+  public void emptyKeyWithoutDataIsReplacedAndKeyCreationLeavesNoTemporaryFiles()
+      throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Files.createFile(dir.resolve("accounts.key"));
+    AccountVault vault = new AccountVault(dir);
+    vault.load();
+    assertEquals(16, Files.size(dir.resolve("accounts.key")));
+    vault.save(data("private"));
+    assertEquals("private", new AccountVault(dir).load().get("secret").getAsString());
+    try (DirectoryStream<Path> files = Files.newDirectoryStream(dir, "*.tmp")) {
+      assertFalse(files.iterator().hasNext());
+    }
+  }
+
+  @Test
+  public void emptyKeyBesideExistingDataFailsClosed() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    AccountVault vault = new AccountVault(dir);
+    vault.load();
+    vault.save(data("private"));
+    byte[] encrypted = Files.readAllBytes(dir.resolve("accounts.vault"));
+    Files.write(dir.resolve("accounts.key"), new byte[0]);
+    assertThrows(Exception.class, () -> new AccountVault(dir).load());
+    assertEquals(0, Files.size(dir.resolve("accounts.key")));
+    assertArrayEquals(encrypted, Files.readAllBytes(dir.resolve("accounts.vault")));
+  }
 }

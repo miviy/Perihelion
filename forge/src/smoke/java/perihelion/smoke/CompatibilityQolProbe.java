@@ -758,8 +758,19 @@ public final class CompatibilityQolProbe {
             "trimStringToWidth",
             "func_78262_a");
     check(
-        trim.invoke(font, original, maskedWidth, false).equals("You"),
-        "vanilla trimming uses protected text and width");
+        trim.invoke(font, original, maskedWidth, false).equals(original),
+        "vanilla trimming returns original text sized by its protected width");
+    String line = original + " " + original + " end";
+    String kept = (String) trim.invoke(font, line, maskedWidth * 2 + 5, false);
+    check(
+        java.util.Arrays.asList(
+                original,
+                original + " ",
+                original + " " + original,
+                original + " " + original + " ",
+                line)
+            .contains(kept),
+        "trimmed chat text stays indexable against the original without a partial name");
     Method wrap =
         method(
             font.getClass(),

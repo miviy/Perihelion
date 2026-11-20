@@ -6,6 +6,7 @@ import perihelion.core.module.*;
 import perihelion.core.setting.Setting;
 import perihelion.integration.minecraft189.HookBridge;
 import perihelion.integration.minecraft189.event.*;
+import perihelion.integration.minecraft189.render.DisplayText;
 
 final class PrivacyModules {
   private PrivacyModules() {}
@@ -53,8 +54,8 @@ final class PrivacyModules {
       context.listen(TextRenderEvent.class, event -> {
         if (mc().thePlayer == null) return;
         String name = mc().thePlayer.getName();
-        if (name != null && !name.isEmpty() && event.text().contains(name))
-          event.text(event.text().replace(name, "You"));
+        if (name != null && !name.isEmpty())
+          event.text(DisplayText.replaceWord(event.text(), name, "You"));
       });
     }
   }

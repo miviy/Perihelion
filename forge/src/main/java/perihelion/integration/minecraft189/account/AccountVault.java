@@ -74,40 +74,61 @@ public final class AccountVault {
     bytes.write(new byte[] {'P', 'A', 1});
     bytes.write(nonce);
     bytes.write(cipher.doFinal(plain));
-    Path temporary = Files.createTempFile(directory, "accounts-", ".tmp");
+    Path temporary = writeTemporary(bytes.toByteArray());
     try {
-      restrict(temporary, false);
-      try (FileChannel out = FileChannel.open(temporary, StandardOpenOption.WRITE)) {
-        ByteBuffer buffer = ByteBuffer.wrap(bytes.toByteArray());
-        while (buffer.hasRemaining()) out.write(buffer);
-        out.force(true);
-      }
       if (Files.exists(file)) {
         Path backup = file.resolveSibling("accounts.vault.bak");
         Files.copy(file, backup, StandardCopyOption.REPLACE_EXISTING);
         restrict(backup, false);
       }
-      try {
-        Files.move(
-            temporary, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-      } catch (AtomicMoveNotSupportedException e) {
-        Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING);
-      }
+      moveIntoPlace(temporary, file);
     } finally {
       Files.deleteIfExists(temporary);
     }
   }
 
+  /** Owner-only from creation (JDK temp files are rw------- on POSIX), flushed to disk. */
+  private Path writeTemporary(byte[] bytes) throws IOException {
+    Path temporary = Files.createTempFile(directory, "accounts-", ".tmp");
+    try {
+      restrict(temporary, false);
+      try (FileChannel out = FileChannel.open(temporary, StandardOpenOption.WRITE)) {
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        while (buffer.hasRemaining()) out.write(buffer);
+        out.force(true);
+      }
+      return temporary;
+    } catch (IOException | RuntimeException failure) {
+      Files.deleteIfExists(temporary);
+      throw failure;
+    }
+  }
+
+  private static void moveIntoPlace(Path temporary, Path target) throws IOException {
+    try {
+      Files.move(
+          temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+    } catch (AtomicMoveNotSupportedException e) {
+      Files.move(temporary, target, StandardCopyOption.REPLACE_EXISTING);
+    }
+  }
+
   private byte[] keyBytes() throws Exception {
+    boolean data = Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
+    // An empty key from an interrupted write by an older build never encrypted anything.
+    if (!data && Files.isRegularFile(key) && Files.size(key) == 0) Files.delete(key);
     if (!Files.exists(key)) {
-      if (Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak")))
+      if (data)
         throw new IOException(
             "Account key is missing. Restore accounts.key; no data was overwritten.");
       byte[] bytes = new byte[16];
       random.nextBytes(bytes);
-      try (OutputStream out = Files.newOutputStream(key, StandardOpenOption.CREATE_NEW)) {
-        restrict(key, false);
-        out.write(bytes);
+      // Written in full before it appears under its final name, so a failure leaves no key.
+      Path temporary = writeTemporary(bytes);
+      try {
+        moveIntoPlace(temporary, key);
+      } finally {
+        Files.deleteIfExists(temporary);
       }
     }
     restrict(key, false);
