@@ -103,12 +103,11 @@ public final class DisplayText {
     if (keep == 0 || keep == n) return true;
     int index = reverse ? n - keep : keep;
     if (text.charAt(index - 1) == '\u00a7') return false; // Never split a formatting code.
-    // Outside rewritten spans, each side (rewritten, or raw where it lacks the context that kept
-    // a glued word from matching) begins or ends the whole rewrite. A cut inside a span leaves a
-    // fragment on both sides, and checking both rejects a head that merely reads like the start
-    // of the replacement ("Yo" of a name "Younger" against "You").
-    String head = text.substring(0, index), tail = text.substring(index);
-    return (shown.startsWith(head) || shown.startsWith(display.apply(head)))
-        && (shown.endsWith(tail) || shown.endsWith(display.apply(tail)));
+    // Each side is measured and drawn on its own, so it must rewrite exactly as it does inside
+    // the whole text. A cut inside a rewritten span leaves fragments that no longer match ("Yo" +
+    // "unger" for a name "Younger"). A cut through a glued word creates a match the whole text
+    // never had ("Notchling" + "X" from "NotchlingX" would draw another player as "YouX").
+    return (display.apply(text.substring(0, index)) + display.apply(text.substring(index)))
+        .equals(shown);
   }
 }

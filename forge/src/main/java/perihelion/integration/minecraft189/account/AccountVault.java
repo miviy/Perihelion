@@ -114,28 +114,50 @@ public final class AccountVault {
     }
   }
 
-  /** Atomically creates {@code target}, failing if it exists; a hard link never replaces. */
+  /** Atomically creates {@code target}, failing if it exists. */
   static void publishExclusively(Path temporary, Path target) throws IOException {
-    try {
-      Files.createLink(target, temporary);
-    } catch (UnsupportedOperationException | FileSystemException noLinks) {
-      if (noLinks instanceof FileAlreadyExistsException) throw (FileAlreadyExistsException) noLinks;
-      // File systems without hard links. The JDK checks for the target and then renames, which
-      // is not atomic on its own; createKey's directory lock makes it exclusive.
-      Files.move(temporary, target);
+    publishExclusively(temporary, target, true);
+  }
+
+  static void publishExclusively(Path temporary, Path target, boolean links) throws IOException {
+    if (links) {
+      try {
+        Files.createLink(target, temporary); // A hard link never replaces an existing file.
+        return;
+      } catch (FileAlreadyExistsException exists) {
+        throw exists;
+      } catch (UnsupportedOperationException | FileSystemException noLinks) {
+        /* Fall back to an exclusive create below. */
+      }
+    }
+    // Without hard links, create the key in place with CREATE_NEW (O_EXCL): an atomic
+    // create-if-absent, so even a client that does not take the directory lock is never replaced.
+    byte[] bytes = Files.readAllBytes(temporary);
+    boolean created = false;
+    try (FileChannel out =
+        FileChannel.open(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
+      created = true;
+      restrict(target, false);
+      ByteBuffer buffer = ByteBuffer.wrap(bytes);
+      while (buffer.hasRemaining()) out.write(buffer);
+      out.force(true);
+    } catch (IOException | RuntimeException failure) {
+      // A partly written key never encrypted anything; remove it so the next start can retry.
+      if (created) Files.deleteIfExists(target);
+      throw failure;
     }
   }
 
   private byte[] keyBytes() throws Exception {
-    // Unlocked fast path. Another instance may delete an empty key between any two checks, so a
-    // missing file is treated like an empty one and revalidated under createKey's locks.
+    // Unlocked fast path. Another instance may delete an incomplete key between any two checks,
+    // so a missing or wrong-sized key is revalidated under createKey's locks.
     long size;
     try {
       size = Files.size(key);
     } catch (NoSuchFileException missing) {
-      size = 0;
+      size = -1;
     }
-    if (size == 0) createKey();
+    if (size != 16) createKey();
     restrict(key, false);
     byte[] bytes = readBounded(key);
     if (bytes.length != 16) throw new IOException("Invalid account key.");
@@ -156,8 +178,9 @@ public final class AccountVault {
         restrict(lockFile, false);
         boolean data =
             Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
-        // An empty key from an interrupted write by an older build never encrypted anything.
-        if (!data && Files.isRegularFile(key) && Files.size(key) == 0) Files.delete(key);
+        // An incomplete key (an interrupted write, by this or an older build) never encrypted
+        // anything when no vault exists. Beside data it is kept, and loading fails closed.
+        if (!data && Files.isRegularFile(key) && Files.size(key) != 16) Files.delete(key);
         if (Files.exists(key)) return; // Created by another instance, or kept beside data.
         if (data)
           throw new IOException(

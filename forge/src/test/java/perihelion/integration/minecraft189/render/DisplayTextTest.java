@@ -142,8 +142,12 @@ public class DisplayTextTest {
     assertEquals("", DisplayText.trim("Notchling", 2, false, WIDTH, DISPLAY));
     assertEquals("", DisplayText.trim("Notchling", 2, true, WIDTH, DISPLAY));
     assertEquals("Notchling", DisplayText.trim("Notchling", 3, false, WIDTH, DISPLAY));
-    // A long unprotected word still trims by character.
-    assertEquals("xy", DisplayText.trim("xyNotchling", 2, false, WIDTH, DISPLAY));
+    // A long unprotected word still trims by character, but never right before a glued name:
+    // "Notchling" drawn on its own would show another player's "xyNotchling" as "xyYou".
+    assertEquals("x", DisplayText.trim("xyNotchling", 2, false, WIDTH, DISPLAY));
+    assertEquals("Notchli", DisplayText.trim("NotchlingX Notchling", 7, false, WIDTH, DISPLAY));
+    assertEquals("Notchlin", DisplayText.trim("NotchlingX Notchling", 8, false, WIDTH, DISPLAY));
+    assertEquals("NotchlingX", DisplayText.trim("NotchlingX Notchling", 10, false, WIDTH, DISPLAY));
   }
 
   @Test

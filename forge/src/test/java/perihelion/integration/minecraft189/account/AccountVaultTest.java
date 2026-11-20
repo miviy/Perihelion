@@ -108,6 +108,34 @@ public class AccountVaultTest {
   }
 
   @Test
+  public void noLinkFallbackCreatesOnlyIfAbsent() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Path key = dir.resolve("accounts.key"), late = dir.resolve("late.tmp");
+    byte[] first = new byte[16], second = new byte[16];
+    Arrays.fill(first, (byte) 1);
+    Arrays.fill(second, (byte) 2);
+    Files.write(late, second);
+    AccountVault.publishExclusively(late, key, false);
+    assertArrayEquals(second, Files.readAllBytes(key));
+    if (Files.getFileStore(dir).supportsFileAttributeView("posix"))
+      assertEquals(
+          PosixFilePermissions.fromString("rw-------"), Files.getPosixFilePermissions(key));
+    // An existing key, even one an unlocked older client just wrote, is never replaced.
+    Files.write(key, first);
+    assertThrows(
+        FileAlreadyExistsException.class, () -> AccountVault.publishExclusively(late, key, false));
+    assertArrayEquals(first, Files.readAllBytes(key));
+  }
+
+  @Test
+  public void partialKeyWithoutDataIsReplaced() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Files.write(dir.resolve("accounts.key"), new byte[5]);
+    new AccountVault(dir).load();
+    assertEquals(16, Files.size(dir.resolve("accounts.key")));
+  }
+
+  @Test
   public void concurrentInitializersAgreeOnOneKey() throws Exception {
     Path dir = folder.newFolder().toPath();
     int count = 8;
