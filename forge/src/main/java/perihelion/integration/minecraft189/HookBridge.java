@@ -194,6 +194,22 @@ public final class HookBridge {
     }
   }
 
+  /** Null keeps vanilla trimming: the text is unchanged for display. */
+  public static String trimDisplayText(
+      net.minecraft.client.gui.FontRenderer font, String text, int width, boolean reverse) {
+    if (text == null || text.isEmpty()) return null;
+    String shown = displayText(text);
+    if (shown == text || shown.equals(text)) return null;
+    try {
+      return perihelion.integration.minecraft189.render.DisplayText.trim(
+          text, width, reverse, font::getStringWidth, HookBridge::displayText);
+    } catch (Throwable failure) {
+      Failures.rethrowFatal(failure);
+      reportFailure("trimmed text", failure);
+      return null;
+    }
+  }
+
   private static MinecraftControls controls() {
     Target current = target;
     return current != null && current.isRunning() ? current.controls() : null;

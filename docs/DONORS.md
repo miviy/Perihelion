@@ -481,8 +481,11 @@ font hooks, and the Scaffold module / search helpers. Existing native buffering,
 walking authorization, camera restoration and font paths were inspected first.
 
 Auto F5 retains the donor triggers and defaults with native camera arbitration.
-Name Protect keeps the donor's literal local-name-to-`You` transformation across
-drawing and measurement. The Scaffold duplicate-ray pruning preserves its first
+Name Protect keeps the donor's local-name-to-`You` transformation across
+drawing and measurement. Intentional difference (2026-11-20): it matches whole,
+case-insensitive names rather than any substring, and vanilla trimming returns
+original text sized by its protected width, because chat wrapping and text fields
+index the original string with the trimmed length. The Scaffold duplicate-ray pruning preserves its first
 match; the rounded-angle and temporary fence-sneak fixes address failures found
 in the expanded native fixture. Donor repositories were not modified, and no
 donor client architecture was imported. See

@@ -4,6 +4,7 @@ import com.google.gson.*;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.nio.channels.FileLock;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.PosixFilePermissions;
@@ -74,46 +75,129 @@ public final class AccountVault {
     bytes.write(new byte[] {'P', 'A', 1});
     bytes.write(nonce);
     bytes.write(cipher.doFinal(plain));
-    Path temporary = Files.createTempFile(directory, "accounts-", ".tmp");
+    Path temporary = writeTemporary(bytes.toByteArray());
     try {
-      restrict(temporary, false);
-      try (FileChannel out = FileChannel.open(temporary, StandardOpenOption.WRITE)) {
-        ByteBuffer buffer = ByteBuffer.wrap(bytes.toByteArray());
-        while (buffer.hasRemaining()) out.write(buffer);
-        out.force(true);
-      }
       if (Files.exists(file)) {
         Path backup = file.resolveSibling("accounts.vault.bak");
         Files.copy(file, backup, StandardCopyOption.REPLACE_EXISTING);
         restrict(backup, false);
       }
-      try {
-        Files.move(
-            temporary, file, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
-      } catch (AtomicMoveNotSupportedException e) {
-        Files.move(temporary, file, StandardCopyOption.REPLACE_EXISTING);
-      }
+      moveIntoPlace(temporary, file);
     } finally {
       Files.deleteIfExists(temporary);
     }
   }
 
-  private byte[] keyBytes() throws Exception {
-    if (!Files.exists(key)) {
-      if (Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak")))
-        throw new IOException(
-            "Account key is missing. Restore accounts.key; no data was overwritten.");
-      byte[] bytes = new byte[16];
-      random.nextBytes(bytes);
-      try (OutputStream out = Files.newOutputStream(key, StandardOpenOption.CREATE_NEW)) {
-        restrict(key, false);
-        out.write(bytes);
+  /** Owner-only from creation (JDK temp files are rw------- on POSIX), flushed to disk. */
+  private Path writeTemporary(byte[] bytes) throws IOException {
+    Path temporary = Files.createTempFile(directory, "accounts-", ".tmp");
+    try {
+      restrict(temporary, false);
+      try (FileChannel out = FileChannel.open(temporary, StandardOpenOption.WRITE)) {
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        while (buffer.hasRemaining()) out.write(buffer);
+        out.force(true);
+      }
+      return temporary;
+    } catch (IOException | RuntimeException failure) {
+      Files.deleteIfExists(temporary);
+      throw failure;
+    }
+  }
+
+  private static void moveIntoPlace(Path temporary, Path target) throws IOException {
+    try {
+      Files.move(
+          temporary, target, StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+    } catch (AtomicMoveNotSupportedException e) {
+      Files.move(temporary, target, StandardCopyOption.REPLACE_EXISTING);
+    }
+  }
+
+  /** Atomically creates {@code target}, failing if it exists. */
+  static void publishExclusively(Path temporary, Path target) throws IOException {
+    publishExclusively(temporary, target, true);
+  }
+
+  static void publishExclusively(Path temporary, Path target, boolean links) throws IOException {
+    if (links) {
+      try {
+        Files.createLink(target, temporary); // A hard link never replaces an existing file.
+        return;
+      } catch (FileAlreadyExistsException exists) {
+        throw exists;
+      } catch (UnsupportedOperationException | FileSystemException noLinks) {
+        /* Fall back to an exclusive create below. */
       }
     }
+    // Without hard links, create the key in place with CREATE_NEW (O_EXCL): an atomic
+    // create-if-absent, so even a client that does not take the directory lock is never replaced.
+    byte[] bytes = Files.readAllBytes(temporary);
+    boolean created = false;
+    try (FileChannel out =
+        FileChannel.open(target, StandardOpenOption.CREATE_NEW, StandardOpenOption.WRITE)) {
+      created = true;
+      restrict(target, false);
+      ByteBuffer buffer = ByteBuffer.wrap(bytes);
+      while (buffer.hasRemaining()) out.write(buffer);
+      out.force(true);
+    } catch (IOException | RuntimeException failure) {
+      // A partly written key never encrypted anything; remove it so the next start can retry.
+      if (created) Files.deleteIfExists(target);
+      throw failure;
+    }
+  }
+
+  private byte[] keyBytes() throws Exception {
+    // Unlocked fast path. Another instance may delete an incomplete key between any two checks,
+    // so a missing or wrong-sized key is revalidated under createKey's locks.
+    long size;
+    try {
+      size = Files.size(key);
+    } catch (NoSuchFileException missing) {
+      size = -1;
+    }
+    if (size != 16) createKey();
     restrict(key, false);
     byte[] bytes = readBounded(key);
     if (bytes.length != 16) throw new IOException("Invalid account key.");
     return bytes;
+  }
+
+  /**
+   * Runs under a lock on the account directory, so client instances starting together agree on
+   * one key: a key another instance already used to encrypt accounts is never replaced.
+   */
+  private void createKey() throws Exception {
+    // FileLock is held per process; this also serializes vaults within one JVM.
+    synchronized (AccountVault.class) {
+      Path lockFile = directory.resolve("accounts.lock");
+      try (FileChannel channel =
+              FileChannel.open(lockFile, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+          FileLock ignored = channel.lock()) {
+        restrict(lockFile, false);
+        boolean data =
+            Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
+        // An incomplete key (an interrupted write, by this or an older build) never encrypted
+        // anything when no vault exists. Beside data it is kept, and loading fails closed.
+        if (!data && Files.isRegularFile(key) && Files.size(key) != 16) Files.delete(key);
+        if (Files.exists(key)) return; // Created by another instance, or kept beside data.
+        if (data)
+          throw new IOException(
+              "Account key is missing. Restore accounts.key; no data was overwritten.");
+        byte[] bytes = new byte[16];
+        random.nextBytes(bytes);
+        // Written in full before it appears under its final name, so a failure leaves no key.
+        Path temporary = writeTemporary(bytes);
+        try {
+          publishExclusively(temporary, key);
+        } catch (FileAlreadyExistsException concurrent) {
+          /* A process that does not take the lock published first; use its key. */
+        } finally {
+          Files.deleteIfExists(temporary);
+        }
+      }
+    }
   }
 
   private static void restrict(Path path, boolean directory) throws IOException {

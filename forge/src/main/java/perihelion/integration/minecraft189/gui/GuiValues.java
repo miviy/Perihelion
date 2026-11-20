@@ -3,6 +3,7 @@ package perihelion.integration.minecraft189.gui;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Locale;
+import java.util.regex.Pattern;
 import perihelion.core.module.ModuleEntry;
 import perihelion.core.setting.NumericConstraints;
 import perihelion.core.setting.Setting;
@@ -10,6 +11,18 @@ import perihelion.integration.minecraft189.hud.TargetHudModule.Design;
 
 /** View-independent editor math and presentation. No Minecraft/GL state. */
 public final class GuiValues {
+  // Labels are built while drawing, so compile these once rather than per String.replaceAll call.
+  private static final Pattern[] ACRONYMS = {
+    Pattern.compile("\\bEsp\\b"),
+    Pattern.compile("\\bHud\\b"),
+    Pattern.compile("\\bFov\\b"),
+    Pattern.compile("\\bGui\\b")
+  };
+  private static final String[] ACRONYM_TEXT = {"ESP", "HUD", "FOV", "GUI"};
+  private static final Pattern SEARCH_SEPARATORS = Pattern.compile("[\\s_-]+"),
+      WORD_SEPARATORS = Pattern.compile("[_-]+"),
+      QUERY_SPACES = Pattern.compile("\\s+");
+
   private GuiValues() {}
 
   public static double snap(NumericConstraints n, double fraction) {
@@ -99,11 +112,10 @@ public final class GuiValues {
       out.append(start ? Character.toUpperCase(c) : c);
       start = c == ' ';
     }
-    return out.toString()
-        .replaceAll("\\bEsp\\b", "ESP")
-        .replaceAll("\\bHud\\b", "HUD")
-        .replaceAll("\\bFov\\b", "FOV")
-        .replaceAll("\\bGui\\b", "GUI");
+    String label = out.toString();
+    for (int i = 0; i < ACRONYMS.length; i++)
+      label = ACRONYMS[i].matcher(label).replaceAll(ACRONYM_TEXT[i]);
+    return label;
   }
 
   public static String searchable(ModuleEntry entry) {
@@ -132,9 +144,9 @@ public final class GuiValues {
 
   /** Each search term must match; separators in names and stable IDs are interchangeable. */
   public static boolean matches(String searchable, String query) {
-    String compact = searchable.toLowerCase(Locale.ROOT).replaceAll("[\\s_-]+", "");
-    for (String word : query.trim().toLowerCase(Locale.ROOT).split("\\s+"))
-      if (!compact.contains(word.replaceAll("[_-]+", ""))) return false;
+    String compact = SEARCH_SEPARATORS.matcher(searchable.toLowerCase(Locale.ROOT)).replaceAll("");
+    for (String word : QUERY_SPACES.split(query.trim().toLowerCase(Locale.ROOT)))
+      if (!compact.contains(WORD_SEPARATORS.matcher(word).replaceAll(""))) return false;
     return true;
   }
 

@@ -77,4 +77,104 @@ public class AccountVaultTest {
     Files.delete(dir.resolve("accounts.vault"));
     assertThrows(Exception.class, () -> new AccountVault(dir).load());
   }
+
+  @Test
+  public void emptyKeyWithoutDataIsReplacedAndKeyCreationLeavesNoTemporaryFiles()
+      throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Files.createFile(dir.resolve("accounts.key"));
+    AccountVault vault = new AccountVault(dir);
+    vault.load();
+    assertEquals(16, Files.size(dir.resolve("accounts.key")));
+    vault.save(data("private"));
+    assertEquals("private", new AccountVault(dir).load().get("secret").getAsString());
+    try (DirectoryStream<Path> files = Files.newDirectoryStream(dir, "*.tmp")) {
+      assertFalse(files.iterator().hasNext());
+    }
+  }
+
+  @Test
+  public void keyPublishingNeverReplacesAKeyAnotherInstanceCreated() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Path key = dir.resolve("accounts.key"), late = dir.resolve("late.tmp");
+    byte[] first = new byte[16], second = new byte[16];
+    Arrays.fill(first, (byte) 1);
+    Arrays.fill(second, (byte) 2);
+    Files.write(key, first);
+    Files.write(late, second);
+    assertThrows(
+        FileAlreadyExistsException.class, () -> AccountVault.publishExclusively(late, key));
+    assertArrayEquals(first, Files.readAllBytes(key));
+  }
+
+  @Test
+  public void noLinkFallbackCreatesOnlyIfAbsent() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Path key = dir.resolve("accounts.key"), late = dir.resolve("late.tmp");
+    byte[] first = new byte[16], second = new byte[16];
+    Arrays.fill(first, (byte) 1);
+    Arrays.fill(second, (byte) 2);
+    Files.write(late, second);
+    AccountVault.publishExclusively(late, key, false);
+    assertArrayEquals(second, Files.readAllBytes(key));
+    if (Files.getFileStore(dir).supportsFileAttributeView("posix"))
+      assertEquals(
+          PosixFilePermissions.fromString("rw-------"), Files.getPosixFilePermissions(key));
+    // An existing key, even one an unlocked older client just wrote, is never replaced.
+    Files.write(key, first);
+    assertThrows(
+        FileAlreadyExistsException.class, () -> AccountVault.publishExclusively(late, key, false));
+    assertArrayEquals(first, Files.readAllBytes(key));
+  }
+
+  @Test
+  public void partialKeyWithoutDataIsReplaced() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Files.write(dir.resolve("accounts.key"), new byte[5]);
+    new AccountVault(dir).load();
+    assertEquals(16, Files.size(dir.resolve("accounts.key")));
+  }
+
+  @Test
+  public void concurrentInitializersAgreeOnOneKey() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    int count = 8;
+    java.util.concurrent.CountDownLatch start = new java.util.concurrent.CountDownLatch(1);
+    java.util.concurrent.ExecutorService pool =
+        java.util.concurrent.Executors.newFixedThreadPool(count);
+    List<java.util.concurrent.Future<AccountVault>> vaults = new ArrayList<>();
+    try {
+      for (int i = 0; i < count; i++)
+        vaults.add(
+            pool.submit(
+                () -> {
+                  start.await();
+                  AccountVault vault = new AccountVault(dir);
+                  vault.load();
+                  return vault;
+                }));
+      start.countDown();
+      // Every instance must decrypt what any other saved: they all hold the published key.
+      vaults.get(0).get().save(data("shared"));
+      for (java.util.concurrent.Future<AccountVault> vault : vaults) vault.get();
+      assertEquals("shared", new AccountVault(dir).load().get("secret").getAsString());
+      vaults.get(count - 1).get().save(data("from-last"));
+      assertEquals("from-last", new AccountVault(dir).load().get("secret").getAsString());
+    } finally {
+      pool.shutdownNow();
+    }
+  }
+
+  @Test
+  public void emptyKeyBesideExistingDataFailsClosed() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    AccountVault vault = new AccountVault(dir);
+    vault.load();
+    vault.save(data("private"));
+    byte[] encrypted = Files.readAllBytes(dir.resolve("accounts.vault"));
+    Files.write(dir.resolve("accounts.key"), new byte[0]);
+    assertThrows(Exception.class, () -> new AccountVault(dir).load());
+    assertEquals(0, Files.size(dir.resolve("accounts.key")));
+    assertArrayEquals(encrypted, Files.readAllBytes(dir.resolve("accounts.vault")));
+  }
 }
