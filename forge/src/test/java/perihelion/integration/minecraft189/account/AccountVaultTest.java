@@ -94,6 +94,20 @@ public class AccountVaultTest {
   }
 
   @Test
+  public void keyPublishingNeverReplacesAKeyAnotherInstanceCreated() throws Exception {
+    Path dir = folder.newFolder().toPath();
+    Path key = dir.resolve("accounts.key"), late = dir.resolve("late.tmp");
+    byte[] first = new byte[16], second = new byte[16];
+    Arrays.fill(first, (byte) 1);
+    Arrays.fill(second, (byte) 2);
+    Files.write(key, first);
+    Files.write(late, second);
+    assertThrows(
+        FileAlreadyExistsException.class, () -> AccountVault.publishExclusively(late, key));
+    assertArrayEquals(first, Files.readAllBytes(key));
+  }
+
+  @Test
   public void emptyKeyBesideExistingDataFailsClosed() throws Exception {
     Path dir = folder.newFolder().toPath();
     AccountVault vault = new AccountVault(dir);

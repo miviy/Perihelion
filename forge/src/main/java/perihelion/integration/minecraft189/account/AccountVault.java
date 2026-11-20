@@ -113,6 +113,18 @@ public final class AccountVault {
     }
   }
 
+  /** Atomically creates {@code target}, failing if it exists; a hard link never replaces. */
+  static void publishExclusively(Path temporary, Path target) throws IOException {
+    try {
+      Files.createLink(target, temporary);
+    } catch (UnsupportedOperationException | FileSystemException noLinks) {
+      if (noLinks instanceof FileAlreadyExistsException) throw (FileAlreadyExistsException) noLinks;
+      // File systems without hard links: a move without REPLACE_EXISTING still refuses an
+      // existing target.
+      Files.move(temporary, target);
+    }
+  }
+
   private byte[] keyBytes() throws Exception {
     boolean data = Files.exists(file) || Files.exists(file.resolveSibling("accounts.vault.bak"));
     // An empty key from an interrupted write by an older build never encrypted anything.
@@ -124,9 +136,13 @@ public final class AccountVault {
       byte[] bytes = new byte[16];
       random.nextBytes(bytes);
       // Written in full before it appears under its final name, so a failure leaves no key.
+      // Publishing never replaces a key: another client instance may have created one and
+      // already encrypted accounts with it. If one wins the race, its key is used below.
       Path temporary = writeTemporary(bytes);
       try {
-        moveIntoPlace(temporary, key);
+        publishExclusively(temporary, key);
+      } catch (FileAlreadyExistsException concurrent) {
+        /* Another instance published first. */
       } finally {
         Files.deleteIfExists(temporary);
       }

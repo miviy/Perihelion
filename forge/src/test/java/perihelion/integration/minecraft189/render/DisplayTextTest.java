@@ -42,6 +42,17 @@ public class DisplayTextTest {
   }
 
   @Test
+  public void unicodeLookalikesAreNotMatchedSoTrimmingStaysConsistent() {
+    // Dotless U+0131 folds to 'i' under String.regionMatches(true, ...) but is a word boundary
+    // for trimming; it is a different name, not the protected one.
+    String lookalike = "Notchlıng";
+    assertSame(lookalike, DisplayText.replaceWord(lookalike, NAME, "You"));
+    assertEquals("Not", DisplayText.trim(lookalike, 3, false, WIDTH));
+    // Kelvin sign U+212A folds to 'k' the same way.
+    assertSame("Key", DisplayText.replaceWord("Key", "key", "You"));
+  }
+
+  @Test
   public void trimmingReturnsOriginalPrefixSizedByProtectedWidth() {
     String line = "Notchling killed Steve";
     // "You killed" is 10 wide; the original prefix is longer, but callers index the original.

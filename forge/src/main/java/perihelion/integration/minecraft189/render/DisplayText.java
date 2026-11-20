@@ -20,7 +20,24 @@ public final class DisplayText {
         && !(index >= 2 && text.charAt(index - 2) == '§');
   }
 
-  /** Replaces whole-word, case-insensitive occurrences of {@code word}. */
+  /**
+   * Usernames are ASCII, so only ASCII letters fold. Unicode folding would also accept lookalikes
+   * such as dotless U+0131 for 'i', which {@link #wordChar} treats as a boundary; trimming could
+   * then cut inside an accepted match.
+   */
+  private static boolean asciiMatches(String text, int offset, String word) {
+    for (int i = 0; i < word.length(); i++) {
+      char a = text.charAt(offset + i), b = word.charAt(i);
+      if (a != b && asciiLower(a) != asciiLower(b)) return false;
+    }
+    return true;
+  }
+
+  private static char asciiLower(char c) {
+    return c >= 'A' && c <= 'Z' ? (char) (c + 32) : c;
+  }
+
+  /** Replaces whole-word, ASCII case-insensitive occurrences of {@code word}. */
   public static String replaceWord(String text, String word, String replacement) {
     int length = word.length();
     if (length == 0 || text.length() < length) return text;
@@ -29,7 +46,7 @@ public final class DisplayText {
     // Match in place: lowercasing a copy can change its length (U+0130 becomes two chars), and
     // offsets from that copy would then point at the wrong span of the original.
     for (int found = 0; found <= text.length() - length; found++) {
-      if (found < copied || !text.regionMatches(true, found, word, 0, length)) continue;
+      if (found < copied || !asciiMatches(text, found, word)) continue;
       int end = found + length;
       if (joined(text, found) || joined(text, end)) continue;
       if (out == null) out = new StringBuilder(text.length());
