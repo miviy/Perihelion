@@ -1,6 +1,5 @@
 package perihelion.integration.minecraft189.render;
 
-import java.util.Locale;
 import java.util.function.ToIntFunction;
 
 /** Display-only text rewriting that keeps vanilla's index arithmetic on the original string. */
@@ -23,15 +22,16 @@ public final class DisplayText {
 
   /** Replaces whole-word, case-insensitive occurrences of {@code word}. */
   public static String replaceWord(String text, String word, String replacement) {
-    if (word.isEmpty() || text.length() < word.length()) return text;
-    String lower = text.toLowerCase(Locale.ROOT), target = word.toLowerCase(Locale.ROOT);
-    int found = lower.indexOf(target);
-    if (found < 0) return text;
+    int length = word.length();
+    if (length == 0 || text.length() < length) return text;
     StringBuilder out = null;
     int copied = 0;
-    for (; found >= 0; found = lower.indexOf(target, found + 1)) {
-      int end = found + target.length();
-      if (found < copied || joined(text, found) || joined(text, end)) continue;
+    // Match in place: lowercasing a copy can change its length (U+0130 becomes two chars), and
+    // offsets from that copy would then point at the wrong span of the original.
+    for (int found = 0; found <= text.length() - length; found++) {
+      if (found < copied || !text.regionMatches(true, found, word, 0, length)) continue;
+      int end = found + length;
+      if (joined(text, found) || joined(text, end)) continue;
       if (out == null) out = new StringBuilder(text.length());
       out.append(text, copied, found).append(replacement);
       copied = end;

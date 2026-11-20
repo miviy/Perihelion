@@ -26,8 +26,19 @@ public class DisplayTextTest {
     assertEquals("§aYou§r", DisplayText.replaceWord("§aNotchling§r", NAME, "You"));
     assertEquals("Notchlings", DisplayText.replaceWord("Notchlings", NAME, "You"));
     assertEquals("xNotchling", DisplayText.replaceWord("xNotchling", NAME, "You"));
+    assertEquals("NOTCHLINGs You", DisplayText.replaceWord("NOTCHLINGs NOTCHLING", NAME, "You"));
     String unchanged = "no name here";
     assertSame(unchanged, DisplayText.replaceWord(unchanged, NAME, "You"));
+  }
+
+  @Test
+  public void lengthChangingCaseFoldsCannotShiftOrBreakMatches() {
+    // U+0130 lowercases to two chars; offsets from a lowercased copy used to land mid-name and,
+    // with enough of them, past the end of the original.
+    assertEquals("İİİİ You", DisplayText.replaceWord("İİİİ Notchling", NAME, "You"));
+    StringBuilder many = new StringBuilder();
+    for (int i = 0; i < 20; i++) many.append('İ');
+    assertEquals(many + " You", DisplayText.replaceWord(many + " Notchling", NAME, "You"));
   }
 
   @Test
