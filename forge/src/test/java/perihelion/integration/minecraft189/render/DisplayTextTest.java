@@ -104,6 +104,24 @@ public class DisplayTextTest {
   }
 
   @Test
+  public void aFormattingSelectorIsNeverPartOfAMatch() {
+    assertEquals("§aPlayer", DisplayText.replaceWord("§aPlayer", "APlayer", "You"));
+    assertEquals("§aYou", DisplayText.replaceWord("§aAPlayer", "APlayer", "You"));
+  }
+
+  @Test
+  public void namesThatStartLikeTheReplacementAreStillKeptWhole() {
+    UnaryOperator<String> display = text -> DisplayText.replaceWord(text, "Younger", "You");
+    ToIntFunction<String> width = text -> display.apply(text).length();
+    // "Yo" reads like the start of "You" but is a fragment of the real name.
+    assertEquals("", DisplayText.trim("Younger", 2, false, width, display));
+    assertEquals("", DisplayText.trim("Younger", 2, true, width, display));
+    assertEquals("Younger", DisplayText.trim("Younger", 3, false, width, display));
+    assertEquals("Younger", DisplayText.trim("Younger", 3, true, width, display));
+    assertEquals("hi ", DisplayText.trim("hi Younger", 5, false, width, display));
+  }
+
+  @Test
   public void trimmingNeverCutsInsideAProtectedName() {
     String line = "hello Notchling";
     // Raw "hello No" would be 8 wide; the name must appear whole or not at all.

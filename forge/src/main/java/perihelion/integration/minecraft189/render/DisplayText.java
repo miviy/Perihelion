@@ -46,7 +46,10 @@ public final class DisplayText {
     // Match in place: lowercasing a copy can change its length (U+0130 becomes two chars), and
     // offsets from that copy would then point at the wrong span of the original.
     for (int found = 0; found <= text.length() - length; found++) {
-      if (found < copied || !asciiMatches(text, found, word)) continue;
+      // A formatting selector (the char after §) is never part of a name: "§aPlayer" must not
+      // match a name "APlayer" and consume the code along with someone else's visible name.
+      if (found < copied || found > 0 && text.charAt(found - 1) == '§') continue;
+      if (!asciiMatches(text, found, word)) continue;
       int end = found + length;
       if (joined(text, found) || joined(text, end)) continue;
       if (out == null) out = new StringBuilder(text.length());
@@ -61,9 +64,8 @@ public final class DisplayText {
    * fields index the original string with the returned length (a text field maps a click to a
    * cursor this way), so the result must be a prefix (or, reversed, a suffix) of the original,
    * cut at character precision like vanilla. The one exception: a cut never falls inside a
-   * rewritten span. A cut is allowed only where the kept text rewrites to a prefix (suffix) of
-   * the whole rewritten text, so a protected name is kept whole or not at all, and the caller
-   * wraps it instead of showing a fragment.
+   * rewritten span, so a protected name is kept whole or not at all, and the caller wraps it
+   * instead of showing a fragment.
    */
   public static String trim(
       String text,
@@ -101,7 +103,12 @@ public final class DisplayText {
     if (keep == 0 || keep == n) return true;
     int index = reverse ? n - keep : keep;
     if (text.charAt(index - 1) == '\u00a7') return false; // Never split a formatting code.
-    String rewritten = display.apply(kept(text, keep, reverse));
-    return reverse ? shown.endsWith(rewritten) : shown.startsWith(rewritten);
+    // Outside rewritten spans, each side (rewritten, or raw where it lacks the context that kept
+    // a glued word from matching) begins or ends the whole rewrite. A cut inside a span leaves a
+    // fragment on both sides, and checking both rejects a head that merely reads like the start
+    // of the replacement ("Yo" of a name "Younger" against "You").
+    String head = text.substring(0, index), tail = text.substring(index);
+    return (shown.startsWith(head) || shown.startsWith(display.apply(head)))
+        && (shown.endsWith(tail) || shown.endsWith(display.apply(tail)));
   }
 }
