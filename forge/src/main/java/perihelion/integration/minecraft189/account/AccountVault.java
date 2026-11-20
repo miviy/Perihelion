@@ -127,7 +127,15 @@ public final class AccountVault {
   }
 
   private byte[] keyBytes() throws Exception {
-    if (!Files.exists(key) || Files.size(key) == 0) createKey();
+    // Unlocked fast path. Another instance may delete an empty key between any two checks, so a
+    // missing file is treated like an empty one and revalidated under createKey's locks.
+    long size;
+    try {
+      size = Files.size(key);
+    } catch (NoSuchFileException missing) {
+      size = 0;
+    }
+    if (size == 0) createKey();
     restrict(key, false);
     byte[] bytes = readBounded(key);
     if (bytes.length != 16) throw new IOException("Invalid account key.");

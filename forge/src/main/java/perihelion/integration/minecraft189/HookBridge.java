@@ -202,7 +202,7 @@ public final class HookBridge {
     if (shown == text || shown.equals(text)) return null;
     try {
       return perihelion.integration.minecraft189.render.DisplayText.trim(
-          text, width, reverse, font::getStringWidth);
+          text, width, reverse, font::getStringWidth, HookBridge::displayText);
     } catch (Throwable failure) {
       Failures.rethrowFatal(failure);
       reportFailure("trimmed text", failure);

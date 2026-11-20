@@ -1,6 +1,7 @@
 package perihelion.integration.minecraft189.render;
 
 import java.util.function.ToIntFunction;
+import java.util.function.UnaryOperator;
 
 /** Display-only text rewriting that keeps vanilla's index arithmetic on the original string. */
 public final class DisplayText {
@@ -59,27 +60,49 @@ public final class DisplayText {
   /**
    * Trims the original text so its rewritten width fits. Callers such as chat wrapping and text
    * fields index the original string with the returned length, so the result must be a prefix
-   * (or, reversed, a suffix) of the original. Cuts never split a word, so a protected name is
-   * shown whole or not at all, unless a single word is wider than the limit.
+   * (or, reversed, a suffix) of the original. A rewritten span is kept whole or not at all:
+   * cuts fall between words, or, when even the first word does not fit, only where the kept
+   * text rewrites to a prefix (suffix) of the whole rewritten text. The result may then be
+   * empty, and the caller wraps the span to its next line instead of showing a fragment.
    */
-  public static String trim(String text, int width, boolean reverse, ToIntFunction<String> measure) {
+  public static String trim(
+      String text,
+      int width,
+      boolean reverse,
+      ToIntFunction<String> measure,
+      UnaryOperator<String> display) {
     int n = text.length();
-    int cut = search(text, width, reverse, measure, true);
+    int cut = search(text, width, reverse, measure, null);
     if (reverse ? cut == n && n > 0 : cut == 0 && n > 0)
-      cut = search(text, width, reverse, measure, false);
+      cut = search(text, width, reverse, measure, display);
     return reverse ? text.substring(cut) : text.substring(0, cut);
   }
 
-  /** Width is monotonic in the kept length, so binary search the allowed cuts for the most text. */
+  /**
+   * Width is monotonic in the kept length, so binary search the allowed cuts for the most text.
+   * Without {@code display} cuts fall between words; with it, at any character whose kept text
+   * leaves every rewritten span intact.
+   */
   private static int search(
-      String text, int width, boolean reverse, ToIntFunction<String> measure, boolean words) {
+      String text,
+      int width,
+      boolean reverse,
+      ToIntFunction<String> measure,
+      UnaryOperator<String> display) {
     int n = text.length();
+    String shown = display == null ? null : display.apply(text);
     int[] keeps = new int[n + 1];
     int count = 0;
     for (int keep = 0; keep <= n; keep++) {
       int index = reverse ? n - keep : keep;
-      boolean code = index > 0 && index < n && text.charAt(index - 1) == '\u00a7';
-      if (!code && (!words || !joined(text, index))) keeps[count++] = keep;
+      if (index > 0 && index < n && text.charAt(index - 1) == '\u00a7') continue;
+      if (display == null) {
+        if (joined(text, index)) continue;
+      } else if (keep > 0 && keep < n) {
+        String kept = display.apply(reverse ? text.substring(index) : text.substring(0, index));
+        if (reverse ? !shown.endsWith(kept) : !shown.startsWith(kept)) continue;
+      }
+      keeps[count++] = keep;
     }
     int low = 0, high = count - 1, best = 0;
     while (low <= high) {
